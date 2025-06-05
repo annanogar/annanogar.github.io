@@ -4,8 +4,11 @@
 {% import 'components/organisms/image-grid/image-grid.html' as image_grid %}
 {% import 'components/organisms/image-header/image-header.html' as image_header %}
 {% set page_title = 'Make Your Own Law: Propose, Explore, Debate' %}
-{% set page_description = 'TODO: Page description' %}
+{% set page_description = 'ProDemos is an organization in The Hague that educates citizens, particularly students, about Dutch democracy and the rule of law.' %}
 {% set project_slug = 'prodemos' %}
+{% set opengraph_image = '/static/media/projects/' + project_slug + '/cover_3x1_2560w.jpg' %}
+{% set opengraph_title = page_title %}
+{% set opengraph_description = page_description %}
 
 {% block content %}
   {{
