@@ -27,8 +27,11 @@
     z-index: 100;
   }
 
-  .picture__image {
-    aspect-ratio: 1 / 1;
+  .call-to-action__picture {
+    &,
+    .picture__image {
+      aspect-ratio: 1 / 1;
+    }
   }
 
   @include breakpoints.landscape {

@@ -25,7 +25,4 @@ document.addEventListener('mousedown', () => document.documentElement.classList.
 document.addEventListener('touchstart', () => document.documentElement.classList.remove('key-pressed'))
 
 konamiCode()
-
-window.addEventListener('konami', () => {
-  console.log('Konami code activated!')
-})
+window.addEventListener('konami', () => document.documentElement.classList.add('konami-code'))
