@@ -1,0 +1,67 @@
+@use '../utilities/definitions/_beziers' as beziers;
+@use './breakpoints' as breakpoints;
+
+@mixin declarations {
+  :root {
+    // Basic colors
+    --color-black: #{#000};
+    --color-white: #{#fff};
+    --color-blue: #{#00f};
+    --color-pink: #{#ff00c8};
+    --color-cyan: #{#06fcde};
+    --color-navy: #{#000042};
+
+    // Theming colors
+    --color-background: var(--color-navy);
+    --color-foreground: var(--color-white);
+
+    // Selection colorts
+    --color-selection-background: var(--color-pink);
+    --color-selection-foreground: var(--color-white);
+
+    // Gradients
+    --gradient-header: linear-gradient(90deg, rgba(#00f, 1) 25%, rgba(#00f, 0) 75%, rgba(#00f, 0) 100%);
+
+    // Layers
+    --z-index-overlay: 2047;
+    --z-index-menu-overlay: 2048;
+    --z-index-skip-to-main: 9999;
+
+    // Beziers
+    --bezier-standard: #{beziers.$ease-out-expo}; //cubic-bezier(0.26, 0.88, 0.57, 0.9);
+    --bezier-tighter: cubic-bezier(0.23, 1, 0.32, 1);
+
+    // Timings
+    --timing-fast: 200ms;
+    --timing-standard: 350ms;
+    --timing-slow: 750ms;
+    --timing-extraslow: 1.5s;
+
+    // Easings
+    --easing-standard: var(--timing-standard) var(--bezier-standard);
+    --easing-slow: var(--timing-slow) var(--bezier-standard);
+    --easing-extraslow: var(--timing-extraslow) var(--bezier-standard);
+  }
+
+  @media screen and (prefers-reduced-motion: reduce) {
+    :root {
+      --timing-fast: 1ms;
+      --timing-standard: 1ms;
+      --timing-slow: 1ms;
+      --timing-extraslow: 1ms;
+    }
+  }
+
+  // Properties (so we can animate them)
+  @property --color-background {
+    inherits: true;
+    initial-value: #00f;
+    syntax: '<color>';
+  }
+
+  @property --color-foreground {
+    inherits: true;
+    initial-value: #fff;
+    syntax: '<color>';
+  }
+}

@@ -1,0 +1,28 @@
+// Allows styling based on the number of children (hack)
+
+@mixin count($amount: 1, $selector: li) {
+  @if ($amount == 1) {
+    #{$selector}:first-child:nth-last-child(#{$amount}) {
+      @content;
+    }
+  } @else {
+    #{$selector}:first-child:nth-last-child(#{$amount}),
+    #{$selector}:first-child:nth-last-child(#{$amount}) ~ #{$selector} {
+      @content;
+    }
+  }
+}
+
+@mixin count-odd($selector: li) {
+  #{$selector}:first-child:nth-child(odd),
+  #{$selector}:first-child:nth-child(odd) ~ #{$selector} {
+    @content;
+  }
+}
+
+@mixin count-even($selector: li) {
+  #{$selector}:first-child:nth-child(even),
+  #{$selector}:first-child:nth-child(even) ~ #{$selector} {
+    @content;
+  }
+}

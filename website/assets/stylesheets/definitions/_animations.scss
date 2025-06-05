@@ -1,0 +1,17 @@
+// Animations (keyframes and such)
+
+@mixin declarations {
+  @include keyframes;
+
+  :root {
+    @include variables;
+  }
+}
+
+@mixin variables {
+  // CSS variable declarations
+}
+
+@mixin keyframes {
+  // Keyframes
+}

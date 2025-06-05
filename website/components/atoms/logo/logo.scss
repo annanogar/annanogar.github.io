@@ -1,0 +1,32 @@
+@use '../../../assets/stylesheets/definitions/breakpoints' as breakpoints;
+@use '../../../assets/stylesheets/definitions/typography' as typography;
+
+.logo {
+  display: inline-flex;
+  line-height: 3.75rem;
+  position: relative;
+  vertical-align: top;
+
+  .logo__image {
+    aspect-ratio: 111 / 60;
+    display: inline-block;
+    fill: none;
+    height: 3.75rem;
+    stroke: none;
+    vertical-align: top;
+    width: auto;
+
+    > path {
+      transition: fill var(--easing-standard);
+    }
+  }
+
+  // &:hover,
+  // &:focus-visible {
+  //   .logo__image {
+  //     > path {
+  //       fill: var(--color-white);
+  //     }
+  //   }
+  // }
+}

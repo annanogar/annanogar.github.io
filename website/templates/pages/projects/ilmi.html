@@ -1,0 +1,117 @@
+{% extends 'templates/_base.en.html' %}
+{% import 'components/organisms/article-footer/article-footer.html' as article_footer %}
+{% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
+{% import 'components/organisms/image-grid/image-grid.html' as image_grid %}
+{% import 'components/organisms/video-player/video-player.html' as video_player %}
+{% import 'components/organisms/image-header/image-header.html' as image_header %}
+{% set page_title = 'A Digital Journey Through STREAM Informal Learning' %}
+{% set page_description = 'TODO: Page description' %}
+{% set project_slug = 'ilmi' %}
+
+{% block content %}
+  {{
+    image_header.regular(
+      title = page_title,
+      subtitle = 'ilmi Science Discovery and Innovation Center, Riyadh (SA), Expected opening in 2025',
+      image = { src: 'projects/' + project_slug + '/cover_3x1', alt: 'TODO: Alt text' }
+    )
+  }}
+
+  {{
+    image_grid.regular(
+      title = 'Overview',
+      introduction = 'ilmi is a forthcoming science and innovation center in Riyadh, Saudi Arabia. Spanning 38,000 square meters, it will serve as both a national landmark and a cultural hub for families. The center will feature immersive, hands-on exhibits that promote informal learning across STREAM subjects (Science, Technology, Reading, Engineering, Arts, and Mathematics). A complementary digital platform will extend ilmi’s educational mission beyond its physical space and across the country.',
+      items = [
+        { image: { src: 'projects/' + project_slug + '/01_2x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/02_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/03_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/04_2x1', alt: 'TODO: Alt text' } }
+      ]
+    )
+  }}
+
+  {{
+    image_grid.regular(
+      title = 'Contribution',
+      introduction = 'I was responsible for the creative direction and strategy behind the digital platform prototype, and I was closely involved in defining the broader Digital Learning strategy for the Center, leading the Accessibility guidelines. The platform is rooted in principles of Informal Learning and Universal Design Learning, it blends storytelling with game mechanics to spark curiosity and self-driven exploration. The experience is designed to accommodate different kinds of preferences and needs, offering multiple ways of learning, from interactive games to hands-on challenges.',
+      items = [
+        { image: { src: 'projects/' + project_slug + '/05_2x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/06_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/07_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/08_2x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/09_2x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/10_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/11_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/12_2x1', alt: 'TODO: Alt text' } }
+      ]
+    )
+  }}
+
+  {{
+    image_grid.regular(
+      variant = 'highlight',
+      title = 'Warning!',
+      introduction = 'The final platform is being developed by a local company and will be released in the coming years. Due to NDA constraints, the material shown here is for reference only. Although this was a three-year project, I am unable to showcase the full work.',
+      items = [
+        { image: { src: 'projects/' + project_slug + '/13_2x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/14_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/15_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/16_2x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/17_2x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/18_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/19_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/20_2x1', alt: 'TODO: Alt text' } }
+      ]
+    )
+  }}
+
+  {{
+    call_to_action.regular(
+      variant = 'video',
+      quote = 'Are you curious?<br/>Watch the teaser!',
+      image = { src: 'projects/' + project_slug + '/trailer-thumbnail_1x1', alt: 'TODO: Alt text' }
+    )
+  }}
+
+  {{
+    video_player.regular(
+      video = { src: 'projects/' + project_slug + '/trailer_16x9', poster: 'projects/' + project_slug + '/trailer_16x9', alt: 'ilmi Teaser video' }
+    )
+  }}
+
+  {% call article_footer.regular() %}
+    <h3>Credits</h3>
+
+    <p>
+      <strong>Role:</strong>
+      Creative Director | Strategist<br />
+      <strong>Employer:</strong>
+      IJsfontein<br />
+      <strong>Client:</strong>
+      Misk Foundation<br />
+      <strong>Photography:</strong>
+      Unsplash<br />
+      <strong>Renders:</strong>
+      Provided by client<br />
+      <strong>Mockups & video:</strong>
+      IJsfontein
+    </p>
+
+    <p>© All rights reserved to IJsfontein</p>
+  {% endcall %}
+
+  {{
+    call_to_action.regular(
+      variant = 'badge',
+      quote = 'Explore the next project or start a conversation.',
+      badge = { href: 'mailto:_send_me_an_?subject=Via%20the%20website', title: 'Get in touch!' },
+      card = {
+        href: '/projects/qatar.html',
+        title: 'A Family Experience of Qatar’s Heritage',
+        subtitle: 'National Museum of Qatar, Doha (QA)',
+        label: 'Awarded',
+        image: { src: 'projects/qatar/thumbnail_1x1', alt: 'TODO: Alt text' }
+      }
+    )
+  }}
+{% endblock %}

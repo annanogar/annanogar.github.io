@@ -1,0 +1,13 @@
+@use '../../definitions/grid';
+
+@use './unit-helpers' as unit;
+
+// Return a calc() with a fluid value between min and max, stretched over the min/max screen width values
+// NOTE: Based on font-size calculation example. See https://www.smashingmagazine.com/2016/05/fluid-typography/
+@function get($min: 1.25rem, $max: 2rem, $min-screen-width: grid.$website-min-width, $max-screen-width: grid.$website-max-width) {
+  @if ($min == $max) {
+    @return $min;
+  }
+
+  @return calc(#{$min} + (#{unit.strip($max)} - #{unit.strip($min)}) * (100dvw - #{$min-screen-width}) / (#{unit.strip($max-screen-width)} - #{unit.strip($min-screen-width)}));
+}

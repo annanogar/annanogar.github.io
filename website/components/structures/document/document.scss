@@ -1,0 +1,49 @@
+@use '../../../assets/stylesheets/definitions/typography' as typography;
+
+html {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  display: flex;
+  flex-direction: row;
+  min-height: 100%;
+  position: relative;
+
+  &.prevent-scrolling {
+    max-height: 100vh;
+    overflow: hidden;
+  }
+
+  &.konami {
+    --color-white: #{rgb(0, 255, 0)};
+
+    .picture__image {
+      filter: grayscale(1) contrast(2.5);
+    }
+
+    .picture {
+      &::after {
+        background: #0f0;
+        content: '';
+        display: block;
+        inset: 0;
+        mix-blend-mode: multiply;
+        pointer-events: none;
+        position: absolute;
+        z-index: 1;
+      }
+    }
+  }
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  margin: 0;
+  position: relative;
+  width: 100%;
+}
+
+::selection {
+  background-color: var(--color-selection-background);
+  color: var(--color-selection-foreground);
+}

@@ -1,0 +1,9 @@
+{% macro regular(quote = '') %}
+  {% if quote %}
+    <div class="article-quote">
+      <div class="article-quote__wrapper">
+        <blockquote class="article-quote__quote">{{ quote }}</blockquote>
+      </div>
+    </div>
+  {% endif %}
+{% endmacro %}

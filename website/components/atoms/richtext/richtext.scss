@@ -1,0 +1,194 @@
+@use '../../../assets/stylesheets/definitions/breakpoints' as breakpoints;
+@use '../../../assets/stylesheets/definitions/typography' as typography;
+@use '../../../assets/stylesheets/utilities/mixins/adaptive-margin' as adaptive-margin;
+
+@mixin text-links {
+  a {
+    &,
+    &:link,
+    &:active,
+    &:visited {
+      background-color: var(--color-common-link-background);
+      color: var(--color-common-link-foreground);
+      text-decoration: underline;
+
+      &:hover,
+      &:focus-visible {
+        text-decoration: none;
+      }
+    }
+
+    &[target='_blank'] {
+      &::after {
+        aspect-ratio: 1 / 1;
+        background: var(--icon-external-link) no-repeat center center;
+        background-size: 0.8em 0.8em;
+        content: '';
+        display: inline-block;
+        margin-bottom: -0.05lh;
+        margin-left: 0.2em;
+        vertical-align: baseline;
+        width: 0.8em;
+      }
+    }
+  }
+}
+
+.richtext {
+  position: relative;
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    background-color: var(--color-common-title-background);
+    color: var(--color-common-title-foreground);
+    text-wrap: pretty;
+    white-space: unset;
+  }
+
+  p {
+    text-wrap: pretty;
+    white-space: unset;
+
+    @include text-links;
+  }
+
+  strong,
+  b {
+    font-weight: bold;
+  }
+
+  em,
+  i {
+    font-style: italic;
+  }
+
+  > *:first-child {
+    margin-top: 0;
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.richtext--regular {
+  h2 {
+    margin: 3.5rem 0 1.5rem;
+
+    @include typography.heading-2;
+  }
+
+  h3 {
+    margin: 2.5rem 0 -0.5rem;
+
+    @include typography.heading-3;
+  }
+
+  p {
+    margin: 1rem 0;
+
+    @include typography.paragraph;
+  }
+
+  ul,
+  ol {
+    list-style: none;
+    margin: 1rem 0;
+    padding: 0;
+
+    @include typography.paragraph;
+
+    li {
+      margin-left: 0.25em;
+      padding-left: 1.25em;
+      position: relative;
+
+      &::before {
+        content: '';
+        display: inline-block;
+        height: 1.25em;
+        margin-left: -1.25em;
+        margin-right: 0;
+        vertical-align: baseline;
+        width: 1.25em;
+      }
+    }
+
+    > li,
+    > li > ul,
+    > li > ol {
+      margin-bottom: 0;
+    }
+  }
+
+  ul {
+    li {
+      &::before {
+        content: '•';
+      }
+    }
+  }
+
+  ol {
+    counter-reset: list-counter;
+
+    li {
+      counter-increment: list-counter;
+
+      &::before {
+        content: counter(list-counter) '.';
+        font-feature-settings: 'tnum' 1;
+      }
+    }
+  }
+
+  li {
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+
+    @include text-links;
+  }
+
+  dl {
+    margin-bottom: 2.5rem;
+    width: 100%;
+
+    @include typography.paragraph;
+
+    dt,
+    dd {
+      margin: 0;
+    }
+
+    dt {
+      font-weight: bold;
+    }
+
+    dd {
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
+.richtext--caption {
+  p {
+    margin-top: 0.5rem;
+
+    @include typography.caption;
+  }
+}
+
+.richtext--simple {
+  p {
+    @include typography.paragraph;
+  }
+}
+
+.richtext--footer {
+  p {
+    @include typography.footer-text;
+  }
+}

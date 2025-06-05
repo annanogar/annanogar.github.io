@@ -1,0 +1,16 @@
+// Components
+
+// We used to use @imports for these, with side effects.
+// We can use @use, but this means we cannot put them below the base declarations.
+// This is because @use must come before any other CSS rules.
+// It is not useful to use @forward in this case.
+// Since these are imported with side effects, this means the order is the wrong way 'round.
+// Thus, we have to use a second stylesheet entry point.
+
+@use '../../components/atoms/*/*' as atoms;
+@use '../../components/molecules/*/*' as molecules;
+@use '../../components/organisms/*/*' as organisms;
+@use '../../components/structures/*/*' as structures;
+
+// Plugins (@import === @use as *)
+//@use 'swiper/swiper' as *;

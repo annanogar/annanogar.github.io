@@ -1,0 +1,69 @@
+@use '../../../assets/stylesheets/definitions/breakpoints' as breakpoints;
+@use '../../../assets/stylesheets/definitions/grid' as grid;
+@use '../../../assets/stylesheets/definitions/typography' as typography;
+
+.image-grid {
+  position: relative;
+
+  .image-grid__wrapper {
+    padding: var(--padding-xl) var(--padding-large);
+  }
+
+  .image-grid__title {
+    @include typography.heading-2;
+  }
+
+  .image-grid__introduction {
+    margin-top: 1rem;
+
+    @include typography.paragraph;
+  }
+
+  .image-grid__items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    list-style: none;
+    padding: 0;
+  }
+
+  //.image-grid__item {
+  //}
+
+  .image-grid__item--1x1 {
+    aspect-ratio: 1 / 1;
+    grid-column: span 1;
+  }
+
+  .image-grid__item--2x1 {
+    aspect-ratio: 2 / 1;
+    grid-column: span 2;
+  }
+
+  @include breakpoints.landscape {
+    .image-grid__wrapper {
+      padding: var(--padding-large) var(--padding-large);
+    }
+
+    .image-grid__items {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+}
+
+//.image-grid--regular {
+//}
+
+.image-grid--highlight {
+  .image-grid__wrapper {
+    background: var(--color-pink);
+    color: var(--color-white);
+  }
+
+  .image-grid__title {
+    @include typography.highlight-heading;
+  }
+
+  .image-grid__introduction {
+    @include typography.highlight-introduction;
+  }
+}

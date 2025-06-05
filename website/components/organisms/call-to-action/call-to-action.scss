@@ -1,0 +1,152 @@
+@use '../../../assets/stylesheets/definitions/breakpoints' as breakpoints;
+@use '../../../assets/stylesheets/definitions/grid' as grid;
+@use '../../../assets/stylesheets/definitions/typography' as typography;
+
+.call-to-action {
+  position: relative;
+
+  .call-to-action__wrapper {
+    align-items: center;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    overflow: hidden;
+    padding: 0 var(--padding-large);
+    z-index: 99;
+  }
+
+  .call-to-action__quote {
+    z-index: 99;
+
+    @include typography.quote;
+  }
+
+  .badge {
+    position: absolute;
+    right: 0;
+    transform: translate(-20px, -50%) rotate(15deg);
+    z-index: 100;
+  }
+
+  .picture__image {
+    aspect-ratio: 1 / 1;
+  }
+
+  @include breakpoints.landscape {
+    display: flex;
+
+    .call-to-action__wrapper {
+      aspect-ratio: 2 / 1;
+      flex: 0 0 66.667%;
+      padding: 0 var(--padding-small) 0 var(--padding-large);
+    }
+
+    .badge {
+      left: 66.667%;
+      position: absolute;
+      top: 0;
+      transform: translate(-50%, -50%) rotate(15deg);
+    }
+
+    .picture {
+      flex: 0 0 33.333%;
+    }
+  }
+}
+
+.call-to-action--regular {
+  .call-to-action__wrapper {
+    background-color: var(--color-pink);
+    color: var(--color-white);
+  }
+}
+
+.call-to-action--dark {
+  .call-to-action__wrapper {
+    background-color: var(--color-navy);
+    color: var(--color-white);
+  }
+
+  @include breakpoints.landscape {
+    .call-to-action__wrapper {
+      padding-right: calc(var(--padding-large) * 1.5);
+    }
+
+    .badge {
+      top: 50%;
+    }
+  }
+}
+
+.call-to-action--video {
+  display: flex;
+  padding: calc(33.333vw / 2) 0;
+
+  .call-to-action__wrapper {
+    aspect-ratio: 2 / 1;
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    flex: 0 0 66.667%;
+    padding: 0 var(--padding-small) 0 var(--padding-large);
+  }
+
+  .badge {
+    left: 66.667%;
+    position: absolute;
+    top: 0;
+    transform: translate(-50%, -50%) rotate(15deg);
+  }
+
+  .call-to-action__quote {
+    @include typography.video-quote;
+  }
+
+  @include breakpoints.landscape {
+    padding: 11.869vw 0;
+
+    .call-to-action__wrapper {
+      padding-right: calc(var(--padding-large) * 1.5);
+    }
+
+    .badge {
+      top: 50%;
+    }
+  }
+}
+
+.call-to-action--badge {
+  .call-to-action__wrapper {
+    background-color: var(--color-pink);
+    color: var(--color-white);
+  }
+
+  .badge {
+    &:hover,
+    &:focus-visible {
+      &::before {
+        background-color: var(--color-pink);
+        transform: scale(1.6);
+      }
+
+      .badge__span {
+        color: var(--color-white);
+      }
+    }
+  }
+
+  @include breakpoints.landscape {
+    .call-to-action__wrapper {
+      padding-right: calc(var(--padding-large) * 1.5);
+    }
+
+    .badge {
+      transform: translate(-85%, -15%) rotate(15deg);
+
+      &:hover,
+      &:focus-visible {
+        &::before {
+          transform: scale(2);
+        }
+      }
+    }
+  }
+}

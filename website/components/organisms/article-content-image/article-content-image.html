@@ -1,0 +1,72 @@
+{% import 'components/atoms/picture/picture.html' as atom_picture %}
+{% import 'components/atoms/richtext/richtext.html' as atom_richtext %}
+
+{% macro _image_wrapper(image = {}, cpacc_badge = false) %}
+  <div class="article-content-image__image-wrapper">
+    {{
+      atom_picture.regular(
+        sources = [
+          {
+            type: 'image/webp',
+            srcsets: [
+              '/static/media/' + image.src + '_640w.webp 640w',
+              '/static/media/' + image.src + '_854w.webp 854w',
+              '/static/media/' + image.src + '_1280w.webp 1280w'
+            ]
+          },
+          {
+            type: 'image/jpg',
+            srcsets: [
+              '/static/media/' + image.src + '_640w.jpg 640w',
+              '/static/media/' + image.src + '_854w.jpg 854w',
+              '/static/media/' + image.src + '_1280w.jpg 1280w'
+            ]
+          }
+        ],
+        alt = image.alt,
+        width = 320,
+        height = 320
+      )
+    }}
+
+    {% if cpacc_badge %}
+      <div class="article-content-image__cpacc-badge">
+        <a class="article-content-image__cpacc-badge-link" href="https://www.accessibilityassociation.org/cpacc" target="_blank" rel="noopener noreferrer" aria-label="Opens in a new tab or window">
+          <img class="article-content-image__cpacc-badge-image" src="/static/images/iaap-certified-cpacc-badge.png" alt="Certified Professional in Accessibility Core Competencies (CPACC) badge" width="120" height="120" loading="lazy" decoding="async" />
+        </a>
+      </div>
+    {% endif %}
+  </div>
+{% endmacro %}
+
+{% macro regular(variant = '', image = {}, richtext = '', cpacc_badge = false) %}
+  {% set variant = variant or 'left' %}
+
+  {% if (richtext or caller) and image and image.src %}
+    <div class="article-content-image article-content-image--{{ variant }}">
+      <div class="article-content-image__wrapper">
+        {% if variant == 'left' %}
+          {{ _image_wrapper(image, cpacc_badge) }}
+        {% endif %}
+
+        <div class="article-content-image__content-wrapper">
+          {% if richtext %}
+            {{ atom_richtext.regular(richtext = richtext) }}
+          {% elif caller %}
+            {% set child_context = caller() %}
+
+            {% if child_context %}
+              {% call atom_richtext.regular() %}
+                {{ child_context }}
+              {% endcall %}
+            {% endif %}
+          {% endif %}
+        </div>
+
+        {% if variant == 'right' %}
+          {{ _image_wrapper(image, cpacc_badge) }}
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+{% endmacro %}

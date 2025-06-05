@@ -1,0 +1,69 @@
+{% extends 'templates/_base.html' %}
+{% import 'components/structures/footer-bar/footer-bar.html' as footer_bar %}
+{% import 'components/structures/menu-bar/menu-bar.html' as menu_bar %}
+{% import 'components/structures/skip-to-main/skip-to-main.html' as skip_to_main %}
+{% set lang = lang or 'en' %}
+{% set dir = dir or 'ltr' %}
+{% set site_title = site_title or 'annanogar.com' %}
+{% set site_description = 'Portfolio of Anna Nogaré' %}
+{% set social_behance_url = '?' %}
+{% set social_linkedin_url = '?' %}
+
+{% block favicons %}
+  <link rel="icon" href="/static/images/favicons/favicon.ico" />
+  <link rel="icon" type="image/png" href="/static/images/favicons/favicon.png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="/static/images/favicons/favicon.png" />
+{% endblock %}
+
+{% block font_preloads %}
+  <link rel="preload" href="/static/fonts/poppins/poppins-bold.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/static/fonts/noto-sans/noto-sans-regular.woff2" as="font" type="font/woff2" crossorigin />
+{% endblock %}
+
+{% block stylesheet_preloads %}
+  <link rel="preload" href="{{ asset_with_hash('stylesheets/main.css') }}" as="style" />
+{% endblock %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset_with_hash('stylesheets/main.css') }}" />
+{% endblock %}
+
+{% block skip_to_main %}
+  {{
+    skip_to_main.regular(
+      title = 'Skip to main content',
+      aria_label = 'Skip to main content'
+    )
+  }}
+{% endblock %}
+
+{% block header %}
+  {{
+    menu_bar.regular(
+      aria_label = 'Main navigation',
+      title = 'Anna Nogaré',
+      logo = { href: '/', title: 'annanogar', aria_label: 'Back to homepage' }
+    )
+  }}
+{% endblock %}
+
+{% block footer %}
+  {{
+    footer_bar.regular(
+      aria_label = 'Footer navigation',
+      links_start = [
+        { href: 'mailto:_send_me_an_?subject=Via%20the%20website', title: '_send_me_an_' },
+        { href: 'tel:_or_pick_up_the_', title: '_heres_my_number_' },
+        { title: 'Currently in Amsterdam, NL' }
+      ],
+      links_end = [
+        { href: '?', title: 'LinkedIn' },
+        { href: '?', title: 'Behance' },
+        { href: '/it/', title: 'Italiano', lang: 'it' }
+      ]
+    )
+  }}
+{% endblock %}
+
+{% block overlays %}
+{% endblock %}

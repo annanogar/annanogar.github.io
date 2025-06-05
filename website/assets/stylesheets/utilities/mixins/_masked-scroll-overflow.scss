@@ -1,0 +1,10 @@
+@mixin apply($mask-height: 6.66rem, $mask-offset: 1.5rem) {
+  --mask-height: #{$mask-height};
+  --mask-offset: #{$mask-offset};
+  --mask-image-content: linear-gradient(to bottom, #000 0%, #000 calc(100% - var(--mask-height) - var(--mask-offset)), transparent);
+
+  mask-image: var(--mask-image-content);
+  mask-position: 100% 0;
+  mask-repeat: no-repeat;
+  mask-size: 100% 100%;
+}

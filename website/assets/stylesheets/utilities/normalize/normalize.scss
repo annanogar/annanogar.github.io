@@ -1,0 +1,272 @@
+@mixin box-model {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+}
+
+@mixin typography {
+  html {
+    -webkit-text-size-adjust: 100%; // Prevent iOS font size adjustments after changing orientation
+  }
+}
+
+@mixin colors {
+  :root {
+    --background-color: #fff;
+    --foreground-color: #000;
+  }
+
+  html,
+  option {
+    background-color: var(--background-color);
+    color: var(--foreground-color);
+  }
+
+  ::selection {
+    background-color: var(--foreground-olor);
+    color: var(--background-color);
+    text-shadow: none;
+  }
+}
+
+@mixin focus {
+  *:focus-visible {
+    outline: 1px solid currentcolor;
+    outline-offset: 0.5rem;
+    outline-style: dashed;
+  }
+}
+
+@mixin helpers {
+  p {
+    &:empty {
+      display: none;
+    }
+  }
+
+  .sr-only {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+
+  @media screen {
+    [hidden~='screen'] {
+      display: inherit;
+    }
+
+    [hidden~='screen']:not(:active, :focus, :target) {
+      clip: rect(0 0 0 0);
+      overflow: hidden;
+      position: absolute;
+    }
+  }
+}
+
+@mixin images-and-videos {
+  img {
+    height: auto;
+    max-width: 100%;
+    vertical-align: bottom;
+  }
+
+  figure,
+  picture {
+    margin-inline: 0;
+
+    img,
+    iframe,
+    video,
+    object {
+      height: auto;
+      width: 100%;
+    }
+  }
+
+  video {
+    backface-visibility: visible; // Fixes a bug in Safari where video disappears on pause
+  }
+
+  svg {
+    fill: currentcolor;
+    height: 100%;
+    stroke: transparent;
+    width: 100%;
+  }
+}
+
+@mixin links {
+  a {
+    text-decoration: none;
+    -webkit-text-decoration-skip: ink;
+    text-decoration-skip-ink: auto;
+    text-decoration-thickness: 1px; //from-font;
+    text-underline-offset: 0.15em;
+
+    p &,
+    li &,
+    label & {
+      color: inherit;
+      text-decoration: underline;
+    }
+  }
+}
+
+@mixin buttons {
+  button,
+  input[type='button'],
+  input[type='submit'] {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    color: inherit;
+    font: inherit;
+    min-height: 1em;
+    padding: 0;
+    -webkit-tap-highlight-color: rgb(0 0 0 / 0%);
+
+    &:not(:disabled) {
+      cursor: pointer;
+    }
+  }
+}
+
+@mixin dropdowns {
+  select {
+    appearance: none;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    color: inherit;
+    font: inherit;
+    min-height: 1em;
+
+    &:not(:disabled) {
+      cursor: pointer;
+    }
+  }
+}
+
+@mixin inputs {
+  input {
+    background: transparent;
+    border: 1px solid currentcolor;
+    border-radius: 0;
+    color: inherit;
+    font: inherit;
+    min-height: 1em;
+
+    &[type='number'] {
+      appearance: textfield;
+
+      &::-webkit-inner-spin-button {
+        display: none;
+      }
+    }
+
+    &[type='search'] {
+      appearance: textfield;
+
+      &::-webkit-search-cancel-button,
+      &::-webkit-search-decoration {
+        appearance: none;
+      }
+    }
+  }
+
+  textarea {
+    background: transparent;
+    border: 1px solid currentcolor;
+    border-radius: 0;
+    color: inherit;
+    font: inherit;
+    max-height: 20em;
+    min-height: 1em;
+    resize: vertical;
+  }
+}
+
+@mixin tables {
+  table {
+    border: 0;
+    border-spacing: 0;
+    min-width: 100%;
+  }
+
+  th,
+  td {
+    border: none;
+    font-weight: unset;
+    padding: 0.5rem 1rem;
+    text-align: left;
+  }
+}
+
+@mixin other-elements {
+  label {
+    -webkit-tap-highlight-color: rgb(0 0 0 / 0%);
+  }
+
+  fieldset,
+  legend {
+    margin: 0;
+    padding: 0;
+  }
+
+  summary {
+    list-style: none;
+  }
+
+  blockquote {
+    margin-inline: 0;
+  }
+
+  iframe {
+    border-width: 0;
+    overflow: hidden;
+  }
+
+  dialog {
+    border: none;
+    color: inherit;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@mixin declarations {
+  @include box-model;
+  @include typography;
+  @include colors;
+  @include focus;
+  @include helpers;
+  @include images-and-videos;
+  @include links;
+  @include buttons;
+  @include dropdowns;
+  @include inputs;
+  @include tables;
+  @include other-elements;
+
+  * {
+    margin-block: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    max-width: 55ch;
+  }
+}

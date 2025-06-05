@@ -1,0 +1,14 @@
+{% import 'components/atoms/picture/picture.html' as atom_picture %}
+{% import 'components/atoms/richtext/richtext.html' as atom_richtext %}
+
+{% macro regular(classes = '', picture = {}, richtext_caption = '') %}
+  {% if picture and picture.images %}
+    <figure class="figure {{ classes }}">
+      {{ atom_picture.regular(images = picture.images, fits = picture.fits, positions = picture.positions, width = picture.width, height = picture.height, loading = picture.loading, alt_text = picture.alt_text) }}
+
+      {% if richtext_caption %}
+        <figcaption class="figure__caption">{{ atom_richtext.caption(richtext = richtext_caption) }}</figcaption>
+      {% endif %}
+    </figure>
+  {% endif %}
+{% endmacro %}

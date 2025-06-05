@@ -1,0 +1,83 @@
+{% extends 'templates/_base.en.html' %}
+{% import 'components/organisms/article-footer/article-footer.html' as article_footer %}
+{% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
+{% import 'components/organisms/image-grid/image-grid.html' as image_grid %}
+{% import 'components/organisms/image-header/image-header.html' as image_header %}
+{% set page_title = 'Herman Boerhaave & the Golden Age of Science' %}
+{% set page_description = 'TODO: Page description' %}
+{% set project_slug = 'boerhaave' %}
+
+{% block content %}
+  {{
+    image_header.regular(
+      title = page_title,
+      subtitle = 'Rijksmuseum Boerhaave, Leiden (NL), 2018',
+      image = { src: 'projects/' + project_slug + '/cover_3x1', alt: 'TODO: Alt text' }
+    )
+  }}
+
+  {{
+    image_grid.regular(
+      title = 'Overview',
+      introduction = 'The Rijksmuseum Boerhaave celebrated the 350th birthday of Herman Boerhaave with a temporary exhibition that brought his scientific legacy to life. Visitors followed the physician’s milestones through past Leiden, exploring key locations from the botanical garden to his home. Bold graphic panels, historical artifacts, and multimedia elements uncovered his fight against scientific misinformation and his lasting impact on medicine.',
+      items = [
+        { image: { src: 'projects/' + project_slug + '/01_2x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/02_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/03_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/04_2x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/05_2x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/06_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/07_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/08_2x1', alt: 'TODO: Alt text' } }
+      ]
+    )
+  }}
+
+  {{
+    image_grid.regular(
+      title = 'Contribution',
+      introduction = 'I managed the visual, multimedia, and AV design, shaping a bold and fresh approach that broke away from conventional exhibition styles. The combination of vibrant graphics and multimedia elements created an experience that was both modern and historically rich, making the exhibition more approachable and dynamic for everyone.',
+      items = [
+        { image: { src: 'projects/' + project_slug + '/09_2x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/10_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/11_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/12_2x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/13_2x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/14_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/15_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/16_2x1', alt: 'TODO: Alt text' } }
+      ]
+    )
+  }}
+
+  {% call article_footer.regular() %}
+    <h3>Credits</h3>
+
+    <p>
+      <strong>Role:</strong>
+      Art Director | Lead Designer<br />
+      <strong>Employer:</strong>
+      Studio Louter<br />
+      <strong>Client:</strong>
+      Rijksmuseum Boerhaave<br />
+      <strong>Photography:</strong>
+      Mike Bink<br />
+    </p>
+
+    <p>© All rights reserved to Studio Louter</p>
+  {% endcall %}
+
+  {{
+    call_to_action.regular(
+      variant = 'badge',
+      quote = 'Explore the next project or start a conversation.',
+      badge = { href: 'mailto:_send_me_an_?subject=Via%20the%20website', title: 'Get in touch!' },
+      card = {
+        href: '/projects/prodemos.html',
+        title: 'Make Your Own Law: Propose, Explore, Debate',
+        subtitle: 'ProDemos, The Hague (NL)',
+        image: { src: 'projects/prodemos/thumbnail_1x1', alt: 'TODO: Alt text' }
+      }
+    )
+  }}
+{% endblock %}

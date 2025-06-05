@@ -1,0 +1,5 @@
+{% macro regular(classes = '', icon = '') %}
+  {% if icon %}
+    <span class="icon {{ classes }}" aria-hidden="true"> {% include 'assets/icons/' + icon + '.svg' %} </span>
+  {% endif %}
+{% endmacro %}

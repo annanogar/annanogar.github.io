@@ -1,0 +1,46 @@
+{% import 'components/atoms/picture/picture.html' as atom_picture %}
+
+{% macro regular(href = '', title = '', subtitle = '', label = '', image = {}) %}
+  {% if href and title and image and image.src %}
+    <a class="project-card" href="{{ href }}">
+      {{
+        atom_picture.regular(
+          classes = 'project-card__image',
+          sources = [
+            {
+              type: 'image/webp',
+              srcsets: [
+                '/static/media/' + image.src + '_640w.webp 640w',
+                '/static/media/' + image.src + '_854w.webp 854w',
+                '/static/media/' + image.src + '_1280w.webp 1280w'
+              ]
+            },
+            {
+              type: 'image/jpg',
+              srcsets: [
+                '/static/media/' + image.src + '_640w.jpg 640w',
+                '/static/media/' + image.src + '_854w.jpg 854w',
+                '/static/media/' + image.src + '_1280w.jpg 1280w'
+              ]
+            }
+          ],
+          alt = image.alt,
+          width = 320,
+          height = 320
+        )
+      }}
+
+      <div class="project-card__content">
+        <p class="project-card__title">{{ title }}</p>
+
+        {% if subtitle %}
+          <p class="project-card__subtitle">{{ subtitle }}</p>
+        {% endif %}
+
+        {% if label %}
+          <p class="project-card__label">{{ label }}</p>
+        {% endif %}
+      </div>
+    </a>
+  {% endif %}
+{% endmacro %}

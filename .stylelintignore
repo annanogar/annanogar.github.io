@@ -1,0 +1,17 @@
+# Yarn v3 ignore list for Not-ZeroInstalls
+/.yarn/*
+
+# Node modules
+/node_modules/**
+
+# production
+/build
+
+# Ignore minified files
+**/*.min.js
+
+# Ignore plugins
+website/assets/scripts/plugins/**
+
+# Ignore vendored files
+website/assets/vendor/**

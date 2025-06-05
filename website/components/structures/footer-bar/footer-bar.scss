@@ -1,0 +1,82 @@
+@use '../../../assets/stylesheets/definitions/breakpoints' as breakpoints;
+@use '../../../assets/stylesheets/definitions/grid' as grid;
+@use '../../../assets/stylesheets/definitions/typography' as typography;
+
+.footer-bar {
+  background-color: var(--color-blue);
+  color: var(--color-white);
+  position: relative;
+
+  .footer-bar__wrapper {
+    display: flex;
+    padding: calc(var(--padding-medium) * 0.75) var(--padding-large);
+  }
+
+  .footer-bar__links {
+    @include typography.footer-text;
+  }
+
+  .footer-bar__links--start {
+    flex: 0 0 75%;
+    text-align: left;
+
+    .footer-bar__link {
+      clear: left;
+      float: left;
+    }
+  }
+
+  .footer-bar__links--end {
+    flex: 0 0 25%;
+    text-align: right;
+
+    .footer-bar__link {
+      clear: right;
+      float: right;
+    }
+  }
+
+  .footer-bar__link {
+    color: inherit;
+    margin: 0.1em 0;
+    text-decoration: none;
+
+    &[href] {
+      cursor: pointer;
+
+      &:hover,
+      &:focus-visible {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  @include breakpoints.landscape {
+    .footer-bar__wrapper {
+      padding: calc(var(--padding-small) * 0.75) var(--padding-large);
+    }
+  }
+
+  @include breakpoints.notebook {
+    .footer-bar__wrapper {
+      align-items: flex-start;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    .footer-bar__links {
+      display: contents;
+    }
+
+    .footer-bar__links--start,
+    .footer-bar__links--end {
+      text-align: left;
+
+      .footer-bar__link {
+        clear: unset;
+        float: unset;
+      }
+    }
+  }
+}

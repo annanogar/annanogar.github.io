@@ -1,0 +1,97 @@
+@use '../../../assets/stylesheets/definitions/breakpoints' as breakpoints;
+@use '../../../assets/stylesheets/definitions/grid' as grid;
+@use '../../../assets/stylesheets/definitions/typography' as typography;
+
+.article-content-image {
+  position: relative;
+
+  .article-content-image__image-wrapper {
+    margin-bottom: var(--padding-xl);
+    position: relative;
+  }
+
+  .article-content-image__cpacc-badge {
+    bottom: 0;
+    display: inline-block;
+    height: 0;
+    overflow: visible;
+    position: absolute;
+    right: 1rem;
+    vertical-align: top;
+    width: 0;
+    z-index: 999;
+
+    &:hover,
+    &:focus-visible {
+      .article-content-image__cpacc-badge-link {
+        transform: translate(-100%, -50%) scale(2.3);
+      }
+    }
+  }
+
+  .article-content-image__cpacc-badge-link {
+    aspect-ratio: 1 / 1;
+    display: inline-block;
+    transform: translate(-100%, -50%) scale(1);
+    transform-origin: center center;
+    transition: transform var(--easing-slow);
+    vertical-align: top;
+    width: 9.875rem;
+    z-index: 100;
+  }
+
+  .article-content-image__cpacc-badge-image {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+  }
+
+  .article-content-image__content-wrapper {
+    padding: 0 var(--padding-large) var(--padding-xl);
+  }
+
+  @include breakpoints.landscape {
+    .article-content-image__image-wrapper {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.article-content-image--left {
+  @include breakpoints.landscape {
+    .article-content-image__wrapper {
+      align-items: flex-start;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+
+    .article-content-image__image-wrapper {
+      flex: 0 0 33.333%;
+    }
+
+    .article-content-image__content-wrapper {
+      flex: 0 0 66.667%;
+      padding: 0 var(--padding-large) var(--padding-medium) var(--padding-medium);
+    }
+  }
+}
+
+.article-content-image--right {
+  @include breakpoints.landscape {
+    .article-content-image__wrapper {
+      align-items: flex-start;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+
+    .article-content-image__image-wrapper {
+      flex: 0 0 33.333%;
+    }
+
+    .article-content-image__content-wrapper {
+      flex: 0 0 66.667%;
+      padding: 0 var(--padding-small) var(--padding-large) var(--padding-large);
+    }
+  }
+}

@@ -1,0 +1,58 @@
+@use '../../../assets/stylesheets/definitions/breakpoints' as breakpoints;
+@use '../../../assets/stylesheets/definitions/typography' as typography;
+
+.project-card {
+  aspect-ratio: 1 / 1;
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+  vertical-align: top;
+
+  .project-card__image,
+  .project-card__content {
+    height: 100%;
+    inset: 0;
+    position: absolute;
+    width: 100%;
+  }
+
+  .project-card__content {
+    background-color: var(--color-blue);
+    color: var(--color-white);
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    overflow: hidden;
+    padding: 1.25rem;
+    place-content: center;
+    place-items: center;
+    pointer-events: none;
+    text-align: center;
+    transition: opacity var(--easing-slow);
+    z-index: 10;
+  }
+
+  .project-card__title {
+    @include typography.project-card-title;
+  }
+
+  .project-card__subtitle {
+    margin-top: 0.5rem;
+
+    @include typography.subtitle;
+  }
+
+  .project-card__label {
+    margin-top: 1.5rem;
+
+    @include typography.label;
+  }
+
+  &:hover,
+  &:focus-visible {
+    .project-card__content {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+}

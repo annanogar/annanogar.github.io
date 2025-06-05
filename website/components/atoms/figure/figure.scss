@@ -1,0 +1,14 @@
+@use '../../../assets/stylesheets/definitions/breakpoints' as breakpoints;
+@use '../../../assets/stylesheets/definitions/typography' as typography;
+
+.figure {
+  position: relative;
+
+  .picture {
+    width: 100%;
+  }
+
+  .figure__caption {
+    @include typography.caption;
+  }
+}

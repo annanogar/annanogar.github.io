@@ -1,0 +1,9 @@
+// To visually remove breaks from content
+
+@mixin apply {
+  br {
+    content: ' ';
+    display: inline-block;
+    width: 0.25em;
+  }
+}

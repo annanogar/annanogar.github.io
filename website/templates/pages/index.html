@@ -1,0 +1,97 @@
+{% extends 'templates/_base.en.html' %}
+{% import 'components/organisms/article-footer/article-footer.html' as article_footer %}
+{% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
+{% import 'components/organisms/card-grid/card-grid.html' as card_grid %}
+{% import 'components/organisms/landing-header/landing-header.html' as landing_header %}
+{% set page_title = 'Portfolio of Anna Nogaré; Creative Director, Strategist and CPACC Certified.' %}
+
+{% block content %}
+  {{
+    landing_header.regular(
+      title = 'Creating learning experiences that everyone can enjoy.',
+      badge = { href: '/manifesto.html', title: 'Read Accessibility manifesto' }
+    )
+  }}
+
+  {{
+    card_grid.regular(
+      cards = [
+        {
+          href: '/projects/mauritshuis.html',
+          title: 'Shifting Image on the Dutch Colonial History',
+          subtitle: 'Mauritshuis, The Hague (NL)',
+          label: 'Awarded',
+          image: { src: 'projects/mauritshuis/thumbnail_1x1', alt: 'TODO: Alt text' }
+        },
+
+        {
+          href: '/projects/ilmi.html',
+          title: 'A Digital Journey Through STREAM Informal Learning',
+          subtitle: 'ilmi Science Discovery & Innovation Center, Riyadh (SA)',
+          image: { src: 'projects/ilmi/thumbnail_1x1', alt: 'TODO: Alt text' }
+        },
+
+        {
+          href: '/projects/qatar.html',
+          title: 'A Family Experience of Qatar’s Heritage',
+          subtitle: 'National Museum of Qatar, Doha (QA)',
+          label: 'Awarded',
+          image: { src: 'projects/qatar/thumbnail_1x1', alt: 'TODO: Alt text' }
+        },
+
+        {
+          href: '/projects/cruquius.html',
+          title: 'Haarlemmermeer & the World’s Largest Steam Engine',
+          subtitle: 'Cruquius Museum, Cruquius (NL)',
+          label: 'Featured',
+          image: { src: 'projects/cruquius/thumbnail_1x1', alt: 'TODO: Alt text' }
+        },
+
+        {
+          href: '/projects/nh-archief.html',
+          title: 'At the discovery of Joh. Enschedé, Printers of Value',
+          subtitle: 'Noord-Hollands Archief, Haarlem (NL)',
+          label: 'Awarded + Featured',
+          image: { src: 'projects/nh-archief/thumbnail_1x1', alt: 'TODO: Alt text' }
+        },
+
+        {
+          href: '/projects/brussels.html',
+          title: 'Discovering & Understanding Our Living Planet',
+          subtitle: 'Museum of Natural Sciences, Brussels (BE)',
+          image: { src: 'projects/brussels/thumbnail_1x1', alt: 'TODO: Alt text' }
+        },
+
+        {
+          href: '/projects/boerhaave.html',
+          title: 'Herman Boerhaave & the Golden Age of Science',
+          subtitle: 'Rijksmuseum Boerhaave, Leiden (NL)',
+          image: { src: 'projects/boerhaave/thumbnail_1x1', alt: 'TODO: Alt text' }
+        },
+
+        {
+          href: '/projects/prodemos.html',
+          title: 'Make Your Own Law: Propose, Explore, Debate',
+          subtitle: 'ProDemos, The Hague (NL)',
+          image: { src: 'projects/prodemos/thumbnail_1x1', alt: 'TODO: Alt text' }
+        },
+
+        {
+          href: '/projects/het-steen.html',
+          title: 'Het Steen: The Gateway to Antwerp’s history',
+          subtitle: 'Visit Antwerp, Antwerp (BE)',
+          image: { src: 'projects/het-steen/thumbnail_1x1', alt: 'TODO: Alt text' }
+        }
+      ]
+    )
+  }}
+
+  {{
+    call_to_action.regular(
+      variant = 'dark',
+      quote = 'It’s not about <em>them</em> at the end. It’s about <em>all of us</em> from the very start.',
+      badge = { variant: 'bright', href: '/about.html', title: 'Who I am & How I work' },
+      image = { src: 'about/cta_1x1', alt: 'TODO: Alt text' }
+    )
+  }}
+{% endblock %}

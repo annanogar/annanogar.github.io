@@ -1,0 +1,32 @@
+@use '../../../assets/stylesheets/definitions/breakpoints' as breakpoints;
+@use '../../../assets/stylesheets/definitions/grid' as grid;
+@use '../../../assets/stylesheets/definitions/typography' as typography;
+
+.card-grid {
+  position: relative;
+
+  .card-grid__wrapper {
+    padding: 0;
+  }
+
+  .card-grid__items {
+    display: grid;
+    grid-template-columns: 1fr;
+    list-style: none;
+    padding: 0;
+  }
+
+  //.card-grid__item {
+  //}
+
+  .product-card {
+    aspect-ratio: 1 / 1;
+    grid-column: span 1;
+  }
+
+  @include breakpoints.landscape {
+    .card-grid__items {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+}

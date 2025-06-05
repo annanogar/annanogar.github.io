@@ -1,0 +1,111 @@
+{% extends 'templates/_base.en.html' %}
+{% import 'components/organisms/article-footer/article-footer.html' as article_footer %}
+{% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
+{% import 'components/organisms/image-grid/image-grid.html' as image_grid %}
+{% import 'components/organisms/image-header/image-header.html' as image_header %}
+{% set page_title = 'An interactive family experience of Qatar’s Heritage' %}
+{% set page_description = 'TODO: Page description' %}
+{% set project_slug = 'qatar' %}
+
+{% block content %}
+  {{
+    image_header.regular(
+      title = page_title,
+      subtitle = 'National Museum of Qatar, Doha (QA), 2019',
+      image = { src: 'projects/' + project_slug + '/cover_3x1', alt: 'TODO: Alt text' }
+    )
+  }}
+
+  {{
+    image_grid.regular(
+      title = 'Overview',
+      introduction = 'The National Museum of Qatar offers a unique 1.5-kilometer journey that immerses visitors in the country’s history, blending movement, touch, and storytelling. Along this journey, the museum created Family Exhibits specifically for children aged 5 to 15, where they can engage with Qatar’s heritage in an interactive and hands-on way.',
+      items = [
+        { image: { src: 'projects/' + project_slug + '/01_2x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/02_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/03_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/04_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/05_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/06_2x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/07_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/08_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/09_2x1', alt: 'TODO: Alt text' } }
+      ]
+    )
+  }}
+
+  {{
+    image_grid.regular(
+      title = 'Three Family Exhibits',
+      introduction = 'My work focused on three family exhibits, each inviting visitors to explore Qatar’s rich heritage through games and stories. Visitors can dig up ancient artifacts, discover the traditional pearl diving culture that shaped coastal life, and learn about the vital role energy resources play in the country’s story.',
+      items = [
+        { image: { src: 'projects/' + project_slug + '/10_2x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/11_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/12_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/13_2x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/14_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/15_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/16_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/17_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/18_2x1', alt: 'TODO: Alt text' } }
+      ]
+    )
+  }}
+
+  {{
+    image_grid.regular(
+      title = 'Contribution',
+      introduction = 'I led the visual, multimedia, and AV design for these three exhibits, managing the whole creative process within an international network. These exhibits range from tactile, discovery-based activities to more complex and story-driven challenges, offering something for every age and level of curiosity. Each experience is designed for families to explore together, turning learning into a shared adventure rather than something parents simply watch from the sidelines.',
+      items = [
+        { image: { src: 'projects/' + project_slug + '/19_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/20_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/21_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/22_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/23_2x1', alt: 'TODO: Alt text' } }
+      ]
+    )
+  }}
+
+  {% call article_footer.regular() %}
+    <h3>Awards</h3>
+
+    <p>
+      <strong>International Design Award 2020:</strong><br />
+      Bronze | Multimedia-Interactive Media<br />
+      <strong>AVICOM F@IMP 2.0 2020:</strong><br />
+      Winner | Interpreting exhibition installation<br />
+      <strong>Muse Design Awards 2019:</strong><br />
+      Silver | Interior Design Exhibits, Pavilions, & Exhibitions<br />
+      <strong>SBID Awards 2019:</strong><br />
+      Nomination | Public Space Design
+    </p>
+    <h3>Credits</h3>
+    <p>
+      <strong>Role:</strong>
+      Art Director | Lead Designer<br />
+      <strong>Employer:</strong>
+      Studio Louter<br />
+      <strong>Client:</strong>
+      National Museum of Qatar<br />
+      <strong>Photography:</strong>
+      Studio Louter
+    </p>
+
+    <p>© All rights reserved to Studio Louter</p>
+  {% endcall %}
+
+  {{
+    call_to_action.regular(
+      variant = 'badge',
+      quote = 'Explore the next project or start a conversation.',
+      badge = { href: 'mailto:_send_me_an_?subject=Via%20the%20website', title: 'Get in touch!' },
+      card = {
+        href: '/projects/cruquius.html',
+        title: 'Haarlemmermeer & the World’s Largest Steam Engine',
+        subtitle: 'Cruquius Museum, Cruquius (NL)',
+        label: 'Featured',
+        image: { src: 'projects/cruquius/thumbnail_1x1', alt: 'TODO: Alt text' }
+      }
+    )
+  }}
+{% endblock %}

@@ -1,0 +1,196 @@
+@use 'sass:string';
+@use 'sass:list';
+@use 'sass:math';
+@use 'sass:meta';
+
+// Shamelessly copy pasted from http://hugogiraudel.com/2013/08/08/advanced-sass-list-functions/
+
+@function first($list) {
+  @return list.nth($list, 1);
+}
+
+@function last($list) {
+  @return list.nth($list, list.length($list));
+}
+
+@function last-index($list, $value) {
+  @for $i from (list.length($list) * -1) through -1 {
+    @if list.nth($list, math.abs($i)) == $value {
+      @return math.abs($i);
+    }
+  }
+
+  @return null;
+}
+
+@function prepend($list, $value) {
+  @return list.join($value, $list);
+}
+
+@function insert-nth($list, $index, $value) {
+  $result: null;
+
+  @if meta.type-of($index) != number {
+    @warn '$index: #{string.quote($index)} is not a number for `insert-nth`.';
+  } @else if $index < 1 {
+    @warn 'List index 0 must be a non-zero integer for `insert-nth`';
+  } @else if $index > list.length($list) {
+    @warn "List index is #{$index} but list is only #{list.length($list)} item long for `insert-nth'.";
+  } @else {
+    $result: ();
+
+    @for $i from 1 through list.length($list) {
+      @if $i == $index {
+        $result: list.append($result, $value);
+      }
+
+      $result: list.append($result, list.nth($list, $i));
+    }
+  }
+
+  @return $result;
+}
+
+@function replace($list, $old-value, $new-value, $recursive: false) {
+  $result: ();
+
+  @for $i from 1 through list.length($list) {
+    @if meta.type-of(list.nth($list, $i)) == list and $recursive {
+      $result: list.append($result, replace(list.nth($list, $i), $old-value, $new-value, $recursive));
+    } @else {
+      @if list.nth($list, $i) == $old-value {
+        $result: list.append($result, $new-value);
+      } @else {
+        $result: list.append($result, list.nth($list, $i));
+      }
+    }
+  }
+
+  @return $result;
+}
+
+@function replace-nth($list, $index, $value) {
+  $result: null;
+
+  @if meta.type-of($index) != number {
+    @warn '$index: #{string.quote($index)} is not a number for `replace-nth`.';
+  } @else if $index == 0 {
+    @warn 'List index 0 must be a non-zero integer for `replace-nth`.';
+  } @else if math.abs($index) > list.length($list) {
+    @warn 'List index is #{$index} but list is only #{list.length($list)} item long for `replace-nth`.';
+  } @else {
+    $result: ();
+    $index: if($index < 0, list.length($list) + $index + 1, $index);
+
+    @for $i from 1 through list.length($list) {
+      @if $i == $index {
+        $result: list.append($result, $value);
+      } @else {
+        $result: list.append($result, list.nth($list, $i));
+      }
+    }
+  }
+
+  @return $result;
+}
+
+@function remove($list, $value, $recursive: false) {
+  $result: ();
+
+  @for $i from 1 through list.length($list) {
+    @if meta.type-of(list.nth($list, $i)) == list and $recursive {
+      $result: list.append($result, remove(list.nth($list, $i), $value, $recursive));
+    } @else if list.nth($list, $i) != $value {
+      $result: list.append($result, list.nth($list, $i));
+    }
+  }
+
+  @return $result;
+}
+
+@function remove-nth($list, $index) {
+  $result: null;
+
+  @if meta.type-of($index) != number {
+    @warn '$index: #{string.quote($index)} is not a number for `remove-nth`.';
+  } @else if $index == 0 {
+    @warn 'List index 0 must be a non-zero integer for `remove-nth`.';
+  } @else if math.abs($index) > list.length($list) {
+    @warn 'List index is #{$index} but list is only #{list.length($list)} item long for `remove-nth`.';
+  } @else {
+    $result: ();
+    $index: if($index < 0, list.length($list) + $index + 1, $index);
+
+    @for $i from 1 through list.length($list) {
+      @if $i != $index {
+        $result: list.append($result, list.nth($list, $i));
+      }
+    }
+  }
+
+  @return $result;
+}
+
+@function slice($list, $start: 1, $end: list.length($list)) {
+  $result: null;
+
+  @if meta.type-of($start) != number or meta.type-of($end) != number {
+    @warn 'Either $start or $end are not a number for `slice`.';
+  } @else if $start > $end {
+    @warn 'The start index has to be lesser than or equals to the end index for `slice`.';
+  } @else if $start < 1 or $end < 1 {
+    @warn 'List indexes must be non-zero integers for `slice`.';
+  } @else if $start > list.length($list) {
+    @warn 'List index is #{$start} but list is only #{list.length($list)} item long for `slice`.';
+  } @else if $end > list.length($list) {
+    @warn 'List index is #{$end} but list is only #{list.length($list)} item long for `slice`.';
+  } @else {
+    $result: ();
+
+    @for $i from $start through $end {
+      $result: list.append($result, list.nth($list, $i));
+    }
+  }
+
+  @return $result;
+}
+
+@function reverse($list, $recursive: false) {
+  $result: ();
+
+  @for $i from (list.length($list) * -1) through -1 {
+    @if meta.type-of(list.nth($list, math.abs($i))) == list and $recursive {
+      $result: list.append($result, reverse(list.nth($list, math.abs($i)), $recursive));
+    } @else {
+      $result: list.append($result, list.nth($list, math.abs($i)));
+    }
+  }
+
+  @return $result;
+}
+
+@function to-string($list, $glue: '', $is-nested: false) {
+  $result: null;
+
+  @for $i from 1 through list.length($list) {
+    $e: list.nth($list, $i);
+
+    @if meta.type-of($e) == list {
+      $result: $result#{to-string($e, $glue, true)};
+    } @else {
+      $result: if($i != list.length($list) or $is-nested, $result#{$e}#{$glue}, $result#{$e});
+    }
+  }
+
+  @return $result;
+}
+
+@function loop($list, $value: 1) {
+  $result: ();
+
+  @for $i from 0 to list.length($list) {
+    $result: list.append($result, list.nth($list, ($i - $value) % list.length($list) + 1));
+  }
+
+  @return $result;
+}
