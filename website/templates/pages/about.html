@@ -1,0 +1,50 @@
+{% extends 'templates/_base.en.html' %}
+{% import 'components/organisms/article-content-image/article-content-image.html' as article_content_image %}
+{% import 'components/organisms/article-header/article-header.html' as article_header %}
+{% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
+{% set page_title = 'Who I am & How I work' %}
+
+{% block content %}
+  {{
+    article_header.regular(
+      title = page_title
+    )
+  }}
+
+  {%
+    call article_content_image.regular(
+      variant = 'left',
+      image = { src: 'about/section01_1x1', alt: 'TODO: Alt text' },
+      cpacc_badge = true
+    )
+  %}
+    <h2>Who I am</h2>
+
+    <p>I’m Anna Nogaré, a Creative Director & Strategist specialized in creating learning experiences that everyone can enjoy.</p>
+    <p>With international experience across cultural, educational, and public sector institutions, I develop interpretive solutions and immersive environments that focus on emotional connections and meaningful storytelling.</p>
+    <p>I’m certified in CPACC (Certified Professional in Accessibility Core Competencies) by the International Association of Accessibility Professionals (IAAP) and a member of the organization.</p>
+    <p>Some of the clients I’ve worked with are:</p>
+    <p>The National Museum of Qatar (Doha, QA), The ilmi Science Discovery & Innovation Center (Riyadh, SA), The Royal Belgian Institute of Natural Sciences (Brussels, BE), The Iceland Museum of Natural History (Reykjavík, IS), The Rijksmuseum Boerhaave (Leiden, NL) and many more.</p>
+  {% endcall %}
+
+  {%
+    call article_content_image.regular(
+      variant = 'right',
+      image = { src: 'about/section02_1x1', alt: 'TODO: Alt text' }
+    )
+  %}
+    <h2>How I work</h2>
+    <p>After years designing interpretive experiences for cultural spaces, I have learned that the real challenge is not making things appealing, but truly engaging. While visuals attract attention and spark interest, engagement means meeting people where they are and recognizing that everyone learns and expresses themselves differently through images, stories, sound, movement, or interaction. What matters is creating spaces where people feel something, and where they can connect, reflect, and take something with them.</p>
+    <p>When we make information emotionally resonant and easy to navigate, we open doors. If something is simple, it’s not because it's been oversimplified, but because it’s been thoughtfully crafted to be understood. And when people understand, they care, and therefore they’re more likely to take action. That’s why I think informal learning, play, and curiosity should be part of how we build these experiences. When learning doesn’t feel forced or formal, it becomes more human, more rooted in exploration, empathy, and discovery.</p>
+    <p>None of this works without designing with inclusivity at the core. We need flexible and welcoming journeys that respond to diverse needs and ways of being. It’s about imagining multi-sensory experiences where people can reach the same destination through different paths, at their own pace, in their own way.The most powerful experiences are not just seen; they are felt, lived, and remembered.</p>
+    <p>This approach shapes how I work. I begin by understanding who the experience is for, what emotional or learning response we want to create, and how people might move through the space or content. I then develop a flexible narrative and structure that can adapt to different needs, grounded in a strategic vision that considers feasibility, budget, and long-term impact. Through co-creation, prototyping, and iteration, I bring concepts to life in ways that feel intuitive, inclusive, and meaningful, while ensuring the project’s sustainability and potential for growth.</p>
+  {% endcall %}
+
+  {{
+    call_to_action.regular(
+      quote = 'Always up for great ideas, or just a good conversation.',
+      badge = { variant: 'bright', href: '/manifesto.html', title: 'Read Accessibility manifesto' },
+      image = { src: 'about/cta_1x1', alt: 'TODO: Alt text' }
+    )
+  }}
+{% endblock %}

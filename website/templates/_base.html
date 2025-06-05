@@ -1,0 +1,82 @@
+<!doctype html>
+
+<html lang="{{ lang or 'en' }}" dir="{{ dir or 'ltr' }}" class="{% if page_class %}document--{{ page_class }}{% endif %}">
+  <head>
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <title>{{ page_title }} — {{ site_title }}</title>
+    <meta name="description" content="{{ site_description }}" />
+
+    {% if environment !== 'development' %}
+      <script src="https://consent.cookiefirst.com/sites/static.ics-cards.fabriquehq.nl-f49a96d8-bee1-4da2-bbd0-ced8c27dc23c/consent.js" type="text/javascript"></script>
+    {% endif %}
+
+    <link rel="preload" href="{{ asset_with_hash('stylesheets/main.css') }}" as="style" />
+    {% block stylesheet_preloads %}
+    {% endblock %}
+
+    <link rel="modulepreload" href="{{ asset_with_hash('scripts/main.js') }}" as="script" crossorigin />
+    {% block script_preloads %}
+    {% endblock %}
+
+    {% block font_preloads %}
+    {% endblock %}
+
+    {% block favicons %}
+    {% endblock %}
+
+    <meta name="application-name" content="{{ opengraph_site_name }}" />
+    <meta name="theme-color" content="#fff" />
+    <meta name="msapplication-TileColor" content="#fff" />
+
+    <meta property="og:title" content="{{ opengraph_title }}" />
+    <meta property="og:url" content="{{ opengraph_url }}" />
+    <meta property="og:image" content="{{ opengraph_image }}" />
+    <meta property="og:site_name " content="{{ opengraph_site_name }}" />
+    <meta property="og:description" content="{{ opengraph_description }}" />
+
+    <link rel="stylesheet" href="{{ asset_with_hash('stylesheets/main.css') }}" />
+    {% block stylesheets %}
+    {% endblock %}
+  </head>
+
+  <body class="{% if page_theme %}theme--{{ page_theme }}{% endif %}">
+    <script>
+      if (location.pathname === '/' && navigator.language === 'it') {
+        window.location.href = '/it/'
+      }
+    </script>
+
+    {% block skip_to_main %}
+    {% endblock %}
+
+    <div class="container container--wrapper">
+      <header class="container container--header">
+        {% block header %}
+        {% endblock %}
+      </header>
+
+      <main id="main" class="container container--content">
+        {% block content %}
+        {% endblock %}
+      </main>
+
+      <footer class="container container--footer">
+        {% block footer %}
+        {% endblock %}
+      </footer>
+    </div>
+
+    <div class="container container--overlays">
+      {% block overlays %}
+      {% endblock %}
+    </div>
+
+    {% block scripts %}
+      <script src="{{ asset_with_hash('scripts/main.js') }}" type="module" crossorigin></script>
+    {% endblock %}
+  </body>
+</html>

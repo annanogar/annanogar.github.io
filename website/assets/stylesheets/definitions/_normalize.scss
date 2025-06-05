@@ -1,0 +1,7 @@
+@use '../utilities/normalize/normalize' as normalize;
+
+@mixin declarations {
+  @include normalize.declarations;
+
+  // Project-specific normalization goes here
+}

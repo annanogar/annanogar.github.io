@@ -1,0 +1,51 @@
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:meta';
+@use 'sass:string';
+@use 'sass:math';
+
+@use './breakpoints' as breakpoints;
+
+@function rem($value-from-figma, $base-font-size: 16px) {
+  @return math.div($value-from-figma, $base-font-size) * 1rem;
+}
+
+// Grid settings per breakpoint
+
+@mixin declarations {
+  :root {
+    --grid-columns: 3;
+    --grid-gutter: 0px;
+    --grid-margin: 0px;
+    --grid-max-width: 100%;
+    --grid-padding: 20px;
+    --grid-spacing: 20px;
+    --padding-small: 1.2vw;
+    --padding-medium: 3vw;
+    --padding-large: 6vw;
+    --padding-xl: 12vw;
+  }
+
+  @media (min-width: breakpoints.$landscape) {
+    :root {
+      --grid-columns: 9;
+      --grid-padding: 70px;
+      --grid-spacing: 70px;
+      --padding-small: 2vw;
+      --padding-medium: 5vw;
+      --padding-large: 10vw;
+      --padding-xl: 20vw;
+    }
+  }
+}
+
+// Grid container mixin
+@mixin container($columns: 'repeat(var(--grid-columns), [column] minmax(0, 1fr))', $with-spacing: false, $with-margin: true) {
+  display: grid;
+  gap: if($with-spacing, var(--grid-spacing), 0) var(--grid-gutter);
+  grid-template-columns: string.unquote($columns);
+  margin-inline: auto;
+  max-width: if($with-margin, calc(var(--grid-max-width) + (var(--grid-gutter) * 2) + (var(--grid-margin) * 2)), var(--grid-max-width));
+  padding-inline: if($with-margin, calc(var(--grid-gutter) + var(--grid-margin)), 0);
+  width: 100%;
+}

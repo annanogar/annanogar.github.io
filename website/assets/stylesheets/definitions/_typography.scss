@@ -1,0 +1,217 @@
+// Typography definitions
+@use 'sass:meta';
+@use 'sass:math';
+
+@use '../definitions/breakpoints' as breakpoints;
+@use '../fonts/poppins' as font-poppins;
+@use '../fonts/noto-sans' as font-noto-sans;
+@use '../utilities/functions/unit-helpers' as unit;
+@use '../utilities/functions/fluid-value' as fluid-value;
+
+//@function rem($value-from-figma, $base-font-size: 16px) {
+//  @return math.div($value-from-figma, $base-font-size) * 1rem;
+//}
+
+//@function line-height($value-from-figma, $font-size: 16px) {
+//  @return math.div($value-from-figma, $font-size) * 1em;
+//}
+
+@mixin declarations {
+  //
+}
+
+@mixin heading-1 {
+  font-size: fluid-value.get(32px, 64px, breakpoints.$mobile, breakpoints.$landscape);
+  letter-spacing: normal;
+  line-height: 1.33em;
+
+  @include font-poppins.apply($weight: 'bold', $style: 'roman');
+
+  @include breakpoints.landscape {
+    font-size: fluid-value.get(50px, 100px, breakpoints.$landscape, breakpoints.$desktop-large);
+  }
+}
+
+@mixin heading-2 {
+  font-size: fluid-value.get(28px, 56px, breakpoints.$mobile, breakpoints.$landscape);
+  letter-spacing: normal;
+  line-height: 1.33em;
+
+  @include font-poppins.apply($weight: 'bold', $style: 'roman');
+
+  @include breakpoints.landscape {
+    font-size: fluid-value.get(27px, 55px, breakpoints.$landscape, breakpoints.$desktop-large);
+  }
+}
+
+@mixin heading-3 {
+  font-size: fluid-value.get(16px, 24px, breakpoints.$mobile, breakpoints.$landscape);
+  letter-spacing: 0.5px;
+  line-height: 1.33em;
+  text-transform: uppercase;
+
+  @include font-poppins.apply($weight: 'bold', $style: 'roman');
+
+  @include breakpoints.landscape {
+    font-size: fluid-value.get(20px, 28px, breakpoints.$landscape, breakpoints.$desktop-large);
+  }
+}
+
+@mixin logo {
+  font-size: fluid-value.get(20px, 40px, breakpoints.$mobile, breakpoints.$landscape);
+  letter-spacing: normal;
+  line-height: 1.2em;
+  text-transform: lowercase;
+
+  @include font-poppins.apply($weight: 'bold', $style: 'roman');
+
+  @include breakpoints.landscape {
+    font-size: fluid-value.get(22px, 44px, breakpoints.$landscape, breakpoints.$desktop-large);
+  }
+}
+
+@mixin project-card-title {
+  font-size: fluid-value.get(20px, 40px, breakpoints.$mobile, breakpoints.$landscape);
+  letter-spacing: normal;
+  line-height: 1.33em;
+
+  @include font-poppins.apply($weight: 'bold', $style: 'roman');
+
+  @include breakpoints.landscape {
+    font-size: fluid-value.get(22px, 44px, breakpoints.$landscape, breakpoints.$desktop-large);
+  }
+}
+
+@mixin button {
+  font-size: fluid-value.get(16px, 24px, breakpoints.$mobile, breakpoints.$landscape);
+  letter-spacing: normal;
+  line-height: 1em;
+
+  @include font-poppins.apply($weight: 'bold', $style: 'roman');
+
+  @include breakpoints.landscape {
+    font-size: fluid-value.get(20px, 28px, breakpoints.$landscape, breakpoints.$desktop-large);
+  }
+}
+
+@mixin badge {
+  font-size: fluid-value.get(16px, 24px, breakpoints.$mobile, breakpoints.$landscape);
+  letter-spacing: normal;
+  line-height: 1.33em;
+
+  @include font-poppins.apply($weight: 'bold', $style: 'roman');
+
+  @include breakpoints.landscape {
+    font-size: fluid-value.get(20px, 28px, breakpoints.$landscape, breakpoints.$desktop-large);
+  }
+}
+
+@mixin footer-text {
+  font-size: fluid-value.get(14px, 22px, breakpoints.$mobile, breakpoints.$landscape);
+  letter-spacing: normal;
+  line-height: 1.33em;
+
+  @include font-noto-sans.apply($weight: 'light', $style: 'roman');
+
+  @include breakpoints.landscape {
+    font-size: fluid-value.get(18px, 24px, breakpoints.$landscape, breakpoints.$desktop-large);
+  }
+}
+
+@mixin paragraph {
+  font-size: fluid-value.get(16px, 24px, breakpoints.$mobile, breakpoints.$landscape);
+  letter-spacing: 0.03em;
+  line-height: 1.5em;
+
+  @include font-noto-sans.apply($weight: 'light', $style: 'roman');
+
+  @include breakpoints.landscape {
+    font-size: fluid-value.get(20px, 28px, breakpoints.$landscape, breakpoints.$desktop-large);
+  }
+}
+
+@mixin subtitle {
+  font-size: fluid-value.get(16px, 24px, breakpoints.$mobile, breakpoints.$landscape);
+  letter-spacing: normal;
+  line-height: 1.5em;
+
+  @include font-noto-sans.apply($weight: 'regular', $style: 'roman');
+
+  @include breakpoints.landscape {
+    font-size: fluid-value.get(20px, 28px, breakpoints.$landscape, breakpoints.$desktop-large);
+  }
+}
+
+@mixin label {
+  font-size: fluid-value.get(16px, 24px, breakpoints.$mobile, breakpoints.$landscape);
+  letter-spacing: normal;
+  line-height: 1.5em;
+  text-transform: uppercase;
+
+  @include font-poppins.apply($weight: 'bold', $style: 'roman');
+
+  @include breakpoints.landscape {
+    font-size: fluid-value.get(20px, 28px, breakpoints.$landscape, breakpoints.$desktop-large);
+  }
+}
+
+@mixin caption {
+  font-size: fluid-value.get(14px, 22px, breakpoints.$mobile, breakpoints.$landscape);
+  letter-spacing: normal;
+  line-height: 1.5em;
+
+  @include font-noto-sans.apply($weight: 'regular', $style: 'roman');
+
+  @include breakpoints.landscape {
+    font-size: fluid-value.get(18px, 26px, breakpoints.$landscape, breakpoints.$desktop-large);
+  }
+}
+
+@mixin quote {
+  font-size: fluid-value.get(32px, 64px, breakpoints.$mobile, breakpoints.$landscape);
+  letter-spacing: normal;
+  line-height: 1.33em;
+
+  @include font-poppins.apply($weight: 'bold', $style: 'roman');
+
+  @include breakpoints.landscape {
+    font-size: fluid-value.get(32px, 92px, breakpoints.$landscape, breakpoints.$desktop-large);
+  }
+}
+
+@mixin video-quote {
+  font-size: fluid-value.get(20px, 40px, breakpoints.$mobile, breakpoints.$landscape);
+  letter-spacing: normal;
+  line-height: 1.5em;
+
+  @include font-poppins.apply($weight: 'bold', $style: 'roman');
+
+  @include breakpoints.landscape {
+    font-size: fluid-value.get(32px, 92px, breakpoints.$landscape, breakpoints.$desktop-large);
+  }
+}
+
+@mixin highlight-heading {
+  font-size: fluid-value.get(32px, 64px, breakpoints.$mobile, breakpoints.$landscape);
+  letter-spacing: normal;
+  line-height: 1.33em;
+
+  @include font-poppins.apply($weight: 'bold', $style: 'roman');
+
+  @include breakpoints.landscape {
+    font-size: fluid-value.get(50px, 100px, breakpoints.$landscape, breakpoints.$desktop-large);
+  }
+}
+
+@mixin highlight-introduction {
+  font-size: fluid-value.get(18px, 40px, breakpoints.$mobile, breakpoints.$landscape);
+  letter-spacing: 0.02em;
+  line-height: 1.33em;
+
+  @include font-poppins.apply($weight: 'bold', $style: 'roman');
+
+  @include breakpoints.landscape {
+    font-size: fluid-value.get(24px, 51px, breakpoints.$landscape, breakpoints.$desktop-large);
+    line-height: 1.5em;
+  }
+}

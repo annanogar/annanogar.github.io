@@ -1,0 +1,8 @@
+@use '../../../assets/stylesheets/definitions/breakpoints' as breakpoints;
+@use '../../../assets/stylesheets/definitions/typography' as typography;
+
+.picture {
+  display: inline-block;
+  position: relative;
+  vertical-align: bottom;
+}

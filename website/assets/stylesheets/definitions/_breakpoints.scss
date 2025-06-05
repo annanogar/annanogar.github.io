@@ -1,0 +1,206 @@
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:meta';
+@use 'sass:string';
+
+// The breakpoints
+$breakpoints: (
+  mobile: 320px,
+  portrait: 530px,
+  landscape: 800px,
+  notebook: 1180px,
+  desktop: 1480px,
+  desktop-large: 2260px,
+);
+
+// Constraints
+$website-min-width: 320px;
+$website-max-width: 1480px;
+
+// Pre-assigned variables - for performance reasons
+$mobile: map.get($breakpoints, mobile);
+$portrait: map.get($breakpoints, portrait);
+$landscape: map.get($breakpoints, landscape);
+$notebook: map.get($breakpoints, notebook);
+$desktop: map.get($breakpoints, desktop);
+$desktop-large: map.get($breakpoints, desktop-large);
+
+// Pre-assigned variables - for convenience reasons
+$almost-mobile: $mobile - 1;
+$almost-portrait: $portrait - 1;
+$almost-landscape: $landscape - 1;
+$almost-notebook: $notebook - 1;
+$almost-desktop: $desktop - 1;
+$almost-desktop-large: $desktop-large - 1;
+
+@mixin declarations {
+  // Breakpoints
+  :root {
+    --breakpoint-mobile: #{$mobile};
+    --breakpoint-portrait: #{$portrait};
+    --breakpoint-landscape: #{$landscape};
+    --breakpoint-notebook: #{$notebook};
+    --breakpoint-desktop: #{$desktop};
+    --breakpoint-desktop-large: #{$desktop-large};
+  }
+
+  // Breakpoint reference (for javascript)
+  :root {
+    --breakpoint: var(--breakpoint-mobile);
+
+    @media (min-width: $portrait) and (max-width: $almost-landscape) {
+      --breakpoint: var(--breakpoint-portrait);
+    }
+
+    @media (min-width: $landscape) and (max-width: $almost-notebook) {
+      --breakpoint: var(--breakpoint-landcape);
+    }
+
+    @media (min-width: $notebook) and (max-width: $almost-desktop) {
+      --breakpoint: var(--breakpoint-notebook);
+    }
+
+    @media (min-width: $desktop) and (max-width: $almost-desktop-large) {
+      --breakpoint: var(--breakpoint-desktop);
+    }
+
+    @media (min-width: $desktop-large) {
+      --breakpoint: var(--breakpoint-desktop-large);
+    }
+  }
+
+  // Document constraints
+  :root {
+    --document-min-width: #{$website-min-width};
+    --document-max-width: #{$website-max-width};
+  }
+}
+
+// Breakpoint mixins: X and up
+@mixin mobile {
+  @content;
+}
+
+@mixin portrait {
+  @media (min-width: $portrait) {
+    @content;
+  }
+}
+
+@mixin landscape {
+  @media (min-width: $landscape) {
+    @content;
+  }
+}
+
+@mixin notebook {
+  @media (min-width: $notebook) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: $desktop) {
+    @content;
+  }
+}
+
+@mixin desktop-large {
+  @media (min-width: $desktop-large) {
+    @content;
+  }
+}
+
+// Override breakpoint mixins: X only. Use them to target a specific breakpoint, for when the next breakpoint in line's gonna have too many overrides to be concise.
+@mixin mobile-only {
+  @media (max-width: $almost-portrait) {
+    @content;
+  }
+}
+
+@mixin mobile-and-portrait-only {
+  @media (max-width: $almost-landscape) {
+    @content;
+  }
+}
+
+@mixin portrait-only {
+  @media (min-width: $portrait) and (max-width: $almost-landscape) {
+    @content;
+  }
+}
+
+@mixin up-to-and-including-portrait {
+  @media (max-width: $almost-landscape) {
+    @content;
+  }
+}
+
+@mixin up-to-and-including-landscape {
+  @media (max-width: $almost-notebook) {
+    @content;
+  }
+}
+
+@mixin landscape-only {
+  @media (min-width: $landscape) and (max-width: $almost-notebook) {
+    @content;
+  }
+}
+
+@mixin notebook-only {
+  @media (min-width: $notebook) and (max-width: $almost-desktop) {
+    @content;
+  }
+}
+
+@mixin desktop-only {
+  @media (min-width: $desktop) and (max-width: $almost-desktop-large) {
+    @content;
+  }
+}
+
+// Constraint breakpoints
+@mixin too-small {
+  @media (max-width: $website-min-width) {
+    @content;
+  }
+}
+
+@mixin too-large {
+  @media (min-width: $website-max-width) {
+    @content;
+  }
+}
+
+// Multiple breakpoints
+// Specify a list of breakpoints (can be any, really) which will be applied one-by-one. Warning: this duplicates content for every breakpoint specified. It's usually better to use `breakpoint-span()`.
+@mixin breakpoints($names...) {
+  @each $name in $names {
+    @if meta.mixin-exists($name) {
+      $mixin: meta.get-mixin($name);
+
+      @include meta.apply($mixin) {
+        @content;
+      }
+    }
+  }
+}
+
+// Span something from one to another specific breakpoint.
+// Useful when you have to apply a specific set of properties in a breakpoint range. For example: `breakpoint-span(portrait, notebook)` will span both portrait, landscape and notebook. This does *NOT* cause style duplication. This will take the last breakpoint given, and get the width (minus one) of the next. That is only an issue when you try to give the last breakpoint (desktop) as the $to variable. Use a normal 'and-up' breakpoint in that case.
+@mixin span-breakpoints($from, $to) {
+  $from-index: list.index(map.keys($breakpoints), $from);
+  $to-index: list.index(map.keys($breakpoints), $to);
+  $almost-next-one-up: map.get($breakpoints, list.nth(map.keys($breakpoints), ($to-index + 1))) - 1;
+
+  @if ($from == mobile) {
+    @media (max-width: $almost-next-one-up) {
+      @content;
+    }
+  } @else {
+    @media (min-width: map.get($breakpoints, $from)) and (max-width: $almost-next-one-up) {
+      @content;
+    }
+  }
+}

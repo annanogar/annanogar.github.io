@@ -1,0 +1,43 @@
+{% import 'components/atoms/picture/picture.html' as atom_picture %}
+
+{% macro regular(title = '', subtitle = '', image = {}) %}
+  {% if title and image and image.src %}
+    <div class="image-header">
+      <div class="image-header__wrapper">
+        <h1 class="image-header__title">{{ title }}</h1>
+
+        {% if subtitle %}
+          <p class="image-header__subtitle">{{ subtitle }}</p>
+        {% endif %}
+      </div>
+
+      {{
+        atom_picture.regular(
+          sources = [
+            {
+              type: 'image/webp',
+              srcsets: [
+                '/static/media/' + image.src + '_800w.webp 800w',
+                '/static/media/' + image.src + '_1920w.webp 1920w',
+                '/static/media/' + image.src + '_2560w.webp 2560w',
+                '/static/media/' + image.src + '_3840w.webp 3840w'
+              ]
+            },
+            {
+              type: 'image/jpg',
+              srcsets: [
+                '/static/media/' + image.src + '_800w.jpg 800w',
+                '/static/media/' + image.src + '_1920w.jpg 1920w',
+                '/static/media/' + image.src + '_2560w.jpg 2560w',
+                '/static/media/' + image.src + '_3840w.jpg 3840w'
+              ]
+            }
+          ],
+          alt = image.alt,
+          width = 1920,
+          height = 640
+        )
+      }}
+    </div>
+  {% endif %}
+{% endmacro %}

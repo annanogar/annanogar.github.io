@@ -1,0 +1,23 @@
+.skip-to-main {
+  height: 0;
+  overflow: visible;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 100%;
+
+  .button {
+    display: inline-block;
+    left: -200vw;
+    position: absolute;
+    top: 1rem;
+
+    &:focus-visible,
+    &:active {
+      float: none;
+      left: auto;
+      position: relative;
+      z-index: var(--z-index-skip-to-main);
+    }
+  }
+}

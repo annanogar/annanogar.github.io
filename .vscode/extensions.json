@@ -1,0 +1,3 @@
+{
+  "recommendations": ["antfu.goto-alias", "dbaeumer.vscode-eslint", "EditorConfig.EditorConfig", "esbenp.prettier-vscode", "ginfuru.better-nunjucks", "ionutvmi.path-autocomplete", "stylelint.vscode-stylelint", "wayou.vscode-todo-highlight"]
+}

@@ -1,0 +1,87 @@
+{% import 'components/atoms/picture/picture.html' as atom_picture %}
+
+{% macro regular(variant = '', title = '', introduction = '', items = []) %}
+  {% set variant = variant or 'regular' %}
+
+  {% if items|length %}
+    <div class="image-grid image-grid--{{ variant }}">
+      {% if title or introduction %}
+        <div class="image-grid__wrapper">
+          {% if title %}
+            <h2 class="image-grid__title">{{ title }}</h2>
+          {% endif %}
+
+          {% if introduction %}
+            <p class="image-grid__introduction">{{ introduction }}</p>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      <ul class="image-grid__items">
+        {% for item in items %}
+          {% if contains_substring(item.image.src, '_2x1') %}
+            <li class="image-grid__item image-grid__item--2x1">
+              {{
+                atom_picture.regular(
+                  sources = [
+                    {
+                      type: 'image/webp',
+                      srcsets: [
+                        '/static/media/' + item.image.src + '_800w.webp 800w',
+                        '/static/media/' + item.image.src + '_1280w.webp 1280w',
+                        '/static/media/' + item.image.src + '_1707w.webp 1707w',
+                        '/static/media/' + item.image.src + '_2560w.webp 2560w'
+                      ]
+                    },
+                    {
+                      type: 'image/jpg',
+                      srcsets: [
+                        '/static/media/' + item.image.src + '_800w.jpg 800w',
+                        '/static/media/' + item.image.src + '_1280w.jpg 1280w',
+                        '/static/media/' + item.image.src + '_1707w.jpg 1707w',
+                        '/static/media/' + item.image.src + '_2560w.jpg 2560w'
+                      ]
+                    }
+                  ],
+                  alt = item.image.alt,
+                  width = 400,
+                  height = 200
+                )
+              }}
+            </li>
+          {% else %}
+            <li class="image-grid__item image-grid__item--1x1">
+              {{
+                atom_picture.regular(
+                  sources = [
+                    {
+                      type: 'image/webp',
+                      srcsets: [
+                        '/static/media/' + item.image.src + '_400w.webp 400w',
+                        '/static/media/' + item.image.src + '_640w.webp 640w',
+                        '/static/media/' + item.image.src + '_854w.webp 854w',
+                        '/static/media/' + item.image.src + '_1280w.webp 1280w'
+                      ]
+                    },
+                    {
+                      type: 'image/jpg',
+                      srcsets: [
+                        '/static/media/' + item.image.src + '_400w.jpg 400w',
+                        '/static/media/' + item.image.src + '_640w.jpg 640w',
+                        '/static/media/' + item.image.src + '_854w.jpg 854w',
+                        '/static/media/' + item.image.src + '_1280w.jpg 1280w'
+                      ]
+                    }
+                  ],
+                  alt = item.image.alt,
+                  width = 320,
+                  height = 320
+                )
+              }}
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+{% endmacro %}

@@ -1,0 +1,38 @@
+@use 'sass:list';
+@use 'sass:meta';
+@use 'sass:string';
+
+// Shamelessly copy pasted from http://www.justinnavarro.net/blog2/2015/02/08/sass-explode-function/
+@function split($string, $dem) {
+  $list: ();
+  $sum: string.length($string);
+
+  @for $i from 1 through $sum {
+    $str: string.index($string, $dem);
+
+    @if string.length($string) >= 1 and not $str {
+      $list: list.append($list, $string);
+      $string: '';
+    }
+
+    @if meta.type-of($str) == number {
+      $each: string.slice($string, 0, ($str - 1));
+      $list: list.append($list, $each);
+      $string: string.slice($string, ($str + 1), $sum);
+    }
+  }
+
+  @return $list;
+}
+
+// Replace `$search` with `$replace` in `$string`
+// @author Hugo Giraudel @link http://sassmeister.com/gist/1b4f2da5527830088e4d
+@function replace($string, $search, $replace: '') {
+  $index: string.index($string, $search);
+
+  @if $index {
+    @return string.slice($string, 1, $index - 1) + $replace + replace(string.slice($string, $index + string.length($search)), $search, $replace);
+  }
+
+  @return $string;
+}

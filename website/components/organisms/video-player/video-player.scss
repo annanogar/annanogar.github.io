@@ -1,0 +1,24 @@
+@use '../../../assets/stylesheets/definitions/breakpoints' as breakpoints;
+@use '../../../assets/stylesheets/definitions/grid' as grid;
+@use '../../../assets/stylesheets/definitions/typography' as typography;
+
+.video-player {
+  position: relative;
+
+  .video-player__grid {
+    @include grid.container;
+  }
+
+  .video-player__wrapper {
+    grid-column: column 1 / span var(--grid-columns);
+  }
+
+  .video-player__video {
+    aspect-ratio: 16 / 9;
+    cursor: pointer;
+  }
+
+  .video-player__figcaption {
+    padding: 0.5rem var(--padding-large) var(--padding-large) var(--padding-large);
+  }
+}

@@ -1,0 +1,92 @@
+{% extends 'templates/_base.en.html' %}
+{% import 'components/organisms/article-footer/article-footer.html' as article_footer %}
+{% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
+{% import 'components/organisms/image-grid/image-grid.html' as image_grid %}
+{% import 'components/organisms/image-header/image-header.html' as image_header %}
+{% set page_title = 'At the discovery of Joh. Enschedé, Printers of Value' %}
+{% set page_description = 'TODO: Page description' %}
+{% set project_slug = 'nh-archief' %}
+
+{% block content %}
+  {{
+    image_header.regular(
+      title = page_title,
+      subtitle = 'Noord-Hollands Archief, Haarlem (NL), 2019',
+      image = { src: 'projects/' + project_slug + '/cover_3x1', alt: 'TODO: Alt text' }
+    )
+  }}
+
+  {{
+    image_grid.regular(
+      title = 'Overview',
+      introduction = 'The Noord-Hollands Archief launched a permanent exhibition celebrating Joh. Enschedé, the printer behind the Netherlands’ banknotes, stamps, and typefaces. A striking floor-to-ceiling window creates a vibrant atmosphere, framing three key installations: an 18th century printing press, a showcase of unique typefaces, and a banknote printer’s roll. Interactive apps and physical games throughout the space invite visitors to explore the craftsmanship behind these everyday objects.',
+      items = [
+        { image: { src: 'projects/' + project_slug + '/01_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/02_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/03_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/04_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/05_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/06_1x1', alt: 'TODO: Alt text' } }
+      ]
+    )
+  }}
+
+  {{
+    image_grid.regular(
+      title = 'Contribution',
+      introduction = 'I was in charge of designing and producing the graphic layer and visual style of the exhibition. The design brought clarity and structure while infusing the historical stories with a fresh twist, making the world of security printing feel both accessible and fascinating.',
+      items = [
+        { image: { src: 'projects/' + project_slug + '/07_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/08_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/09_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/10_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/11_2x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/12_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/13_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/14_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/15_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/16_2x1', alt: 'TODO: Alt text' } }
+      ]
+    )
+  }}
+
+  {% call article_footer.regular() %}
+    <h3>Awards & Recognition</h3>
+
+    <p>
+      <strong>Muse Design Awards 2020:</strong><br />
+      Platinum | Design, Exhibition, Pavilions & Exhibitions<br />
+      <strong>Featured on Behance’s Graphic Design gallery:</strong><br />
+      Exhibition & Signage category
+    </p>
+
+    <h3>Credits</h3>
+
+    <p>
+      <strong>Role:</strong>
+      Art Director | Lead Designer<br />
+      <strong>Employer:</strong>
+      Studio Louter<br />
+      <strong>Client:</strong>
+      Noord-Hollands Archief<br />
+      <strong>Photography:</strong>
+      Mike Bink
+    </p>
+
+    <p>© All rights reserved to Studio Louter</p>
+  {% endcall %}
+
+  {{
+    call_to_action.regular(
+      variant = 'badge',
+      quote = 'Explore the next project or start a conversation.',
+      badge = { href: 'mailto:_send_me_an_?subject=Via%20the%20website', title: 'Get in touch!' },
+      card = {
+        href: '/projects/brussels.html',
+        title: 'Discovering & Understanding Our Living Planet',
+        subtitle: 'Museum of Natural Sciences, Brussels (BE)',
+        image: { src: 'projects/brussels/thumbnail_1x1', alt: 'TODO: Alt text' }
+      }
+    )
+  }}
+{% endblock %}

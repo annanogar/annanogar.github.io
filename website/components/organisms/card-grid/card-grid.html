@@ -1,0 +1,15 @@
+{% import 'components/molecules/project-card/project-card.html' as molecule_project_card %}
+
+{% macro regular(cards = []) %}
+  {% if cards|length %}
+    <div class="card-grid">
+      <div class="card-grid__wrapper">
+        <ul class="card-grid__items">
+          {% for card in cards %}
+            <li class="card-grid__item">{{ molecule_project_card.regular(href = card.href, title = card.title, subtitle = card.subtitle, label = card.label, image = card.image) }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  {% endif %}
+{% endmacro %}

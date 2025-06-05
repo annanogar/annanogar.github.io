@@ -1,0 +1,19 @@
+{% import 'components/atoms/richtext/richtext.html' as atom_richtext %}
+
+{% macro regular(title = '', video = {}) %}
+  {% if video and video.src %}
+    <div class="video-player">
+      <div class="video-player__grid">
+        <figure class="video-player__wrapper">
+          <video class="video-player__video" controls controlsList="nodownload" loading="lazy" poster="{{ '/static/media/' + video.poster + '_1920w_h264_ac3.jpg' }}" alt="{{ video.alt }}" onloadstart="this.volume=0.5">
+            <source src="{{ '/static/media/' + video.src + '_1920w_h264_ac3.mp4' }}" type="video/mp4" />
+          </video>
+
+          {% if video.richtext_caption %}
+            <figcaption class="video-player__figcaption">{{ atom_richtext.caption(richtext = video.richtext_caption) }}</figcaption>
+          {% endif %}
+        </figure>
+      </div>
+    </div>
+  {% endif %}
+{% endmacro %}

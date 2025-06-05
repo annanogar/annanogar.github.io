@@ -1,0 +1,22 @@
+{% extends 'templates/_base.it.html' %}
+{% import 'components/organisms/article-content-image/article-content-image.html' as article_content_image %}
+{% import 'components/organisms/article-header/article-header.html' as article_header %}
+{% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
+{% set page_title = 'TODO: Italian version' %}
+
+{% block content %}
+  {{
+    article_header.regular(
+      title = page_title
+    )
+  }}
+
+  {%
+    call article_content_image.regular(
+      variant = 'left',
+      image = { src: 'about/section01_1x1', alt: 'TODO: Alt text' }
+    )
+  %}
+    <h2>Italian version TODO</h2>
+  {% endcall %}
+{% endblock %}

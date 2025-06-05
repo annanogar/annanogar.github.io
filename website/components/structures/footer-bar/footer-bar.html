@@ -1,0 +1,32 @@
+{% import 'components/atoms/icon/icon.html' as atom_icon %}
+{% import 'components/atoms/richtext/richtext.html' as atom_richtext %}
+
+{% macro regular(aria_label = '', links_start = [], links_end = []) %}
+  {% set aria_label = aria_label or 'Footer navigation' %}
+
+  {% if links_start|length > 0 or links_end|length > 0 %}
+    <nav class="footer-bar" {% if aria_label %}aria-label="{{ aria_label }}"{% endif %}>
+      <div class="footer-bar__wrapper">
+        <div class="footer-bar__links footer-bar__links--start">
+          {% for link in links_start %}
+            {% if link.href %}
+              <a class="footer-bar__link" href="{{ link.href }}">
+                <strong>{{ link.title }}</strong>
+              </a>
+            {% else %}
+              <strong class="footer-bar__link">{{ link.title }}</strong>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        <div class="footer-bar__links footer-bar__links--end">
+          {% for link in links_end %}
+            <a class="footer-bar__link" href="{{ link.href }}" {% if link.lang %}lang="{{ link.lang }}"{% endif %}>
+              <strong>{{ link.title }}</strong>
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+    </nav>
+  {% endif %}
+{% endmacro %}

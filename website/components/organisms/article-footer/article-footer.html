@@ -1,0 +1,21 @@
+{% import 'components/atoms/richtext/richtext.html' as atom_richtext %}
+
+{% macro regular(richtext = '') %}
+  {% if richtext or caller %}
+    <div class="article-footer">
+      <div class="article-footer__wrapper">
+        {% if richtext %}
+          {{ atom_richtext.regular(richtext = richtext) }}
+        {% elif caller %}
+          {% set child_context = caller() %}
+
+          {% if child_context %}
+            {% call atom_richtext.regular() %}
+              {{ child_context }}
+            {% endcall %}
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+{% endmacro %}

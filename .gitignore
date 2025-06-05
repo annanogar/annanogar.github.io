@@ -1,0 +1,37 @@
+
+# Metadata files
+.DS_Store
+Thumbs.db
+
+# Editors
+!.vscode/
+
+# Node tracings and logs
+*.cpuprofile
+*.heapprofile
+*.heapsnapshot
+*.log
+
+# Node modules
+node_modules/
+
+# Yarn v3 ignore list for Not-ZeroInstalls
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+yarn-error.log
+
+# Sonic toolchain
+/build/
+/.env
+/.hash-cache.json
+/.hash-cache-lossless.json
+
+# Archive files
+*.zip
+
+# Use triple underscores to ignore files or folders
+___*

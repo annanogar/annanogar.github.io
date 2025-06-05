@@ -1,0 +1,113 @@
+// Clasic Font: Poppins
+
+@use 'sass:map';
+@use 'sass:meta';
+@use 'sass:string';
+
+$name: 'Poppins Webfont';
+$filename: 'poppins';
+$path: '../fonts/' + $filename + '/';
+$stack: string.quote($name), 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+$feature-settings:
+  'kern' 1,
+  'liga' 1,
+  'dlig' 1,
+  'calt' 1,
+  'case' 1;
+$weights: (
+  'thin': 100,
+  'extralight': 200,
+  'light': 300,
+  'regular': 400,
+  'medium': 500,
+  'semibold': 600,
+  'bold': 700,
+  'extrabold': 800,
+  'black': 900,
+);
+$styles: (
+  'regular': normal,
+  'italic': italic,
+);
+
+@mixin declarations {
+  :root {
+    --font-poppins-stack: #{meta.inspect($stack)};
+    --font-poppins-feature-settings: #{meta.inspect($feature-settings)};
+
+    @each $weight, $value in $weights {
+      --font-poppins-#{$weight}: #{$value};
+    }
+  }
+
+  @each $weight, $weight-value in $weights {
+    @each $style, $style-value in $styles {
+      $style-name: if($style == 'regular', '', '-' + $style);
+
+      @font-face {
+        ascent-override: normal;
+        descent-override: normal;
+        font-display: swap;
+        font-family: $name;
+        font-style: $style-value;
+        font-weight: $weight-value;
+        line-gap-override: normal;
+        src: url($path + $filename + '-' + $weight + $style-name + '.woff2') format('woff2');
+      }
+    }
+  }
+}
+
+@mixin apply-base {
+  font-family: var(--font-poppins-stack);
+  font-feature-settings: var(--font-poppins-feature-settings);
+  font-size-adjust: none;
+  text-rendering: optimizelegibility;
+}
+
+@mixin apply($weight: 'regular', $style: 'roman') {
+  @include apply-base;
+
+  @if ($weight != undefined) {
+    @include set-weight($weight);
+  }
+
+  @if ($style != undefined) {
+    @include set-style($style);
+  }
+}
+
+@function get-style($style: 'roman') {
+  $style: if($style == 'regular' or $style == 'normal', 'roman', $style);
+  $style: if(map.has-key($styles, $style), $style, 'roman');
+  $style-value: map.get($styles, $style);
+
+  @return $style-value;
+}
+
+@mixin set-style($style: 'roman') {
+  $style-value: get-style($style);
+
+  font-style: $style-value;
+}
+
+@function get-weight($weight: 'regular') {
+  $weight-value: 400;
+
+  @if (meta.type-of($weight) == number) {
+    $weight: if(map.has-value($weights, $weight), map.key($weights, $weight), 400);
+    $weight-value: $weight;
+  } @else if (meta.type-of($weight) == string) {
+    $weight: if($weight == 'normal', 'regular', $weight);
+    $weight: if(map.has-key($weights, $weight), $weight, 'regular');
+    $weight-value: map.get($weights, $weight);
+  }
+
+  @return $weight-value;
+}
+
+@mixin set-weight($weight: 'regular') {
+  $weight-value: get-weight($weight);
+
+  font-weight: #{$weight-value};
+}

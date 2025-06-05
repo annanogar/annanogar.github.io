@@ -1,0 +1,27 @@
+// Page transitions go here
+
+@mixin declarations {
+  @include root-page-view-transition;
+  @include height-auto-transitions;
+}
+
+@mixin root-page-view-transition {
+  :root {
+    view-transition-name: root;
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: var(--timing-standard);
+  }
+
+  @view-transition {
+    navigation: auto;
+  }
+}
+
+@mixin height-auto-transitions {
+  :root {
+    interpolate-size: allow-keywords;
+  }
+}

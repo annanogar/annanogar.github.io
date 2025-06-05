@@ -1,0 +1,31 @@
+// Base declarations
+
+@use './fonts/noto-sans' as font-noto-sans;
+@use './fonts/poppins' as font-poppins;
+@use './definitions/animations' as animations;
+@use './definitions/breakpoints' as breakpoints;
+@use './definitions/grid' as grid;
+@use './definitions/normalize' as normalize;
+@use './definitions/typography' as typography;
+@use './definitions/variables' as variables;
+@use './definitions/transitions' as transitions;
+@use './definitions/icons' as icons;
+
+@include font-poppins.declarations;
+@include font-noto-sans.declarations;
+@include normalize.declarations;
+@include breakpoints.declarations;
+@include grid.declarations;
+@include variables.declarations;
+@include typography.declarations;
+@include animations.declarations;
+@include transitions.declarations;
+@include icons.declarations;
+
+html {
+  font-size: 16px;
+  letter-spacing: normal;
+  line-height: 1.5em;
+
+  @include font-noto-sans.apply($weight: 'regular', $style: 'roman');
+}

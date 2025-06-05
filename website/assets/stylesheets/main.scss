@@ -1,0 +1,18 @@
+// Main stylesheet entrypoint
+
+// NOTE: base.scss contains @use and @include declarations.
+// component.scss can also contain both. The order matters.
+//
+// Since sass v1.77? @use can only come before @include,
+// but we can't use @use for everything,
+// so by splitting it up and combining it back here,
+// we have full control over the order of imports back.
+// Just <link rel="stylesheet" href="main.css"> in the HTML.
+//
+// If we want to load them seperately, we can do that too.
+// Like when we want to shove a theme file with variables in between. :)
+// Just <link rel="stylesheet" href="base.css"> and -"component.css"> in the HTML.
+// -EKL
+
+@use './base' as *;
+@use './components' as *;

@@ -1,0 +1,15 @@
+.icon {
+  aspect-ratio: 1 / 1;
+  display: inline-block;
+  height: 1em;
+  position: relative;
+  vertical-align: middle;
+  width: 1em;
+
+  svg {
+    fill: currentcolor;
+    height: 100%;
+    stroke: none;
+    width: 100%;
+  }
+}

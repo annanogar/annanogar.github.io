@@ -1,0 +1,91 @@
+{% extends 'templates/_base.en.html' %}
+{% import 'components/organisms/article-footer/article-footer.html' as article_footer %}
+{% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
+{% import 'components/organisms/image-grid/image-grid.html' as image_grid %}
+{% import 'components/organisms/image-header/image-header.html' as image_header %}
+{% set page_title = 'Haarlemmermeer & the World’s Largest Steam Engine' %}
+{% set page_description = 'TODO: Page description' %}
+{% set project_slug = 'cruquius' %}
+
+{% block content %}
+  {{
+    image_header.regular(
+      title = page_title,
+      subtitle = 'Cruquius Museum, Cruquius (NL), 2020',
+      image = { src: 'projects/' + project_slug + '/cover_3x1', alt: 'TODO: Alt text' }
+    )
+  }}
+
+  {{
+    image_grid.regular(
+      title = 'Overview',
+      introduction = 'The Cruquius Museum showcases the Netherlands’ remarkable achievement in draining its largest lake, the Haarlemmermeer, from inside one of the original steam-powered pumping stations that made it possible. A large-scale projection, interactive elements and hands-on activities invite visitors to explore the power of steam technology and the massive machinery behind it.',
+      items = [
+        { image: { src: 'projects/' + project_slug + '/01_2x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/02_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/03_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/04_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/05_2x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/06_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/07_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/08_2x1', alt: 'TODO: Alt text' } }
+      ]
+    )
+  }}
+
+  {{
+    image_grid.regular(
+      title = 'Contribution',
+      introduction = 'I led the design of the exhibition’s visual identity, multimedia content, and AV installations, transforming the space into a hands-on workshop where visitors are encouraged to explore the engine through physical models and interactive stations that explain how the machinery works. The result is an experience that blends storytelling, experimentation, and play, making complex engineering concepts easy to grasp for audiences of all ages.',
+      items = [
+        { image: { src: 'projects/' + project_slug + '/09_2x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/10_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/11_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/12_2x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/13_2x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/14_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/15_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/16_2x1', alt: 'TODO: Alt text' } }
+      ]
+    )
+  }}
+
+  {% call article_footer.regular() %}
+    <h3>Recognition</h3>
+
+    <p>
+      <strong>Featured on Behance’s Graphic Design gallery:</strong><br />
+      Exhibition & Signage category<br />
+    </p>
+
+    <h3>Credits</h3>
+
+    <p>
+      <strong>Role:</strong>
+      Art Director | Lead Designer<br />
+      <strong>Employer:</strong>
+      Studio Louter<br />
+      <strong>Client:</strong>
+      Cruquius Museum<br />
+      <strong>Photography:</strong>
+      Mike Bink
+    </p>
+
+    <p>© All rights reserved to Studio Louter</p>
+  {% endcall %}
+
+  {{
+    call_to_action.regular(
+      variant = 'badge',
+      quote = 'Explore the next project or start a conversation.',
+      badge = { href: 'mailto:_send_me_an_?subject=Via%20the%20website', title: 'Get in touch!' },
+      card = {
+        href: '/projects/nh-archief.html',
+        title: 'At the discovery of Joh. Enschedé, Printers of Value',
+        subtitle: 'Noord-Hollands Archief, Haarlem (NL)',
+        label: 'Awarded + Featured',
+        image: { src: 'projects/nh-archief/thumbnail_1x1', alt: 'TODO: Alt text' }
+      }
+    )
+  }}
+{% endblock %}

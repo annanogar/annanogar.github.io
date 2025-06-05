@@ -1,0 +1,99 @@
+@use '../../../assets/stylesheets/definitions/breakpoints' as breakpoints;
+@use '../../../assets/stylesheets/definitions/typography' as typography;
+
+.badge {
+  aspect-ratio: 1 / 1;
+  cursor: pointer;
+  display: inline-flex;
+  flex-direction: row;
+  height: 12em;
+  padding: 2em;
+  place-items: center center;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transform: rotate(15deg);
+  vertical-align: bottom;
+  width: 12em;
+  z-index: 100;
+
+  @include typography.badge;
+
+  &::before {
+    aspect-ratio: 1 / 1;
+    background-color: var(--color-navy);
+    border-radius: 50%;
+    content: '';
+    display: block;
+    inset: 0;
+    position: absolute;
+    transform: scale(1);
+    transform-origin: center center;
+    transition:
+      background-color var(--easing-slow),
+      color var(--easing-slow),
+      transform var(--easing-slow);
+    width: 100%;
+  }
+
+  &:hover,
+  &:focus-visible {
+    &::before {
+      background-color: var(--color-pink);
+      transform: scale(2.3);
+    }
+
+    .badge__span {
+      color: var(--color-white);
+    }
+  }
+
+  .badge__span {
+    color: var(--color-white);
+    display: block;
+    position: relative;
+    text-align: center;
+    width: 100%;
+    z-index: 3;
+  }
+
+  @include breakpoints.landscape {
+    &:hover,
+    &:focus-visible {
+      &::before {
+        transform: scale(3.6);
+      }
+    }
+  }
+}
+
+.badge--regular {
+  &::before {
+    background-color: var(--color-navy);
+  }
+
+  .badge__span {
+    color: var(--color-white);
+  }
+}
+
+.badge--bright {
+  &::before {
+    background-color: var(--color-blue);
+  }
+
+  .badge__span {
+    color: var(--color-white);
+  }
+
+  &:hover,
+  &:focus-visible {
+    &::before {
+      background-color: var(--color-pink);
+    }
+
+    .badge__span {
+      color: var(--color-white);
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{% macro regular(title = '') %}
+  {% if title %}
+    <div class="article-header">
+      <div class="article-header__wrapper">
+        <h1 class="article-header__title">{{ title }}</h1>
+      </div>
+    </div>
+  {% endif %}
+{% endmacro %}

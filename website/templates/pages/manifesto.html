@@ -1,0 +1,56 @@
+{% extends 'templates/_base.en.html' %}
+{% import 'components/organisms/article-content-image/article-content-image.html' as article_content_image %}
+{% import 'components/organisms/article-header/article-header.html' as article_header %}
+{% import 'components/organisms/article-quote/article-quote.html' as article_quote %}
+{% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
+{% set page_title = 'Accessibility manifesto' %}
+
+{% block content %}
+  {{
+    article_header.regular(
+      title = page_title
+    )
+  }}
+
+  {%
+    call article_content_image.regular(
+      variant = 'left',
+      image = { src: 'manifesto/section01_robert-harkness-unsplash_1x1', alt: 'TODO: Alt text' }
+    )
+  %}
+    <p>Accessibility isn’t a favor. It’s not about being benevolent.<br />And it’s definitely not just for a few.</p>
+    <p><strong>It’s about ability—and that changes all the time.</strong></p>
+    <p>Break an arm? Lose your glasses? Struggling with a new language? Suddenly, the world isn’t built for you. Blinded by the sun? Exhausted? Having a killer headache? Suddenly, even the simplest tasks feel impossible.</p>
+    <p>Let’s face it: the chances of you staying fully able-bodied your entire life are extremely low, if not nonexistent. That’s why it makes more sense to think of everyone as temporarily able-bodied.</p>
+    <p><strong>Accessibility isn’t special treatment.</strong></p>
+    <p>It’s just making things better for everyone because we all benefit from subtitles, automatic doors, and easy-to-read instructions. As simple as that.</p>
+    <p><strong>So, why do we still treat accessibility like a bureaucratic checklist to verify at the end of the project?</strong></p>
+    <p>I’m done watching that happen. I want to create experiences where everyone feels welcome, capable, and comfortable.</p>
+  {% endcall %}
+
+  {{
+    article_quote.regular(
+      quote = 'It’s not about <em>them</em> at the end of a project. It’s about <em>all of us</em> from the very start.'
+    )
+  }}
+
+  {%
+    call article_content_image.regular(
+      variant = 'right',
+      image = { src: 'manifesto/section02_tonny-huang-unsplash_1x1', alt: 'TODO: Alt text' }
+    )
+  %}
+    <p>I want to make things less frustrating for everyone.</p>
+    <p>There’s still a lot of stigma around human diversity, and many of us still fall into rigid ways of thinking, but I’m glad to see that inclusivity is getting more and more attention.</p>
+    <p><strong>The revolution is happening, and I want to be part of it!</strong></p>
+    <p>Not just in my work but by changing the way we think about accessibility: it shouldn’t be an afterthought but a mindset.</p>
+  {% endcall %}
+
+  {{
+    call_to_action.regular(
+      quote = 'The more we talk about it, the more we can change things together.',
+      badge = { variant: 'bright', href: '/about.html', title: 'Discover <br/>Who I am <br/>& How I work' },
+      image = { src: 'manifesto/cta_megan-bucknall-unsplash_1x1', alt: 'TODO: Alt text' }
+    )
+  }}
+{% endblock %}

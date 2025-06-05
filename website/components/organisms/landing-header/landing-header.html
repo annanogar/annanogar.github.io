@@ -1,0 +1,13 @@
+{% import 'components/atoms/badge/badge.html' as atom_badge %}
+
+{% macro regular(title = '', badge = {}) %}
+  {% if title %}
+    <div class="landing-header">
+      <div class="landing-header__wrapper">
+        <h1 class="landing-header__title">{{ title }}</h1>
+
+        {{ atom_badge.regular(variant = 'bright', href = badge.href, title = badge.title) }}
+      </div>
+    </div>
+  {% endif %}
+{% endmacro %}

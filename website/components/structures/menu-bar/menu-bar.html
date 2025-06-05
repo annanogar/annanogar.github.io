@@ -1,0 +1,17 @@
+{% import 'components/atoms/logo/logo.html' as atom_logo %}
+
+{% macro regular(id = '', aria_label = '', title = '', logo = {}) %}
+  {% set aria_label = aria_label or _('Main navigation') %}
+
+  {% if title and logo and logo.href and logo.title %}
+    <nav {% if id %}id="{{ id }}"{% endif %} class="menu-bar" aria-label="{{ aria_label }}">
+      <div class="menu-bar__wrapper">
+        {% if title %}
+          <a class="menu-bar__title" href="{{ logo.href }}"> {{ title }} </a>
+        {% endif %}
+
+        {{ atom_logo.regular(href = logo.href, title = logo.title, aria_label = logo.aria_label) }}
+      </div>
+    </nav>
+  {% endif %}
+{% endmacro %}

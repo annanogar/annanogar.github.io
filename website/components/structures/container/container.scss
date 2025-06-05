@@ -1,0 +1,59 @@
+.container {
+  position: relative;
+}
+
+.container--wrapper {
+  display: grid;
+  grid-template:
+    'header' min-content
+    'content' 1fr
+    'footer' min-content
+    / auto 5fr;
+  margin-inline: auto;
+  max-width: 100%;
+  min-height: 100svh;
+  z-index: 1;
+}
+
+.container--overlays {
+  background-color: transparent;
+  overflow: initial;
+  z-index: 2;
+}
+
+.container--header {
+  grid-area: header;
+  overflow: visible;
+  //position: sticky;
+  position: relative;
+  top: 0;
+  z-index: 3;
+
+  > div:first-child {
+    margin-top: 0;
+  }
+
+  > div:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.container--content {
+  contain: layout;
+  grid-area: content;
+  z-index: 1;
+}
+
+.container--footer {
+  contain: layout;
+  grid-area: footer;
+  z-index: 2;
+
+  > div:first-child {
+    margin-top: 0;
+  }
+
+  > div:last-child {
+    margin-bottom: 0;
+  }
+}

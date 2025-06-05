@@ -1,0 +1,21 @@
+@use '../../../assets/stylesheets/definitions/breakpoints' as breakpoints;
+@use '../../../assets/stylesheets/definitions/grid' as grid;
+@use '../../../assets/stylesheets/definitions/typography' as typography;
+
+.article-quote {
+  position: relative;
+
+  .article-quote__wrapper {
+    padding: 0 var(--padding-large) var(--padding-xl);
+  }
+
+  .article-quote__quote {
+    @include typography.quote;
+  }
+
+  @include breakpoints.landscape {
+    .article-quote__wrapper {
+      padding-bottom: var(--padding-medium);
+    }
+  }
+}

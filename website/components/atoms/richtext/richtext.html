@@ -1,0 +1,59 @@
+{% macro regular(richtext = '') %}
+  {# Allowed tags: <h2>, <h3>, <h4>, <h5>, <h6>, <ul>, <ol>, <li>, <p>, <a>, <strong>, <b>, <em>, <i>, <q> #}
+
+  {% if richtext or caller %}
+    <div class="richtext richtext--regular">
+      {% if richtext %}
+        {{ richtext|safe }}
+      {% elif caller %}
+        {% set child_context = caller() %}
+        {{ child_context }}
+      {% endif %}
+    </div>
+  {% endif %}
+{% endmacro %}
+
+{% macro caption(richtext = '') %}
+  {# Allowed tags: <p>, <a>, <strong>, <b>, <em>, <i> #}
+
+  {% if richtext or caller %}
+    <div class="richtext richtext--caption">
+      {% if richtext %}
+        {{ richtext|safe }}
+      {% elif caller %}
+        {% set child_context = caller() %}
+        {{ child_context }}
+      {% endif %}
+    </div>
+  {% endif %}
+{% endmacro %}
+
+{% macro simple(richtext = '') %}
+  {# Allowed tags: <p>, <strong>, <b>, <em>, <i> #}
+
+  {% if richtext or caller %}
+    <div class="richtext richtext--simple">
+      {% if richtext %}
+        {{ richtext|safe }}
+      {% elif caller %}
+        {% set child_context = caller() %}
+        {{ child_context }}
+      {% endif %}
+    </div>
+  {% endif %}
+{% endmacro %}
+
+{% macro footer(richtext = '') %}
+  {# Allowed tags: <p>, <a> #}
+
+  {% if richtext or caller %}
+    <div class="richtext richtext--footer">
+      {% if richtext %}
+        {{ richtext|safe }}
+      {% elif caller %}
+        {% set child_context = caller() %}
+        {{ child_context }}
+      {% endif %}
+    </div>
+  {% endif %}
+{% endmacro %}
