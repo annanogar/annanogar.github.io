@@ -3,15 +3,15 @@
 {% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
 {% import 'components/organisms/image-grid/image-grid.html' as image_grid %}
 {% import 'components/organisms/image-header/image-header.html' as image_header %}
-{% set page_title = 'Make Your Own Law: Propose, Explore, Debate' %}
+{% set page_title = 'Het Steen: The Gateway to Antwerp’s history' %}
 {% set page_description = 'TODO: Page description' %}
-{% set project_slug = 'prodemos' %}
+{% set project_slug = 'het-steen' %}
 
 {% block content %}
   {{
     image_header.regular(
       title = page_title,
-      subtitle = 'ProDemos, The Hague (NL), 2021',
+      subtitle = 'Visit Antwerp, Antwerp (BE), 2021',
       image = { src: 'projects/' + project_slug + '/cover_3x1', alt: 'TODO: Alt text' }
     )
   }}
@@ -19,7 +19,7 @@
   {{
     image_grid.regular(
       title = 'Overview',
-      introduction = 'ProDemos is an organization in The Hague that educates citizens, particularly students, about Dutch democracy and the rule of law. Their educational program begins in the classroom, where students draft their own bill proposals. During their visit to the ProDemos Center, they split into teams and take part in a GPS-guided game that leads them through key landmarks, completing tasks that illustrate the lawmaking process. The experience concludes with a shared animated film designed to spark further discussion back in class.',
+      introduction = 'Het Steen, the oldest building in Antwerp, has been transformed into a visitor center that offers an immersive introduction to the city. Visitors explore the castle along an 11-room path,  discovering diverse neighborhoods, iconic landmarks and examples of Antwerp’s vibrant culture. The experience provides a comprehensive view of what makes Antwerp truly unique.',
       items = [
         { image: { src: 'projects/' + project_slug + '/01_2x1', alt: 'TODO: Alt text' } },
         { image: { src: 'projects/' + project_slug + '/02_1x1', alt: 'TODO: Alt text' } },
@@ -30,15 +30,20 @@
     )
   }}
 
+  <!-- TODO: CHANGE 9TH IMAGE TO LANDSCAPE -->
   {{
     image_grid.regular(
       title = 'Contribution',
-      introduction = 'I was responsible for the UI/UX and visual design, shaping a walking experience that combines a serious topic with game mechanics. The aim was to create a playful and immersive journey, where tasks could be completed collaboratively in context. By blending exploration with interactive challenges, the experience helps students understand complex political ideas in a way that feels accessible, active, and fun.',
+      introduction = 'I managed the design of the visual and multimedia elements, translating the visual approach into a variety of interactive experiences, 360° projections, and immersive installations. The aim was to create a seamless connection between the city’s rich history and its contemporary energy, offering visitors an entertaining and intriguing journey.',
       items = [
         { image: { src: 'projects/' + project_slug + '/06_2x1', alt: 'TODO: Alt text' } },
         { image: { src: 'projects/' + project_slug + '/07_1x1', alt: 'TODO: Alt text' } },
         { image: { src: 'projects/' + project_slug + '/08_1x1', alt: 'TODO: Alt text' } },
-        { image: { src: 'projects/' + project_slug + '/09_2x1', alt: 'TODO: Alt text' } }
+        { image: { src: 'projects/' + project_slug + '/09_2x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/10_2x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/11_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/12_1x1', alt: 'TODO: Alt text' } },
+        { image: { src: 'projects/' + project_slug + '/13_2x1', alt: 'TODO: Alt text' } }
       ]
     )
   }}
@@ -52,9 +57,9 @@
       <strong>Employer:</strong>
       Studio Louter<br />
       <strong>Client:</strong>
-      ProDemos<br />
+      Visit Antwerp<br />
       <strong>Photography:</strong>
-      Bas van Vliet + Studio Louter
+      Ocular
     </p>
 
     <p>© All rights reserved to Studio Louter</p>
@@ -66,10 +71,11 @@
       quote = 'Explore the next project or start a conversation.',
       badge = { href: 'mailto:_send_me_an_?subject=Via%20the%20website', title: 'Get in touch!' },
       card = {
-        href: '/projects/het-steen.html',
-        title: 'Het Steen: The Gateway to Antwerp’s history',
-        subtitle: 'Visit Antwerp, Antwerp (BE)',
-        image: { src: 'projects/het-steen/thumbnail_1x1', alt: 'TODO: Alt text' }
+        href: '/projects/mauritshuis/',
+        title: 'Shifting Image on the Dutch Colonial History',
+        subtitle: 'Mauritshuis, The Hague (NL)',
+        label: 'Awarded',
+        image: { src: 'projects/mauritshuis/thumbnail_1x1', alt: 'TODO: Alt text' }
       }
     )
   }}
