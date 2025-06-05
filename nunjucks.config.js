@@ -221,6 +221,9 @@ const filters = {
   // TODO: Rename this, it overwrites Nunjucks "trim" filter!
   trim: (string = '') => string.toString().trim(),
 
+  // Split string by key (such as a comma-separated list)
+  split: (string = '', key = '') => string.toString().split(key.toString()),
+
   // Convert from Base64 to string.
   atob: (string = '') => Buffer.from(string, 'base64').toString('utf8'),
 
