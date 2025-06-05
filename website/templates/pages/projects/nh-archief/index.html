@@ -4,8 +4,11 @@
 {% import 'components/organisms/image-grid/image-grid.html' as image_grid %}
 {% import 'components/organisms/image-header/image-header.html' as image_header %}
 {% set page_title = 'At the discovery of Joh. Enschedé, Printers of Value' %}
-{% set page_description = 'TODO: Page description' %}
+{% set page_description = 'The Noord-Hollands Archief launched a permanent exhibition celebrating Joh. Enschedé, the printer behind the Netherlands’ banknotes, stamps, and typefaces.' %}
 {% set project_slug = 'nh-archief' %}
+{% set opengraph_image = '/static/media/projects/' + project_slug + '/cover_3x1_2560w.jpg' %}
+{% set opengraph_title = page_title %}
+{% set opengraph_description = page_description %}
 
 {% block content %}
   {{

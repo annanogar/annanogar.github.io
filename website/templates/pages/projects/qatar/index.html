@@ -4,8 +4,11 @@
 {% import 'components/organisms/image-grid/image-grid.html' as image_grid %}
 {% import 'components/organisms/image-header/image-header.html' as image_header %}
 {% set page_title = 'An interactive family experience of Qatar’s Heritage' %}
-{% set page_description = 'TODO: Page description' %}
+{% set page_description = 'The National Museum of Qatar offers a unique 1.5-kilometer journey that immerses visitors in the country’s history, blending movement, touch, and storytelling.' %}
 {% set project_slug = 'qatar' %}
+{% set opengraph_image = '/static/media/projects/' + project_slug + '/cover_3x1_2560w.jpg' %}
+{% set opengraph_title = page_title %}
+{% set opengraph_description = page_description %}
 
 {% block content %}
   {{

@@ -4,8 +4,11 @@
 {% import 'components/organisms/image-grid/image-grid.html' as image_grid %}
 {% import 'components/organisms/image-header/image-header.html' as image_header %}
 {% set page_title = 'Shifting Image on the Dutch Colonial History' %}
-{% set page_description = 'TODO: Page description' %}
+{% set page_description = 'The Mauritshuis Museum examines the legacy of Johan Maurits, Count of Nassau-Siegen, focusing on his governance of the Dutch colony in Brazil and his involvement in the transatlantic slave trade.' %}
 {% set project_slug = 'mauritshuis' %}
+{% set opengraph_image = '/static/media/projects/' + project_slug + '/cover_3x1_2560w.jpg' %}
+{% set opengraph_title = page_title %}
+{% set opengraph_description = page_description %}
 
 {% block content %}
   {{

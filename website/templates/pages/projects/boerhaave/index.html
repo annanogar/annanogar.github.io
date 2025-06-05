@@ -4,8 +4,11 @@
 {% import 'components/organisms/image-grid/image-grid.html' as image_grid %}
 {% import 'components/organisms/image-header/image-header.html' as image_header %}
 {% set page_title = 'Herman Boerhaave & the Golden Age of Science' %}
-{% set page_description = 'TODO: Page description' %}
+{% set page_description = 'The Rijksmuseum Boerhaave celebrated the 350th birthday of Herman Boerhaave with a temporary exhibition that brought his scientific legacy to life.' %}
 {% set project_slug = 'boerhaave' %}
+{% set opengraph_image = '/static/media/projects/' + project_slug + '/cover_3x1_2560w.jpg' %}
+{% set opengraph_title = page_title %}
+{% set opengraph_description = page_description %}
 
 {% block content %}
   {{

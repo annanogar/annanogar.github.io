@@ -4,8 +4,11 @@
 {% import 'components/organisms/image-grid/image-grid.html' as image_grid %}
 {% import 'components/organisms/image-header/image-header.html' as image_header %}
 {% set page_title = 'Discovering & Understanding Nature’s Web' %}
-{% set page_description = 'TODO: Page description' %}
+{% set page_description = 'The Living Planet exhibition takes visitors on an educational journey through the diverse ecosystems that make Earth such a vibrant and interconnected planet.' %}
 {% set project_slug = 'brussels' %}
+{% set opengraph_image = '/static/media/projects/' + project_slug + '/cover_3x1_2560w.jpg' %}
+{% set opengraph_title = page_title %}
+{% set opengraph_description = page_description %}
 
 {% block content %}
   {{

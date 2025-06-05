@@ -4,8 +4,11 @@
 {% import 'components/organisms/image-grid/image-grid.html' as image_grid %}
 {% import 'components/organisms/image-header/image-header.html' as image_header %}
 {% set page_title = 'Het Steen: The Gateway to Antwerp’s history' %}
-{% set page_description = 'TODO: Page description' %}
+{% set page_description = 'Het Steen, the oldest building in Antwerp, has been transformed into a visitor center that offers an immersive introduction to the city.' %}
 {% set project_slug = 'het-steen' %}
+{% set opengraph_image = '/static/media/projects/' + project_slug + '/cover_3x1_2560w.jpg' %}
+{% set opengraph_title = page_title %}
+{% set opengraph_description = page_description %}
 
 {% block content %}
   {{
