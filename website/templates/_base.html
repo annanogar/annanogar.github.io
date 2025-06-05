@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
 
-    <!-- TODO: REMOVE THIS WHEN PUBLISHING -->
+    {# TODO: REMOVE THIS WHEN PUBLISHING #}
     <meta name="robots" content="noindex,nofollow" />
 
     <meta name="viewport" content="width=device-width, minimum-scale=1.0" />
@@ -43,6 +43,7 @@
   </head>
 
   <body class="{% if page_theme %}theme--{{ page_theme }}{% endif %}">
+    {# TODO: ENABLE WHEN ITALIAN VERSION IS DONE}
     <script>
       if (location.pathname === '/website/' && navigator.language === 'it') {
         // Github Pages
@@ -52,6 +53,7 @@
         window.location.href = '/it/'
       }
     </script>
+    #}
 
     {% block skip_to_main %}
     {% endblock %}
