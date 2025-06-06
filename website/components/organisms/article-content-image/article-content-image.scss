@@ -49,12 +49,6 @@
     padding: 0 var(--padding-large) var(--padding-xl);
   }
 
-  .article-content-image--left + &.article-content-image--right {
-    .article-content-image__content-wrapper {
-      margin-top: 0;
-    }
-  }
-
   @include breakpoints.landscape {
     .article-content-image__image-wrapper {
       margin-bottom: 0;
@@ -118,6 +112,18 @@
       flex: 0 0 66.667%;
       margin-top: 0;
       padding: 0 var(--padding-small) var(--padding-large) var(--padding-large);
+    }
+  }
+}
+
+.article-content-image--left ~ .article-content-image--right {
+  .article-content-image__content-wrapper {
+    margin-top: 0;
+  }
+
+  @include breakpoints.landscape {
+    .article-content-image__image-wrapper {
+      margin-bottom: 0;
     }
   }
 }
