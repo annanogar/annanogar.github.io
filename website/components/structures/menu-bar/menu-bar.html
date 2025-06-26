@@ -3,12 +3,12 @@
 {% import 'components/molecules/menu-bar-contents/menu-bar-contents.html' as molecule_menu_bar_contents %}
 {% import 'components/molecules/menu-dialog/menu-dialog.html' as molecule_menu_dialog %}
 
-{% macro regular(id = '', href = '', title = '', aria_label = '', dialog_aria_label = '', button_open_title = '', button_close_title = '') %}
+{% macro regular(id = '', href = '', title = '', aria_label = '', dialog_aria_label = '', button_open_title = '', button_close_title = '', menu_items = []) %}
   {% set aria_label = aria_label or _('Main navigation') %}
   {% set dialog_aria_label = dialog_aria_label or _('Menu dialog') %}
 
   <nav {% if id %}id="{{ id }}"{% endif %} class="menu-bar" aria-label="{{ aria_label }}">
     {{ molecule_menu_bar_contents.regular(href = href, title = title, button_open_title = button_open_title, button_close_title = button_close_title) }}
-    {{ molecule_menu_dialog.regular(title = title, aria_label = dialog_aria_label, button_open_title = button_open_title, button_close_title = button_close_title) }}
+    {{ molecule_menu_dialog.regular(title = title, aria_label = dialog_aria_label, button_open_title = button_open_title, button_close_title = button_close_title, menu_items = menu_items) }}
   </nav>
 {% endmacro %}
