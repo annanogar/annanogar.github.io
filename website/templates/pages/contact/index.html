@@ -1,0 +1,46 @@
+{% extends 'templates/_base.en.html' %}
+{% import 'components/organisms/article-content-image/article-content-image.html' as article_content_image %}
+{% import 'components/organisms/article-header/article-header.html' as article_header %}
+{% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
+{% set page_title = 'Contact' %}
+{% set page_description = 'Whether you’re building a learning experience, designing an educational tool, or looking for accessibility expertise, I’d love to hear from you.' %}
+{% set opengraph_image = '/static/media/about/cta_1x1_1280w.jpg' %}
+{% set opengraph_title = page_title %}
+{% set opengraph_description = page_description %}
+
+{% block content %}
+  {{
+    article_header.regular(
+      title = page_title
+    )
+  }}
+
+  {%
+    call article_content_image.regular(
+      variant = 'left',
+      image = { src: 'about/section01_1x1', alt: 'Anna Nogaré’s face close up looking down with multicolored light and foliage projections on her face and background.' },
+      cpacc_badge = true
+    )
+  %}
+    <p><strong>Let’s make culture more accessible, together.</strong></p>
+    <p>Whether you’re building a learning experience, designing an educational tool, or looking for accessibility expertise, I’d love to hear from you.</p>
+    <p>
+      <a href="mailto:_send_me_an_?subject=Via%20the%20website">_send_me_an_</a><br />
+      <a href="tel:_or_pick_up_the_">_heres_my_number_</a>
+    </p>
+    <p>Currently in Amsterdam (NL), soon relocating to Italy, working worldwide.</p>
+  {% endcall %}
+
+  {{
+    call_to_action.regular(
+      quote = 'Always up for big ideas, or just a good decaf Americano.',
+      card = {
+        href: '/projects/mauritshuis/',
+        title: 'Shifting Image',
+        subtitle: 'Mauritshuis, The Hague (NL)',
+        label: 'Awarded',
+        image: { src: 'projects/mauritshuis/thumbnail_1x1', alt: 'Close-up of a woman gazing at a large colonial painting depicting a noblewoman with children. The woman stands in a dark gallery lit by focused spotlights on the artworks.' }
+      }
+    )
+  }}
+{% endblock %}

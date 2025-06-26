@@ -1,17 +1,14 @@
 {% import 'components/atoms/logo/logo.html' as atom_logo %}
+{% import 'components/atoms/menu-button/menu-button.html' as atom_menu_button %}
+{% import 'components/molecules/menu-bar-contents/menu-bar-contents.html' as molecule_menu_bar_contents %}
+{% import 'components/molecules/menu-dialog/menu-dialog.html' as molecule_menu_dialog %}
 
-{% macro regular(id = '', aria_label = '', title = '', logo = {}) %}
+{% macro regular(id = '', href = '', title = '', aria_label = '', dialog_aria_label = '', button_open_title = '', button_close_title = '') %}
   {% set aria_label = aria_label or _('Main navigation') %}
+  {% set dialog_aria_label = dialog_aria_label or _('Menu dialog') %}
 
-  {% if title and logo and logo.href and logo.title %}
-    <nav {% if id %}id="{{ id }}"{% endif %} class="menu-bar" aria-label="{{ aria_label }}">
-      <div class="menu-bar__wrapper">
-        {% if title %}
-          <a class="menu-bar__title" href="{{ logo.href }}"> {{ title }} </a>
-        {% endif %}
-
-        {{ atom_logo.regular(href = logo.href, title = logo.title, aria_label = logo.aria_label) }}
-      </div>
-    </nav>
-  {% endif %}
+  <nav {% if id %}id="{{ id }}"{% endif %} class="menu-bar" aria-label="{{ aria_label }}">
+    {{ molecule_menu_bar_contents.regular(href = href, title = title, button_open_title = button_open_title, button_close_title = button_close_title) }}
+    {{ molecule_menu_dialog.regular(title = title, aria_label = dialog_aria_label, button_open_title = button_open_title, button_close_title = button_close_title) }}
+  </nav>
 {% endmacro %}

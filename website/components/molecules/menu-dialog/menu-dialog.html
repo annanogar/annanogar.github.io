@@ -1,0 +1,15 @@
+{% import 'components/atoms/logo/logo.html' as atom_logo %}
+{% import 'components/atoms/menu-button/menu-button.html' as atom_menu_button %}
+{% import 'components/molecules/menu-bar-contents/menu-bar-contents.html' as molecule_menu_bar_contents %}
+
+{% macro regular(classes = '', title = '', aria_label = '', button_open_title = '', button_close_title = '') %}
+  {% set dialog_aria_label = dialog_aria_label or _('Menu dialog') %}
+
+  <dialog class="menu-dialog {{ classes }}" aria-label="{{ aria_label }}" role="dialog">
+    {{ molecule_menu_bar_contents.regular(title = title, button_open_title = button_open_title, button_close_title = button_close_title) }}
+
+    <div class="menu-dialog__content">
+      <p>TODO: MENU CONTENT</p>
+    </div>
+  </dialog>
+{% endmacro %}

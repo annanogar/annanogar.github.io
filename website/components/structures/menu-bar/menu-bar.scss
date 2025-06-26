@@ -7,40 +7,12 @@
   position: relative;
   z-index: 1;
 
-  .menu-bar__wrapper {
-    align-items: flex-end;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: calc(var(--padding-medium) * 2) var(--padding-large) var(--padding-small);
-  }
+  // .logo {
+  //   @include typography.logo;
+  // }
 
-  .menu-bar__title {
-    color: inherit;
-    text-decoration: none;
-    transform: translateY(0.3em);
-
-    @include typography.logo;
-
-    &:hover,
-    &:focus {
-      //text-decoration: underline;
-      color: var(--color-pink);
-    }
-  }
-
-  .logo {
-    @include typography.logo;
-  }
-
-  .logo__image {
-    height: 1.33em;
-    width: auto;
-  }
-
-  @include breakpoints.landscape {
-    .menu-bar__wrapper {
-      padding: calc(var(--padding-small) * 2) var(--padding-large) calc(var(--padding-small) * 2);
-    }
-  }
+  // .logo__image {
+  //   height: 1.33em;
+  //   width: auto;
+  // }
 }

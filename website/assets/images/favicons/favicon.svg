@@ -1,3 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024">
-  <rect width="1024" height="1024" fill="transparent"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="360" viewbox="0 0 360 360" preserveAspectRatio="xMidYMid meet" fill="none">
+  <path fill="#000042" d="M0 0h360v360H0z"/>
+  <circle fill="#FF00C8" cx="180" cy="180" r="160"/>
+  <circle fill="#00F" cx="180" cy="180" r="80"/>
 </svg>

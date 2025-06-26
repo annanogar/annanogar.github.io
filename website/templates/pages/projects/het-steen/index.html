@@ -3,8 +3,8 @@
 {% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
 {% import 'components/organisms/image-grid/image-grid.html' as image_grid %}
 {% import 'components/organisms/image-header/image-header.html' as image_header %}
-{% set page_title = 'Het Steen: The Gateway to Antwerp’s history' %}
-{% set page_description = 'Het Steen, the oldest building in Antwerp, has been transformed into a visitor center that offers an immersive introduction to the city.' %}
+{% set page_title = 'Het Steen' %}
+{% set page_description = 'A visitor center inside Antwerp’s oldest building, made of stories, people, and places.' %}
 {% set project_slug = 'het-steen' %}
 {% set opengraph_image = '/static/media/projects/' + project_slug + '/cover_3x1_2560w.jpg' %}
 {% set opengraph_title = page_title %}
@@ -14,6 +14,7 @@
   {{
     image_header.regular(
       title = page_title,
+      description = page_description,
       subtitle = 'Visit Antwerp, Antwerp (BE), 2021',
       image = { src: 'projects/' + project_slug + '/cover_3x1', alt: 'Parent and child closely examining the drawers of a historic wooden cabinet in a red-patterned room at Het Steen, discovering tactile and visual elements of Antwerp’s past.' }
     )
@@ -71,7 +72,7 @@
     call_to_action.regular(
       variant = 'badge',
       quote = 'Explore the next project or start a conversation.',
-      badge = { href: 'mailto:_send_me_an_?subject=Via%20the%20website', title: 'Get in touch!' },
+      badge = { variant: 'bright', href: '/contact/', title: 'Get in touch' },
       card = {
         href: '/projects/mauritshuis/',
         title: 'Shifting Image on the Dutch Colonial History',

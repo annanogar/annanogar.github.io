@@ -1,0 +1,32 @@
+@use '../../../assets/stylesheets/definitions/breakpoints' as breakpoints;
+@use '../../../assets/stylesheets/definitions/grid' as grid;
+@use '../../../assets/stylesheets/definitions/typography' as typography;
+
+.menu-bar-contents {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: calc(var(--padding-medium) * 2) var(--padding-large) var(--padding-small);
+
+  .menu-bar-contents__title {
+    color: inherit;
+    text-decoration: none;
+    transform: translateY(0.3em);
+
+    @include typography.logo;
+
+    &[href] {
+      cursor: pointer;
+
+      &:hover,
+      &:focus-visible {
+        color: var(--color-pink);
+      }
+    }
+  }
+
+  @include breakpoints.landscape {
+    padding: calc(var(--padding-small) * 2) var(--padding-large) calc(var(--padding-small) * 2);
+  }
+}

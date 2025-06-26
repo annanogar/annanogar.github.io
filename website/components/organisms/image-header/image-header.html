@@ -1,10 +1,14 @@
 {% import 'components/atoms/picture/picture.html' as atom_picture %}
 
-{% macro regular(title = '', subtitle = '', image = {}) %}
+{% macro regular(title = '', description = '', subtitle = '', image = {}) %}
   {% if title and image and image.src %}
     <div class="image-header">
       <div class="image-header__wrapper">
         <h1 class="image-header__title">{{ title }}</h1>
+
+        {% if description %}
+          <p class="image-header__description">{{ description }}</p>
+        {% endif %}
 
         {% if subtitle %}
           <p class="image-header__subtitle">{{ subtitle }}</p>

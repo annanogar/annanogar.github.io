@@ -3,8 +3,8 @@
 {% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
 {% import 'components/organisms/image-grid/image-grid.html' as image_grid %}
 {% import 'components/organisms/image-header/image-header.html' as image_header %}
-{% set page_title = 'Shifting Image on the Dutch Colonial History' %}
-{% set page_description = 'The Mauritshuis Museum examines the legacy of Johan Maurits, Count of Nassau-Siegen, focusing on his governance of the Dutch colony in Brazil and his involvement in the transatlantic slave trade.' %}
+{% set page_title = 'Shifting Image' %}
+{% set page_description = 'An exhibition revealing the many perspectives surrounding Dutch colonial history.' %}
 {% set project_slug = 'mauritshuis' %}
 {% set opengraph_image = '/static/media/projects/' + project_slug + '/cover_3x1_2560w.jpg' %}
 {% set opengraph_title = page_title %}
@@ -14,6 +14,7 @@
   {{
     image_header.regular(
       title = page_title,
+      description = page_description,
       subtitle = 'Mauritshuis, The Hague (NL), 2019',
       image = { src: 'projects/' + project_slug + '/cover_3x1', alt: 'Bust of Johan Maurits positioned in front of a wall covered with identical sculpted heads. Around the room, visitors observe large colonial paintings and immersive wall projections of tropical landscapes and ruins.' }
     )
@@ -89,7 +90,7 @@
     call_to_action.regular(
       variant = 'badge',
       quote = 'Explore the next project or start a conversation.',
-      badge = { href: 'mailto:_send_me_an_?subject=Via%20the%20website', title: 'Get in touch!' },
+      badge = { variant: 'bright', href: '/contact/', title: 'Get in touch' },
       card = {
         href: '/projects/ilmi/',
         title: 'A Digital Journey Through STREAM Informal Learning',
