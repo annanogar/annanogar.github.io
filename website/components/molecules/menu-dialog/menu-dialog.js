@@ -1,7 +1,27 @@
+import { createFocusTrap } from 'focus-trap'
 import Component, { loadComponent } from '../../../assets/scripts/modules/component.js'
 
 class MenuDialogComponent extends Component {
   init() {
+    this.buttonMenu = document.querySelector('.menu-bar-contents .menu-button')
+    this.focusTrap = createFocusTrap(this.element, {
+      onActivate: () => {
+        this.element.showModal()
+        document.documentElement.classList.add('prevent-scrolling')
+        window.dispatchEvent(new CustomEvent('menu-dialog-opened'))
+      },
+      onDeactivate: () => {
+        this.element.close()
+        document.documentElement.classList.remove('prevent-scrolling')
+        window.dispatchEvent(new CustomEvent('menu-dialog-closed'))
+        this.buttonMenu?.focus()
+      },
+      escapeDeactivates: true,
+      clickOutsideDeactivates: true,
+      returnFocusOnDeactivate: true,
+      initialFocus: this.element.querySelector('a'),
+    })
+
     window.addEventListener('toggle-menu-dialog', event => this.toggleMenuDialog(event))
   }
 
@@ -9,11 +29,11 @@ class MenuDialogComponent extends Component {
     const open = event.detail.open
 
     if (open) {
-      this.element.showModal()
-      window.dispatchEvent(new CustomEvent('menu-dialog-opened'))
+      this.element.removeAttribute('inert')
+      this.focusTrap?.activate()
     } else {
-      this.element.close()
-      window.dispatchEvent(new CustomEvent('menu-dialog-closed'))
+      this.focusTrap?.deactivate()
+      this.element.setAttribute('inert', 'inert')
     }
   }
 }
