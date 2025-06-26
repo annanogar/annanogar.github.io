@@ -31,14 +31,14 @@
       }}
 
       <div class="project-card__content">
+        {% if label %}
+          <p class="project-card__label">{{ label }}</p>
+        {% endif %}
+
         <p class="project-card__title">{{ title }}</p>
 
         {% if subtitle %}
           <p class="project-card__subtitle">{{ subtitle }}</p>
-        {% endif %}
-
-        {% if label %}
-          <p class="project-card__label">{{ label }}</p>
         {% endif %}
       </div>
     </a>

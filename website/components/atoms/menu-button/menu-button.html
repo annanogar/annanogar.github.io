@@ -1,0 +1,14 @@
+{% import 'components/atoms/icon/icon.html' as atom_icon %}
+
+{% macro regular(classes = '', title_open = '', title_close = '') %}
+  {% set title_open = title_open or _('Open menu') %}
+  {% set title_close = title_close or _('Close menu') %}
+
+  <button class="menu-button {{ classes }}" data-title-open="{{ title_open }}" data-title-close="{{ title_close }}" aria-label="{{ title_open }}" data-open="false">
+    <span class="button__icon" aria-hidden="true">
+      <span class="button__icon-line">x</span>
+      <span class="button__icon-line">x</span>
+      <span class="button__icon-line">x</span>
+    </span>
+  </button>
+{% endmacro %}

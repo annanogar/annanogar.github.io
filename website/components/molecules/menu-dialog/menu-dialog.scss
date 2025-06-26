@@ -1,0 +1,34 @@
+@use '../../../assets/stylesheets/definitions/breakpoints' as breakpoints;
+@use '../../../assets/stylesheets/definitions/grid' as grid;
+@use '../../../assets/stylesheets/definitions/typography' as typography;
+
+@keyframes fadein {
+  0% {
+    background-color: var(--color-navy);
+    opacity: 0;
+  }
+
+  100% {
+    background-color: var(--color-pink);
+    opacity: 1;
+  }
+}
+
+.menu-dialog {
+  background: var(--color-pink);
+  color: var(--color-white);
+  height: 100%;
+  inset: 0;
+  max-height: 100%;
+  max-width: 100%;
+  position: fixed;
+  width: 100%;
+
+  &[open] {
+    animation: fadein var(--easing-standard) forwards;
+  }
+
+  &[open='false'] {
+    animation: fadein var(--easing-standard) reverse forwards;
+  }
+}

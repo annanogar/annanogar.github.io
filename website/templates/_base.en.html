@@ -44,9 +44,12 @@
 {% block header %}
   {{
     menu_bar.regular(
-      aria_label = 'Main navigation',
+      href = '/',
       title = 'Anna Nogaré',
-      logo = { href: '/', title: 'annanogar', aria_label: 'Back to homepage' }
+      aria_label = 'Main navigation',
+      dialog_aria_label = 'Menu dialog',
+      button_open_title = 'Open menu',
+      button_close_title = 'Close menu'
     )
   }}
 {% endblock %}

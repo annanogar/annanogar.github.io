@@ -1,0 +1,14 @@
+@use '../../../assets/stylesheets/definitions/breakpoints' as breakpoints;
+@use '../../../assets/stylesheets/definitions/typography' as typography;
+
+.menu-button {
+  border-radius: 0;
+  color: inherit;
+  cursor: pointer;
+  display: inline-block;
+  height: 1.875rem;
+  position: relative;
+  transition: color var(--easing-standard);
+  vertical-align: top;
+  width: 1.875rem;
+}

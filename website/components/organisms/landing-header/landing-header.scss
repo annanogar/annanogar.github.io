@@ -18,6 +18,12 @@
     @include typography.heading-1;
   }
 
+  .landing-header__subtitle {
+    margin-top: 1rem;
+
+    @include typography.subtitle;
+  }
+
   .badge {
     bottom: var(--padding-medium);
     position: absolute;

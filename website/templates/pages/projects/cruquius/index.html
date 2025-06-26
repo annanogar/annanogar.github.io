@@ -3,8 +3,8 @@
 {% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
 {% import 'components/organisms/image-grid/image-grid.html' as image_grid %}
 {% import 'components/organisms/image-header/image-header.html' as image_header %}
-{% set page_title = 'Haarlemmermeer & the World’s Largest Steam Engine' %}
-{% set page_description = 'The Cruquius Museum showcases the Netherlands’ remarkable achievement in draining its largest lake, the Haarlemmermeer, from inside one of the original steam-powered pumping stations that made it possible.' %}
+{% set page_title = 'Cruquius museum' %}
+{% set page_description = 'An immersive look at Haarlemmermeer’s history and the world’s largest steam engine.' %}
 {% set project_slug = 'cruquius' %}
 {% set opengraph_image = '/static/media/projects/' + project_slug + '/cover_3x1_2560w.jpg' %}
 {% set opengraph_title = page_title %}
@@ -14,6 +14,7 @@
   {{
     image_header.regular(
       title = page_title,
+      description = page_description,
       subtitle = 'Cruquius Museum, Cruquius (NL), 2020',
       image = { src: 'projects/' + project_slug + '/cover_3x1', alt: 'Entrance to the Cruquius Museum featuring exposed brick walls and illuminated signage, with a blurred figure walking through the doorway.' }
     )
@@ -81,7 +82,7 @@
     call_to_action.regular(
           variant = 'badge',
           quote = 'Explore the next project or start a conversation.',
-          badge = { href: 'mailto:_send_me_an_?subject=Via%20the%20website', title: 'Get in touch!' },
+          badge = { variant: 'bright', href: '/contact/', title: 'Get in touch' },
           card = {
             href: '/projects/nh-archief/',
             title: 'At the discovery of Joh. Enschedé, Printers of Value',

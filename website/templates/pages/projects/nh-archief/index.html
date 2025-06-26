@@ -3,8 +3,8 @@
 {% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
 {% import 'components/organisms/image-grid/image-grid.html' as image_grid %}
 {% import 'components/organisms/image-header/image-header.html' as image_header %}
-{% set page_title = 'At the discovery of Joh. Enschedé, Printers of Value' %}
-{% set page_description = 'The Noord-Hollands Archief launched a permanent exhibition celebrating Joh. Enschedé, the printer behind the Netherlands’ banknotes, stamps, and typefaces.' %}
+{% set page_title = 'Joh. Enschedé' %}
+{% set page_description = 'Exploring the printers behind pages, banknotes, and type that shaped a nation.' %}
 {% set project_slug = 'nh-archief' %}
 {% set opengraph_image = '/static/media/projects/' + project_slug + '/cover_3x1_2560w.jpg' %}
 {% set opengraph_title = page_title %}
@@ -14,6 +14,7 @@
   {{
     image_header.regular(
       title = page_title,
+      description = page_description,
       subtitle = 'Noord-Hollands Archief, Haarlem (NL), 2019',
       image = { src: 'projects/' + project_slug + '/cover_3x1', alt: 'Young man closely inspecting a backlit historical timeline of portraits and key events in the legacy of Joh. Enschedé, a Dutch printer of value documents.' }
     )
@@ -83,7 +84,7 @@
     call_to_action.regular(
       variant = 'badge',
       quote = 'Explore the next project or start a conversation.',
-      badge = { href: 'mailto:_send_me_an_?subject=Via%20the%20website', title: 'Get in touch!' },
+      badge = { variant: 'bright', href: '/contact/', title: 'Get in touch' },
       card = {
         href: '/projects/brussels/',
         title: 'Discovering & Understanding Our Living Planet',
