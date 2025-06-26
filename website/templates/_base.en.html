@@ -49,7 +49,23 @@
       aria_label = 'Main navigation',
       dialog_aria_label = 'Menu dialog',
       button_open_title = 'Open menu',
-      button_close_title = 'Close menu'
+      button_close_title = 'Close menu',
+      menu_items = [
+        { href: '/projects', title: 'Projects', submenu_items: [
+          { href: '/projects/mauritshuis', title: 'Shifting Image' },
+          { href: '/projects/ilmi', title: 'Maker Park' },
+          { href: '/projects/qatar', title: 'Family Exhibits' },
+          { href: '/projects/cruquius', title: 'Cruquius Museum' },
+          { href: '/projects/nh-archief', title: 'Joh. Enschedé' },
+          { href: '/projects/brussels', title: 'Living Planet' },
+          { href: '/projects/boerhaave', title: 'Herman Boerhaave' },
+          { href: '/projects/prodemos', title: 'ProDemos' },
+          { href: '/projects/het-steen', title: 'Het Steen' }
+        ] },
+        { href: '/about', title: 'About' },
+        { href: '/manifesto', title: 'Manifesto' },
+        { href: '/contact', title: 'Contact' }
+      ]
     )
   }}
 {% endblock %}
