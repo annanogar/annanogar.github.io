@@ -5,18 +5,18 @@
 {% macro regular(classes = '', title = '', aria_label = '', button_open_title = '', button_close_title = '', menu_items = []) %}
   {% set dialog_aria_label = dialog_aria_label or _('Menu dialog') %}
 
-  <dialog class="menu-dialog {{ classes }}" aria-label="{{ aria_label }}" role="dialog">
+  <dialog class="menu-dialog {{ classes }}" aria-label="{{ aria_label }}" role="dialog" inert>
     {{ molecule_menu_bar_contents.regular(title = title, button_open_title = button_open_title, button_close_title = button_close_title) }}
 
     <div class="menu-dialog__content">
       {% if menu_items|length %}
-        <ul class="menu-dialog__list">
+        <ul class="menu-dialog__menu-list">
           {% for menu_item in menu_items %}
-            <li class="menu-dialog__item">
-              <a class="menu-dialog__link" href="{{ menu_item.href }}">{{ menu_item.title }}</a>
+            <li class="menu-dialog__menu-item">
+              <a class="menu-dialog__menu-link" href="{{ menu_item.href }}">{{ menu_item.title }}</a>
 
               {% if menu_item.submenu_items|length %}
-                <ul class="menu-dialog__submenu">
+                <ul class="menu-dialog__submenu-list">
                   {% for submenu_item in menu_item.submenu_items %}
                     <li class="menu-dialog__submenu-item">
                       <a class="menu-dialog__submenu-link" href="{{ submenu_item.href }}">{{ submenu_item.title }}</a>

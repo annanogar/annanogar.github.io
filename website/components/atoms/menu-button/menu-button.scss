@@ -11,4 +11,56 @@
   transition: color var(--easing-standard);
   vertical-align: top;
   width: 1.875rem;
+
+  .button__icon {
+    display: inline-block;
+    height: 100%;
+    position: relative;
+    vertical-align: top;
+    width: 100%;
+  }
+
+  .button__icon-line {
+    background-color: currentcolor;
+    display: block;
+    height: 0.25rem;
+    left: 50%;
+    opacity: 1;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transform-origin: 50% 50%;
+    transition:
+      transform var(--easing-standard),
+      opacity var(--easing-standard);
+    width: 1.875rem;
+
+    &:nth-child(1) {
+      transform: translate(-50%, -250%) rotate(0deg);
+    }
+
+    &:nth-child(2) {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    &:nth-child(3) {
+      transform: translate(-50%, 150%) rotate(0deg);
+    }
+  }
+
+  &[data-open='true'] {
+    .button__icon-line {
+      &:nth-child(1) {
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+
+      &:nth-child(2) {
+        opacity: 0;
+      }
+
+      &:nth-child(3) {
+        transform: translate(-50%, -50%) rotate(-45deg);
+      }
+    }
+  }
 }

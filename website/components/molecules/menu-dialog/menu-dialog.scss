@@ -4,31 +4,81 @@
 
 @keyframes fadein {
   0% {
-    background-color: var(--color-navy);
-    opacity: 0;
+    clip-path: circle(var(--animation-start) at top right);
   }
 
   100% {
-    background-color: var(--color-pink);
-    opacity: 1;
+    clip-path: circle(var(--animation-end) at top right);
   }
 }
 
 .menu-dialog {
+  --animation-start: 0vmax;
+  --animation-end: 135vmax;
+
   background: var(--color-pink);
+  clip-path: circle(0vh at top right);
   color: var(--color-white);
+  display: flex;
+  flex-direction: column;
   height: 100%;
   inset: 0;
   max-height: 100%;
   max-width: 100%;
+  overflow: hidden;
   position: fixed;
   width: 100%;
 
   &[open] {
-    animation: fadein var(--easing-standard) forwards;
+    animation: fadein var(--easing-slow) forwards;
   }
 
   &[open='false'] {
-    animation: fadein var(--easing-standard) reverse forwards;
+    animation: fadein var(--easing-slower) reverse forwards;
+    pointer-events: none;
+  }
+
+  .menu-bar-contents {
+    flex: 0 0 auto;
+  }
+
+  .menu-dialog__content {
+    flex: 1 1 100%;
+    overflow-y: scroll;
+    padding: var(--padding-xl) var(--padding-large) calc(var(--padding-large) * 9);
+    text-align: center;
+  }
+
+  .menu-dialog__menu-list,
+  .menu-dialog__submenu-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .menu-dialog__menu-link,
+  .menu-dialog__submenu-link {
+    color: var(--color-white);
+    text-decoration: none;
+    transition: color var(--easing-standard);
+
+    &:hover,
+    &:focus-visible {
+      color: var(--color-navy);
+    }
+  }
+
+  .menu-dialog__menu-item {
+    @include typography.heading-1;
+  }
+
+  .menu-dialog__submenu-item {
+    @include typography.paragraph;
+  }
+
+  @include breakpoints.landscape {
+    .menu-dialog__content {
+      padding: var(--padding-medium) calc(var(--padding-large) * 3.5) var(--padding-large) var(--padding-large);
+      text-align: left;
+    }
   }
 }
