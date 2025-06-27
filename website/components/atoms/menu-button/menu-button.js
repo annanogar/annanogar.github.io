@@ -2,9 +2,6 @@ import Component, { loadComponent } from '../../../assets/scripts/modules/compon
 
 class MenuButtonComponent extends Component {
   init() {
-    const titleOpen = this.element.getAttribute('data-title-open') || 'Open Menu'
-    const titleClose = this.element.getAttribute('data-title-close') || 'Close Menu'
-
     this.element.addEventListener('click', () => {
       const isOpen = this.element.getAttribute('data-open') === 'true'
 
@@ -13,12 +10,10 @@ class MenuButtonComponent extends Component {
 
     window.addEventListener('menu-dialog-opened', () => {
       this.element.setAttribute('data-open', 'true')
-      this.element.setAttribute('title', titleClose)
     })
 
     window.addEventListener('menu-dialog-closed', () => {
       this.element.setAttribute('data-open', 'false')
-      this.element.setAttribute('title', titleOpen)
     })
   }
 }
