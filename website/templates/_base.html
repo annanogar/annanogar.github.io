@@ -53,18 +53,6 @@
   </head>
 
   <body class="{% if page_theme %}theme--{{ page_theme }}{% endif %}">
-    {# TODO: ENABLE WHEN ITALIAN VERSION IS DONE}
-    <script>
-      if (location.pathname === '/website/' && navigator.language === 'it') {
-        // Github Pages
-        window.location.href = '/website/it/'
-      } else if (location.pathname === '/' && navigator.language === 'it') {
-        // Main site
-        window.location.href = '/it/'
-      }
-    </script>
-    #}
-
     {% block skip_to_main %}
     {% endblock %}
 
