@@ -9,10 +9,12 @@
 {% set opengraph_image = '/static/media/projects/' + project_slug + '/cover_3x1_2560w.jpg' %}
 {% set opengraph_title = page_title %}
 {% set opengraph_description = page_description %}
+{% set page_url_en = '/projects/' + project_slug + '/' %}
+{% set page_url_it = '/it/progetti/' + project_slug + '/' %}
 
 {% block linked_pages %}
-  <link rel="alternate" hreflang="en" href="/projects/boerhaave/" />
-  <link rel="alternate" hreflang="it" href="/it/progetti/boerhaave/" />
+  <link rel="alternate" hreflang="en" href="{{ page_url_en }}" />
+  <link rel="alternate" hreflang="it" href="{{ page_url_it }}" />
 {% endblock %}
 
 {% block content %}
