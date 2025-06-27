@@ -71,14 +71,14 @@
 }
 
 @mixin project-card-title {
-  font-size: fluid-value.get(20px, 40px, breakpoints.$mobile, breakpoints.$landscape);
+  font-size: fluid-value.get(32px, 64px, breakpoints.$mobile, breakpoints.$landscape);
   letter-spacing: normal;
-  line-height: 1.33em;
+  line-height: 1.25em;
 
   @include font-poppins.apply($weight: 'bold', $style: 'roman');
 
   @include breakpoints.landscape {
-    font-size: fluid-value.get(22px, 44px, breakpoints.$landscape, breakpoints.$desktop-large);
+    font-size: fluid-value.get(32px, 64px, breakpoints.$landscape, breakpoints.$desktop-large);
   }
 }
 

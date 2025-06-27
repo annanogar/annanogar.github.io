@@ -6,7 +6,7 @@
   position: relative;
 
   .landing-header__wrapper {
-    padding: var(--padding-xl) var(--padding-large) calc(var(--padding-large) * 9);
+    padding: var(--padding-xl) var(--padding-large) calc(var(--padding-large) * 10);
   }
 
   .landing-header__title {
@@ -25,7 +25,7 @@
   }
 
   .badge {
-    bottom: var(--padding-medium);
+    bottom: calc(var(--padding-medium) + 1rem);
     position: absolute;
     right: var(--padding-medium);
   }

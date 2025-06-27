@@ -12,7 +12,7 @@
       </div>
 
       {% if badge %}
-        {{ atom_badge.regular(variant = badge.variant, href = badge.href, title = badge.title) }}
+        {{ atom_badge.regular(variant = badge.variant, href = badge.href, title = badge.title, timid_hover = true) }}
       {% endif %}
 
       {% if card and card.href %}
