@@ -13,8 +13,8 @@
 }
 
 .menu-dialog {
-  --animation-start: 0vmax;
-  --animation-end: 135vmax;
+  --animation-start: 0vh;
+  --animation-end: 135vh;
 
   background: var(--color-pink);
   clip-path: circle(0vh at top right);
@@ -51,8 +51,19 @@
 
   .menu-dialog__menu-list,
   .menu-dialog__submenu-list {
+    display: grid;
     list-style: none;
     padding: 0;
+  }
+
+  .menu-dialog__menu-list {
+    gap: 1.5rem;
+  }
+
+  .menu-dialog__submenu-list {
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    margin-top: 1.5rem;
   }
 
   .menu-dialog__menu-link,
@@ -76,9 +87,26 @@
   }
 
   @include breakpoints.landscape {
+    --animation-start: 0vw;
+    --animation-end: 135vw;
+
     .menu-dialog__content {
-      padding: var(--padding-medium) calc(var(--padding-large) * 3.5) var(--padding-large) var(--padding-large);
+      padding: var(--padding-medium) var(--padding-large) var(--padding-large) var(--padding-large);
       text-align: left;
+    }
+
+    .menu-dialog__menu-list {
+      display: block;
+    }
+
+    .menu-dialog__menu-item {
+      float: right;
+      width: 50%;
+
+      &:first-child {
+        float: left;
+        padding-bottom: var(--padding-medium);
+      }
     }
   }
 }

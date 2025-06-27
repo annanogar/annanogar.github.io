@@ -67,6 +67,24 @@
   }
 }
 
+.badge--timid-hover {
+  &:hover,
+  &:focus-visible {
+    &::before {
+      transform: scale(1.6);
+    }
+  }
+
+  @include breakpoints.landscape {
+    &:hover,
+    &:focus-visible {
+      &::before {
+        transform: scale(2.4);
+      }
+    }
+  }
+}
+
 .badge--regular {
   &::before {
     background-color: var(--color-navy);

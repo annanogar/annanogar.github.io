@@ -1,7 +1,10 @@
-{% macro regular(variant = '', href = '', title = '') %}
+{% macro regular(variant = '', href = '', title = '', timid_hover = false) %}
   {% set variant = variant or 'regular' %}
+
+  {{ debug(variant, title) }}
+
   {% if href and title %}
-    <a class="badge badge--{{ variant }}" href="{{ href }}">
+    <a class="badge badge--{{ variant }} {% if timid_hover %}badge--timid-hover{% endif %}" href="{{ href }}">
       <span class="badge__span">{{ title }}</span>
     </a>
   {% endif %}

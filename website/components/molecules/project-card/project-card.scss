@@ -37,20 +37,25 @@
     z-index: 10;
   }
 
+  .project-card__label {
+    background-color: var(--color-white);
+    clip-path: polygon(100% 0, calc(100% - 1rem) 50%, 100% 100%, 0% 100%, 1rem 50%, 0% 0%);
+    color: var(--color-blue);
+    margin-bottom: 1.25rem;
+    padding: 0.5rem 3rem 0.25rem;
+
+    @include typography.label;
+  }
+
   .project-card__title {
     @include typography.project-card-title;
   }
 
   .project-card__subtitle {
-    margin-top: 0.5rem;
+    margin-top: 0.25rem;
+    padding: 0 1.5rem;
 
     @include typography.subtitle;
-  }
-
-  .project-card__label {
-    margin-top: 1.5rem;
-
-    @include typography.label;
   }
 
   &:hover,
