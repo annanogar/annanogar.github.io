@@ -1,0 +1,120 @@
+{% extends 'templates/_base.en.html' %}
+{% import 'components/organisms/article-footer/article-footer.html' as article_footer %}
+{% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
+{% import 'components/organisms/image-grid/image-grid.html' as image_grid %}
+{% import 'components/organisms/video-player/video-player.html' as video_player %}
+{% import 'components/organisms/image-header/image-header.html' as image_header %}
+{% set page_title = 'Maker park' %}
+{% set page_description = 'Una piattaforma digitale per l’educazione STREAM, tra apprendimento informale e gioco.' %}
+{% set project_slug = 'ilmi' %}
+{% set opengraph_image = '/static/media/projects/' + project_slug + '/cover_3x1_2560w.jpg' %}
+{% set opengraph_title = page_title %}
+{% set opengraph_description = page_description %}
+
+{% block linked_pages %}
+  <link rel="alternate" hreflang="en" href="/projects/ilmi/" />
+  <link rel="alternate" hreflang="it" href="/it/progetti/ilmi/" />
+{% endblock %}
+
+{% block content %}
+  {{
+    image_header.regular(
+      title = page_title,
+      description = page_description,
+      subtitle = 'Ilmi Science Discovery and Innovation Center, Riyad (SA), apertura prevista nel 2025',
+      image = { src: 'projects/' + project_slug + '/cover_3x1', alt: 'TODO: Architectural rendering of Ilmi Center at sunset, featuring a glowing spherical structure at the center of a landscaped cultural park filled with visitors.' }
+    )
+  }}
+
+  {{
+    image_grid.regular(
+      title = 'Panoramica',
+      introduction = 'Ilmi è un nuovo centro dedicato alla scienza e all’innovazione in apertura a Riyadh, Arabia Saudita. Con una superficie di 38.000 metri quadrati, sarà un punto di riferimento nazionale e un polo culturale per le famiglie. Il centro ospiterà installazioni immersive e interattive pensate per promuovere l’apprendimento informale nelle discipline STREAM (Science, Technology, Reading, Engineering, Art, Mathematics). Una piattaforma digitale complementare amplierà la missione educativa di Ilmi oltre lo spazio fisico e su tutto il territorio nazionale.',
+      items = [
+        { image: { src: 'projects/' + project_slug + '/01_2x1', alt: 'TODO: Daytime view of Ilmi Center showing families and school children walking toward the iconic reflective sphere, surrounded by gardens and flowering trees.' } },
+        { image: { src: 'projects/' + project_slug + '/02_1x1', alt: 'TODO: Portrait of a young boy smiling in traditional Saudi attire, representing the target audience of the educational initiative.' } },
+        { image: { src: 'projects/' + project_slug + '/03_1x1', alt: 'TODO: Aerial night rendering of the Ilmi Center lit up against a dark desert landscape, with illuminated pathways and the luminous central sphere at the heart of the design.' } },
+        { image: { src: 'projects/' + project_slug + '/04_2x1', alt: 'TODO: Front-facing rendering of Ilmi Center at dusk, showing visitors entering the museum through a tunnel-like entrance beneath the glowing orb.' } }
+      ]
+    )
+  }}
+
+  {{
+    image_grid.regular(
+      title = 'Contributo',
+      introduction = 'Mi sono occupata della direzione creativa e della strategia per il prototipo della piattaforma digitale e ho partecipato attivamente alla definizione della strategia di apprendimento digitale del centro, guidando anche lo sviluppo delle linee guida per l’accessibilità. La piattaforma, ispirata ai principi dell’apprendimento informale e del Design Universale per l’Apprendimento, unisce storytelling e meccaniche di gioco per stimolare la curiosità e l’esplorazione autonoma. L’esperienza è pensata per adattarsi a diverse preferenze ed esigenze, offrendo molteplici modalità di apprendimento, dai giochi interattivi alle sfide pratiche.',
+      items = [
+        { image: { src: 'projects/' + project_slug + '/05_2x1', alt: 'TODO: Colorful 3D illustration of a robot hands holding a smartphone displaying the "Maker Park" gate from the Ilmi app, with gamified learning visuals in the background.' } },
+        { image: { src: 'projects/' + project_slug + '/06_1x1', alt: 'TODO: 3D illustration of a transparent ruler and compass on an orange circle over a blue background with circular white graphics, symbolizing mathematics.' } },
+        { image: { src: 'projects/' + project_slug + '/07_1x1', alt: 'TODO: 3D digital illustration of a microchip on a light blue circle over a blue background with circular white graphics, symbolizing technology.' } },
+        { image: { src: 'projects/' + project_slug + '/08_2x1', alt: 'TODO: Two smartphones display a colorful, hexagonal map-based interface of a virtual learning environment, featuring a cartoon robot character. The robot waves beside the screens, against a vibrant gradient background.' } },
+        { image: { src: 'projects/' + project_slug + '/09_2x1', alt: 'TODO: Two smartphones show a digital challenge interface with chain reaction instructions. A cheerful robot holds large gold coins and a trophy is seen in the foreground, all set against a colorful background.' } },
+        { image: { src: 'projects/' + project_slug + '/10_1x1', alt: 'TODO: 3D digital illustration of a green science beaker surrounded by orbital rings, set against a blue background on a yellow circle, symbolizing science.' } },
+        { image: { src: 'projects/' + project_slug + '/11_1x1', alt: 'TODO: 3D digital illustration of a rocket launching with stylized pink fins and grid texture, set against a green circle on a blue background, symbolizing engineering.' } },
+        { image: { src: 'projects/' + project_slug + '/12_2x1', alt: 'TODO: Three mobile screens showing different stages of a digital learning activity: defining energy, identifying innovations, and accessing a “Chain Reactions” challenge in the Maker Park.' } }
+      ]
+    )
+  }}
+
+  {{
+    image_grid.regular(
+      variant = 'highlight',
+      title = 'Attenzione!',
+      introduction = 'La versione finale della piattaforma è attualmente in fase di sviluppo da parte di un’azienda locale e sarà rilasciata nei prossimi anni. A causa di vincoli NDA, il materiale mostrato è solo a scopo illustrativo. Sebbene si tratti di un progetto triennale, non mi è possibile mostrare il lavoro completo.',
+      items = [
+        { image: { src: 'projects/' + project_slug + '/13_2x1', alt: 'TODO: A cheerful robot holds its face in surprise next to a floating game controller and a smartphone showing a colorful hexagonal map interface from the educational platform, all set against a vibrant gradient background.' } },
+        { image: { src: 'projects/' + project_slug + '/14_1x1', alt: 'TODO: 3D digital illustration of an artist palette with colorful paint blobs and brushes, set on a vibrant pink circle on a blue background, symbolizing arts.' } },
+        { image: { src: 'projects/' + project_slug + '/15_1x1', alt: 'TODO: Cartoon robot wearing large golden medals, with a glowing electric battery being activated by a tap gesture, set on a blue background with lightning effects.' } },
+        { image: { src: 'projects/' + project_slug + '/16_2x1', alt: 'TODO: Four mobile screens showing a game on buoyancy and density. A cartoon robot introduces the activity, followed by scenes of ships being loaded in different stages.' } },
+        { image: { src: 'projects/' + project_slug + '/17_2x1', alt: 'TODO: Continuation of the buoyancy game interface showing increasing cargo being loaded onto a ship, total score display with weight values, and a success screen with three stars and a robot avatar.' } },
+        { image: { src: 'projects/' + project_slug + '/18_1x1', alt: 'TODO: Cartoon robot with dizzy expression and stars orbiting its head, illustrating confusion or information overload, set on a bright blue background.' } },
+        { image: { src: 'projects/' + project_slug + '/19_1x1', alt: 'TODO: Cartoon robot wearing a green jersey with the number 1, cheerfully raising a golden trophy with confetti falling around, celebrating a game achievement on a bright blue background.' } },
+        { image: { src: 'projects/' + project_slug + '/20_2x1', alt: 'TODO: A colorful isometric map made of hexagonal tiles showing various interactive stations, including a robot character at the center and icons such as a trophy, camera, and film reel, representing different educational activities.' } }
+      ]
+    )
+  }}
+
+  {{
+    call_to_action.regular(
+      variant = 'video',
+      quote = 'Ti incuriosisce?<br />Guarda il teaser!',
+      image = { src: 'projects/' + project_slug + '/trailer-thumbnail_1x1', alt: 'TODO: 3D rendering of a stylized camera lens gripped by a pink robotic hand with yellow and blue wrist, representing a recording or video function.' }
+    )
+  }}
+
+  {{
+    video_player.regular(
+      video = { src: 'projects/' + project_slug + '/trailer_16x9', poster: 'projects/' + project_slug + '/trailer_16x9', alt: 'TODO: Animated teaser video introducing the Ilmi educational platform. It features a colorful cartoon robot guiding viewers through a vibrant, game-like digital world made of hexagonal tiles. Interactive stations represent science, technology, engineering, arts, and math. The robot interacts with playful elements, activates challenges, and celebrates achievements with trophies and rewards. Bright gradients and dynamic animations enhance the engaging and exploratory atmosphere.' }
+    )
+  }}
+
+  {% call article_footer.regular() %}
+    <h3>Crediti</h3>
+
+    <p>
+      Ruolo: <strong>Creative Director | Strategist</strong><br />
+      Datore di lavoro: <strong>IJsfontein</strong><br />
+      Cliente: <strong>Misk Foundation</strong><br />
+      Fotografia: <strong>Unsplash</strong><br />
+      Render: <strong>Provided by client</strong><br />
+      Mockups & video: <strong>IJsfontein</strong>
+    </p>
+
+    <p>© Tutti i diritti riservati a IJsfontein</p>
+  {% endcall %}
+
+  {{
+    call_to_action.regular(
+      variant = 'badge',
+      quote = 'Esplora un altro progetto o inizia una chiacchierata.',
+      badge = { href: 'mailto:_send_me_an_', title: 'Mettiti in contatto!' },
+      card = {
+        href: '/it/progetti/qatar/',
+        title: 'Family Exhibits',
+        subtitle: 'National Museum of Qatar, Doha (QA)',
+        label: 'Premiato',
+        image: { src: 'projects/qatar/thumbnail_1x1', alt: 'TODO: Children using a multi-user touchscreen to uncover virtual artifacts in a digging-themed game, while parents look on, in a gallery designed to simulate a layered archaeological dig site.' }
+      }
+    )
+  }}
+{% endblock %}

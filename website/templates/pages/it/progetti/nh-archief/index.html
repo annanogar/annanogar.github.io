@@ -1,0 +1,97 @@
+{% extends 'templates/_base.en.html' %}
+{% import 'components/organisms/article-footer/article-footer.html' as article_footer %}
+{% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
+{% import 'components/organisms/image-grid/image-grid.html' as image_grid %}
+{% import 'components/organisms/image-header/image-header.html' as image_header %}
+{% set page_title = 'Joh. Enschedé' %}
+{% set page_description = 'Alla scoperta degli stampatori dietro pagine, banconote e caratteri che hanno plasmato una nazione.' %}
+{% set project_slug = 'nh-archief' %}
+{% set opengraph_image = '/static/media/projects/' + project_slug + '/cover_3x1_2560w.jpg' %}
+{% set opengraph_title = page_title %}
+{% set opengraph_description = page_description %}
+
+{% block linked_pages %}
+  <link rel="alternate" hreflang="en" href="/projects/nh-archief/" />
+  <link rel="alternate" hreflang="it" href="/it/progetti/nh-archief/" />
+{% endblock %}
+
+{% block content %}
+  {{
+    image_header.regular(
+      title = page_title,
+      description = page_description,
+      subtitle = 'Noord-Hollands Archief, Haarlem (NL), 2019',
+      image = { src: 'projects/' + project_slug + '/cover_3x1', alt: 'TODO: Young man closely inspecting a backlit historical timeline of portraits and key events in the legacy of Joh. Enschedé, a Dutch printer of value documents.' }
+    )
+  }}
+
+  {{
+    image_grid.regular(
+      title = 'Panoramica',
+      introduction = 'Il Noord-Hollands Archief ha inaugurato una mostra permanente dedicata a Joh. Enschedé, la storica tipografia responsabile della stampa di banconote, francobolli e caratteri tipografici dei Paesi Bassi. Una scenografica vetrata a tutta altezza crea un’atmosfera luminosa e accogliente, incorniciando tre installazioni principali: una pressa da stampa del XVIII secolo, una selezione di caratteri tipografici unici e un rullo da stampa per banconote. App interattive e giochi fisici distribuiti nello spazio invitano i visitatori a scoprire il sapere artigianale che si cela dietro oggetti di uso quotidiano.',
+      items = [
+        { image: { src: 'projects/' + project_slug + '/01_1x1', alt: 'TODO: Display on bookmaking, featuring a historical printing press surrounded by books and miniature figures, with suspended printed pages above and colorful stained glass at the back.' } },
+        { image: { src: 'projects/' + project_slug + '/02_1x1', alt: 'TODO: Typography-themed station with metal type installations hanging overhead, display cases with printing materials below, and stained glass windows adding depth to the gallery.' } },
+        { image: { src: 'projects/' + project_slug + '/03_1x1', alt: 'TODO: Banknote station with large printing rollers suspended above a display case of financial documents, set against an exposed brick wall and vibrant stained glass inspired by currency design.' } },
+        { image: { src: 'projects/' + project_slug + '/04_1x1', alt: 'TODO: Interactive station with antique tools and a touchscreen, set against a stained glass window featuring collage-style banknote imagery and historical references.' } },
+        { image: { src: 'projects/' + project_slug + '/05_1x1', alt: 'TODO: Close-up of a vibrant stained glass window featuring a collage of portraiture, patterns, and typographic elements from Dutch banknotes and various printed motifs and patterns.' } },
+        { image: { src: 'projects/' + project_slug + '/06_1x1', alt: 'TODO: Display case containing metal printing tools and lead type molds, beneath a mounted infographic panel explaining the process of making lead type.' } }
+      ]
+    )
+  }}
+
+  {{
+    image_grid.regular(
+      title = 'Contributo',
+      introduction = 'Ero la responsbaile della progettazione e produzione della componente grafica e dello stile visivo della mostra. Il design ha portato chiarezza e struttura, aggiungendo un tocco contemporaneo ai racconti storici e rendendo il mondo della stampa di sicurezza accessibile e affascinante.',
+      items = [
+        { image: { src: 'projects/' + project_slug + '/07_1x1', alt: 'TODO: Two children wearing headphones and holding clipboards, engaging with an interactive exhibit on printing techniques and history.' } },
+        { image: { src: 'projects/' + project_slug + '/08_1x1', alt: 'TODO: Woman engaging with a hands-on printing exhibit, pulling a lever on a wooden structure below a screen that explains how to set up and use a historical press.' } },
+        { image: { src: 'projects/' + project_slug + '/09_1x1', alt: 'TODO: Two young women reading and discussing a book displayed on a glass-topped museum table, surrounded by other printing-related displays and exhibition graphics.' } },
+        { image: { src: 'projects/' + project_slug + '/10_1x1', alt: 'TODO: Two boys interacting with an illuminated display table, one pointing to a printing-related exhibit beneath the glass, with educational diagrams about lead type in the background.' } },
+        { image: { src: 'projects/' + project_slug + '/11_2x1', alt: 'TODO: Man and woman smiling as they engage with a digital screen embedded in a display table, surrounded by colorful exhibition elements and brick walls.' } },
+        { image: { src: 'projects/' + project_slug + '/12_1x1', alt: 'TODO: Close-up of two visitors interacting with a touchscreen showing historical Dutch banknote specimens, pointing to enlarged images on the screen.' } },
+        { image: { src: 'projects/' + project_slug + '/13_1x1', alt: 'TODO: Detailed view of a digital display featuring an interactive design tool, where a user is selecting security features for a banknote as part of an educational museum experience.' } },
+        { image: { src: 'projects/' + project_slug + '/14_1x1', alt: 'TODO: Two young girls interacting with a touchscreen display in the museum, one pointing at the interface while the other attentively observes, with printing equipment visible in the background.' } },
+        { image: { src: 'projects/' + project_slug + '/15_1x1', alt: 'TODO: Group of children gathered around a display case labeled "De Duitse stempelsnijder" (“The German Punchcutter”), observing and discussing its contents, with an adult guiding them.' } },
+        { image: { src: 'projects/' + project_slug + '/16_2x1', alt: 'TODO: Close-up of two adults smiling and using an interactive digital screen labeled “Wealth in letters,” with a printing press and suspended sheets visible above.' } }
+      ]
+    )
+  }}
+
+  {% call article_footer.regular() %}
+    <h3>Premi & Riconoscimenti</h3>
+
+    <p>
+      <strong>Muse Design Awards 2020:</strong><br />
+      Platinum | Design, Exhibition, Pavilions & Exhibitions<br />
+      <strong>Selezionato nella galleria di Graphic Design di Behance:</strong><br />
+      Categoria Exhibition & Signage
+    </p>
+
+    <h3>Crediti</h3>
+
+    <p>
+      Ruolo: <strong>Art Director | Lead Designer</strong><br />
+      Datore di lavoro: <strong>Studio Louter</strong><br />
+      Cliente: <strong>Noord-Hollands Archief</strong><br />
+      Fotografia: <strong>Mike Bink</strong>
+    </p>
+
+    <p>© Tutti i diritti riservati a Studio Louter</p>
+  {% endcall %}
+
+  {{
+    call_to_action.regular(
+      variant = 'badge',
+      quote = 'Esplora un altro progetto o inizia una chiacchierata.',
+      badge = { href: 'mailto:_send_me_an_', title: 'Mettiti in contatto!' },
+      card = {
+        href: '/it/progetti/brussels/',
+        title: 'Living planet',
+        subtitle: 'Museum of Natural Sciences, Bruxelles (BE)',
+        image: { src: 'projects/brussels/thumbnail_1x1', alt: 'TODO: Teenage visitor wearing a mask and green checkered shirt, engaging with an angled touchscreen among mounted animal specimens.' }
+      }
+    )
+  }}
+{% endblock %}

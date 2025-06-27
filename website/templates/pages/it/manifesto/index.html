@@ -1,0 +1,69 @@
+{% extends 'templates/_base.en.html' %}
+{% import 'components/organisms/article-content-image/article-content-image.html' as article_content_image %}
+{% import 'components/organisms/article-header/article-header.html' as article_header %}
+{% import 'components/organisms/article-quote/article-quote.html' as article_quote %}
+{% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
+{% set page_title = 'Manifesto Accessibilità' %}
+{% set page_description = 'Non riguarda solo loro alla fine del progetto. Riguarda tutti noi fin dall’inizio.' %}
+{% set opengraph_image = '/static/media/manifesto/cta_1x1_1280w.jpg' %}
+{% set opengraph_title = page_title %}
+{% set opengraph_description = page_description %}
+
+{% block linked_pages %}
+  <link rel="alternate" hreflang="en" href="/manifesto/" />
+  <link rel="alternate" hreflang="it" href="/it/manifesto/" />
+{% endblock %}
+
+{% block content %}
+  {{
+    article_header.regular(
+      title = page_title
+    )
+  }}
+
+  {%
+    call article_content_image.regular(
+      variant = 'left',
+      image = { src: 'manifesto/section01_robert-harkness-unsplash_1x1', alt: 'TODO: Stylized wheelchair symbol painted on asphalt, with a small bouquet of flowers placed in the figure’s hands.' }
+    )
+  %}
+    <p>L’accessibilità non è un favore. Non è questione di benevolenza. E di certo non è riservata a <em>pochi</em>.</p>
+    <p><strong>È una questione di abilità e quella cambia in continuazione.</strong></p>
+    <p>Ti sei rotto un braccio? Hai perso gli occhiali? Sei alle prese con una nuova lingua? All’improvviso, il mondo non è più fatto per te.<br />Il sole ti acceca? Sei esausto? Hai un mal di testa tremendo? Anche le cose più semplici sembrano impossibili.</p>
+    <p>Guardiamo in faccia la realtà: le probabilità di restare pienamente abili per tutta la vita sono bassissime, se non nulle.<br />Ecco perché ha più senso pensare che siamo tutti <em>temporaneamente abili</em>.</p>
+    <p><strong>L’accessibilità non è un trattamento speciale.</strong></p>
+    <p>È semplicemente un modo per rendere le cose migliori per tutti, perché tutti beneficiamo dei sottotitoli, delle porte automatiche e delle istruzioni chiare e leggibili.<br />Tutto qui.</p>
+    <p><strong>Allora perché continuiamo a trattare l'accessibilità come un controllo burocratico da spuntare alla fine di un progetto?</strong></p>
+    <p>È ora di cambiare le cose, e io sono pronta. Voglio creare esperienze in cui chiunque si senta accolto, capace e a proprio agio.</p>
+  {% endcall %}
+
+  {{
+    article_quote.regular(
+      quote = 'Non riguarda <em>solo loro</em> alla fine del progetto. Riguarda <em>tutti noi</em> fin dall’inizio.'
+    )
+  }}
+
+  {%
+    call article_content_image.regular(
+      variant = 'right',
+      image = { src: 'manifesto/cta_megan-bucknall-unsplash_1x1', alt: 'TODO: Rainbow-striped Pride flag with bold white text reading “Y’all Means All!” hanging inside a window.' }
+    )
+  %}
+    <p>Voglio rendere le cose meno frustranti per tutti.</p>
+    <p>C’è ancora molto stigma attorno alla diversità umana, e spesso ci lasciamo ingabbiare in modi di pensare rigidi. Ma sono felice di vedere che l’inclusività sta ricevendo sempre più attenzione.</p>
+    <p><strong>La rivoluzione è in corso, e io voglio farne parte!</strong></p>
+    <p>Non solo nel mio lavoro, ma cambiando il modo in cui pensiamo all'accessibilità: non dovrebbe essere un ripensamento, ma un vero e proprio approccio mentale.</p>
+  {% endcall %}
+
+  {{
+    call_to_action.regular(
+      quote = 'Più ne parliamo, più possiamo cambiare le cose.',
+      badge = { variant: 'bright', href: 'mailto:_send_me_an_', title: 'Mettiti in contatto!' },
+      card = {
+        href: '/it/profilo/',
+        title: 'Scopri il mio profilo',
+        image: { src: 'about/cta_1x1', alt: 'TODO: Anna Nogaré facing the camera with colorful dot projections on her face and shirt, against a dark background.' }
+      }
+    )
+  }}
+{% endblock %}
