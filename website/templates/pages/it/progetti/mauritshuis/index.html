@@ -1,0 +1,103 @@
+{% extends 'templates/_base.en.html' %}
+{% import 'components/organisms/article-footer/article-footer.html' as article_footer %}
+{% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
+{% import 'components/organisms/image-grid/image-grid.html' as image_grid %}
+{% import 'components/organisms/image-header/image-header.html' as image_header %}
+{% set page_title = 'Shifting Image' %}
+{% set page_description = 'Una mostra che esplora i diversi punti di vista sulla storia coloniale dei Paesi Bassi.' %}
+{% set project_slug = 'mauritshuis' %}
+{% set opengraph_image = '/static/media/projects/' + project_slug + '/cover_3x1_2560w.jpg' %}
+{% set opengraph_title = page_title %}
+{% set opengraph_description = page_description %}
+
+{% block linked_pages %}
+  <link rel="alternate" hreflang="en" href="/projects/mauritshuis/" />
+  <link rel="alternate" hreflang="it" href="/it/progetti/mauritshuis/" />
+{% endblock %}
+
+{% block content %}
+  {{
+    image_header.regular(
+      title = page_title,
+      description = page_description,
+      subtitle = 'Mauritshuis, L’Aia (NL), 2019',
+      image = { src: 'projects/' + project_slug + '/cover_3x1', alt: 'TODO: Bust of Johan Maurits positioned in front of a wall covered with identical sculpted heads. Around the room, visitors observe large colonial paintings and immersive wall projections of tropical landscapes and ruins.' }
+    )
+  }}
+
+  {{
+    image_grid.regular(
+      title = 'Panoramica',
+      introduction = 'Il museo Mauritshuis esamina l’eredità di Johan Maurits, conte di Nassau-Siegen, con particolare attenzione al suo governo nella colonia olandese in Brasile e al suo coinvolgimento nel commercio transatlantico degli schiavi. La mostra esplora come la storia coloniale viene rappresentata attraverso reperti storici, riflessioni contemporanee e installazioni interattive.',
+      items = [
+        { image: { src: 'projects/' + project_slug + '/01_2x1', alt: 'TODO: Exhibition room with colonial portraits and a timeline wall. A large painting of a woman accompanied by a white child and a Black child dominates the foreground, while visitors quietly observe other paintings in the surroundings.' } },
+        { image: { src: 'projects/' + project_slug + '/02_1x1', alt: 'TODO: A woman interacts with a touchscreen display in front of a large, ornately framed portrait of Johan Maurits. In the background, projected images and a smaller portraits of two Black men are visible.' } },
+        { image: { src: 'projects/' + project_slug + '/03_1x1', alt: 'TODO: Close-up of a woman gazing at a large colonial painting depicting a noblewoman with children. The woman stands in a dark gallery lit by focused spotlights on the artworks.' } },
+        { image: { src: 'projects/' + project_slug + '/04_2x1', alt: 'TODO: Two women explore a gallery space featuring a detailed white architectural model and framed portraits of Black men. On the left wall, an exhibition timeline in Dutch and English provides historical context.' } },
+        { image: { src: 'projects/' + project_slug + '/05_2x1', alt: 'TODO: Gallery scene with a bust of Johan Maurits in the center, surrounded by wall-mounted colonial paintings and immersive projections of exotic landscapes. Several visitors explore the room independently.' } },
+        { image: { src: 'projects/' + project_slug + '/06_1x1', alt: 'TODO: White architectural model of a classical building, made of imitation sugar cubes and displayed under a spotlight. The model sits on a circular base covered in loose sugar cubes, all set within a dark exhibition room.' } },
+        { image: { src: 'projects/' + project_slug + '/07_1x1', alt: 'TODO: A woman stands closely in front of a large colonial portrait of a white woman accompanied by a Black servant. Projected market scenes and paintings are layered across the back wall.' } },
+        { image: { src: 'projects/' + project_slug + '/08_2x1', alt: 'TODO: Side view of a woman reading from a touchscreen next to a large white architectural model of a neoclassical building, made of imitation sugar cubes. The installation is surrounded by a base of loose sugar cubes and illuminated in a dark room.' } }
+      ]
+    )
+  }}
+
+  {{
+    image_grid.regular(
+      title = 'Contributo',
+      introduction = 'Ho diretto la progettazione degli elementi multimediali della mostra, dando forma a un’esperienza pensata per incoraggiare i visitatori a confrontarsi con molteplici prospettive sul passato. Attraverso proiezioni, storytelling visivo e installazioni simboliche, la mostra invita il pubblico a riflettere sull’impatto del colonialismo e sui modi in cui la storia viene raccontata.',
+      items = [
+        { image: { src: 'projects/' + project_slug + '/09_2x1', alt: 'TODO: Panoramic view of the exhibition room with a timeline wall, large projected colonial portraits, and a seated visitor. The bust of Johan Maurits appears in the foreground, partially turned.' } },
+        { image: { src: 'projects/' + project_slug + '/10_1x1', alt: 'TODO: Bust of Johan Maurits in a spotlight, set against a textured wall covered in repeating versions of the same sculpted face. The statue’s elaborate military uniform and expression are clearly visible.' } },
+        { image: { src: 'projects/' + project_slug + '/11_1x1', alt: 'TODO: A young woman stands in front of a series of framed landscape paintings, attentively engaging with a touchscreen. Projected scenes of natural environments extend across the walls in the background.' } },
+        { image: { src: 'projects/' + project_slug + '/12_2x1', alt: 'TODO: Interactive panel titled "Wat vraagt u zich af?" ("What would you like to know?") invites visitors to reflect on the legacy of Johan Maurits and colonial history, featuring a mix of Dutch and English explanatory text and survey questions.' } }
+      ]
+    )
+  }}
+
+  {% call article_footer.regular() %}
+    <h3>Premi</h3>
+
+    <p>
+      <strong>AVICOM F@IMP 2.0 2020:</strong><br />
+      Winner | Scenography<br />
+      <strong>FX Design Award 2020:</strong><br />
+      Finalist | Museum or Exhibition Space<br />
+      <strong>Museums + Heritage Award 2020:</strong><br />
+      Winner | The International Project of the Year &lt; £1m<br />
+      <strong>European Design Awards 2020:</strong><br />
+      Bronze | Exhibition Design<br />
+      <strong>Frame Awards 2020:</strong><br />
+      Longlist | Exhibition of the Year<br />
+      <strong>Muse Design Awards 2019:</strong><br />
+      Gold | Interior Design Exhibits, Pavilions, & Exhibitions<br />
+      <strong>SBID Awards 2019:</strong><br />
+      Nomination | Public Space Design
+    </p>
+
+    <h3>Crediti</h3>
+
+    <p>
+      Ruolo: <strong>Art Director | Lead Designer</strong><br />
+      Datore di lavoro: <strong>Studio Louter</strong><br />
+      Cliente: <strong>Mauritshuis</strong><br />
+      Fotografia: <strong>Mike Bink</strong>
+    </p>
+
+    <p>© Tutti i diritti riservati a Studio Louter</p>
+  {% endcall %}
+
+  {{
+    call_to_action.regular(
+      variant = 'badge',
+      quote = 'Esplora un altro progetto o inizia una chiacchierata.',
+      badge = { href: 'mailto:_send_me_an_', title: 'Mettiti in contatto!' },
+      card = {
+        href: '/it/progetti/ilmi/',
+        title: 'Maker park',
+        subtitle: 'Ilmi Science Discovery & Innovation Center, Riyad (SA)',
+        image: { src: 'projects/ilmi/thumbnail_1x1', alt: 'TODO: Portrait of a young boy smiling in traditional Saudi attire, representing the target audience of the educational initiative.' }
+      }
+    )
+  }}
+{% endblock %}

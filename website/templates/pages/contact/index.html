@@ -8,6 +8,11 @@
 {% set opengraph_title = page_title %}
 {% set opengraph_description = page_description %}
 
+{% block linked_pages %}
+  <link rel="alternate" hreflang="en" href="/contact/" />
+  <link rel="alternate" hreflang="it" href="/it/contatti/" />
+{% endblock %}
+
 {% block content %}
   {{
     article_header.regular(
@@ -22,10 +27,10 @@
       cpacc_badge = true
     )
   %}
-    <p><strong>Let’s make culture more accessible, together.</strong></p>
     <p>Whether you’re building a learning experience, designing an educational tool, or looking for accessibility expertise, I’d love to hear from you.</p>
-    <h2>E-mail: &nbsp; <a href="mailto:_send_me_an_?subject=Via%20the%20website">_send_me_an_</a><br />Phone: &nbsp; <a href="tel:_or_pick_up_the_">_or_pick_up_the_</a></h2>
+    <h2>Email: &nbsp; <a href="mailto:_send_me_an_">_send_me_an_</a><br />Phone: &nbsp; <a href="tel:_or_pick_up_the_">_or_pick_up_the_</a></h2>
     <p>Currently in Amsterdam (NL), soon relocating to Italy, working worldwide.</p>
+    <p><strong>Let’s make culture more accessible, together.</strong></p>
   {% endcall %}
 
   {{

@@ -1,6 +1,6 @@
 <!doctype html>
 
-<html lang="{{ lang or 'en' }}" dir="{{ dir or 'ltr' }}" class="{% if page_class %}document--{{ page_class }}{% endif %}">
+<html lang="{{ lang or 'en' }}" class="{% if page_class %}document--{{ page_class }}{% endif %}">
   <head>
     <meta charset="utf-8" />
 
@@ -13,18 +13,28 @@
     <title>{{ page_title }} — {{ site_title }}</title>
     <meta name="description" content="{{ page_description or site_description }}" />
 
-    <link rel="preload" href="{{ asset_with_hash('stylesheets/main.css') }}" as="style" />
-    {% block stylesheet_preloads %}
+    {% block linked_pages %}
     {% endblock %}
 
-    <link rel="modulepreload" href="{{ asset_with_hash('scripts/main.js') }}" as="script" crossorigin />
+    {% block stylesheet_preloads %}
+      <link rel="preload" href="{{ asset_with_hash('stylesheets/main.css') }}" as="style" />
+    {% endblock %}
+
     {% block script_preloads %}
+      <link rel="modulepreload" href="{{ asset_with_hash('scripts/main.js') }}" as="script" crossorigin />
     {% endblock %}
 
     {% block font_preloads %}
+      <link rel="preload" href="/static/fonts/poppins/poppins-bold.woff2" as="font" type="font/woff2" crossorigin />
+      <link rel="preload" href="/static/fonts/poppins/poppins-bold-italic.woff2" as="font" type="font/woff2" crossorigin />
+      <link rel="preload" href="/static/fonts/noto-sans/noto-sans-regular.woff2" as="font" type="font/woff2" crossorigin />
+      <link rel="preload" href="/static/fonts/noto-sans/noto-sans-light.woff2" as="font" type="font/woff2" crossorigin />
     {% endblock %}
 
     {% block favicons %}
+      <link rel="icon" href="/static/images/favicons/favicon.ico" />
+      <link rel="icon" type="image/png" href="/static/images/favicons/favicon.png" sizes="192x192" />
+      <link rel="apple-touch-icon" href="/static/images/favicons/favicon.png" />
     {% endblock %}
 
     <meta name="application-name" content="{{ opengraph_site_name }}" />

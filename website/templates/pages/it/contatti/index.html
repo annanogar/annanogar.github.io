@@ -1,0 +1,48 @@
+{% extends 'templates/_base.en.html' %}
+{% import 'components/organisms/article-content-image/article-content-image.html' as article_content_image %}
+{% import 'components/organisms/article-header/article-header.html' as article_header %}
+{% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
+{% set page_title = 'Contatti' %}
+{% set page_description = 'Che tu stia creando un’esperienza educativa, progettando uno strumento didattico o cercando competenze in accessibilità, mi farebbe piacere sentirti.' %}
+{% set opengraph_image = '/static/media/about/cta_1x1_1280w.jpg' %}
+{% set opengraph_title = page_title %}
+{% set opengraph_description = page_description %}
+
+{% block linked_pages %}
+  <link rel="alternate" hreflang="en" href="/contact/" />
+  <link rel="alternate" hreflang="it" href="/it/contatti/" />
+{% endblock %}
+
+{% block content %}
+  {{
+    article_header.regular(
+      title = page_title
+    )
+  }}
+
+  {%
+    call article_content_image.regular(
+      variant = 'left',
+      image = { src: 'about/section01_1x1', alt: 'TODO: Anna Nogaré’s face close up looking down with multicolored light and foliage projections on her face and background.' },
+      cpacc_badge = true
+    )
+  %}
+    <p>Che tu stia creando un’esperienza educativa, progettando uno strumento didattico o cercando competenze in accessibilità, mi farebbe piacere sentirti.</p>
+    <h2>Email: &nbsp; <a href="mailto:_send_me_an_">_send_me_an_</a><br />Telefono: &nbsp; <a href="tel:_or_pick_up_the_">_or_pick_up_the_</a></h2>
+    <p>Attualmente ad Amsterdam (NL), presto in Italia, lavoro in tutto il mondo.</p>
+    <p><strong>Rendiamo la cultura più accessibile, insieme.</strong></p>
+  {% endcall %}
+
+  {{
+    call_to_action.regular(
+      quote = 'Sempre pronta per grandi idee, o un deca Americano.',
+      card = {
+        href: '/it/progetti/mauritshuis/',
+        title: 'Shifting Image',
+        subtitle: 'Mauritshuis, L’Aia (NL)',
+        label: 'Premiato',
+        image: { src: 'projects/mauritshuis/thumbnail_1x1', alt: 'TODO: Close-up of a woman gazing at a large colonial painting depicting a noblewoman with children. The woman stands in a dark gallery lit by focused spotlights on the artworks.' }
+      }
+    )
+  }}
+{% endblock %}

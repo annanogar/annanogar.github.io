@@ -10,6 +10,11 @@
 {% set opengraph_title = page_title %}
 {% set opengraph_description = page_description %}
 
+{% block linked_pages %}
+  <link rel="alternate" hreflang="en" href="/projects/mauritshuis/" />
+  <link rel="alternate" hreflang="it" href="/it/progetti/mauritshuis/" />
+{% endblock %}
+
 {% block content %}
   {{
     image_header.regular(
@@ -73,14 +78,10 @@
     <h3>Credits</h3>
 
     <p>
-      <strong>Role:</strong>
-      Art Director | Lead Designer<br />
-      <strong>Employer:</strong>
-      Studio Louter<br />
-      <strong>Client:</strong>
-      Mauritshuis<br />
-      <strong>Photography:</strong>
-      Mike Bink
+      Role: <strong>Art Director | Lead Designer</strong><br />
+      Employer: <strong>Studio Louter</strong><br />
+      Client: <strong>Mauritshuis</strong><br />
+      Photography: <strong>Mike Bink</strong>
     </p>
 
     <p>© All rights reserved to Studio Louter</p>
@@ -90,7 +91,7 @@
     call_to_action.regular(
       variant = 'badge',
       quote = 'Explore the next project or start a conversation.',
-      badge = { href: 'mailto:_send_me_an_?subject=Via%20the%20website', title: 'Get in touch!' },
+      badge = { href: 'mailto:_send_me_an_', title: 'Get in touch!' },
       card = {
         href: '/projects/ilmi/',
         title: 'Maker park',

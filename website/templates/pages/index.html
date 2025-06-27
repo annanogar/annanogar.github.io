@@ -9,6 +9,11 @@
 {% set opengraph_title = page_title %}
 {% set opengraph_description = page_description %}
 
+{% block linked_pages %}
+  <link rel="alternate" hreflang="en" href="/" />
+  <link rel="alternate" hreflang="it" href="/it/" />
+{% endblock %}
+
 {% block content %}
   {{
     landing_header.regular(

@@ -1,3 +1,5 @@
+import basicEmailProtection from './utilities/basic-email-protection.js'
+import detectLanguageAndRedirect from './utilities/detect-language-and-redirect.js'
 import konamiCode from './utilities/konami-code.js'
 
 import '../../components/atoms/**/*.js'
@@ -5,18 +7,10 @@ import '../../components/molecules/**/*.js'
 import '../../components/organisms/**/*.js'
 import '../../components/structures/**/*.js'
 
+detectLanguageAndRedirect()
+basicEmailProtection()
+
 console.log('\n %cMade with %c♥%c by Elco Klingen \n', 'font: 16px serif;', 'font: 13px serif; color: #f00;', 'font: 16px serif;')
-
-const elements = [...document.querySelectorAll('[href^="mailto:"], [href^="tel:"]')]
-elements.forEach(element => {
-  element.innerHTML = element.innerHTML.replace(/_send_me_an_/g, 'anna.nogar@gmail.com').replace(/_or_pick_up_the_/g, '+31&nbsp;6&nbsp;25315441')
-
-  if (element.hasAttribute('href')) {
-    const href = element.getAttribute('href')
-    element.setAttribute('href', href.replace(/_send_me_an_/g, 'anna.nogar@gmail.com').replace(/_or_pick_up_the_/g, '+31625315441'))
-  }
-  console.log(element, element.innerHTML)
-})
 
 //window.location.href = url;
 // There are 4 load events:

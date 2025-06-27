@@ -1,0 +1,88 @@
+{% extends 'templates/_base.en.html' %}
+{% import 'components/organisms/article-footer/article-footer.html' as article_footer %}
+{% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
+{% import 'components/organisms/image-grid/image-grid.html' as image_grid %}
+{% import 'components/organisms/image-header/image-header.html' as image_header %}
+{% set page_title = 'Herman Boerhaave' %}
+{% set page_description = 'Un viaggio tra la vita e il mondo di uno dei più importanti medici della storia olandese.' %}
+{% set project_slug = 'boerhaave' %}
+{% set opengraph_image = '/static/media/projects/' + project_slug + '/cover_3x1_2560w.jpg' %}
+{% set opengraph_title = page_title %}
+{% set opengraph_description = page_description %}
+
+{% block linked_pages %}
+  <link rel="alternate" hreflang="en" href="/projects/boerhaave/" />
+  <link rel="alternate" hreflang="it" href="/it/progetti/boerhaave/" />
+{% endblock %}
+
+{% block content %}
+  {{
+    image_header.regular(
+      title = page_title,
+      description = page_description,
+      subtitle = 'Rijksmuseum Boerhaave, Leida (NL), 2018',
+      image = { src: 'projects/' + project_slug + '/cover_3x1', alt: 'TODO: Entrance area of the exhibition featuring a large wall graphic with the name “Herman Boerhaave” and a silhouette cutout, with a man standing in a dimly lit space beyond the entrance.' }
+    )
+  }}
+
+  {{
+    image_grid.regular(
+      title = 'Panoramica',
+      introduction = 'Il Rijksmuseum Boerhaave ha celebrato il 350° anniversario della nascita di Herman Boerhaave con una mostra temporanea che ha riportato in vita la sua eredità scientifica. I visitatori hanno ripercorso le tappe fondamentali della carriera del medico attraversando la Leiden del passato ed esplorando luoghi chiave come l’orto botanico e la sua abitazione. Pannelli grafici d’impatto, oggetti storici e installazioni multimediali hanno raccontato il suo impegno contro la disinformazione scientifica e il suo rilevante contributo alla medicina.',
+      items = [
+        { image: { src: 'projects/' + project_slug + '/01_2x1', alt: 'TODO: A young woman kneeling in front of a glass case containing a bronze bust, carefully observing the sculpture below a graphic wall that combines Herman Boerhaave’s name and stylized portrait.' } },
+        { image: { src: 'projects/' + project_slug + '/02_1x1', alt: 'TODO: Two visitors standing side by side watching a large screen playing a video interview with English subtitles, in a gallery section centered on experimentation and scientific thought.' } },
+        { image: { src: 'projects/' + project_slug + '/03_1x1', alt: 'TODO: Glass case displaying a decorative urn placed on a dark pedestal, accompanied by a colorful wall panel that presents contextual information about Boerhaave’s life and work in Leiden.' } },
+        { image: { src: 'projects/' + project_slug + '/04_2x1', alt: 'TODO: A young woman leaning forward to read a display in a room filled with colorful graphics and scientific illustrations, while a man in the background engages with another exhibit.' } },
+        { image: { src: 'projects/' + project_slug + '/05_2x1', alt: 'TODO: Two visitors observing a collection of scientific and medical instruments in glass cases, surrounded by vibrant graphic panels illustrating bedside practices and experimental methods.' } },
+        { image: { src: 'projects/' + project_slug + '/06_1x1', alt: 'TODO: A man in a blue shirt using a tactile interactive station, with buttons and dials, in a gallery filled with historic scientific tools and instructional displays.' } },
+        { image: { src: 'projects/' + project_slug + '/07_1x1', alt: 'TODO: A young woman carefully examining a historical thermometer encased in glass, set against a brightly colored wall display with interpretive text about Fahrenheit’s innovations.' } },
+        { image: { src: 'projects/' + project_slug + '/08_2x1', alt: 'TODO: Museum visitor exploring an exhibit of glass-encased scientific instruments and apothecary tools, surrounded by stylized wall graphics referencing laboratory experimentation.' } }
+      ]
+    )
+  }}
+
+  {{
+    image_grid.regular(
+      title = 'Contributo',
+      introduction = 'Mi sono occupata della direzione artistica e del design visivo e multimediale della mostra, adottando un approccio audace e fresco che si discostava dallo stile espositivo tradizionale. L’unione di grafiche vivaci ed elementi multimediali ha dato vita a un’esperienza moderna ma ricca di contenuto storico, rendendo la mostra più coinvolgente e aperta a tutti.',
+      items = [
+        { image: { src: 'projects/' + project_slug + '/09_2x1', alt: 'TODO: Two museum visitors navigating a gallery on bedside teaching, featuring engraved medical scenes, information panels, and historic ceramic vessels inside glass displays.' } },
+        { image: { src: 'projects/' + project_slug + '/10_1x1', alt: 'TODO: Young woman leaning over a display case to observe a historical scientific object, with detailed background illustrations and text highlighting the tool’s significance.' } },
+        { image: { src: 'projects/' + project_slug + '/11_1x1', alt: 'TODO: Young man interacting with a botanical display that includes herbarium sheets and plant illustrations, framed by vivid green walls decorated with foliage motifs.' } },
+        { image: { src: 'projects/' + project_slug + '/12_2x1', alt: 'TODO: Woman closely reading a glass case containing handwritten medical notes, with a backdrop of engraved portraits and a large wall illustration of a teaching scene.' } },
+        { image: { src: 'projects/' + project_slug + '/13_2x1', alt: 'TODO: Three visitors inside a museum gallery featuring a finely crafted wooden dresser as a central exhibit, with a large family portrait and colorful illustrated walls displaying quotes and silhouettes, including a panel about Carl Linnaeus.' } },
+        { image: { src: 'projects/' + project_slug + '/14_1x1', alt: 'TODO: Two young visitors conversing in front of a large illustrated wall showing Leiden’s historic botanical garden and university buildings, with nearby panels on botanical research.' } },
+        { image: { src: 'projects/' + project_slug + '/15_1x1', alt: 'TODO: Close-up of four ornate apothecary jars labeled in Latin, each adorned with a decorative crest, arranged inside a glass display against a clean backdrop.' } },
+        { image: { src: 'projects/' + project_slug + '/16_2x1', alt: 'TODO: Woman smiling as she observes a glass case displaying fine porcelain tableware, set within a gallery of vivid wall illustrations and a historic portrait hanging in the background.' } }
+      ]
+    )
+  }}
+
+  {% call article_footer.regular() %}
+    <h3>Crediti</h3>
+
+    <p>
+      Ruolo: <strong>Art Director | Lead Designer</strong><br />
+      Datore di lavoro: <strong>Studio Louter</strong><br />
+      Cliente: <strong>Rijksmuseum Boerhaave</strong><br />
+      Fotografia: <strong>Mike Bink</strong>
+    </p>
+
+    <p>© Tutti i diritti riservati a Studio Louter</p>
+  {% endcall %}
+
+  {{
+    call_to_action.regular(
+      variant = 'badge',
+      quote = 'Esplora un altro progetto o inizia una chiacchierata.',
+      badge = { href: 'mailto:_send_me_an_', title: 'Mettiti in contatto!' },
+      card = {
+        href: '/it/progetti/prodemos/',
+        title: 'ProDemos',
+        subtitle: 'ProDemos, L’Aia (NL)',
+        image: { src: 'projects/prodemos/thumbnail_1x1', alt: 'TODO: Three girls sit on a park bench, looking at a tablet together, one pointing at the screen as they discuss.' }
+      }
+    )
+  }}
+{% endblock %}

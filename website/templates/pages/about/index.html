@@ -8,6 +8,11 @@
 {% set opengraph_title = page_title %}
 {% set opengraph_description = page_description %}
 
+{% block linked_pages %}
+  <link rel="alternate" hreflang="en" href="/about/" />
+  <link rel="alternate" hreflang="it" href="/it/profilo/" />
+{% endblock %}
+
 {% block content %}
   {{
     article_header.regular(
@@ -55,10 +60,10 @@
     <p>I work with museums, cultural institutions, and public organizations to make knowledge more accessible, engaging, and emotionally meaningful, both in physical spaces and across digital platforms.</p>
     <p>Here’s how I can support your project:</p>
     <ul>
-      <li><strong>Strategy</strong><br />I define goals, understand audiences, and build solid structures that align vision with reality, helping projects grow, adapt, and stay meaningful.</li>
-      <li><strong>Creative direction</strong><br />I shape concepts for exhibitions, learning experiences, and educational tools. I guide the creative process from the first idea to final delivery, with a focus on curiosity and play.</li>
-      <li><strong>Art direction</strong><br />I translate complex information into layered narratives, guiding the visitor journey through a clear visual language based on a flexible and inclusive approach to content.</li>
-      <li><strong>Accessibility consulting (CPACC certified)</strong><br />I guide compliance with WCAG, EAA, and inclusive design standards from the beginning. I review with real users in mind and offer talks and workshops to help teams adopt accessibility as a shared mindset.</li>
+      <li><strong>Strategy</strong> <br />I define goals, understand audiences, and build solid structures that align vision with reality, helping projects grow, adapt, and stay meaningful.</li>
+      <li><strong>Creative direction</strong> <br />I shape concepts for exhibitions, learning experiences, and educational tools. I guide the creative process from the first idea to final delivery, with a focus on curiosity and play.</li>
+      <li><strong>Art direction</strong> <br />I translate complex information into layered narratives, guiding the visitor journey through a clear visual language based on a flexible and inclusive approach to content.</li>
+      <li><strong>Accessibility consulting (CPACC certified)</strong> <br />I guide compliance with WCAG, EAA, and inclusive design standards from the beginning. I review with real users in mind and offer talks and workshops to help teams adopt accessibility as a shared mindset.</li>
     </ul>
     <p>Every project is different, and so is every team. But I always bring the same things: direction, passion, and a people-focused mindset.</p>
   {% endcall %}
@@ -66,7 +71,7 @@
   {{
     call_to_action.regular(
       quote = 'Great ideas start with simple conversations.',
-      badge = { variant: 'bright', href: 'mailto:_send_me_an_?subject=Via%20the%20website', title: 'Get in touch!' },
+      badge = { variant: 'bright', href: 'mailto:_send_me_an_', title: 'Get in touch!' },
       card = {
         href: '/manifesto/',
         title: 'Read Accessibility manifesto',

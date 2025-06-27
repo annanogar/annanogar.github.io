@@ -1,0 +1,81 @@
+{% extends 'templates/_base.en.html' %}
+{% import 'components/organisms/article-footer/article-footer.html' as article_footer %}
+{% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
+{% import 'components/organisms/image-grid/image-grid.html' as image_grid %}
+{% import 'components/organisms/image-header/image-header.html' as image_header %}
+{% set page_title = 'ProDemos' %}
+{% set page_description = 'Un gioco GPS in cui gli studenti propongono, discutono e danno vita alle proprie leggi.' %}
+{% set project_slug = 'prodemos' %}
+{% set opengraph_image = '/static/media/projects/' + project_slug + '/cover_3x1_2560w.jpg' %}
+{% set opengraph_title = page_title %}
+{% set opengraph_description = page_description %}
+
+{% block linked_pages %}
+  <link rel="alternate" hreflang="en" href="/projects/prodemos/" />
+  <link rel="alternate" hreflang="it" href="/it/progetti/prodemos/" />
+{% endblock %}
+
+{% block content %}
+  {{
+    image_header.regular(
+      title = page_title,
+      description = page_description,
+      subtitle = 'ProDemos, L’Aia (NL), 2021',
+      image = { src: 'projects/' + project_slug + '/cover_3x1', alt: 'TODO: Five teenage girls walk side by side through a city street, smiling and chatting. They wear red lanyards with badges, and some hold tablets as part of an educational activity.' }
+    )
+  }}
+
+  {{
+    image_grid.regular(
+      title = 'Panoramica',
+      introduction = 'ProDemos è un’organizzazione con sede all’Aia che si occupa di educare i cittadini, in particolare gli studenti, alla democrazia olandese e allo stato di diritto. Il loro programma educativo inizia in classe, dove gli studenti elaborano una propria proposta di legge. Durante la visita al centro ProDemos, si dividono in squadre e partecipano a un gioco guidato da GPS che li conduce tra luoghi chiave della città, svolgendo attività che illustrano il processo legislativo. L’esperienza si conclude con un film d’animazione creato collettivamente e pensato per stimolare la discussione al ritorno in aula.',
+      items = [
+        { image: { src: 'projects/' + project_slug + '/01_2x1', alt: 'TODO: A girl smiles while another student films her using a tablet, capturing a scene for the interactive assignment indoors.' } },
+        { image: { src: 'projects/' + project_slug + '/02_1x1', alt: 'TODO: Three girls stand in a tree-lined area, focused on a tablet screen as they work together on one of the GPS-based challenges.' } },
+        { image: { src: 'projects/' + project_slug + '/03_1x1', alt: 'TODO: Three girls sit on a park bench, looking at a tablet together, one pointing at the screen as they discuss.' } },
+        { image: { src: 'projects/' + project_slug + '/04_1x1', alt: 'TODO: Tablet screen showing a final congratulatory screen in Dutch with stars and a crown, marking the completion of the game.' } },
+        { image: { src: 'projects/' + project_slug + '/05_1x1', alt: 'TODO: Tablet screen displaying the structure of the activity and tasks to complete, with headings and icons in purple on an orange background.' } }
+      ]
+    )
+  }}
+
+  {{
+    image_grid.regular(
+      title = 'Contributo',
+      introduction = 'Ero responsabile del design UI/UX e della direzione visiva, creando un’esperienza itinerante che unisce un tema complesso a dinamiche di gioco. L’obiettivo era offrire un percorso giocoso ed immersivo, in cui le varie attività sono completate collettivamnete nel contesto reale. Grazie all’unione di esplorazione urbana e sfide interattive, l’esperienza aiuta gli studenti a capire concetti politici complessi in un modo che risulta accessibile, attivo e divertente.',
+      items = [
+        { image: { src: 'projects/' + project_slug + '/06_2x1', alt: 'TODO: A group of teenage students gathers in a leafy urban area, wearing red lanyards and name badges. Some are seated on a bench while others stand around them, smiling and holding tablets as part of an educational activity.' } },
+        { image: { src: 'projects/' + project_slug + '/07_1x1', alt: 'TODO: Two girls stand on the sidewalk in front of a staircase, one holding a tablet and the other gesturing while talking, engaged in discussion.' } },
+        { image: { src: 'projects/' + project_slug + '/08_1x1', alt: 'TODO: Four young men stand under a tree, gathered around a tablet, collaborating on a task during the outdoor activity.' } },
+        { image: { src: 'projects/' + project_slug + '/09_2x1', alt: 'TODO: Close-up of a tablet screen showing a digital interface where users select a Dutch government minister as part of the game.' } }
+      ]
+    )
+  }}
+
+  {% call article_footer.regular() %}
+    <h3>Crediti</h3>
+
+    <p>
+      Ruolo: <strong>Art Director | Lead Designer</strong><br />
+      Datore di lavoro: <strong>Studio Louter</strong><br />
+      Cliente: <strong>ProDemos</strong><br />
+      Fotografia: <strong>Bas van Vliet + Studio Louter</strong>
+    </p>
+
+    <p>© Tutti i diritti riservati a Studio Louter</p>
+  {% endcall %}
+
+  {{
+    call_to_action.regular(
+      variant = 'badge',
+      quote = 'Esplora un altro progetto o inizia una chiacchierata.',
+      badge = { href: 'mailto:_send_me_an_', title: 'Mettiti in contatto!' },
+      card = {
+        href: '/it/progetti/het-steen/',
+        title: 'Het Steen',
+        subtitle: 'Visit Antwerp, Anversa (BE)',
+        image: { src: 'projects/het-steen/thumbnail_1x1', alt: 'TODO: Woman and child engaging with a large interactive map table; both smiling and pointing to different elements on the digital surface in a warmly lit room.' }
+      }
+    )
+  }}
+{% endblock %}

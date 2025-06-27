@@ -1,8 +1,107 @@
-{% extends 'templates/_base.it.html' %}
-{% import 'components/organisms/article-content-image/article-content-image.html' as article_content_image %}
-{% import 'components/organisms/article-header/article-header.html' as article_header %}
+{% extends 'templates/_base.en.html' %}
+{% import 'components/organisms/article-footer/article-footer.html' as article_footer %}
 {% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
-{% set page_title = '' %}
+{% import 'components/organisms/card-grid/card-grid.html' as card_grid %}
+{% import 'components/organisms/landing-header/landing-header.html' as landing_header %}
+{% set page_title = 'Portfolio di Anna Nogaré; Direttore Creativo, Stratega e Certificato CPACC.' %}
+{% set page_description = 'Creare esperienze educative che parlano a tutti.' %}
+{% set opengraph_image = '/static/media/about/cta_1x1_1280w.jpg' %}
+{% set opengraph_title = page_title %}
+{% set opengraph_description = page_description %}
+
+{% block linked_pages %}
+  <link rel="alternate" hreflang="en" href="/" />
+  <link rel="alternate" hreflang="it" href="/it/" />
+{% endblock %}
 
 {% block content %}
+  {{
+    landing_header.regular(
+      title = 'Creare esperienze educative che parlano a tutti.',
+      subtitle = 'Aiuto le istituzioni culturali a trasformare la conoscenza in percorsi di apprendimento accessibili e centrati sulle persone.',
+      badge = { href: '/it/manifesto/', title: 'Leggi il manifesto Accessibilità' }
+    )
+  }}
+
+  {{
+    card_grid.regular(
+      cards = [
+        {
+          href: '/it/progetti/mauritshuis/',
+          title: 'Shifting Image',
+          subtitle: 'Mauritshuis, L’Aia (NL)',
+          label: 'Premiato',
+          image: { src: 'projects/mauritshuis/thumbnail_1x1', alt: 'TODO: Close-up of a woman gazing at a large colonial painting depicting a noblewoman with children. The woman stands in a dark gallery lit by focused spotlights on the artworks.' }
+        },
+
+        {
+          href: '/it/progetti/ilmi/',
+          title: 'Maker park',
+          subtitle: 'Ilmi Science Discovery & Innovation Center, Riyad (SA)',
+          image: { src: 'projects/ilmi/thumbnail_1x1', alt: 'TODO: Portrait of a young boy smiling in traditional Saudi attire, representing the target audience of the educational initiative.' }
+        },
+
+        {
+          href: '/it/progetti/qatar/',
+          title: 'Family Exhibits',
+          subtitle: 'National Museum of Qatar, Doha (QA)',
+          label: 'Premiato',
+          image: { src: 'projects/qatar/thumbnail_1x1', alt: 'TODO: Children using a multi-user touchscreen to uncover virtual artifacts in a digging-themed game, while parents look on, in a gallery designed to simulate a layered archaeological dig site.' }
+        },
+
+        {
+          href: '/it/progetti/cruquius/',
+          title: 'Cruquius museum',
+          subtitle: 'Cruquius Museum, Cruquius (NL)',
+          label: 'Selezionato',
+          image: { src: 'projects/cruquius/thumbnail_1x1', alt: 'TODO: Museum visitor exploring a display case containing navigation instruments, maps, and archaeological artifacts, with a touch screen integrated into the surface.' }
+        },
+
+        {
+          href: '/it/progetti/nh-archief/',
+          title: 'Joh. Enschedé',
+          subtitle: 'Noord-Hollands Archief, Haarlem (NL)',
+          label: 'Premiato + Selezionato',
+          image: { src: 'projects/nh-archief/thumbnail_1x1', alt: 'TODO: Group of children gathered around a display case labeled "De Duitse stempelsnijder" (“The German Punchcutter”), observing and discussing its contents, with an adult guiding them.' }
+        },
+
+        {
+          href: '/it/progetti/brussels/',
+          title: 'Living planet',
+          subtitle: 'Museum of Natural Sciences, Bruxelles (BE)',
+          image: { src: 'projects/brussels/thumbnail_1x1', alt: 'TODO: Teenage visitor wearing a mask and green checkered shirt, engaging with an angled touchscreen among mounted animal specimens.' }
+        },
+
+        {
+          href: '/it/progetti/boerhaave/',
+          title: 'Herman Boerhaave',
+          subtitle: 'Rijksmuseum Boerhaave, Leida (NL)',
+          image: { src: 'projects/boerhaave/thumbnail_1x1', alt: 'TODO: A man in a blue shirt using a tactile interactive station, with buttons and dials, in a gallery filled with historic scientific tools and instructional displays.' }
+        },
+
+        {
+          href: '/it/progetti/prodemos/',
+          title: 'ProDemos',
+          subtitle: 'ProDemos, L’Aia (NL)',
+          image: { src: 'projects/prodemos/thumbnail_1x1', alt: 'TODO: Three girls sit on a park bench, looking at a tablet together, one pointing at the screen as they discuss.' }
+        },
+
+        {
+          href: '/it/progetti/het-steen/',
+          title: 'Het Steen',
+          subtitle: 'Visit Antwerp, Anversa (BE)',
+          image: { src: 'projects/het-steen/thumbnail_1x1', alt: 'TODO: Woman and child engaging with a large interactive map table; both smiling and pointing to different elements on the digital surface in a warmly lit room.' }
+        }
+      ]
+    )
+  }}
+
+  {{
+    call_to_action.regular(
+      variant = 'dark',
+      quote = 'Non riguarda <em>solo loro</em> alla fine. Riguarda <em>tutti noi</em> fin dall’inizio.',
+      badge = { variant: 'bright', href: '/it/profilo/', title: 'Scopri il mio profilo' },
+      image = { src: 'about/cta_1x1', alt: 'TODO: Anna Nogaré facing the camera with colorful dot projections on her face and shirt, against a dark background.' }
+    )
+  }}
 {% endblock %}

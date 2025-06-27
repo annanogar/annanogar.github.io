@@ -3,36 +3,18 @@
 {% import 'components/structures/menu-bar/menu-bar.html' as menu_bar %}
 {% import 'components/structures/skip-to-main/skip-to-main.html' as skip_to_main %}
 {% set lang = lang or 'it' %}
-{% set dir = dir or 'ltr' %}
-{% set site_title = site_title or 'annanogar.com' %}
-{% set site_description = 'Portfolio of Anna Nogaré' %}
-
-{% block favicons %}
-  <link rel="icon" href="/static/images/favicons/favicon.ico" />
-  <link rel="icon" type="image/png" href="/static/images/favicons/favicon.png" sizes="192x192" />
-  <link rel="apple-touch-icon" href="/static/images/favicons/favicon.png" />
-{% endblock %}
-
-{% block font_preloads %}
-  <link rel="preload" href="/static/fonts/poppins/poppins-bold.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="/static/fonts/poppins/poppins-bold-italic.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="/static/fonts/noto-sans/noto-sans-regular.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="/static/fonts/noto-sans/noto-sans-light.woff2" as="font" type="font/woff2" crossorigin />
-{% endblock %}
-
-{% block stylesheet_preloads %}
-  <link rel="preload" href="{{ asset_with_hash('stylesheets/main.css') }}" as="style" />
-{% endblock %}
-
-{% block stylesheets %}
-  <link rel="stylesheet" href="{{ asset_with_hash('stylesheets/main.css') }}" />
-{% endblock %}
+{% set site_title = site_title or 'Portfolio di Anna Nogaré; Direttore Creativo, Stratega e Certificato CPACC.' %}
+{% set site_description = 'Creare esperienze educative che parlano a tutti.' %}
+{% set opengraph_site_name = 'Portfolio di Anna Nogaré; Direttore Creativo, Stratega e Certificato CPACC.' %}
+{% set opengraph_image = '' %}
+{% set opengraph_title = '' %}
+{% set opengraph_description = '' %}
 
 {% block skip_to_main %}
   {{
     skip_to_main.regular(
-      title = 'Skip to main content',
-      aria_label = 'Skip to main content'
+      title = 'Vai al contenuto principale',
+      aria_label = 'Vai al contenuto principale'
     )
   }}
 {% endblock %}
@@ -40,9 +22,28 @@
 {% block header %}
   {{
     menu_bar.regular(
-      aria_label = 'Main navigation',
+      href = '/it/',
       title = 'Anna Nogaré',
-      logo = { href: '/', title: 'annanogar', aria_label: 'Back to homepage' }
+      aria_label = 'Navigazione principale',
+      dialog_aria_label = 'Finestra di dialogo del menu',
+      button_open_title = 'Apri il menu',
+      button_close_title = 'Chiudi il menu',
+      menu_items = [
+        { title: 'Progetti', submenu_items: [
+          { href: '/it/progetti/mauritshuis/', title: 'Shifting Image' },
+          { href: '/it/progetti/ilmi/', title: 'Maker Park' },
+          { href: '/it/progetti/qatar/', title: 'Family Exhibits' },
+          { href: '/it/progetti/cruquius/', title: 'Cruquius Museum' },
+          { href: '/it/progetti/nh-archief/', title: 'Joh. Enschedé' },
+          { href: '/it/progetti/brussels/', title: 'Living Planet' },
+          { href: '/it/progetti/boerhaave/', title: 'Herman Boerhaave' },
+          { href: '/it/progetti/prodemos/', title: 'ProDemos' },
+          { href: '/it/progetti/het-steen/', title: 'Het Steen' }
+        ] },
+        { href: '/it/manifesto/', title: 'Manifesto' },
+        { href: '/it/profilo/', title: 'Profilo' },
+        { href: '/it/contatti/', title: 'Contatti' }
+      ]
     )
   }}
 {% endblock %}
@@ -50,19 +51,19 @@
 {% block footer %}
   {{
     footer_bar.regular(
-      aria_label = 'Footer navigation',
+      aria_label = 'Navigazione a piè di pagina',
       links_start = [
-        { href: 'mailto:_send_me_an_?subject=Via%20the%20website', title: '_send_me_an_' },
+        { href: 'mailto:_send_me_an_', title: '_send_me_an_' },
         { href: 'tel:_or_pick_up_the_', title: '_or_pick_up_the_' },
-        { title: 'Currently in Amsterdam, NL' }
+        { title: 'Attualmente ad Amsterdam, NL' }
       ],
       links_end = [
         { href: 'https://linkedin.com/in/anna-nogar%C3', title: 'LinkedIn' },
-        { href: 'https://www.behance.net/annanogar', title: 'Behance' }
+        { href: 'https://www.behance.net/annanogar', title: 'Behance' },
+        { href: '/en/', title: 'English', lang: 'en' }
       ]
     )
   }}
-  {# TODO: ADD english link to links_end in footer when italian version is ready #}
 {% endblock %}
 
 {% block overlays %}

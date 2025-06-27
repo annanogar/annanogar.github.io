@@ -1,0 +1,96 @@
+{% extends 'templates/_base.en.html' %}
+{% import 'components/organisms/article-footer/article-footer.html' as article_footer %}
+{% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
+{% import 'components/organisms/image-grid/image-grid.html' as image_grid %}
+{% import 'components/organisms/image-header/image-header.html' as image_header %}
+{% set page_title = 'Cruquius museum' %}
+{% set page_description = 'Un’esperienza immersiva sulla storia di Haarlemmermeer e la più grande macchina a vapore al mondo.' %}
+{% set project_slug = 'cruquius' %}
+{% set opengraph_image = '/static/media/projects/' + project_slug + '/cover_3x1_2560w.jpg' %}
+{% set opengraph_title = page_title %}
+{% set opengraph_description = page_description %}
+
+{% block linked_pages %}
+  <link rel="alternate" hreflang="en" href="/projects/cruquius/" />
+  <link rel="alternate" hreflang="it" href="/it/progetti/cruquius/" />
+{% endblock %}
+
+{% block content %}
+  {{
+    image_header.regular(
+      title = page_title,
+      description = page_description,
+      subtitle = 'Cruquius Museum, Cruquius (NL), 2020',
+      image = { src: 'projects/' + project_slug + '/cover_3x1', alt: 'TODO: Entrance to the Cruquius Museum featuring exposed brick walls and illuminated signage, with a blurred figure walking through the doorway.' }
+    )
+  }}
+
+  {{
+    image_grid.regular(
+      title = 'Panoramica',
+      introduction = 'Il Cruquius Museum racconta la straordinaria impresa dei Paesi Bassi nel prosciugare il loro lago più grande, l’Haarlemmermeer, dall’interno di una delle stazioni di pompaggio a vapore originali che hanno reso possibile tutto questo.HUna proiezione su larga scala, elementi interattivi e attività pratiche invitano i visitatori a scoprire la potenza della tecnologia a vapore e l’imponente macchina alla base di tutto.',
+      items = [
+        { image: { src: 'projects/' + project_slug + '/01_2x1', alt: 'TODO: Woman ascending a staircase inside the museum, with typographic quotes from 17th-century poetry and documents displayed on the surrounding walls.' } },
+        { image: { src: 'projects/' + project_slug + '/02_1x1', alt: 'TODO: Two visitors standing in front of a large projected historical illustration of the Cruquius pumping station, part of the museum’s narrative on land reclamation.' } },
+        { image: { src: 'projects/' + project_slug + '/03_1x1', alt: 'TODO: Close-up of a hand interacting with a digital map showing historical topography, part of an interactive display explaining the geography of Haarlemmermeer.' } },
+        { image: { src: 'projects/' + project_slug + '/04_2x1', alt: 'TODO: Museum visitor exploring a display case containing navigation instruments, maps, and archaeological artifacts, with a touch screen integrated into the surface.' } },
+        { image: { src: 'projects/' + project_slug + '/05_2x1', alt: 'TODO: Panoramic view of the gallery featuring an immersive wall projection of historical maps and a portrait of King Willem I, with visitors engaging with the exhibits.' } },
+        { image: { src: 'projects/' + project_slug + '/06_1x1', alt: 'TODO: Woman interacting with a digital touchscreen in front of a large decorative map, using the interface to explore historical information.' } },
+        { image: { src: 'projects/' + project_slug + '/07_1x1', alt: 'TODO: Two visitors interacting with a long display table featuring historical navigation tools, ceramic artifacts, and a digital map interface, in a gallery combining exposed brick and museum lighting.' } },
+        { image: { src: 'projects/' + project_slug + '/08_2x1', alt: 'TODO: Woman examining a large wall-mounted visual timeline that traces the development of steam technology from 1643 onward, featuring historical texts and illustrations.' } }
+      ]
+    )
+  }}
+
+  {{
+    image_grid.regular(
+      title = 'Contributo',
+      introduction = 'Ho curato la direzione artistica e progettato l’identità visiva della mostra, i contenuti multimediali e le installazioni audiovisive, trasformando lo spazio in un laboratorio interattivo dove i visitatori possono esplorare la macchina a vapore attraverso modelli fisici e stazioni interattive che ne spiegano il funzionamento. Il risultato è un’esperienza che unisce narrazione, sperimentazione e gioco, rendendo i concetti complessi dell’ingegneria facili da comprendere per un pubblico di tutte le età.',
+      items = [
+        { image: { src: 'projects/' + project_slug + '/09_2x1', alt: 'TODO: Child peering into a reconstructed boiler installation, while two other children in the foreground use audio handsets to explore the exhibit in the “Boiler Room” section.' } },
+        { image: { src: 'projects/' + project_slug + '/10_1x1', alt: 'TODO: Young boy using a touchscreen embedded in a wall panel to learn about the properties and transformations of steam.' } },
+        { image: { src: 'projects/' + project_slug + '/11_1x1', alt: 'TODO: Child interacting with a horizontal touchscreen table, placed in front of a large infographic panel showing engineering data and historical timelines of the pumping station.' } },
+        { image: { src: 'projects/' + project_slug + '/12_2x1', alt: 'TODO: Children interacting with tall, black cylindrical structures that present historical information about steam power, surrounded by other exhibits and timeline graphics.' } },
+        { image: { src: 'projects/' + project_slug + '/13_2x1', alt: 'TODO: Three children closely examining a hands-on model of a steam engine, focusing on its moving mechanical parts.' } },
+        { image: { src: 'projects/' + project_slug + '/14_1x1', alt: 'TODO: A young woman observing a detailed infographic display with historical data, diagrams, and scale models related to the Cruquius pumping station and its steam engines.' } },
+        { image: { src: 'projects/' + project_slug + '/15_1x1', alt: 'TODO: Visitor standing near the massive Cruquius engine installation, surrounded by large iron components and a spiral staircase inside the museum.' } },
+        { image: { src: 'projects/' + project_slug + '/16_2x1', alt: 'TODO: Children seated at a long interactive counter, experimenting with steam engine models, assisted by a woman under a “Stoomlab” sign in the background.' } }
+      ]
+    )
+  }}
+
+  {% call article_footer.regular() %}
+    <h3>Riconoscimenti</h3>
+
+    <p>
+      <strong>Selezionato nella galleria di Graphic Design di Behance:</strong><br />
+      Categoria Exhibition & Signage<br />
+    </p>
+
+    <h3>Crediti</h3>
+
+    <p>
+      Ruolo: <strong>Art Director | Lead Designer</strong><br />
+      Datore di lavoro: <strong>Studio Louter</strong><br />
+      Cliente: <strong>Cruquius Museum</strong><br />
+      Fotografia: <strong>Mike Bink</strong>
+    </p>
+
+    <p>© Tutti i diritti riservati a Studio Louter</p>
+  {% endcall %}
+
+  {{
+    call_to_action.regular(
+      variant = 'badge',
+      quote = 'Esplora un altro progetto o inizia una chiacchierata.',
+      badge = { href: 'mailto:_send_me_an_', title: 'Mettiti in contatto!' },
+      card = {
+        href: '/it/progetti/nh-archief/',
+        title: 'Joh. Enschedé',
+        subtitle: 'Noord-Hollands Archief, Haarlem (NL)',
+        label: 'Premiato + Selezionato',
+        image: { src: 'projects/nh-archief/thumbnail_1x1', alt: 'TODO: Group of children gathered around a display case labeled "De Duitse stempelsnijder" (“The German Punchcutter”), observing and discussing its contents, with an adult guiding them.' }
+      }
+    )
+  }}
+{% endblock %}
