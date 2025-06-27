@@ -70,9 +70,13 @@
     text-decoration: none;
     transition: color var(--easing-standard);
 
-    &:hover,
-    &:focus-visible {
-      color: var(--color-navy);
+    &[href] {
+      cursor: pointer;
+
+      &:hover,
+      &:focus-visible {
+        color: var(--color-navy);
+      }
     }
   }
 
@@ -81,7 +85,7 @@
   }
 
   .menu-dialog__submenu-item {
-    @include typography.paragraph;
+    @include typography.subtitle;
   }
 
   @include breakpoints.landscape {
