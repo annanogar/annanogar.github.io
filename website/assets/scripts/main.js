@@ -7,11 +7,15 @@ import '../../components/structures/**/*.js'
 
 console.log('\n %cMade with %c♥%c by Elco Klingen \n', 'font: 16px serif;', 'font: 13px serif; color: #f00;', 'font: 16px serif;')
 
-[...document.querySelectorAll('[href^="mailto:"], [href^="tel:"]')].forEach(element => {
-  element.innerHTML = element.innerHTML
-    .replace(/_send_me_an_/g, 'anna.nogar@gmail.com')
-    .replace(/_or_pick_up_the_/g, '+31625315441')
-    .replace(/_heres_my_number_/g, '+31&nbsp;(0)6&nbsp;25&nbsp;315&nbsp;441')
+const elements = [...document.querySelectorAll('[href^="mailto:"], [href^="tel:"]')]
+elements.forEach(element => {
+  element.innerHTML = element.innerHTML.replace(/_send_me_an_/g, 'anna.nogar@gmail.com').replace(/_or_pick_up_the_/g, '+31&nbsp;6&nbsp;25315441')
+
+  if (element.hasAttribute('href')) {
+    const href = element.getAttribute('href')
+    element.setAttribute('href', href.replace(/_send_me_an_/g, 'anna.nogar@gmail.com').replace(/_or_pick_up_the_/g, '+31625315441'))
+  }
+  console.log(element, element.innerHTML)
 })
 
 //window.location.href = url;

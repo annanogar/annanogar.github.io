@@ -80,17 +80,16 @@
 
   {{
     call_to_action.regular(
-          variant = 'badge',
-          quote = 'Explore the next project or start a conversation.',
-          badge = { variant: 'bright', href: '/contact/', title: 'Get in touch' },
-          card = {
-            href: '/projects/nh-archief/',
-            title: 'At the discovery of Joh. Enschedé, Printers of Value',
-            subtitle: 'Noord-Hollands Archief, Haarlem (NL)',
-            label: 'Awarded + Featured',
-            image: { src: 'projects/nh-archief/thumbnail_1x1', alt: 'NOORD-HOLLANDS ARCHIEF
-    Group of children gathered around a display case labeled "De Duitse stempelsnijder" (“The German Punchcutter”), observing and discussing its contents, with an adult guiding them.' }
-          }
-        )
+      variant = 'badge',
+      quote = 'Explore the next project or start a conversation.',
+      badge = { href: 'mailto:_send_me_an_?subject=Via%20the%20website', title: 'Get in touch!' },
+      card = {
+        href: '/projects/nh-archief/',
+        title: 'Joh. Enschedé',
+        subtitle: 'Noord-Hollands Archief, Haarlem (NL)',
+        label: 'Awarded + Featured',
+        image: { src: 'projects/nh-archief/thumbnail_1x1', alt: 'Group of children gathered around a display case labeled "De Duitse stempelsnijder" (“The German Punchcutter”), observing and discussing its contents, with an adult guiding them.' }
+      }
+    )
   }}
 {% endblock %}

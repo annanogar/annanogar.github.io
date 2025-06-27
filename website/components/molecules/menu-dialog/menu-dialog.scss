@@ -4,20 +4,16 @@
 
 @keyframes fadein {
   0% {
-    clip-path: circle(var(--animation-start) at top right);
+    opacity: 0;
   }
 
   100% {
-    clip-path: circle(var(--animation-end) at top right);
+    opacity: 100;
   }
 }
 
 .menu-dialog {
-  --animation-start: 0vh;
-  --animation-end: 135vh;
-
   background: var(--color-pink);
-  clip-path: circle(0vh at top right);
   color: var(--color-white);
   display: flex;
   flex-direction: column;
@@ -25,12 +21,14 @@
   inset: 0;
   max-height: 100%;
   max-width: 100%;
+  opacity: 0;
   overflow: hidden;
   position: fixed;
   width: 100%;
 
   &[open] {
     animation: fadein var(--easing-slow) forwards;
+    pointer-events: initial;
   }
 
   &[open='false'] {
@@ -87,9 +85,6 @@
   }
 
   @include breakpoints.landscape {
-    --animation-start: 0vw;
-    --animation-end: 135vw;
-
     .menu-dialog__content {
       padding: var(--padding-medium) var(--padding-large) var(--padding-large) var(--padding-large);
       text-align: left;

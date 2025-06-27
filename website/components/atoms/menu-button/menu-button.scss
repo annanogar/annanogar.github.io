@@ -6,11 +6,13 @@
   color: inherit;
   cursor: pointer;
   display: inline-block;
-  height: 1.875rem;
+  height: 3.875rem;
+  margin: -1rem;
+  padding: 1rem;
   position: relative;
   transition: color var(--easing-standard);
   vertical-align: top;
-  width: 1.875rem;
+  width: 3.875rem;
 
   .button__icon {
     display: inline-block;
