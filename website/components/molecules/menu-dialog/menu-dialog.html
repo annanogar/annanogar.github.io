@@ -2,11 +2,11 @@
 {% import 'components/atoms/menu-button/menu-button.html' as atom_menu_button %}
 {% import 'components/molecules/menu-bar-contents/menu-bar-contents.html' as molecule_menu_bar_contents %}
 
-{% macro regular(classes = '', title = '', aria_label = '', button_open_title = '', button_close_title = '', menu_items = []) %}
-  {% set dialog_aria_label = dialog_aria_label or _('Menu dialog') %}
+{% macro regular(classes = '', title = '', aria_label = '', button_aria_label = '', dialog_aria_label = '', menu_items = []) %}
+  {% set aria_label = aria_label or _('Menu dialog') %}
 
-  <dialog class="menu-dialog {{ classes }}" aria-label="{{ aria_label }}" role="dialog" inert>
-    {{ molecule_menu_bar_contents.regular(title = title, button_open_title = button_open_title, button_close_title = button_close_title) }}
+  <dialog class="menu-dialog {{ classes }}" aria-label="{{ aria_label }}" inert>
+    {{ molecule_menu_bar_contents.regular(title = title, aria_label = button_aria_label) }}
 
     <div class="menu-dialog__content">
       {% if menu_items|length %}
@@ -14,7 +14,7 @@
           {% for menu_item in menu_items %}
             <li class="menu-dialog__menu-item">
               {% if menu_item.href %}
-                <a class="menu-dialog__menu-link" href="{{ menu_item.href }}">{{ menu_item.title }}</a>
+                <a class="menu-dialog__menu-link" href="{{ menu_item.href }}" aria-label="{{ menu_item.aria_label }}">{{ menu_item.title }}</a>
               {% else %}
                 <span class="menu-dialog__menu-link">{{ menu_item.title }}</span>
               {% endif %}
@@ -23,7 +23,7 @@
                 <ul class="menu-dialog__submenu-list">
                   {% for submenu_item in menu_item.submenu_items %}
                     <li class="menu-dialog__submenu-item">
-                      <a class="menu-dialog__submenu-link" href="{{ submenu_item.href }}">{{ submenu_item.title }}</a>
+                      <a class="menu-dialog__submenu-link" href="{{ submenu_item.href }}" aria-label="{{ submenu_item.aria_label }}">{{ submenu_item.title }}</a>
                     </li>
                   {% endfor %}
                 </ul>

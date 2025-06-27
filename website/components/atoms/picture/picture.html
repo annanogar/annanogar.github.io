@@ -7,8 +7,8 @@
       {% for source in sources %}
         <source srcset="{{ source.srcsets|join(', ') }}" type="{{ source.type }}" />
       {% endfor %}
-
-      <img class="picture__image" src="{{ src or sources[0].srcsets[0]|split(' ')|first }}" alt="{{ alt }}" {% if width %}width="{{ width }}"{% endif %} {% if height %}height="{{ height }}"{% endif %} loading="{{ loading }}" decoding="{{ decoding }}" />
+      {# loading="{{ loading }}" decoding="{{ decoding }}" #}
+      <img class="picture__image" src="{{ src or sources[0].srcsets[0]|split(' ')|first }}" alt="{{ alt }}" {% if width %}width="{{ width }}"{% endif %} {% if height %}height="{{ height }}"{% endif %} />
     </picture>
   {% endif %}
 {% endmacro %}

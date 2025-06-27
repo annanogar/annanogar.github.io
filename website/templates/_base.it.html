@@ -2,7 +2,7 @@
 {% import 'components/structures/footer-bar/footer-bar.html' as footer_bar %}
 {% import 'components/structures/menu-bar/menu-bar.html' as menu_bar %}
 {% import 'components/structures/skip-to-main/skip-to-main.html' as skip_to_main %}
-{% set lang = lang or 'it' %}
+{% set lang = 'it' %}
 {% set site_title = site_title or 'Portfolio di Anna Nogaré; Direttore Creativo, Stratega e Certificato CPACC.' %}
 {% set site_description = 'Creare esperienze educative che parlano a tutti.' %}
 {% set opengraph_site_name = 'Portfolio di Anna Nogaré; Direttore Creativo, Stratega e Certificato CPACC.' %}
@@ -26,8 +26,7 @@
       title = 'Anna Nogaré',
       aria_label = 'Navigazione principale',
       dialog_aria_label = 'Finestra di dialogo del menu',
-      button_open_title = 'Apri il menu',
-      button_close_title = 'Chiudi il menu',
+      button_aria_label = 'Attiva/disattiva la finestra di dialogo del menu',
       menu_items = [
         { title: 'Progetti', submenu_items: [
           { href: '/it/progetti/mauritshuis/', title: 'Shifting Image' },
@@ -40,9 +39,9 @@
           { href: '/it/progetti/prodemos/', title: 'ProDemos' },
           { href: '/it/progetti/het-steen/', title: 'Het Steen' }
         ] },
-        { href: '/it/manifesto/', title: 'Manifesto' },
-        { href: '/it/profilo/', title: 'Profilo' },
-        { href: '/it/contatti/', title: 'Contatti' }
+        { href: '/it/manifesto/', title: 'Manifesto', aria_label: 'Leggi il manifesto Accessibilità' },
+        { href: '/it/profilo/', title: 'Profilo', aria_label: 'Scopri il mio profilo' },
+        { href: '/it/contatti/', title: 'Contatti', aria_label: 'Contattami' }
       ]
     )
   }}
