@@ -8,10 +8,12 @@
 {% set opengraph_image = '/static/media/about/cta_1x1_1280w.jpg' %}
 {% set opengraph_title = page_title %}
 {% set opengraph_description = page_description %}
+{% set page_url_en = '/' %}
+{% set page_url_it = '/it/' %}
 
 {% block linked_pages %}
-  <link rel="alternate" hreflang="en" href="/" />
-  <link rel="alternate" hreflang="it" href="/it/" />
+  <link rel="alternate" hreflang="en" href="{{ page_url_en }}" />
+  <link rel="alternate" hreflang="it" href="{{ page_url_it }}" />
 {% endblock %}
 
 {% block content %}
