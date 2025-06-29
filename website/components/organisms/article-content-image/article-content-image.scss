@@ -10,7 +10,7 @@
     position: relative;
 
     &:has(.article-content-image__cpacc-badge) {
-      margin-bottom: calc(var(--padding-xl) + 2rem);
+      margin-bottom: 5.875rem; //calc(var(--padding-xl) + 3rem);
     }
   }
 
@@ -25,10 +25,12 @@
     width: 0;
     z-index: 999;
 
-    &:hover,
-    &:focus-visible {
-      .article-content-image__cpacc-badge-link {
-        transform: translate(-100%, -50%) scale(2.3);
+    &[href] {
+      &:hover,
+      &:focus-visible {
+        .article-content-image__cpacc-badge-link {
+          transform: translate(-100%, -50%) scale(2.3);
+        }
       }
     }
   }
@@ -58,7 +60,7 @@
       margin-bottom: 0;
 
       &:has(.article-content-image__cpacc-badge) {
-        margin-bottom: calc(var(--padding-large) + 2rem);
+        margin-bottom: max(var(--padding-large, 5.875rem)); //calc(var(--padding-large) + 2rem);
       }
     }
   }
@@ -107,7 +109,7 @@
     .article-content-image__wrapper {
       align-items: flex-start;
       display: flex;
-      flex-direction: row;
+      flex-direction: row-reverse;
       justify-content: center;
     }
 

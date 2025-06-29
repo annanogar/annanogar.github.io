@@ -25,15 +25,19 @@
         ],
         alt = image.alt,
         width = 320,
-        height = 320
+        height = 320,
+        loading = image.loading or 'lazy'
       )
     }}
 
     {% if cpacc_badge %}
       <div class="article-content-image__cpacc-badge">
-        <a class="article-content-image__cpacc-badge-link" href="https://www.accessibilityassociation.org/cpacc" target="_blank" rel="noopener noreferrer" aria-label="Opens in a new tab or window">
+        {# <a class="article-content-image__cpacc-badge-link" href="https://www.accessibilityassociation.org/cpacc" target="_blank" rel="noopener noreferrer" aria-label="Opens in a new tab or window">
           <img class="article-content-image__cpacc-badge-image" src="/static/images/iaap-certified-cpacc-badge.png" alt="Certified Professional in Accessibility Core Competencies (CPACC) badge" width="120" height="120" loading="lazy" decoding="async" />
-        </a>
+        </a> #}
+        <span class="article-content-image__cpacc-badge-link">
+          <img class="article-content-image__cpacc-badge-image" src="/static/images/iaap-certified-cpacc-badge.png" alt="Certified Professional in Accessibility Core Competencies (CPACC) badge" width="120" height="120" loading="lazy" decoding="async" />
+        </span>
       </div>
     {% endif %}
   </div>
@@ -45,9 +49,7 @@
   {% if (richtext or caller) and image and image.src %}
     <div class="article-content-image article-content-image--{{ variant }}">
       <div class="article-content-image__wrapper">
-        {% if variant == 'left' %}
-          {{ _image_wrapper(image, cpacc_badge) }}
-        {% endif %}
+        {{ _image_wrapper(image, cpacc_badge) }}
 
         <div class="article-content-image__content-wrapper">
           {% if richtext %}
@@ -62,10 +64,6 @@
             {% endif %}
           {% endif %}
         </div>
-
-        {% if variant == 'right' %}
-          {{ _image_wrapper(image, cpacc_badge) }}
-        {% endif %}
       </div>
     </div>
   {% endif %}

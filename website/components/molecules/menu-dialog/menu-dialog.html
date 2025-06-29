@@ -14,9 +14,9 @@
           {% for menu_item in menu_items %}
             <li class="menu-dialog__menu-item">
               {% if menu_item.href %}
-                <a class="menu-dialog__menu-link" href="{{ menu_item.href }}" aria-label="{{ menu_item.aria_label }}">{{ menu_item.title }}</a>
+                <a class="menu-dialog__menu-link" href="{{ menu_item.href }}" aria-label="{{ menu_item.aria_label }}" {% if menu_item.lang %}lang="{{ menu_item.lang }}"{% endif %}>{{ menu_item.title }}</a>
               {% else %}
-                <span class="menu-dialog__menu-link">{{ menu_item.title }}</span>
+                <span class="menu-dialog__menu-link" {% if menu_item.lang %}lang="{{ menu_item.lang }}"{% endif %}>{{ menu_item.title }}</span>
               {% endif %}
 
               {% if menu_item.submenu_items|length %}
