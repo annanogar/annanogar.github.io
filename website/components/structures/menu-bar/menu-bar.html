@@ -10,6 +10,6 @@
 
   <nav {% if id %}id="{{ id }}"{% endif %} class="menu-bar" aria-label="{{ aria_label }}">
     {{ molecule_menu_bar_contents.regular(href = href, title = title, aria_label = button_aria_label) }}
-    {{ molecule_menu_dialog.regular(title = title, aria_label = dialog_aria_label, button_aria_label = button_aria_label, menu_items = menu_items) }}
+    {{ molecule_menu_dialog.regular(href = href, title = title, aria_label = dialog_aria_label, button_aria_label = button_aria_label, menu_items = menu_items) }}
   </nav>
 {% endmacro %}
