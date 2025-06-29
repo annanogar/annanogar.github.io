@@ -15,14 +15,15 @@
     transform: translateY(0.3em);
 
     @include typography.logo;
+  }
 
-    &[href] {
-      cursor: pointer;
+  .menu-bar-contents__title[href],
+  .menu-button {
+    cursor: pointer;
 
-      &:hover,
-      &:focus-visible {
-        color: var(--color-pink);
-      }
+    &:hover,
+    &:focus-visible {
+      color: var(--color-logo-hover-override, var(--color-pink));
     }
   }
 

@@ -6,7 +6,7 @@
   position: relative;
 
   .image-header__wrapper {
-    padding: var(--padding-xl) var(--padding-large) var(--padding-large);
+    padding: var(--padding-xl) var(--padding-large);
   }
 
   .image-header__title {
@@ -20,14 +20,14 @@
   }
 
   .image-header__subtitle {
-    margin-top: 2rem;
+    margin-top: 1rem;
 
     @include typography.subtitle;
   }
 
   @include breakpoints.landscape {
     .image-header__wrapper {
-      padding: var(--padding-medium) var(--padding-large);
+      padding: var(--padding-medium) var(--padding-large) var(--padding-large);
     }
   }
 }

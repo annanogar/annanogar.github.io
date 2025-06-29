@@ -37,6 +37,8 @@
   }
 
   .menu-bar-contents {
+    --color-logo-hover-override: var(--color-black);
+
     flex: 0 0 auto;
   }
 
