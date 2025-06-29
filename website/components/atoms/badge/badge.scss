@@ -71,7 +71,7 @@
   &:hover,
   &:focus-visible {
     &::before {
-      transform: scale(1.6);
+      transform: scale(2);
     }
   }
 
@@ -79,7 +79,7 @@
     &:hover,
     &:focus-visible {
       &::before {
-        transform: scale(2.4);
+        transform: scale(2.6);
       }
     }
   }
