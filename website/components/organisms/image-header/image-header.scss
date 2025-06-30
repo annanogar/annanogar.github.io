@@ -21,13 +21,14 @@
 
   .image-header__subtitle {
     margin-top: 1rem;
+    max-width: 100%;
 
     @include typography.subtitle;
   }
 
   @include breakpoints.landscape {
     .image-header__wrapper {
-      padding: var(--padding-medium) var(--padding-large) var(--padding-large);
+      padding: var(--padding-medium) var(--padding-large);
     }
   }
 }

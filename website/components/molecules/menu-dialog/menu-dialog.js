@@ -6,6 +6,7 @@ class MenuDialogComponent extends Component {
     this.buttonMenu = document.querySelector('.menu-bar-contents .menu-button')
     this.focusTrap = createFocusTrap(this.element, {
       onActivate: () => {
+        this.element.removeAttribute('inert')
         this.element.showModal()
         document.documentElement.classList.add('prevent-scrolling')
         window.dispatchEvent(new CustomEvent('menu-dialog-opened'))
@@ -15,6 +16,7 @@ class MenuDialogComponent extends Component {
         document.documentElement.classList.remove('prevent-scrolling')
         window.dispatchEvent(new CustomEvent('menu-dialog-closed'))
         this.buttonMenu?.focus()
+        this.element.setAttribute('inert', 'inert')
       },
       escapeDeactivates: true,
       clickOutsideDeactivates: true,

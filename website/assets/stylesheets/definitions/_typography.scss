@@ -23,7 +23,7 @@
 @mixin heading-1 {
   font-size: fluid-value.get(32px, 64px, breakpoints.$mobile, breakpoints.$landscape);
   letter-spacing: normal;
-  line-height: 1.33em;
+  line-height: 1.25em;
 
   @include font-poppins.apply($weight: 'bold', $style: 'roman');
 

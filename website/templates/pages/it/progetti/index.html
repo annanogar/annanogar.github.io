@@ -1,0 +1,118 @@
+{% extends 'templates/_base.it.html' %}
+{% import 'components/organisms/article-footer/article-footer.html' as article_footer %}
+{% import 'components/organisms/article-quote/article-quote.html' as article_quote %}
+{% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
+{% import 'components/organisms/card-grid/card-grid.html' as card_grid %}
+{% import 'components/organisms/landing-header/landing-header.html' as landing_header %}
+{% set page_title = 'Progetti' %}
+{% set page_description = 'Una selezione di progetti che esplorano modi diversi di creare esperienze coinvolgenti per pubblici differenti. Ogni progetto nasce da un obiettivo specifico, sempre guidato da un approccio centrato sulle persone.' %}
+{% set opengraph_image = '/static/media/about/cta_1x1_1280w.jpg' %}
+{% set opengraph_title = page_title %}
+{% set opengraph_description = page_description %}
+{% set page_url_en = '/projects/' %}
+{% set page_url_it = '/it/progetti/' %}
+
+{% block linked_pages %}
+  <link rel="alternate" hreflang="en" href="{{ page_url_en }}" />
+  <link rel="alternate" hreflang="it" href="{{ page_url_it }}" />
+{% endblock %}
+
+{% block content %}
+  {{
+    landing_header.regular(
+      title = page_title,
+      subtitle = page_description
+    )
+  }}
+
+  {{
+    card_grid.regular(
+      cards = [
+        {
+          href: '/it/progetti/mauritshuis/',
+          title: 'Shifting Image',
+          subtitle: 'Mauritshuis, L’Aia (NL)',
+          label: 'Premiato',
+          image: { src: 'projects/mauritshuis/thumbnail_1x1', alt: 'Primo piano di una donna che osserva un grande dipinto coloniale raffigurante una nobildonna con bambini. La donna si trova in una galleria buia illuminata da faretti focalizzati sulle opere.' }
+        },
+
+        {
+          href: '/it/progetti/ilmi/',
+          title: 'Maker park',
+          subtitle: 'Ilmi Science Discovery & Innovation Center, Riyad (SA)',
+          image: { src: 'projects/ilmi/thumbnail_1x1', alt: 'Ritratto di un giovane ragazzo sorridente in abiti tradizionali sauditi, rappresentante il pubblico target dell’iniziativa educativa.' }
+        },
+
+        {
+          href: '/it/progetti/qatar/',
+          title: 'Family Exhibits',
+          subtitle: 'National Museum of Qatar, Doha (QA)',
+          label: 'Premiato',
+          image: { src: 'projects/qatar/thumbnail_1x1', alt: 'Bambini che utilizzano uno schermo touch multiutente per scoprire manufatti virtuali in un gioco a tema scavo, mentre i genitori osservano, in una galleria progettata per simulare un sito archeologico stratificato.' }
+        },
+
+        {
+          href: '/it/progetti/cruquius/',
+          title: 'Cruquius museum',
+          subtitle: 'Cruquius Museum, Cruquius (NL)',
+          label: 'Selezionato',
+          image: { src: 'projects/cruquius/thumbnail_1x1', alt: 'Visitatrice del museo che esplora una vetrina contenente strumenti di navigazione, mappe e reperti archeologici, con uno schermo touch integrato nella superficie.' }
+        },
+
+        {
+          href: '/it/progetti/nh-archief/',
+          title: 'Joh. Enschedé',
+          subtitle: 'Noord-Hollands Archief, Haarlem (NL)',
+          label: 'Premiato + Selezionato',
+          image: { src: 'projects/nh-archief/thumbnail_1x1', alt: 'Gruppo di bambini raccolti attorno a una vetrina etichettata “De Duitse stempelsnijder” (“Il punzonatore tedesco”), che osservano e discutono il contenuto, con un adulto che li guida..' }
+        },
+
+        {
+          href: '/it/progetti/brussels/',
+          title: 'Living planet',
+          subtitle: 'Museum of Natural Sciences, Bruxelles (BE)',
+          image: { src: 'projects/brussels/thumbnail_1x1', alt: 'Visitatrice adolescente con mascherina e camicia a quadri verdi, che interagisce con uno schermo touch inclinato tra esemplari animali tassidermizzati.' }
+        },
+
+        {
+          href: '/it/progetti/boerhaave/',
+          title: 'Herman Boerhaave',
+          subtitle: 'Rijksmuseum Boerhaave, Leida (NL)',
+          image: { src: 'projects/boerhaave/thumbnail_1x1', alt: 'Un uomo con camicia blu che utilizza una postazione tattile interattiva, con pulsanti e manopole, in una galleria piena di strumenti scientifici storici e pannelli esplicativi.' }
+        },
+
+        {
+          href: '/it/progetti/prodemos/',
+          title: 'ProDemos',
+          subtitle: 'ProDemos, L’Aia (NL)',
+          image: { src: 'projects/prodemos/thumbnail_1x1', alt: 'Tre ragazze sedute su una panchina del parco che guardano insieme un tablet; una di loro indica lo schermo mentre discutono.' }
+        },
+
+        {
+          href: '/it/progetti/het-steen/',
+          title: 'Het Steen',
+          subtitle: 'Visit Antwerp, Anversa (BE)',
+          image: { src: 'projects/het-steen/thumbnail_1x1', alt: 'Donna e bambina che interagiscono con un grande tavolo mappa interattivo; entrambe sorridono indicando diversi elementi sulla superficie digitale in una stanza calda e illuminata.' }
+        }
+      ]
+    )
+  }}
+
+  {{
+    article_quote.regular(
+      quote = 'Esplora il mio percorso multidisciplinare attraverso altri progetti su Behance.'
+    )
+  }}
+
+  {{
+    call_to_action.regular(
+      quote = 'Lascia che la curiosità dia forma alla tua storia.',
+      badge = { variant: 'bright', href: 'mailto:_send_me_an_', title: 'Mettiti in contatto!' },
+      card = {
+        href: '/it/profilo/',
+        title: 'Scopri il mio profilo',
+        image: { src: 'about/cta_1x1', alt: 'Anna Nogaré rivolta verso la fotocamera con proiezioni colorate a punti su viso e maglietta, contro uno sfondo scuro.' }
+      }
+    )
+  }}
+{% endblock %}
