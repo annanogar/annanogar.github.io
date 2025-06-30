@@ -203,7 +203,7 @@
   }
 }
 
-@mixin highlight-introduction {
+@mixin highlight-text {
   font-size: fluid-value.get(18px, 40px, breakpoints.$mobile, breakpoints.$landscape);
   letter-spacing: 0.02em;
   line-height: 1.33em;

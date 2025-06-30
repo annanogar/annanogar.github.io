@@ -13,10 +13,8 @@
     @include typography.heading-2;
   }
 
-  .image-grid__introduction {
+  .richtext {
     margin-top: 1rem;
-
-    @include typography.paragraph;
   }
 
   .image-grid__items {
@@ -25,9 +23,6 @@
     list-style: none;
     padding: 0;
   }
-
-  //.image-grid__item {
-  //}
 
   .image-grid__item--1x1 {
     aspect-ratio: 1 / 1;
@@ -41,29 +36,12 @@
 
   @include breakpoints.landscape {
     .image-grid__wrapper {
-      padding: var(--padding-large) var(--padding-large);
+      padding: var(--padding-large) var(--padding-large) 0;
     }
 
     .image-grid__items {
       grid-template-columns: 1fr 1fr 1fr;
+      margin-top: var(--padding-large);
     }
-  }
-}
-
-//.image-grid--regular {
-//}
-
-.image-grid--highlight {
-  .image-grid__wrapper {
-    background: var(--color-pink);
-    color: var(--color-white);
-  }
-
-  .image-grid__title {
-    @include typography.highlight-heading;
-  }
-
-  .image-grid__introduction {
-    @include typography.highlight-introduction;
   }
 }

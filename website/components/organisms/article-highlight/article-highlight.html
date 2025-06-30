@@ -1,0 +1,18 @@
+{% import 'components/atoms/picture/picture.html' as atom_picture %}
+{% import 'components/atoms/richtext/richtext.html' as atom_richtext %}
+
+{% macro regular(title = '', text = '') %}
+  <div class="article-highlight">
+    {% if title or text %}
+      <div class="article-highlight__wrapper">
+        {% if title %}
+          <h2 class="article-highlight__title">{{ title }}</h2>
+        {% endif %}
+
+        {% if text %}
+          <p class="article-highlight__text">{{ text }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+{% endmacro %}

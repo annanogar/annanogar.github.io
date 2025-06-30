@@ -1,22 +1,21 @@
 {% import 'components/atoms/picture/picture.html' as atom_picture %}
+{% import 'components/atoms/richtext/richtext.html' as atom_richtext %}
 
-{% macro regular(variant = '', title = '', introduction = '', items = []) %}
-  {% set variant = variant or 'regular' %}
+{% macro regular(title = '', richtext = '', introduction = '', items = []) %}
+  <div class="image-grid">
+    {% if title or introduction %}
+      <div class="image-grid__wrapper">
+        {% if title %}
+          <h2 class="image-grid__title">{{ title }}</h2>
+        {% endif %}
 
-  {% if items|length %}
-    <div class="image-grid image-grid--{{ variant }}">
-      {% if title or introduction %}
-        <div class="image-grid__wrapper">
-          {% if title %}
-            <h2 class="image-grid__title">{{ title }}</h2>
-          {% endif %}
+        {% if richtext %}
+          {{ atom_richtext.regular(richtext = richtext) }}
+        {% endif %}
+      </div>
+    {% endif %}
 
-          {% if introduction %}
-            <p class="image-grid__introduction">{{ introduction }}</p>
-          {% endif %}
-        </div>
-      {% endif %}
-
+    {% if items|length %}
       <ul class="image-grid__items">
         {% for item in items %}
           {% if contains_substring(item.image.src, '_2x1') %}
@@ -82,6 +81,6 @@
           {% endif %}
         {% endfor %}
       </ul>
-    </div>
-  {% endif %}
+    {% endif %}
+  </div>
 {% endmacro %}
