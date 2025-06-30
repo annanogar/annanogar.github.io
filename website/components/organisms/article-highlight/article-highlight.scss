@@ -1,0 +1,29 @@
+@use '../../../assets/stylesheets/definitions/breakpoints' as breakpoints;
+@use '../../../assets/stylesheets/definitions/grid' as grid;
+@use '../../../assets/stylesheets/definitions/typography' as typography;
+
+.article-highlight {
+  position: relative;
+
+  .article-highlight__wrapper {
+    background: var(--color-pink);
+    color: var(--color-white);
+    padding: var(--padding-xl) var(--padding-large);
+  }
+
+  .article-highlight__title {
+    @include typography.highlight-heading;
+  }
+
+  .article-highlight__text {
+    margin-top: 1rem;
+
+    @include typography.highlight-text;
+  }
+
+  @include breakpoints.landscape {
+    .article-highlight__wrapper {
+      padding: var(--padding-large) var(--padding-large);
+    }
+  }
+}
