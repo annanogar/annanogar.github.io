@@ -36,12 +36,15 @@
 
   @include breakpoints.landscape {
     .image-grid__wrapper {
-      padding: var(--padding-large) var(--padding-large) 0;
+      padding: var(--padding-large) var(--padding-large);
     }
 
     .image-grid__items {
       grid-template-columns: 1fr 1fr 1fr;
-      margin-top: var(--padding-large);
+
+      //&:not(:first-child) {
+      //  margin-top: var(--padding-large);
+      //}
     }
   }
 }
