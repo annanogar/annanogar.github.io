@@ -82,7 +82,7 @@
 
 .call-to-action--video {
   display: flex;
-  padding: calc(33.333vw / 2) 0;
+  padding: 10vw 0;
 
   .call-to-action__wrapper {
     aspect-ratio: 2 / 1;
@@ -104,7 +104,7 @@
   }
 
   @include breakpoints.landscape {
-    padding: 11.869vw 0;
+    padding: 5vw 0;
 
     .call-to-action__wrapper {
       padding-right: calc(var(--padding-large) * 1.5);

@@ -1,0 +1,118 @@
+{% extends 'templates/_base.en.html' %}
+{% import 'components/organisms/article-footer/article-footer.html' as article_footer %}
+{% import 'components/organisms/article-quote/article-quote.html' as article_quote %}
+{% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
+{% import 'components/organisms/card-grid/card-grid.html' as card_grid %}
+{% import 'components/organisms/landing-header/landing-header.html' as landing_header %}
+{% set page_title = 'Projects' %}
+{% set page_description = 'A selection of projects that explore different ways of creating meaningful experiences for diverse audiences. Each one reflects a unique goal, always shaped by a people-first approach.' %}
+{% set opengraph_image = '/static/media/about/cta_1x1_1280w.jpg' %}
+{% set opengraph_title = page_title %}
+{% set opengraph_description = page_description %}
+{% set page_url_en = '/' %}
+{% set page_url_it = '/it/' %}
+
+{% block linked_pages %}
+  <link rel="alternate" hreflang="en" href="{{ page_url_en }}" />
+  <link rel="alternate" hreflang="it" href="{{ page_url_it }}" />
+{% endblock %}
+
+{% block content %}
+  {{
+    landing_header.regular(
+      title = page_title,
+      subtitle = page_description
+    )
+  }}
+
+  {{
+    card_grid.regular(
+      cards = [
+        {
+          href: '/projects/mauritshuis/',
+          title: 'Shifting Image',
+          subtitle: 'Mauritshuis, The Hague (NL)',
+          label: 'Awarded',
+          image: { src: 'projects/mauritshuis/thumbnail_1x1', alt: 'Close-up of a woman gazing at a large colonial painting depicting a noblewoman with children. The woman stands in a dark gallery lit by focused spotlights on the artworks.' }
+        },
+
+        {
+          href: '/projects/ilmi/',
+          title: 'Maker park',
+          subtitle: 'ilmi Science Discovery & Innovation Center, Riyadh (SA)',
+          image: { src: 'projects/ilmi/thumbnail_1x1', alt: 'Portrait of a young boy smiling in traditional Saudi attire, representing the target audience of the educational initiative.' }
+        },
+
+        {
+          href: '/projects/qatar/',
+          title: 'Family Exhibits',
+          subtitle: 'National Museum of Qatar, Doha (QA)',
+          label: 'Awarded',
+          image: { src: 'projects/qatar/thumbnail_1x1', alt: 'Children using a multi-user touchscreen to uncover virtual artifacts in a digging-themed game, while parents look on, in a gallery designed to simulate a layered archaeological dig site.' }
+        },
+
+        {
+          href: '/projects/cruquius/',
+          title: 'Cruquius museum',
+          subtitle: 'Cruquius Museum, Cruquius (NL)',
+          label: 'Featured',
+          image: { src: 'projects/cruquius/thumbnail_1x1', alt: 'Museum visitor exploring a display case containing navigation instruments, maps, and archaeological artifacts, with a touch screen integrated into the surface.' }
+        },
+
+        {
+          href: '/projects/nh-archief/',
+          title: 'Joh. Enschedé',
+          subtitle: 'Noord-Hollands Archief, Haarlem (NL)',
+          label: 'Awarded + Featured',
+          image: { src: 'projects/nh-archief/thumbnail_1x1', alt: 'Group of children gathered around a display case labeled “De Duitse stempelsnijder” (“The German Punchcutter”), observing and discussing its contents, with an adult guiding them.' }
+        },
+
+        {
+          href: '/projects/brussels/',
+          title: 'Living planet',
+          subtitle: 'Museum of Natural Sciences, Brussels (BE)',
+          image: { src: 'projects/brussels/thumbnail_1x1', alt: 'Teenage visitor wearing a mask and green checkered shirt, engaging with an angled touchscreen among mounted animal specimens.' }
+        },
+
+        {
+          href: '/projects/boerhaave/',
+          title: 'Herman Boerhaave',
+          subtitle: 'Rijksmuseum Boerhaave, Leiden (NL)',
+          image: { src: 'projects/boerhaave/thumbnail_1x1', alt: 'A man in a blue shirt using a tactile interactive station, with buttons and dials, in a gallery filled with historic scientific tools and instructional displays.' }
+        },
+
+        {
+          href: '/projects/prodemos/',
+          title: 'ProDemos',
+          subtitle: 'ProDemos, The Hague (NL)',
+          image: { src: 'projects/prodemos/thumbnail_1x1', alt: 'Three girls sit on a park bench, looking at a tablet together, one pointing at the screen as they discuss.' }
+        },
+
+        {
+          href: '/projects/het-steen/',
+          title: 'Het Steen',
+          subtitle: 'Visit Antwerp, Antwerp (BE)',
+          image: { src: 'projects/het-steen/thumbnail_1x1', alt: 'Woman and child engaging with a large interactive map table; both smiling and pointing to different elements on the digital surface in a warmly lit room.' }
+        }
+      ]
+    )
+  }}
+
+  {{
+    article_quote.regular(
+      quote = 'Discover past projects that reflect my multidisciplinary mindset on Behance.'
+    )
+  }}
+
+  {{
+    call_to_action.regular(
+      quote = 'Let curiosity shape your story. Together, we make it real.',
+      badge = { variant: 'bright', href: 'mailto:_send_me_an_', title: 'Get in touch!' },
+      card = {
+        href: '/about/',
+        title: 'Learn more about me',
+        image: { src: 'about/cta_1x1', alt: 'Anna Nogaré facing the camera with colorful dot projections on her face and shirt, against a dark background.' }
+      }
+    )
+  }}
+{% endblock %}
