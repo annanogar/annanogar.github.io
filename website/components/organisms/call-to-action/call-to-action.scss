@@ -68,6 +68,13 @@
     background-color: var(--color-navy);
     color: var(--color-white);
   }
+}
+
+.call-to-action--home {
+  .call-to-action__wrapper {
+    background-color: var(--color-navy);
+    color: var(--color-white);
+  }
 
   @include breakpoints.landscape {
     .call-to-action__wrapper {

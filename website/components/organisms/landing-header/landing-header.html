@@ -1,6 +1,7 @@
 {% import 'components/atoms/badge/badge.html' as atom_badge %}
+{% import 'components/atoms/richtext/richtext.html' as atom_richtext %}
 
-{% macro regular(title = '', subtitle = '', badge = {}) %}
+{% macro regular(title = '', subtitle = '', richtext = '', more_richtext = '', badge = {}) %}
   {% if title %}
     <div class="landing-header">
       <div class="landing-header__wrapper">
@@ -8,6 +9,14 @@
 
         {% if subtitle %}
           <p class="landing-header__subtitle">{{ subtitle }}</p>
+        {% endif %}
+
+        {% if richtext %}
+          {{ atom_richtext.regular(richtext = richtext) }}
+        {% endif %}
+
+        {% if more_richtext %}
+          {{ atom_richtext.regular(richtext = more_richtext) }}
         {% endif %}
 
         {{ atom_badge.regular(variant = 'bright', href = badge.href, title = badge.title) }}

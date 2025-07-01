@@ -10,7 +10,7 @@
     background-color: var(--color-blue);
     color: var(--color-white);
     flex: 0 0 100%;
-    padding: var(--padding-xl) var(--padding-large);
+    padding: calc(var(--padding-xl) * 1.5) var(--padding-large);
     width: 100%;
   }
 

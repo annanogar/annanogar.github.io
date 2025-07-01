@@ -2,20 +2,16 @@
 @use '../../../assets/stylesheets/definitions/grid' as grid;
 @use '../../../assets/stylesheets/definitions/typography' as typography;
 
-.article-quote {
+.article-content {
   position: relative;
 
-  .article-quote__wrapper {
-    padding: var(--padding-xl) var(--padding-large) var(--padding-xl);
-  }
-
-  .article-quote__quote {
-    @include typography.quote;
+  .article-content__wrapper {
+    padding: var(--padding-xl) var(--padding-large);
   }
 
   @include breakpoints.landscape {
-    .article-quote__wrapper {
-      padding: var(--padding-medium) var(--padding-large);
+    .article-content__wrapper {
+      padding: var(--padding-medium) calc(var(--padding-large) * 3.5) var(--padding-large) var(--padding-large);
     }
   }
 }
