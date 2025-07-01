@@ -39,7 +39,7 @@
     <meta property="og:site_name " content="{{ site_title }}" />
     <meta property="og:description" content="{{ full_page_description }}" />
     {% if opengraph_url %}<meta property="og:url" content="{{ opengraph_url }}" />{% endif %}
-    {% if opengraph_image %}<meta property="og:image" content="{{ opengraph_image }}" />{% endif %}
+    {% if opengraph_image %}<meta property="og:image:secure_url" itemprop="image" content="{{ opengraph_image }}" />{% endif %}
     <meta property="og:type" content="website" />
 
     {% block favicons %}
