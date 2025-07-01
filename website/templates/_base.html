@@ -31,19 +31,6 @@
       <link rel="modulepreload" href="{{ asset_with_hash('scripts/main.js') }}" as="script" crossorigin />
     {% endblock %}
 
-    {% block font_preloads %}
-      <link rel="preload" href="/static/fonts/poppins/poppins-bold.woff2" as="font" type="font/woff2" crossorigin />
-      <link rel="preload" href="/static/fonts/poppins/poppins-bold-italic.woff2" as="font" type="font/woff2" crossorigin />
-      <link rel="preload" href="/static/fonts/noto-sans/noto-sans-regular.woff2" as="font" type="font/woff2" crossorigin />
-      <link rel="preload" href="/static/fonts/noto-sans/noto-sans-light.woff2" as="font" type="font/woff2" crossorigin />
-    {% endblock %}
-
-    {% block favicons %}
-      <link rel="icon" href="/static/images/favicons/favicon.ico" />
-      <link rel="icon" type="image/png" href="/static/images/favicons/favicon.png" sizes="192x192" />
-      <link rel="apple-touch-icon" href="/static/images/favicons/favicon.png" />
-    {% endblock %}
-
     <meta name="application-name" content="{{ site_title }}" />
     <meta name="theme-color" content="#fff" />
     <meta name="msapplication-TileColor" content="#fff" />
@@ -54,6 +41,19 @@
     {% if opengraph_url %}<meta property="og:url" content="{{ opengraph_url }}" />{% endif %}
     {% if opengraph_image %}<meta property="og:image" content="{{ opengraph_image }}" />{% endif %}
     <meta property="og:type" content="website" />
+
+    {% block favicons %}
+      <link rel="icon" href="/static/images/favicons/favicon.ico" />
+      <link rel="icon" type="image/png" href="/static/images/favicons/favicon.png" sizes="192x192" />
+      <link rel="apple-touch-icon" href="/static/images/favicons/favicon.png" />
+    {% endblock %}
+
+    {% block font_preloads %}
+      <link rel="preload" href="/static/fonts/poppins/poppins-bold.woff2" as="font" type="font/woff2" crossorigin />
+      <link rel="preload" href="/static/fonts/poppins/poppins-bold-italic.woff2" as="font" type="font/woff2" crossorigin />
+      <link rel="preload" href="/static/fonts/noto-sans/noto-sans-regular.woff2" as="font" type="font/woff2" crossorigin />
+      <link rel="preload" href="/static/fonts/noto-sans/noto-sans-light.woff2" as="font" type="font/woff2" crossorigin />
+    {% endblock %}
 
     <link rel="stylesheet" href="{{ asset_with_hash('stylesheets/main.css') }}" />
     {% block stylesheets %}
