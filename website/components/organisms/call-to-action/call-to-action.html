@@ -17,7 +17,7 @@
 
       {% if card and card.href %}
         {{ molecule_project_card.regular(href = card.href, title = card.title, subtitle = card.subtitle, label = card.label, image = card.image) }}
-      {% else %}
+      {% elif image and image.src %}
         {{
           atom_picture.regular(
             classes = 'call-to-action__picture',

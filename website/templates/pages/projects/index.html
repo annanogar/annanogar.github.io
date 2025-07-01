@@ -1,6 +1,5 @@
 {% extends 'templates/_base.en.html' %}
 {% import 'components/organisms/article-footer/article-footer.html' as article_footer %}
-{% import 'components/organisms/article-quote/article-quote.html' as article_quote %}
 {% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
 {% import 'components/organisms/card-grid/card-grid.html' as card_grid %}
 {% import 'components/organisms/landing-header/landing-header.html' as landing_header %}
@@ -97,7 +96,8 @@
   }}
 
   {{
-    article_quote.regular(
+    call_to_action.regular(
+      variant = 'dark',
       quote = 'Discover past projects that reflect my multidisciplinary mindset on Behance.'
     )
   }}

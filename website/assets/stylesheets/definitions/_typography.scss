@@ -35,7 +35,7 @@
 @mixin heading-2 {
   font-size: fluid-value.get(22px, 44px, breakpoints.$mobile, breakpoints.$landscape);
   letter-spacing: normal;
-  line-height: 1.2em;
+  line-height: 1.33em;
 
   @include font-poppins.apply($weight: 'bold', $style: 'roman');
 
@@ -47,7 +47,7 @@
 @mixin heading-3 {
   font-size: fluid-value.get(16px, 24px, breakpoints.$mobile, breakpoints.$landscape);
   letter-spacing: 0.5px;
-  line-height: 1.2em;
+  line-height: 1.33em;
   text-transform: uppercase;
 
   @include font-poppins.apply($weight: 'bold', $style: 'roman');
@@ -111,7 +111,7 @@
   letter-spacing: normal;
   line-height: 1.33em;
 
-  @include font-noto-sans.apply($weight: 'light', $style: 'roman');
+  @include font-noto-sans.apply($weight: 'regular', $style: 'roman');
 
   @include breakpoints.landscape {
     font-size: fluid-value.get(18px, 24px, breakpoints.$landscape, breakpoints.$desktop-large);
@@ -120,10 +120,10 @@
 
 @mixin paragraph {
   font-size: fluid-value.get(16px, 24px, breakpoints.$mobile, breakpoints.$landscape);
-  letter-spacing: 0.03em;
+  letter-spacing: 0.02em;
   line-height: 1.5em;
 
-  @include font-noto-sans.apply($weight: 'light', $style: 'roman');
+  @include font-noto-sans.apply($weight: 'regular', $style: 'roman');
 
   @include breakpoints.landscape {
     font-size: fluid-value.get(20px, 28px, breakpoints.$landscape, breakpoints.$desktop-large);

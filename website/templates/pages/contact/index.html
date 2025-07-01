@@ -1,7 +1,7 @@
 {% extends 'templates/_base.en.html' %}
-{% import 'components/organisms/article-content-image/article-content-image.html' as article_content_image %}
-{% import 'components/organisms/article-header/article-header.html' as article_header %}
+{% import 'components/organisms/article-content/article-content.html' as article_content %}
 {% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
+{% import 'components/organisms/landing-header/landing-header.html' as landing_header %}
 {% set page_title = 'Contact' %}
 {% set page_description = 'Whether you’re building a learning experience, designing an educational tool, or looking for accessibility expertise, I’d love to hear from you.' %}
 {% set opengraph_image = '/static/media/contact/social_1200x630.jpg' %}
@@ -15,25 +15,13 @@
 
 {% block content %}
   {{
-    article_header.regular(
-      title = page_title
+    landing_header.regular(
+      title = page_title,
+      subtitle = page_description,
+      richtext = '<p>Send me an email at <strong><a href="mailto:_send_me_an_">_send_me_an_</a></strong> or call me at <strong><a href="tel:_or_pick_up_the_">_or_pick_up_the_</a></strong>.</p>',
+      more_richtext = '<p>Currently in Amsterdam (NL), soon relocating to Italy, working worldwide.</p><p><strong>Let’s make culture more accessible, together.</strong></p>'
     )
   }}
-
-  {%
-    call article_content_image.regular(
-      variant = 'left',
-      image = { loading: 'eager', src: 'about/section01_1x1', alt: 'Anna Nogaré’s face close up looking down with multicolored light and foliage projections on her face and background.' },
-      cpacc_badge = true
-    )
-  %}
-    <p>Whether you’re building a learning experience, designing an educational tool, or looking for accessibility expertise, I’d love to hear from you.</p>
-    <p>
-      <strong>Email: &nbsp; <a href="mailto:_send_me_an_">_send_me_an_</a><br />Phone: &nbsp; <a href="tel:_or_pick_up_the_">_or_pick_up_the_</a></strong>
-    </p>
-    <p>Currently in Amsterdam (NL), soon relocating to Italy, working worldwide.</p>
-    <p><strong>Let’s make culture more accessible, together.</strong></p>
-  {% endcall %}
 
   {{
     call_to_action.regular(
