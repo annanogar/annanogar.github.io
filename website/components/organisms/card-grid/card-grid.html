@@ -6,6 +6,10 @@
       <div class="card-grid__wrapper">
         <ul class="card-grid__items">
           {% for card in cards %}
+            {% if loop.index < 4 %}
+              {{ object_set_value(card.image, 'loading', 'eager') }}
+            {% endif %}
+
             <li class="card-grid__item">{{ molecule_project_card.regular(href = card.href, title = card.title, subtitle = card.subtitle, label = card.label, image = card.image) }}</li>
           {% endfor %}
         </ul>
