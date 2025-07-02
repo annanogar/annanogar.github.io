@@ -44,7 +44,8 @@
                   ],
                   alt = item.image.alt,
                   width = 400,
-                  height = 200
+                  height = 200,
+                  loading = 'eager' if loop.index < 3 else 'lazy'
                 )
               }}
             </li>
@@ -74,7 +75,8 @@
                   ],
                   alt = item.image.alt,
                   width = 320,
-                  height = 320
+                  height = 320,
+                  loading = 'eager' if loop.index < 3 else 'lazy'
                 )
               }}
             </li>
