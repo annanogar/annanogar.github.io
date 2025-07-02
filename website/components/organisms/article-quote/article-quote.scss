@@ -13,6 +13,12 @@
     @include typography.quote;
   }
 
+  .article-content-image + & {
+    .article-quote__wrapper {
+      padding-top: 0;
+    }
+  }
+
   @include breakpoints.landscape {
     .article-quote__wrapper {
       padding: var(--padding-medium) var(--padding-large);
