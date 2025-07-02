@@ -45,7 +45,8 @@
   .menu-dialog__content {
     flex: 1 1 100%;
     overflow-y: scroll;
-    padding: var(--padding-xl) var(--padding-large) calc(var(--padding-large) * 9);
+    overscroll-behavior: contain;
+    padding: var(--padding-xl) var(--padding-large);
     text-align: center;
   }
 
