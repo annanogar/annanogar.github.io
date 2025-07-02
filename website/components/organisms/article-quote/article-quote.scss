@@ -23,5 +23,11 @@
     .article-quote__wrapper {
       padding: var(--padding-medium) var(--padding-large);
     }
+
+    .article-content-image + & {
+      .article-quote__wrapper {
+        margin-top: calc(var(--padding-medium) * -1);
+      }
+    }
   }
 }
