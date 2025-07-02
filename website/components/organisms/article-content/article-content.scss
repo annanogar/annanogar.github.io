@@ -6,7 +6,7 @@
   position: relative;
 
   .article-content__wrapper {
-    padding: var(--padding-xl) var(--padding-large);
+    padding: calc(var(--padding-xl) * 1.6) var(--padding-large);
   }
 
   @include breakpoints.landscape {
