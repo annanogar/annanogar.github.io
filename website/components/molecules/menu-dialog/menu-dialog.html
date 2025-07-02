@@ -2,11 +2,11 @@
 {% import 'components/atoms/menu-button/menu-button.html' as atom_menu_button %}
 {% import 'components/molecules/menu-bar-contents/menu-bar-contents.html' as molecule_menu_bar_contents %}
 
-{% macro regular(classes = '', href = '', title = '', aria_label = '', button_aria_label = '', dialog_aria_label = '', menu_items = []) %}
-  {% set aria_label = aria_label or _('Menu dialog') %}
+{% macro regular(classes = '', href = '', title = '', title_aria_label = '', aria_label = '', button_aria_label = '', dialog_aria_label = '', menu_items = []) %}
+  {% set aria_label = aria_label or 'Menu dialog' %}
 
   <dialog class="menu-dialog {{ classes }}" aria-label="{{ aria_label }}" inert>
-    {{ molecule_menu_bar_contents.regular(href = href, title = title, aria_label = button_aria_label) }}
+    {{ molecule_menu_bar_contents.regular(href = href, title = title, title_aria_label = title_aria_label, aria_label = button_aria_label) }}
 
     <div class="menu-dialog__content">
       {% if menu_items|length %}

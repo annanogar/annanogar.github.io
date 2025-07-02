@@ -1,5 +1,5 @@
 {% macro regular(id = '', aria_label = '') %}
-  {% set aria_label = aria_label or _('Skip to contents') %}
+  {% set aria_label = aria_label or 'Skip to contents' %}
 
   <nav {% if id %}id="{{ id }}"{% endif %} class="skip-to-main" aria-label="{{ aria_label }}">
     <button class="button button--skip-to-main" type="button" onclick="document.getElementById('main').focus();">{{ aria_label }}</button>

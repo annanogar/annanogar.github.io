@@ -1,5 +1,5 @@
 {% macro regular(classes = '', aria_label = '', href = '/', title = '', prefix_id = '') %}
-  {% set aria_label = aria_label or title or _('Back to homepage') %}
+  {% set aria_label = aria_label or title or 'Back to homepage' %}
   {% set title = title or site_name %}
   {% set prefix_id = prefix_id or 'logo-regular' %}
 
