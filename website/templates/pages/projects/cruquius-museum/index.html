@@ -5,7 +5,7 @@
 {% import 'components/organisms/image-header/image-header.html' as image_header %}
 {% set page_title = 'Cruquius museum' %}
 {% set page_description = 'An immersive look at Haarlemmermeer’s history and the world’s largest steam engine.' %}
-{% set project_slug = 'cruquius' %}
+{% set project_slug = 'cruquius-museum' %}
 {% set opengraph_image = '/static/media/projects/' + project_slug + '/social_1200x630.jpg' %}
 {% set page_url_en = '/projects/' + project_slug + '/' %}
 {% set page_url_it = '/it/progetti/' + project_slug + '/' %}
@@ -58,7 +58,7 @@
   {{
     image_grid.regular(
       title = 'Key achievements',
-      richtext = '<ul><li>Translated technical heritage into an engaging story</li></li><li>Designed multi-layered content adaptable to people</li><li>Enabled curiosity-driven, self-paced exploration</li><li>Brought new life and future relevance to a historical site</li></ul>',
+      richtext = '<ul><li>Translated technical heritage into an engaging story</li><li>Designed multi-layered content adaptable to people</li><li>Enabled curiosity-driven, self-paced exploration</li><li>Brought new life and future relevance to a historical site</li></ul>',
       items = [
         { image: { src: 'projects/' + project_slug + '/13_2x1', alt: 'Three children closely examining a hands-on model of a steam engine, focusing on its moving mechanical parts.' } },
         { image: { src: 'projects/' + project_slug + '/14_1x1', alt: 'A young woman observing a detailed infographic display with historical data, diagrams, and scale models related to the Cruquius pumping station and its steam engines.' } },
@@ -94,11 +94,11 @@
       quote = 'Explore the next project or drop me a message.',
       badge = { href: 'mailto:_send_me_an_', title: 'Get in touch!' },
       card = {
-        href: '/projects/nh-archief/',
+        href: '/projects/joh-enschede/',
         title: 'Joh. Enschedé',
         subtitle: 'Noord-Hollands Archief, Haarlem (NL)',
         label: 'Awarded + Featured',
-        image: { src: 'projects/nh-archief/thumbnail_1x1', alt: 'Group of children gathered around a display case labeled “De Duitse stempelsnijder” (“The German Punchcutter”), observing and discussing its contents, with an adult guiding them.' }
+        image: { src: 'projects/joh-enschede/thumbnail_1x1', alt: 'Group of children gathered around a display case labeled “De Duitse stempelsnijder” (“The German Punchcutter”), observing and discussing its contents, with an adult guiding them.' }
       }
     )
   }}

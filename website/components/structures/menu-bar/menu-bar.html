@@ -3,13 +3,14 @@
 {% import 'components/molecules/menu-bar-contents/menu-bar-contents.html' as molecule_menu_bar_contents %}
 {% import 'components/molecules/menu-dialog/menu-dialog.html' as molecule_menu_dialog %}
 
-{% macro regular(id = '', href = '', title = '', aria_label = '', button_aria_label = '', dialog_aria_label = '', aria_label = '', menu_items = []) %}
-  {% set aria_label = aria_label or _('Main navigation') %}
-  {% set button_aria_label = button_aria_label or _('Toggle menu dialog') %}
-  {% set dialog_aria_label = dialog_aria_label or _('Menu dialog') %}
+{% macro regular(id = '', href = '', title = '', title_aria_label = '', aria_label = '', button_aria_label = '', dialog_aria_label = '',  menu_items = []) %}
+  {% set title_aria_label = title_aria_label or 'Back to homepage' %}
+  {% set aria_label = aria_label or 'Main navigation' %}
+  {% set button_aria_label = button_aria_label or 'Toggle menu dialog' %}
+  {% set dialog_aria_label = dialog_aria_label or 'Menu dialog' %}
 
   <nav {% if id %}id="{{ id }}"{% endif %} class="menu-bar" aria-label="{{ aria_label }}">
-    {{ molecule_menu_bar_contents.regular(href = href, title = title, aria_label = button_aria_label) }}
-    {{ molecule_menu_dialog.regular(href = href, title = title, aria_label = dialog_aria_label, button_aria_label = button_aria_label, menu_items = menu_items) }}
+    {{ molecule_menu_bar_contents.regular(href = href, title = title, title_aria_label = title_aria_label, aria_label = button_aria_label) }}
+    {{ molecule_menu_dialog.regular(href = href, title = title, title_aria_label = title_aria_label, aria_label = dialog_aria_label, button_aria_label = button_aria_label, menu_items = menu_items) }}
   </nav>
 {% endmacro %}

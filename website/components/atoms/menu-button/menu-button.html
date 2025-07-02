@@ -1,7 +1,7 @@
 {% import 'components/atoms/icon/icon.html' as atom_icon %}
 
 {% macro regular(classes = '', aria_label = '') %}
-  {% set aria_label = aria_label or _('Toggle menu dialog') %}
+  {% set aria_label = aria_label or 'Toggle menu dialog' %}
 
   <button class="menu-button {{ classes }}" data-title-open="{{ title_open }}" data-title-close="{{ title_close }}" aria-label="{{ aria_label }}" data-open="false">
     <span class="button__icon" aria-hidden="true">

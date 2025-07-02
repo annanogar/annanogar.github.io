@@ -1,10 +1,12 @@
 {% import 'components/atoms/menu-button/menu-button.html' as atom_menu_button %}
 
-{% macro regular(classes = '', href = '', title = '', aria_label = '') %}
+{% macro regular(classes = '', href = '', title = '', title_aria_label = '', aria_label = '') %}
+  {% set title_aria_label = title + ' — ' + title_aria_label %}
+
   {% if title %}
     <div class="menu-bar-contents {{ classes }}">
       {% if href %}
-        <a class="menu-bar-contents__title" href="{{ href }}">{{ title }}</a>
+        <a class="menu-bar-contents__title" href="{{ href }}" {% if title_aria_label %}aria-label="{{ title_aria_label }}"{% endif %}>{{ title }}</a>
       {% else %}
         <span class="menu-bar-contents__title">{{ title }}</span>
       {% endif %}
