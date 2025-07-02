@@ -1,0 +1,32 @@
+@use '../../../assets/stylesheets/definitions/breakpoints' as breakpoints;
+@use '../../../assets/stylesheets/definitions/grid' as grid;
+@use '../../../assets/stylesheets/definitions/typography' as typography;
+
+.call-to-nonaction {
+  position: relative;
+
+  .call-to-nonaction__wrapper {
+    align-items: center;
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    display: flex;
+    overflow: hidden;
+    padding: calc(var(--padding-xl) * 2) var(--padding-large);
+    z-index: 99;
+  }
+
+  .call-to-nonaction__quote {
+    z-index: 99;
+
+    @include typography.quote;
+  }
+
+  @include breakpoints.landscape {
+    display: flex;
+
+    .call-to-nonaction__wrapper {
+      flex: 0 0 66.667%;
+      padding: var(--padding-large) var(--padding-medium) var(--padding-large) var(--padding-large);
+    }
+  }
+}

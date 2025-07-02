@@ -1,6 +1,7 @@
 {% extends 'templates/_base.it.html' %}
 {% import 'components/organisms/article-footer/article-footer.html' as article_footer %}
 {% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
+{% import 'components/organisms/call-to-nonaction/call-to-nonaction.html' as call_to_nonaction %}
 {% import 'components/organisms/card-grid/card-grid.html' as card_grid %}
 {% import 'components/organisms/landing-header/landing-header.html' as landing_header %}
 {% set page_title = 'Progetti' %}
@@ -96,8 +97,7 @@
   }}
 
   {{
-    call_to_action.regular(
-      variant = 'dark',
+    call_to_nonaction.regular(
       quote = 'Esplora il mio percorso multidisciplinare attraverso altri progetti su Behance.'
     )
   }}
