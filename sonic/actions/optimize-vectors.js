@@ -88,7 +88,7 @@ export default async function optimizeVectors(sourceGlobs = '', type = 'files', 
     return
   }
 
-  svgo = svgo || (await import('svgo')).default
+  svgo = svgo || (await import('svgo'))
   svgoConfig = svgoConfig || (await svgo.loadConfig()) || {}
 
   // Process the source paths
