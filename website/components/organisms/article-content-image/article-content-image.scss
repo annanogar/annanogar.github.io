@@ -6,7 +6,7 @@
   position: relative;
 
   .article-content-image__image-wrapper {
-    margin-bottom: var(--padding-xl);
+    margin-bottom: calc(var(--padding-xl) * 1.6);
     position: relative;
 
     &:has(.article-content-image__cpacc-badge) {
@@ -52,7 +52,7 @@
   }
 
   .article-content-image__content-wrapper {
-    padding: 0 var(--padding-large) var(--padding-xl);
+    padding: 0 var(--padding-large) calc(var(--padding-xl) * 1.8);
   }
 
   @include breakpoints.landscape {
@@ -68,7 +68,7 @@
 
 .article-content-image--left {
   .article-content-image__content-wrapper {
-    margin-top: var(--padding-xl);
+    margin-top: calc(var(--padding-xl) * 1.6);
   }
 
   .article-content-image__image-wrapper {
@@ -98,7 +98,7 @@
 
 .article-content-image--right {
   .article-content-image__content-wrapper {
-    margin-top: var(--padding-xl);
+    margin-top: calc(var(--padding-xl) * 1.6);
   }
 
   .article-content-image__image-wrapper {

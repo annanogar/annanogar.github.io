@@ -6,7 +6,7 @@
   position: relative;
 
   .article-quote__wrapper {
-    padding: var(--padding-xl) var(--padding-large) var(--padding-xl);
+    padding: calc(var(--padding-xl) * 1.6) var(--padding-large) calc(var(--padding-xl) * 1.8);
   }
 
   .article-quote__quote {
