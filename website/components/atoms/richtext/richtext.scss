@@ -96,7 +96,7 @@
   ul,
   ol {
     list-style: none;
-    margin: 1rem 0;
+    margin: 1rem 0 2rem;
     padding: 0;
 
     @include typography.paragraph;
