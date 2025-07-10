@@ -71,7 +71,7 @@ const processSource = async (path = '', prettierConfig = null, hashCache = null)
 }
 
 // Format the files using Prettier
-export default async function formatFiles(sourceGlobs = '', type = 'files', hashCache = null) {
+export default async function formatFiles(sourceGlobs = '', type = 'files', hashCache = null, useHashCache = true) {
   if (!sourceGlobs) {
     return
   }
@@ -81,15 +81,17 @@ export default async function formatFiles(sourceGlobs = '', type = 'files', hash
   // Get the source paths
   let filepaths = await glob(sourceGlobs)
 
-  // Load the cache and filter out unchanged files
-  await hashCache?.load(CACHE_KEY)
-  filepaths = await asyncFilterConcurrently(filepaths, async source => await hashCache?.fileHasChanged(source, CACHE_KEY))
+  if (useHashCache) {
+    // Load the cache and filter out unchanged files
+    await hashCache?.load(CACHE_KEY)
+    filepaths = await asyncFilterConcurrently(filepaths, async source => await hashCache?.fileHasChanged(source, CACHE_KEY))
 
-  // Return if there are no source paths
-  if (!filepaths.length) {
-    await hashCache?.save()
+    // Return if there are no source paths
+    if (!filepaths.length) {
+      await hashCache?.save()
 
-    return
+      return
+    }
   }
 
   // Load Prettier
@@ -102,9 +104,11 @@ export default async function formatFiles(sourceGlobs = '', type = 'files', hash
   // Process the source paths
   const results = (await Promise.all(filepaths.map(path => processSource(path, prettierConfig, hashCache)))).filter(result => result)
 
-  // Save the cache
-  // TODO: Check if this should be before or after return if no items? for all instances
-  await hashCache?.save()
+  if (useHashCache) {
+    // Save the cache
+    // TODO: Check if this should be before or after return if no items? for all instances
+    await hashCache?.save()
+  }
 
   // Return if there are no results
   if (!results.length) {

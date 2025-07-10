@@ -67,7 +67,7 @@ export const tasks = {
   copyMockData: async (paths = config.mockData.sourceGlobs) => await actionCopyFiles(paths, config.mockData.sourcePath, config.mockData.destinationPath, 'mock-data files'),
   copyVendor: async (paths = config.vendor.sourceGlobs) => await actionCopyFiles(paths, config.vendor.sourcePath, config.vendor.destinationPath, 'vendor files'),
   formatMockData: async (paths = config.mockData.formatGlobs, hashCache = global.losslessSourceHashCache) => await actionFormatFiles(paths, 'mock-data', hashCache),
-  formatOutputTemplates: async (paths = config.templates.formatOutputGlobs) => await actionFormatFiles(paths, 'output templates'),
+  formatOutputTemplates: async (paths = config.templates.formatOutputGlobs) => await actionFormatFiles(paths, 'output templates', null, false),
   formatScripts: async (paths = config.scripts.formatGlobs, hashCache = global.losslessSourceHashCache) => await actionFormatFiles(paths, 'scripts', hashCache),
   formatStylesheets: async (paths = config.stylesheets.formatGlobs, hashCache = global.losslessSourceHashCache) => await actionFormatFiles(paths, 'stylesheets', hashCache),
   formatTemplates: async (paths = config.templates.formatGlobs, hashCache = global.losslessSourceHashCache) => await actionFormatFiles(paths, 'templates', hashCache),
