@@ -9,12 +9,14 @@ The font name **must** be unique. For example, add 'Webfont' to the end of the n
 ## OpenType features
 
 For the OpenType features that should be turned on or off, drop the font files here:
+
 - [OpenType.js Font Inspector](https://opentype.js.org/font-inspector.html)
 - [Wakamai Fondue](https://wakamaifondue.com)
 
 ## Font formats
 
 We only use .woff2 font files. If you need to convert a font file, use this:
+
 - [Font Squirrel Webfont Generator](https://www.fontsquirrel.com/tools/webfont-generator)
 
 ## Font weights
@@ -22,6 +24,7 @@ We only use .woff2 font files. If you need to convert a font file, use this:
 Font weight names can vary per font family. Foundries get up the the weirdest things sometimes.
 
 Standard reference:
+
 - 100: Thin, Hairline
 - 200: Extralight, Ultralight
 - 300: Light

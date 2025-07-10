@@ -1,4 +1,3 @@
-
 # WOFF/WOFF2 fonts used in the project.
 
 To add a font, create a folder with the name of the font in lowercase with dashes, like `helvetica-neue-lt-std`. If the font name is too large to type often, shorten it to something that is still unique within the project, like `helvetica-neue`.
@@ -23,12 +22,12 @@ In no particular order, these rules are:
 
 See the following translation table as an example:
 
-| original name | modified name |
-|---------------|---------------|
-| HelveticaNeueLTStd-Black.woff2 | helvetica-neue-lt-std-black.woff2 |
-| HelveticaNeueLTStd-BlackItalic.woff2 | helvetica-neue-lt-std-black-italic.woff2 |
-| InterItalic.woff2 | inter-regular-italic.woff2 |
-| FontThatHasNoRegularWeightBook.weight | font-that-has-no-regular-weight-book.woff2 |
+| original name                           | modified name                                     |
+| --------------------------------------- | ------------------------------------------------- |
+| HelveticaNeueLTStd-Black.woff2          | helvetica-neue-lt-std-black.woff2                 |
+| HelveticaNeueLTStd-BlackItalic.woff2    | helvetica-neue-lt-std-black-italic.woff2          |
+| InterItalic.woff2                       | inter-regular-italic.woff2                        |
+| FontThatHasNoRegularWeightBook.weight   | font-that-has-no-regular-weight-book.woff2        |
 | FontThatHasNoRegularWeightItalic.weight | font-that-has-no-regular-weight-book-italic.woff2 |
 
 # Multiple related families
@@ -49,17 +48,17 @@ The stylesheet for the font contains a list of weight mappings. These weights an
 
 Below is a basic reference table to start with:
 
-| reference weight value | possible weight names |
-|------------------------|-----------------------|
-| 100 | thin, hairline |
-| 200 | extra light, ultra light |
-| 300 | light |
-| **400** | **normal, regular, book** |
-| 500 | medium |
-| 600 | semibold, demibold |
-| **700** | **bold** |
-| 800 | extrabold, ultrabold |
-| 900 | black, heavy |
+| reference weight value | possible weight names     |
+| ---------------------- | ------------------------- |
+| 100                    | thin, hairline            |
+| 200                    | extra light, ultra light  |
+| 300                    | light                     |
+| **400**                | **normal, regular, book** |
+| 500                    | medium                    |
+| 600                    | semibold, demibold        |
+| **700**                | **bold**                  |
+| 800                    | extrabold, ultrabold      |
+| 900                    | black, heavy              |
 
 And this is an example of a mapping in the font definition stylesheet:
 
