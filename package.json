@@ -17,7 +17,7 @@
     "postinstall": "node sonic --postinstall",
     "start": "node sonic",
     "dev": "node sonic",
-    "build": "node sonic build",
+    "build": "node sonic build && yarn prettier . 'build/**/*.html' --write --log-level error",
     "deploy": "node sonic deploy"
   },
   "devDependencies": {
