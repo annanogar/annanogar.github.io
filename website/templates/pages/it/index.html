@@ -4,7 +4,7 @@
 {% import 'components/organisms/card-grid/card-grid.html' as card_grid %}
 {% import 'components/organisms/landing-header/landing-header.html' as landing_header %}
 {% set page_title = 'Portfolio di Anna Nogaré; Direttore Creativo, Stratega e Certificato CPACC.' %}
-{% set page_description = 'Creare esperienze educative che parlano a tutti.' %}
+{% set page_description = 'Creare esperienze significative che parlano a tutti.' %}
 {% set opengraph_image = '/static/media/social_1200x630.jpg' %}
 {% set page_url_en = '/' %}
 {% set page_url_it = '/it/' %}
@@ -18,8 +18,8 @@
 {% block content %}
   {{
     landing_header.regular(
-      title = 'Creare esperienze educative che parlano a tutti.',
-      subtitle = 'Aiuto le istituzioni culturali a trasformare la conoscenza in percorsi di apprendimento accessibili e centrati sulle persone.',
+      title = page_description,
+      subtitle = 'Aiuto istituzioni e realtà innovative a trasformare idee in percorsi accessibili e coinvolgenti, modellati sui bisogni delle persone.',
       badge = { href: '/it/manifesto/', title: 'Leggi il Manifesto Accessibilità' }
     )
   }}
