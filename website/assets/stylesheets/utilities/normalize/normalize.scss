@@ -266,7 +266,8 @@
   h4,
   h5,
   h6,
-  p {
+  p,
+  .richtext li {
     max-width: 55ch;
   }
 }
