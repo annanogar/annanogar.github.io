@@ -3,8 +3,8 @@
 {% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
 {% import 'components/organisms/card-grid/card-grid.html' as card_grid %}
 {% import 'components/organisms/landing-header/landing-header.html' as landing_header %}
-{% set page_title = 'Portfolio of Anna Nogaré; Creative Director, Strategist and CPACC Certified.' %}
-{% set page_description = 'Creating learning experiences that everyone can enjoy.' %}
+{% set page_title = 'Anna Nogaré; Creative Director, Strategist and CPACC Certified.' %}
+{% set page_description = 'Creating meaningful experiences that everyone can enjoy.' %}
 {% set opengraph_image = '/static/media/social_1200x630.jpg' %}
 {% set opengraph_title = page_title %}
 {% set opengraph_description = page_description %}
@@ -20,8 +20,8 @@
 {% block content %}
   {{
     landing_header.regular(
-      title = 'Creating learning experiences that everyone can enjoy.',
-      subtitle = 'I help cultural institutions turn their knowledge into accessible and meaningful journeys shaped by people’s needs.',
+      title = page_description,
+      subtitle = 'I help organizations turn their ideas into accessible and engaging journeys shaped by people’s needs.',
       badge = { href: '/manifesto/', title: 'Read Accessibility Manifesto' }
     )
   }}
