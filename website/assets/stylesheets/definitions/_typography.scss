@@ -28,7 +28,7 @@
   @include font-poppins.apply($weight: 'bold', $style: 'roman');
 
   @include breakpoints.landscape {
-    font-size: fluid-value.get(50px, 100px, breakpoints.$landscape, breakpoints.$desktop-large);
+    font-size: fluid-value.get(50px, 92px, breakpoints.$landscape, breakpoints.$desktop-large);
   }
 }
 
@@ -199,7 +199,7 @@
   @include font-poppins.apply($weight: 'bold', $style: 'roman');
 
   @include breakpoints.landscape {
-    font-size: fluid-value.get(50px, 100px, breakpoints.$landscape, breakpoints.$desktop-large);
+    font-size: fluid-value.get(50px, 92px, breakpoints.$landscape, breakpoints.$desktop-large);
   }
 }
 
