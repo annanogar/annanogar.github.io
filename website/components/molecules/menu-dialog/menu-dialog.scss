@@ -83,6 +83,12 @@
     }
   }
 
+  .menu-dialog__menu-link {
+    display: inline-block;
+    line-height: 1;
+    vertical-align: bottom;
+  }
+
   .menu-dialog__menu-item {
     @include typography.heading-1;
   }

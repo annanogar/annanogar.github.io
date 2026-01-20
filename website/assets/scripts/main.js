@@ -1,5 +1,5 @@
 import basicEmailProtection from './utilities/basic-email-protection.js'
-import detectLanguageAndRedirect from './utilities/detect-language-and-redirect.js'
+//import detectLanguageAndRedirect from './utilities/detect-language-and-redirect.js'
 import konamiCode from './utilities/konami-code.js'
 
 import '../../components/atoms/**/*.js'
@@ -7,7 +7,7 @@ import '../../components/molecules/**/*.js'
 import '../../components/organisms/**/*.js'
 import '../../components/structures/**/*.js'
 
-detectLanguageAndRedirect()
+//detectLanguageAndRedirect()
 basicEmailProtection()
 
 console.log('\n %cMade with %c♥%c by Elco Klingen \n', 'font: 16px serif;', 'font: 13px serif; color: #f00;', 'font: 16px serif;')

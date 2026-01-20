@@ -35,6 +35,10 @@
     }
   }
 
+  .article-content-image__cpacc-badge--member {
+    right: 11.5rem;
+  }
+
   .article-content-image__cpacc-badge-link {
     aspect-ratio: 1 / 1;
     display: inline-block;
@@ -62,6 +66,11 @@
       &:has(.article-content-image__cpacc-badge) {
         margin-bottom: max(var(--padding-large, 5.875rem));
       }
+    }
+
+    .article-content-image__cpacc-badge--member {
+      bottom: -10.5rem;
+      right: 1rem;
     }
   }
 }
