@@ -82,9 +82,15 @@
   }
 
   h3 {
-    margin: 2.5rem 0 -0.5rem;
+    margin: 2.5rem 0 -1rem;
 
     @include typography.heading-3;
+  }
+
+  h4 {
+    margin: 2rem 0 -1.5rem;
+
+    @include typography.heading-4;
   }
 
   p {

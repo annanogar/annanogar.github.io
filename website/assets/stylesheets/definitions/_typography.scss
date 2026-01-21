@@ -57,6 +57,18 @@
   }
 }
 
+@mixin heading-4 {
+  font-size: fluid-value.get(16px, 24px, breakpoints.$mobile, breakpoints.$landscape);
+  letter-spacing: 0.5px;
+  line-height: 1.33em;
+
+  @include font-poppins.apply($weight: 'bold', $style: 'roman');
+
+  @include breakpoints.landscape {
+    font-size: fluid-value.get(20px, 28px, breakpoints.$landscape, breakpoints.$desktop-large);
+  }
+}
+
 @mixin logo {
   font-size: fluid-value.get(20px, 40px, breakpoints.$mobile, breakpoints.$landscape);
   letter-spacing: normal;
