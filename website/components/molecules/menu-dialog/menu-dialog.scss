@@ -62,7 +62,6 @@
   }
 
   .menu-dialog__submenu-list {
-    gap: 0.75rem;
     margin-bottom: 1rem;
     margin-top: 1.5rem;
   }
@@ -70,8 +69,11 @@
   .menu-dialog__menu-link,
   .menu-dialog__submenu-link {
     color: var(--color-white);
+    display: inline-block;
     text-decoration: none;
     transition: color var(--easing-standard);
+    vertical-align: bottom;
+    width: 100%;
 
     &[href] {
       cursor: pointer;
@@ -83,10 +85,8 @@
     }
   }
 
-  .menu-dialog__menu-link {
-    display: inline-block;
-    line-height: 1;
-    vertical-align: bottom;
+  .menu-dialog__submenu-link {
+    padding: 0.375rem 0;
   }
 
   .menu-dialog__menu-item {
