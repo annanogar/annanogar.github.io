@@ -48,7 +48,13 @@
   @for $i from list.length($maps) through 1 {
     $current-map: list.nth($maps, $i);
     $current-key: list.nth($keys, $i);
-    $current-val: if($i == list.length($maps), $value, $result);
+
+    $current-val: $result;
+
+    @if $i == list.length($maps) {
+      $current-val: $value;
+    }
+
     $result: map.merge(
       $current-map,
       (

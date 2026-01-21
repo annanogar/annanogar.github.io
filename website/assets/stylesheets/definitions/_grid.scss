@@ -42,10 +42,19 @@
 // Grid container mixin
 @mixin container($columns: 'repeat(var(--grid-columns), [column] minmax(0, 1fr))', $with-spacing: false, $with-margin: true) {
   display: grid;
-  gap: if($with-spacing, var(--grid-spacing), 0) var(--grid-gutter);
+  gap: 0 var(--grid-gutter);
   grid-template-columns: string.unquote($columns);
   margin-inline: auto;
-  max-width: if($with-margin, calc(var(--grid-max-width) + (var(--grid-gutter) * 2) + (var(--grid-margin) * 2)), var(--grid-max-width));
-  padding-inline: if($with-margin, calc(var(--grid-gutter) + var(--grid-margin)), 0);
+  max-width: var(--grid-max-width);
+  padding-inline: 0;
   width: 100%;
+
+  @if $with-spacing {
+    gap: var(--grid-spacing) var(--grid-gutter);
+  }
+
+  @if $with-margin {
+    max-width: calc(var(--grid-max-width) + (var(--grid-gutter) * 2) + (var(--grid-margin) * 2));
+    padding-inline: calc(var(--grid-gutter) + var(--grid-margin));
+  }
 }
