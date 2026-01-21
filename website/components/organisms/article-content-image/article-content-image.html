@@ -31,16 +31,18 @@
     }}
 
     {% if cpacc_badge %}
-      <div class="article-content-image__cpacc-badge">
-        <span class="article-content-image__cpacc-badge-link">
-          <img class="article-content-image__cpacc-badge-image" src="/static/images/iaap-certified-cpacc-badge.png" alt="Certified Professional in Accessibility Core Competencies (CPACC) badge" width="120" height="120" loading="lazy" decoding="async" />
-        </span>
-      </div>
+      <div class="article-content-image__badges">
+        <div class="article-content-image__badge article-content-image__badge--cpacc">
+          <span class="article-content-image__badge-link">
+            <img class="article-content-image__badge-image" src="/static/images/iaap-certified-cpacc-badge.png" alt="Certified Professional in Accessibility Core Competencies (CPACC) badge" width="120" height="120" loading="lazy" decoding="async" />
+          </span>
+        </div>
 
-      <div class="article-content-image__cpacc-badge article-content-image__cpacc-badge--member">
-        <span class="article-content-image__cpacc-badge-link">
-          <img class="article-content-image__cpacc-badge-image" src="/static/images/iaap-professional-member-badge.png" alt="Certified by the Internal Association of Accessibility Professionals (IAAP) badge" width="120" height="120" loading="lazy" decoding="async" />
-        </span>
+        <div class="article-content-image__badge article-content-image__badge--iaap">
+          <span class="article-content-image__badge-link">
+            <img class="article-content-image__badge-image" src="/static/images/iaap-professional-member-badge.png" alt="Certified by the Internal Association of Accessibility Professionals (IAAP) badge" width="120" height="120" loading="lazy" decoding="async" />
+          </span>
+        </div>
       </div>
     {% endif %}
   </div>
