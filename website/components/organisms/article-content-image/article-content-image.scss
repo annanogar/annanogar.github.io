@@ -3,6 +3,8 @@
 @use '../../../assets/stylesheets/definitions/typography' as typography;
 
 .article-content-image {
+  --badge-size: 33vw;
+
   position: relative;
 
   .article-content-image__image-wrapper {
@@ -10,7 +12,7 @@
     position: relative;
 
     &:has(.article-content-image__badges) {
-      margin-bottom: 5.875rem;
+      margin-bottom: calc(1rem + (var(--badge-size) / 2));
     }
   }
 
@@ -18,11 +20,11 @@
     display: inline-flex;
     flex-direction: row;
     gap: 1rem;
-    height: 9.875rem;
+    height: var(--badge-size);
     overflow: visible;
     position: absolute;
     right: 1rem;
-    top: calc(100% - 4.9375rem);
+    top: calc(100% - (var(--badge-size) / 2));
     vertical-align: top;
     width: auto;
     z-index: 999;
@@ -32,7 +34,7 @@
     aspect-ratio: 1 / 1;
     display: inline-block;
     vertical-align: top;
-    width: 9.875rem;
+    width: var(--badge-size);
     z-index: 100;
   }
 
@@ -46,11 +48,13 @@
   }
 
   @include breakpoints.landscape {
+    --badge-size: 17.5vw;
+
     .article-content-image__image-wrapper {
       margin-bottom: 0;
 
       &:has(.article-content-image__badges) {
-        margin-bottom: max(var(--padding-large, 5.875rem));
+        margin-bottom: max(var(--padding-large, calc(1rem + (var(--badge-size) / 2))), 2.5rem);
       }
     }
 
@@ -61,9 +65,11 @@
   }
 
   @include breakpoints.notebook {
+    --badge-size: 12.5vw;
+
     .article-content-image__badges {
       flex-direction: row;
-      height: 9.875rem;
+      height: var(--badge-size);
       width: auto;
     }
   }
