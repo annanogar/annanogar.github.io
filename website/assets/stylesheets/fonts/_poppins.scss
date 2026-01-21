@@ -42,7 +42,11 @@ $styles: (
 
   @each $weight, $weight-value in $weights {
     @each $style, $style-value in $styles {
-      $style-name: if($style == 'regular', '', '-' + $style);
+      $style-name: '-' + $style;
+
+      @if $style == 'regular' {
+        $style-name: '';
+      }
 
       @font-face {
         ascent-override: normal;
@@ -78,11 +82,15 @@ $styles: (
 }
 
 @function get-style($style: 'roman') {
-  $style: if($style == 'regular' or $style == 'normal', 'roman', $style);
-  $style: if(map.has-key($styles, $style), $style, 'roman');
-  $style-value: map.get($styles, $style);
+  @if $style == 'regular' or $style == 'normal' {
+    $style: 'roman';
+  }
 
-  @return $style-value;
+  @if not map.has-key($styles, $style) {
+    $style: 'roman';
+  }
+
+  @return map.get($styles, $style);
 }
 
 @mixin set-style($style: 'roman') {
@@ -95,11 +103,22 @@ $styles: (
   $weight-value: 400;
 
   @if (meta.type-of($weight) == number) {
-    $weight: if(map.has-value($weights, $weight), map.key($weights, $weight), 400);
+    $weight: 400;
+
+    @if map.has-value($weights, $weight) {
+      $weight: map.key($weights, $weight);
+    }
+
     $weight-value: $weight;
   } @else if (meta.type-of($weight) == string) {
-    $weight: if($weight == 'normal', 'regular', $weight);
-    $weight: if(map.has-key($weights, $weight), $weight, 'regular');
+    @if $weight == 'normal' {
+      $weight: 'regular';
+    }
+
+    @if not map.has-key($weights, $weight) {
+      $weight: 'regular';
+    }
+
     $weight-value: map.get($weights, $weight);
   }
 
