@@ -57,7 +57,7 @@
 
   strong,
   b {
-    font-weight: bold;
+    font-weight: 900;
   }
 
   em,
@@ -178,7 +178,7 @@
     }
 
     dt {
-      font-weight: bold;
+      font-weight: 900;
     }
 
     dd {
@@ -204,5 +204,13 @@
 .richtext--footer {
   p {
     @include typography.footer-text;
+  }
+}
+
+.richtext--gigantic {
+  p {
+    margin-top: 0.5rem;
+
+    @include typography.quote;
   }
 }
