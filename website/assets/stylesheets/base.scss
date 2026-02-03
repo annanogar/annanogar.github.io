@@ -29,3 +29,7 @@ html {
 
   @include font-noto-sans.apply($weight: 'regular', $style: 'roman');
 }
+
+:root {
+  color-scheme: light only; // To prevent Chrome experiemental Dark Mode from messing up the styling
+}

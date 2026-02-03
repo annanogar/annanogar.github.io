@@ -57,3 +57,18 @@
     </div>
   {% endif %}
 {% endmacro %}
+
+{% macro gigantic(richtext = '') %}
+  {# Allowed tags: <p>, <a> #}
+
+  {% if richtext or caller %}
+    <div class="richtext richtext--gigantic">
+      {% if richtext %}
+        {{ richtext|safe }}
+      {% elif caller %}
+        {% set child_context = caller() %}
+        {{ child_context }}
+      {% endif %}
+    </div>
+  {% endif %}
+{% endmacro %}

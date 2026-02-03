@@ -21,9 +21,9 @@
     flex-direction: row;
     gap: 1rem;
     height: var(--badge-size);
+    left: calc(var(--padding-large) * 0.85);
     overflow: visible;
     position: absolute;
-    right: 1rem;
     top: calc(100% - (var(--badge-size) / 2));
     vertical-align: top;
     width: auto;
@@ -61,6 +61,8 @@
     .article-content-image__badges {
       flex-direction: column;
       height: auto;
+      left: unset;
+      right: 2.25rem;
     }
   }
 
