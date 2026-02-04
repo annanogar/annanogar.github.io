@@ -1471,7 +1471,7 @@ __metadata:
     esbuild: "npm:0.27.2"
     eslint: "npm:9.39.2"
     eslint-config-prettier: "npm:10.1.8"
-    focus-trap: "npm:7.8.0"
+    focus-trap: "npm:8.0.0"
     globals: "npm:17.3.0"
     nunjucks: "npm:3.2.4"
     picomatch: "npm:4.0.3"
@@ -1959,12 +1959,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"focus-trap@npm:7.8.0":
-  version: 7.8.0
-  resolution: "focus-trap@npm:7.8.0"
+"focus-trap@npm:8.0.0":
+  version: 8.0.0
+  resolution: "focus-trap@npm:8.0.0"
   dependencies:
     tabbable: "npm:^6.4.0"
-  checksum: 10c0/b75f97c2896de569fc779f9b898b7c4a48b0605176b2a7a4b70a64bc2ae39a0b3c66fc7c8b2cd4e5d1e0a439b031e025a7cd1031d3a68ab652c0495bc14f070a
+  checksum: 10c0/b5a53a197f40e55b9817f9473cd231eaed315fed013cf41a6110c172780df733a221dd369068af6aa7307949e3c91ec3330810ab51f4c5f3c72aa475288246aa
   languageName: node
   linkType: hard
 

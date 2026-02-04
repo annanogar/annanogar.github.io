@@ -53,7 +53,7 @@
     "dotenv": "16.4.5"
   },
   "dependencies": {
-    "focus-trap": "7.8.0"
+    "focus-trap": "8.0.0"
   },
   "resolutionExplanations": {
     "node-gyp": "linked to null because we don't need it - note: this breaks fs-events and @parcel/watcher (re-)compilation"
