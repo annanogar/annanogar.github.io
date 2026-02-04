@@ -47,6 +47,11 @@
       }
     }
 
+    .richtext--gigantic {
+      margin-right: calc(var(--padding-large) * 2.5);
+      width: calc(100% + (var(--padding-large) * 2.5));
+    }
+
     .badge {
       margin: 0;
       right: var(--padding-large);

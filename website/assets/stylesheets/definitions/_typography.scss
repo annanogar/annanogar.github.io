@@ -163,7 +163,7 @@
   @include font-poppins.apply($weight: 'bold', $style: 'roman');
 
   @include breakpoints.landscape {
-    font-size: fluid-value.get(20px, 28px, breakpoints.$landscape, breakpoints.$desktop-large);
+    font-size: fluid-value.get(16px, 24px, breakpoints.$landscape, breakpoints.$desktop-large);
   }
 }
 
@@ -225,5 +225,17 @@
   @include breakpoints.landscape {
     font-size: fluid-value.get(24px, 51px, breakpoints.$landscape, breakpoints.$desktop-large);
     line-height: 1.5em;
+  }
+}
+
+@mixin paragraph-gigantic {
+  font-size: fluid-value.get(22px, 44px, breakpoints.$mobile, breakpoints.$landscape);
+  letter-spacing: normal;
+  line-height: 1.33em;
+
+  @include font-poppins.apply($weight: 'bold', $style: 'roman');
+
+  @include breakpoints.landscape {
+    font-size: fluid-value.get(27px, 55px, breakpoints.$landscape, breakpoints.$desktop-large);
   }
 }
