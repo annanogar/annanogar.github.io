@@ -157,7 +157,7 @@
 @mixin label {
   font-size: fluid-value.get(16px, 24px, breakpoints.$mobile, breakpoints.$landscape);
   letter-spacing: normal;
-  line-height: 1.5em;
+  line-height: 1.05em;
   text-transform: uppercase;
 
   @include font-poppins.apply($weight: 'bold', $style: 'roman');
