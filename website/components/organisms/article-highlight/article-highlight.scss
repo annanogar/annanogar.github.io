@@ -3,6 +3,7 @@
 @use '../../../assets/stylesheets/definitions/typography' as typography;
 
 .article-highlight {
+  margin: -1px 0; // To get rid of hairlines of images above and below
   position: relative;
 
   .article-highlight__wrapper {

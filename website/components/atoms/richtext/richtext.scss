@@ -11,6 +11,7 @@
       background-color: var(--color-common-link-background);
       color: var(--color-common-link-foreground);
       text-decoration: underline;
+      text-decoration-thickness: 1px;
 
       &:hover,
       &:focus-visible {
@@ -211,6 +212,6 @@
   p {
     margin-top: 0.5rem;
 
-    @include typography.quote;
+    @include typography.paragraph-gigantic;
   }
 }
