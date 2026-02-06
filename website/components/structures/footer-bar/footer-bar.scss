@@ -43,6 +43,8 @@
     text-decoration: none;
     text-decoration-thickness: 1px;
 
+    @include typography.footer-link;
+
     &[href] {
       cursor: pointer;
       text-decoration: underline;
@@ -51,6 +53,11 @@
       &:focus-visible {
         text-decoration: none;
       }
+    }
+
+    > strong,
+    > b {
+      font-weight: inherit;
     }
   }
 

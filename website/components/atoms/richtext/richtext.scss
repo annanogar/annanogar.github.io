@@ -1,6 +1,7 @@
 @use '../../../assets/stylesheets/definitions/breakpoints' as breakpoints;
 @use '../../../assets/stylesheets/definitions/typography' as typography;
 @use '../../../assets/stylesheets/utilities/mixins/adaptive-margin' as adaptive-margin;
+@use '../../../assets/stylesheets/fonts/noto-sans' as font-noto-sans;
 
 @mixin text-links {
   a {
@@ -54,16 +55,16 @@
     white-space: unset;
 
     @include text-links;
-  }
 
-  strong,
-  b {
-    font-weight: 900;
-  }
+    strong,
+    b {
+      font-weight: 900;
+    }
 
-  em,
-  i {
-    font-style: italic;
+    em,
+    i {
+      font-style: italic;
+    }
   }
 
   > *:first-child {
