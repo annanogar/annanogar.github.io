@@ -7,7 +7,7 @@
 $name: 'Poppins Webfont';
 $filename: 'poppins';
 $path: '../fonts/' + $filename + '/';
-$stack: string.quote($name), 'Adjusted Arial Fallback for Poppins', 'Arial', sans-serif;
+$stack: string.quote($name), 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 $feature-settings:
   'kern' 1,
   'liga' 1,
@@ -59,15 +59,6 @@ $styles: (
         src: url($path + $filename + '-' + $weight + $style-name + '.woff2') format('woff2');
       }
     }
-  }
-
-  @font-face {
-    ascent-override: 98%;
-    descent-override: 35%;
-    font-family: 'Adjusted Arial Fallback for Poppins';
-    line-gap-override: normal;
-    size-adjust: 100%;
-    src: local(arial);
   }
 }
 
