@@ -17,7 +17,7 @@ export default {
   legalComments: 'none',
   assetNames: '[dir][name]',
   chunkNames: '[dir][name].[hash]',
-  loader: { '.worker.js': 'text' },
+  loader: { '.worker.js': 'text', '.vert': 'text', '.frag': 'text' },
   plugins: [globImporter()],
   sourcemap: true,
   platform: 'browser',

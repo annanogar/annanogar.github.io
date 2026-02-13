@@ -1,7 +1,7 @@
 {% import 'components/atoms/picture/picture.html' as atom_picture %}
 {% import 'components/atoms/richtext/richtext.html' as atom_richtext %}
 
-{% macro _image_wrapper(image = {}, cpacc_badge = false) %}
+{% macro _image_wrapper(image = {}, cpacc_badge = false, hearts_shader = false) %}
   <div class="article-content-image__image-wrapper">
     {{
       atom_picture.regular(
@@ -26,7 +26,8 @@
         alt = image.alt,
         width = 320,
         height = 320,
-        loading = image.loading or 'lazy'
+        loading = image.loading or 'lazy',
+        hearts_shader = hearts_shader
       )
     }}
 
@@ -48,13 +49,13 @@
   </div>
 {% endmacro %}
 
-{% macro regular(variant = '', image = {}, richtext = '', cpacc_badge = false) %}
+{% macro regular(variant = '', image = {}, richtext = '', cpacc_badge = false, hearts_shader = false) %}
   {% set variant = variant or 'left' %}
 
   {% if (richtext or caller) and image and image.src %}
     <div class="article-content-image article-content-image--{{ variant }}">
       <div class="article-content-image__wrapper">
-        {{ _image_wrapper(image, cpacc_badge) }}
+        {{ _image_wrapper(image, cpacc_badge, hearts_shader) }}
 
         <div class="article-content-image__content-wrapper">
           {% if richtext %}
