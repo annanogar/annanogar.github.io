@@ -104,8 +104,8 @@ export default class HeartsShader {
 
   resizeCanvasToDisplaySize() {
     const dpr = window.devicePixelRatio || 1
-    const width = Math.round(window.innerWidth * dpr)
-    const height = Math.round(window.innerHeight * dpr)
+    const width = Math.round(this.element.clientWidth * dpr)
+    const height = Math.round(this.element.clientHeight * dpr)
 
     if (this.canvas.width !== width || this.canvas.height !== height) {
       this.canvas.width = width
