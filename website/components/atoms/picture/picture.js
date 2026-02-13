@@ -9,9 +9,7 @@ class PictureComponent extends Component {
   }
 
   initHeartsShader() {
-    if (new Date().toDateString().includes(' Feb 14 ')) {
-      this.shader = new HeartsShader(this.element)
-      this.shader.init()
+    if (!new Date().toDateString().includes(' Feb 14 ')) {
       return
     }
 
