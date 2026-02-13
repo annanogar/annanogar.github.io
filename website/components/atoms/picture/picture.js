@@ -9,9 +9,9 @@ class PictureComponent extends Component {
   }
 
   initHeartsShader() {
-    if (!new Date().toDateString().includes(' Feb 14 ')) {
-      return
-    }
+    //if (!new Date().toDateString().includes(' Feb 14 ')) {
+    //  return
+    //}
 
     let count = 0
 
