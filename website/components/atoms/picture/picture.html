@@ -1,9 +1,9 @@
-{% macro regular(classes = '', src = '', sources = [], width = 0, height = 0, alt = '', loading = '', decoding = '') %}
+{% macro regular(classes = '', src = '', sources = [], width = 0, height = 0, alt = '', loading = '', decoding = '', hearts_shader = false) %}
   {% set loading = loading or 'lazy' %}
   {% set decoding = decoding or 'async' %}
 
   {% if src or (sources and sources.length > 0) %}
-    <picture class="picture {{ classes }}">
+    <picture class="picture {{ classes }}" {% if hearts_shader %}data-hearts-shader{% endif %}>
       {% for source in sources %}
         <source srcset="{{ source.srcsets|join(', ') }}" type="{{ source.type }}" />
       {% endfor %}
