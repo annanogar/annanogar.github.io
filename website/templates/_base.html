@@ -31,13 +31,13 @@
       <link rel="modulepreload" href="{{ asset_with_hash('scripts/main.js') }}" as="script" crossorigin />
     {% endblock %}
 
-    <meta name="application-name" content="{{ site_title }}" />
+    <meta name="application-name" content="{{ site_name }}" />
     <meta name="theme-color" content="#fff" />
     <meta name="msapplication-TileColor" content="#fff" />
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content="{{ page_title }}" />
-    <meta property="og:site_name " content="{{ site_title }}" />
+    <meta property="og:site_name" content="{{ site_name }}" />
     <meta property="og:description" content="{{ full_page_description }}" />
     {% if opengraph_url %}<meta property="og:url" content="{{ opengraph_url }}" />{% endif %}
     {% if opengraph_image %}<meta property="og:image" content="https://annanogar.com{{ opengraph_image }}" />{% endif %}
