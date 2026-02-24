@@ -5,6 +5,16 @@
 .card-grid {
   position: relative;
 
+  .card-grid__title-wrapper {
+    padding: 0 var(--padding-large);
+  }
+
+  .card-grid__title {
+    margin-bottom: 1.25rem;
+
+    @include typography.heading-4;
+  }
+
   .card-grid__wrapper {
     padding: 0;
   }
@@ -16,15 +26,16 @@
     padding: 0;
   }
 
-  //.card-grid__item {
-  //}
-
   .product-card {
     aspect-ratio: 1 / 1;
     grid-column: span 1;
   }
 
   @include breakpoints.landscape {
+    .card-grid__title-wrapper {
+      padding: 0 calc(var(--padding-large) * 3.5) 0 var(--padding-large);
+    }
+
     .card-grid__items {
       grid-template-columns: 1fr 1fr 1fr;
     }
