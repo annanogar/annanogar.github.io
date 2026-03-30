@@ -1,0 +1,92 @@
+{% extends 'templates/_base.it.html' %}
+{% import 'components/organisms/article-content-image/article-content-image.html' as article_content_image %}
+{% import 'components/organisms/article-header/article-header.html' as article_header %}
+{% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
+{% set page_title = 'Servizi' %}
+{% set page_description = 'Lavoro in diversi ambiti culturali, educativi, turistici e pubblici, tra cui musei, mostre, archivi, scuole, università, centri visitatori, comuni e siti di interesse culturale.' %}
+{% set opengraph_image = '/static/media/misc/social_1200x630.jpg' %}
+{% set page_url_en = '/services/' %}
+{% set page_url_it = '/it/servizi/' %}
+
+{% block linked_pages %}
+  <link rel="alternate" hreflang="en" href="https://annanogar.com{{ page_url_en }}" />
+  <link rel="alternate" hreflang="it" href="https://annanogar.com{{ page_url_it }}" />
+  <link rel="alternate" hreflang="x-default" href="https://annanogar.com{{ page_url_en }}" />
+{% endblock %}
+
+{% block content %}
+  {{
+    article_header.regular(
+      title = page_title,
+      subtitle = page_description
+    )
+  }}
+
+  {%
+    call article_content_image.regular(
+      variant = 'left',
+      image = { src: 'misc/reviewing-blueprints_rawpixel-unsplash_1x1', alt: 'Primo piano di una stilista in abito rosso che esamina dettagliati progetti in un interno luminoso.' }
+    )
+  %}
+    <h2>Strategia & Concept</h2>
+
+    <p>Definire cos’è l’esperienza, a chi è rivolta e come deve funzionare.</p>
+
+    <ul>
+      <li>Definizione dei visitor journeys e dell'esperienza</li>
+      <li>Sviluppo del concept e della struttura narrativa</li>
+      <li>Definizione delle fasi iniziali del progetto</li>
+      <li>Sviluppo e gestione di pitch e gare d'appalto</li>
+      <li>Allineamento degli stakeholder e inquadramento del progetto</li>
+    </ul>
+  {% endcall %}
+
+  {%
+    call article_content_image.regular(
+      variant = 'right',
+      image = { src: 'misc/production-silhouette_sam-moghadam-unsplash_1x1', alt: 'Silhouette suggestiva di una troupe di produzione e di una scala di legno contro pareti blu e magenta brillanti.' }
+    )
+  %}
+    <h2>Direzione Creativa & Artistica</h2>
+
+    <p>Guidare i progetti dal concept alla realizzazione, lungo tutti i touchpoint.</p>
+
+    <ul>
+      <li>Direzione creativa e artistica</li>
+      <li>Experience design (fisico, digitale e ibrido)</li>
+      <li>Interaction design, informal learning e meccaniche di gioco</li>
+      <li>Information design, contenuti e flusso narrativo</li>
+      <li>Coordinamento di team multidisciplinari e guida di stakeholders</li>
+    </ul>
+  {% endcall %}
+
+  {%
+    call article_content_image.regular(
+      variant = 'left',
+      image = { src: 'misc/crowd-in-museum_liam-mcgarry-unsplash_1x1', alt: 'Una ripresa a lunga esposizione di una folla che scende una scalinata di pietra bianca in un museo, con vivaci poster di grafica alle loro spalle.' }
+    )
+  %}
+    <h2>Accessibilità & Design Inclusivo</h2>
+
+    <p>Integrare l’accessibilità e promuovere pratiche più inclusive.</p>
+
+    <ul>
+      <li>Audit di accessibilità (fisico, digitale e ibrido)</li>
+      <li>Workshop e lectures per pubblici e contesti diversi</li>
+      <li>Applicazione del design universale e standard di accessibilità</li>
+      <li>Ricerca, test e definizione di linee guida</li>
+      <li>Consulenza strategica e revisione dei progetti</li>
+    </ul>
+  {% endcall %}
+
+  {{
+    call_to_action.regular(
+      quote = 'Il modo in cui progettiamo conta. Pensiamoci.',
+      card = {
+        href: '/it/manifesto/',
+        title: 'Leggi il Manifesto Accessibilità',
+        image: { src: 'misc/wheelchair-sign_robert-harkness-unsplash_1x1', alt: 'Simbolo stilizzato di sedia a rotelle dipinto sull’asfalto, con un piccolo mazzo di fiori posato tra le mani della figura.' }
+      }
+    )
+  }}
+{% endblock %}

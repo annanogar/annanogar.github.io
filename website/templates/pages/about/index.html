@@ -4,7 +4,7 @@
 {% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
 {% set page_title = 'About' %}
 {% set page_description = 'I’m Anna Nogaré, a Creative Director & Strategist specialized in creating meaningful experiences that everyone can enjoy.' %}
-{% set opengraph_image = '/static/media/about/social_1200x630.jpg' %}
+{% set opengraph_image = '/static/media/misc/social_1200x630.jpg' %}
 {% set page_url_en = '/about/' %}
 {% set page_url_it = '/it/profilo/' %}
 
@@ -24,69 +24,42 @@
   {%
     call article_content_image.regular(
       variant = 'left',
-      image = { loading: 'eager', src: 'about/section01_1x1', alt: 'Anna Nogaré’s face close up looking down with multicolored light and foliage projections on her face and background.' },
+      image = { src: 'misc/anna-dots_1x1', alt: 'Anna Nogaré facing the camera with colorful dot projections on her face and shirt, against a dark background.' },
       cpacc_badge = true,
       hearts_shader = true
     )
   %}
-    <h2>Who I am</h2>
+    <h2>About</h2>
 
-    <p>I’m Anna Nogarè, a Creative Director & Strategist working on large-scale international projects across culture, education, tourism, and technology.</p>
-    <p>With over ten years of international experience, I create complex digital, physical, and hybrid experiences and ecosystems. My work brings together creative direction, experience strategy, and cross-functional coordination, supporting teams and stakeholders in shaping projects that integrate vision, research, and organizational goals into coherent, meaningful, and accessible outcomes.</p>
-    <p>I’m CPACC-certified (Certified Professional in Accessibility Core Competencies) by the International Association of Accessibility Professionals (IAAP), and an active member of the association.</p>
-    <p>Some of the organizations I’ve worked with include the National Museum of Qatar (Doha, QA), ilmi Science Discovery & Innovation Center (Riyadh, SA), the Museum of Natural Sciences (Brussels, BE), the Icelandic Museum of Natural History (Reykjavík, IS), Het Steen Visitor Center (Antwerp, BE), Canon Professional Network (Europe), the Dutch National Police (NL), Amnesty International Nederlands (NL), and others across different sectors.</p>
+    <p>I’m Anna Nogaré, a Creative Director & Strategist working across cultural, educational, tourism, and public environments. I shape digital, physical, and hybrid experiences that translate complex content into meaningful and accessible journeys.</p>
+    <p>With over ten years of international experience, I’ve worked on large-scale projects across Europe and the Middle East, collaborating with multidisciplinary teams and cross-functional stakeholders to bring ideas from concept to delivery.</p>
+    <p>I’m also an Experience & Accessibility Consultant, integrating universal design principles and advocating for more inclusive practices. I’m CPACC-certified (Certified Professional in Accessibility Core Competencies) by the International Association of Accessibility Professionals (IAAP).</p>
+    <p>Some of the organizations I’ve worked with include the National Museum of Qatar, ilmi Science Discovery & Innovation Center (Riyadh), the Museum of Natural Sciences (Brussels), the Icelandic Museum of Natural History, Het Steen Visitor Center (Antwerp), Canon Professional Network (EU), the Dutch National Police, and others across different sectors.</p>
   {% endcall %}
 
   {%
     call article_content_image.regular(
       variant = 'right',
-      image = { src: 'about/section02_1x1', alt: 'Anna Nogaré leaning forward at a table with sticky notes, listening while a man writes in the background.' }
+      image = { src: 'misc/anna-leaning-forward_1x1', alt: 'Anna Nogaré leaning forward at a table with sticky notes, listening while a man writes in the background.' }
     )
   %}
-    <h2>How I work</h2>
+    <h2>Approach</h2>
 
-    <p>In my work, I’ve learned that engagement starts by meeting people where they are. Everyone understands, learns, and expresses themselves differently: through images, stories, sound, movement, or interaction. What matters is creating spaces where people can feel something, connect, reflect, and take something with them.</p>
-    <p>When information is emotionally resonant and easy to navigate, it opens doors. By embedding play, informal learning, and curiosity into the experience, moments become more meaningful and memorable. When learning doesn’t feel forced or formal, it becomes more human, grounded in exploration, empathy, and discovery.</p>
-    <p>We need flexible and welcoming journeys that respond to diverse needs and ways of being. It means creating multi-sensory experiences where people can reach the same destination in different ways, at their own pace, in their own style. The most powerful experiences aren’t just seen; they’re felt, lived, and remembered.</p>
-    <p>In practice, I start by understanding who an experience is for, what kind of emotional or learning response it should create, and how people might move through a space, system, or piece of content. I use research, testing, and observation to shape a clear direction, then develop structures that balance ambition with feasibility, budget, and long-term impact, bringing ideas to life through co-creation, prototyping, and iteration in a way that supports inclusion, sustainability, and long-term growth.</p>
-  {% endcall %}
-
-  {%
-    call article_content_image.regular(
-      variant = 'left',
-      image = { src: 'about/cta_1x1', alt: 'Anna Nogaré facing the camera with colorful dot projections on her face and shirt, against a dark background.' }
-    )
-  %}
-    <h2>What I offer</h2>
-
-    <p>
-      <strong>Experience & Design Strategy</strong><br />
-      Define goals, analyse audiences, and structure complex projects, translating vision, research insights, and constraints into clear, actionable directions.
-    </p>
-
-    <p>
-      <strong>Cross-functional & International Coordination</strong><br />
-      Coordinate multidisciplinary teams, partners, and stakeholders across international contexts, aligning strategy, design, content, technology, timelines, and delivery requirements.
-    </p>
-
-    <p>
-      <strong>Creative & Art Direction</strong><br />
-      Lead creative and art direction across digital, physical, and hybrid experiences, guiding teams and stakeholders from early concept through production and delivery.
-    </p>
-
-    <p>
-      <strong>Research & Accessibility</strong><br />
-      Apply qualitative and quantitative research, prototyping, testing, and universal design standards (WCAG, EAA, and related standards) to embed accessibility as a structural design principle through reviews, guidelines, and workshops.
-    </p>
+    <p>Engagement starts by meeting people where they are.</p>
+    <p>Everyone understands, learns, and expresses themselves differently through images, stories, sound, movement, or interaction. It’s important to create spaces where people can feel, connect, reflect, and take something with them.</p>
+    <p>I design with this in mind.</p>
+    <p>I create flexible and welcoming experiences that respond to diverse needs and ways of being, shaping multi-sensory journeys where people can reach the same destination in different ways, at their own pace and in their own style.</p>
+    <p>I start by understanding who the experience is for, what it should enable, and how people will move through it. From there, I shape a clear direction and work with teams to bring it to life, balancing ambition with feasibility and ideas with real-world constraints.</p>
+    <p>By combining information design, informal learning, game mechanics, and emotional engagement, journeys become more meaningful and memorable, and the experience becomes more human, grounded in empathy, exploration, and discovery.</p>
   {% endcall %}
 
   {{
     call_to_action.regular(
       quote = 'Great ideas start with simple conversations.',
       card = {
-        href: '/manifesto/',
-        title: 'Read Accessibility Manifesto',
-        image: { src: 'manifesto/section01_robert-harkness-unsplash_1x1', alt: 'Stylized wheelchair symbol painted on asphalt, with a small bouquet of flowers placed in the figure’s hands.' }
+        href: '/services/',
+        title: 'Discover my services',
+        image: { src: 'misc/reviewing-blueprints_rawpixel-unsplash_1x1', alt: 'Close-up of a designer in a red dress reviewing detailed blueprints in a brightly lit interior.' }
       }
     )
   }}

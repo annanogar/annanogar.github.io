@@ -5,7 +5,7 @@
 {% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
 {% set page_title = 'Manifesto Accessibilità' %}
 {% set page_description = 'Non riguarda solo loro alla fine del progetto. Riguarda tutti noi fin dall’inizio.' %}
-{% set opengraph_image = '/static/media/manifesto/social_1200x630.jpg' %}
+{% set opengraph_image = '/static/media/misc/social_1200x630.jpg' %}
 {% set page_url_en = '/manifesto/' %}
 {% set page_url_it = '/it/manifesto/' %}
 
@@ -25,7 +25,7 @@
   {%
     call article_content_image.regular(
       variant = 'left',
-      image = { loading: 'eager', src: 'manifesto/section01_robert-harkness-unsplash_1x1', alt: 'Simbolo stilizzato di sedia a rotelle dipinto sull’asfalto, con un piccolo mazzo di fiori posato tra le mani della figura.' }
+      image = { loading: 'eager', src: 'misc/wheelchair-sign_robert-harkness-unsplash_1x1', alt: 'Simbolo stilizzato di sedia a rotelle dipinto sull’asfalto, con un piccolo mazzo di fiori posato tra le mani della figura.' }
     )
   %}
     <p>L’accessibilità non è un favore. Non è questione di benevolenza. E di certo non è riservata a <em>pochi</em>.</p>
@@ -47,7 +47,7 @@
   {%
     call article_content_image.regular(
       variant = 'right-reversed',
-      image = { src: 'manifesto/cta_megan-bucknall-unsplash_1x1', alt: 'Bandiera Pride a strisce arcobaleno con il testo bianco in grassetto “Y’all Means All!” appesa all’interno di una finestra.' }
+      image = { src: 'misc/yall-means-all_megan-bucknall-unsplash_1x1', alt: 'Bandiera Pride a strisce arcobaleno con il testo bianco in grassetto “Y’all Means All!” appesa all’interno di una finestra.' }
     )
   %}
     <p>Voglio rendere le cose meno frustranti per tutti.</p>
@@ -60,11 +60,9 @@
     call_to_action.regular(
       quote = 'Più ne parliamo, più possiamo cambiare le cose.',
       card = {
-        href: '/it/progetti/shifting-image/',
-        title: 'Shifting Image',
-        subtitle: 'Mauritshuis, L’Aia (NL)',
-        label: 'Premiato',
-        image: { src: 'projects/shifting-image/thumbnail_1x1', alt: 'Primo piano di una donna che osserva un grande dipinto coloniale raffigurante una nobildonna con bambini. La donna si trova in una galleria buia illuminata da faretti focalizzati sulle opere.' }
+        href: '/it/contatti/',
+        title: 'Mettiti in contatto con me',
+        image: { src: 'misc/vintage-telephone_pawel-czerwinski-unsplash_1x1', alt: 'Un telefono in stile antico con base in legno e cornetta in metallo argentato su uno sfondo blu scuro.' }
       }
     )
   }}
