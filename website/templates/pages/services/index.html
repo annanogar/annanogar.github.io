@@ -1,0 +1,92 @@
+{% extends 'templates/_base.en.html' %}
+{% import 'components/organisms/article-content-image/article-content-image.html' as article_content_image %}
+{% import 'components/organisms/article-header/article-header.html' as article_header %}
+{% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
+{% set page_title = 'Services' %}
+{% set page_description = 'I work across cultural, educational, tourism, and public environments, including museums, exhibitions, archives, schools, universities, visitor centres, municipalities, and heritage sites.' %}
+{% set opengraph_image = '/static/media/misc/social_1200x630.jpg' %}
+{% set page_url_en = '/services/' %}
+{% set page_url_it = '/it/servizi/' %}
+
+{% block linked_pages %}
+  <link rel="alternate" hreflang="en" href="https://annanogar.com{{ page_url_en }}" />
+  <link rel="alternate" hreflang="it" href="https://annanogar.com{{ page_url_it }}" />
+  <link rel="alternate" hreflang="x-default" href="https://annanogar.com{{ page_url_en }}" />
+{% endblock %}
+
+{% block content %}
+  {{
+    article_header.regular(
+      title = page_title,
+      subtitle = page_description
+    )
+  }}
+
+  {%
+    call article_content_image.regular(
+      variant = 'left',
+      image = { src: 'misc/reviewing-blueprints_rawpixel-unsplash_1x1', alt: 'Close-up of a designer in a red dress reviewing detailed blueprints in a brightly lit interior.' }
+    )
+  %}
+    <h2>Strategy & Concept</h2>
+
+    <p>Define what the experience is, who it is for, and how it works.</p>
+
+    <ul>
+      <li>Visitor journeys and experience outlines</li>
+      <li>Concept development and narrative structure</li>
+      <li>Early-stage project definition</li>
+      <li>Development and management of pitches and tenders</li>
+      <li>Stakeholder alignment and project framing</li>
+    </ul>
+  {% endcall %}
+
+  {%
+    call article_content_image.regular(
+      variant = 'right',
+      image = { src: 'misc/production-silhouette_sam-moghadam-unsplash_1x1', alt: 'Dramatic silhouette of a production crew and a wooden ladder against glowing blue and magenta walls.' }
+    )
+  %}
+    <h2>Creative & Art Direction</h2>
+
+    <p>Guide projects from concept to delivery, across all touchpoints.</p>
+
+    <ul>
+      <li>Creative and art direction</li>
+      <li>Experience design (physical, digital, and hybrid)</li>
+      <li>Interaction design, informal learning, and game mechanics</li>
+      <li>Information design, content integration, and narrative flow</li>
+      <li>Leading multidisciplinary teams and guiding stakeholders</li>
+    </ul>
+  {% endcall %}
+
+  {%
+    call article_content_image.regular(
+      variant = 'left',
+      image = { src: 'misc/crowd-in-museum_liam-mcgarry-unsplash_1x1', alt: 'A long-exposure shot of a crowd moving down white stone steps in a museum, with vibrant graphic design posters on the wall behind them.' }
+    )
+  %}
+    <h2>Accessibility & Inclusive Design</h2>
+
+    <p>Integrate accessibility and advocate for more inclusive practices.</p>
+
+    <ul>
+      <li>Accessibility audits (physical, digital, and hybrid)</li>
+      <li>Workshops and lectures for diverse audiences and contexts</li>
+      <li>Applying universal design and accessibility standards</li>
+      <li>Research, testing, and development of accessibility guidelines</li>
+      <li>Strategic advisory and project reviews</li>
+    </ul>
+  {% endcall %}
+
+  {{
+    call_to_action.regular(
+      quote = 'How we design matters. Let’s think about it.',
+      card = {
+        href: '/manifesto/',
+        title: 'Read Accessibility Manifesto',
+        image: { src: 'misc/wheelchair-sign_robert-harkness-unsplash_1x1', alt: 'Stylized wheelchair symbol painted on asphalt, with a small bouquet of flowers placed in the figure’s hands.' }
+      }
+    )
+  }}
+{% endblock %}

@@ -1,12 +1,12 @@
 {% extends 'templates/_base.it.html' %}
 {% import 'components/organisms/article-footer/article-footer.html' as article_footer %}
+{% import 'components/organisms/article-header/article-header.html' as article_header %}
 {% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
 {% import 'components/organisms/call-to-nonaction/call-to-nonaction.html' as call_to_nonaction %}
 {% import 'components/organisms/card-grid/card-grid.html' as card_grid %}
-{% import 'components/organisms/landing-header/landing-header.html' as landing_header %}
 {% set page_title = 'Progetti selezionati' %}
 {% set page_description = 'Una selezione di progetti che esplorano modi diversi di creare esperienze coinvolgenti per pubblici differenti. Ogni progetto nasce da un obiettivo specifico, sempre guidato da un approccio centrato sulle persone.' %}
-{% set opengraph_image = '/static/media/projects/social_1200x630.jpg' %}
+{% set opengraph_image = '/static/media/misc/social_1200x630.jpg' %}
 {% set page_url_en = '/projects/' %}
 {% set page_url_it = '/it/progetti/' %}
 
@@ -18,7 +18,7 @@
 
 {% block content %}
   {{
-    landing_header.regular(
+    article_header.regular(
       title = page_title,
       subtitle = page_description
     )
@@ -110,7 +110,7 @@
       card = {
         href: '/it/profilo/',
         title: 'Scopri il mio profilo',
-        image: { src: 'about/cta_1x1', alt: 'Anna Nogaré rivolta verso la fotocamera con proiezioni colorate a punti su viso e maglietta, contro uno sfondo scuro.' }
+        image: { src: 'misc/anna-dots_1x1', alt: 'Anna Nogaré rivolta verso la fotocamera con proiezioni colorate a punti su viso e maglietta, contro uno sfondo scuro.' }
       }
     )
   }}
