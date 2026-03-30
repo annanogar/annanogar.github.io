@@ -12,7 +12,7 @@
   "bin": {
     "sonic": "./sonic/index.js"
   },
-  "packageManager": "yarn@4.7.0",
+  "packageManager": "yarn@4.13.0",
   "scripts": {
     "postinstall": "node sonic --postinstall",
     "start": "node sonic",
