@@ -1,0 +1,79 @@
+@use '../../../assets/stylesheets/definitions/breakpoints' as breakpoints;
+@use '../../../assets/stylesheets/definitions/typography' as typography;
+
+.tricard {
+  aspect-ratio: 1 / 3;
+  display: grid;
+  grid-template-columns: 1fr;
+  overflow: hidden;
+  position: relative;
+
+  .tricard__picture {
+    &,
+    .picture__image {
+      aspect-ratio: 1 / 1;
+      column-span: span 1;
+    }
+  }
+
+  .tricard__content {
+    height: 100%;
+    inset: 0;
+    position: absolute;
+    width: 100%;
+  }
+
+  .tricard__content {
+    background-color: var(--color-blue);
+    border-bottom: 200vw solid var(--color-blue);
+    color: var(--color-white);
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    overflow: hidden;
+    padding: 5vw;
+    place-content: center;
+    place-items: center;
+    pointer-events: none;
+    text-align: center;
+    transition: opacity var(--easing-slow);
+    z-index: 10;
+  }
+
+  .tricard__title {
+    margin-bottom: 1.25rem;
+    margin-top: 0.25rem;
+
+    @include typography.project-card-title--large;
+  }
+
+  .tricard__subtitle {
+    margin-bottom: 0.75rem;
+    padding: 0 1.5rem;
+
+    @include typography.subtitle;
+  }
+
+  &:hover,
+  &:focus-visible {
+    .tricard__content {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+
+  @include breakpoints.landscape {
+    aspect-ratio: 3 / 1;
+    grid-template-columns: repeat(3, 1fr);
+
+    .tricard__content {
+      border-bottom-width: 0;
+      padding: 2vw;
+    }
+
+    .tricard__title {
+      margin-bottom: 0.25rem;
+      margin-top: 0.25rem;
+    }
+  }
+}

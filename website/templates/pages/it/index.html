@@ -3,6 +3,7 @@
 {% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
 {% import 'components/organisms/card-grid/card-grid.html' as card_grid %}
 {% import 'components/organisms/landing-header/landing-header.html' as landing_header %}
+{% import 'components/organisms/tricard-call-to-action/tricard-call-to-action.html' as tricard_call_to_action %}
 {% set page_title = 'Portfolio di Anna Nogaré; Direttore Creativo, Stratega e Certificato CPACC.' %}
 {% set page_description = 'Creare esperienze significative che parlano a tutti.' %}
 {% set opengraph_image = '/static/media/misc/social_1200x630.jpg' %}
@@ -104,6 +105,21 @@
       quote = 'Non riguarda <em>solo loro</em> alla fine. Riguarda <em>tutti noi</em> fin dall’inizio.',
       badge = { variant: 'bright', href: '/it/profilo/', title: 'Scopri il mio profilo' },
       image = { src: 'misc/anna-dots_1x1', alt: 'Anna Nogaré rivolta verso la fotocamera con proiezioni colorate a punti su viso e maglietta, contro uno sfondo scuro.' }
+    )
+  }}
+
+  {{
+    tricard_call_to_action.regular(
+      card = {
+        href: '/it/servizi/',
+        title_1: 'Strategia & Concept',
+        title_2: 'Direzione Creativa & Artistica',
+        title_3: 'Accessibilità & Design Inclusivo',
+        subtitle: 'Servizi',
+        image_1: { src: 'misc/reviewing-blueprints_rawpixel-unsplash_1x1', alt: 'Primo piano di una stilista in abito rosso che esamina dettagliati progetti in un interno luminoso.' },
+        image_2: { src: 'misc/production-silhouette_sam-moghadam-unsplash_1x1', alt: 'Silhouette suggestiva di una troupe di produzione e di una scala di legno contro pareti blu e magenta brillanti.' },
+        image_3: { src: 'misc/crowd-in-museum_liam-mcgarry-unsplash_1x1', alt: 'Una ripresa a lunga esposizione di una folla che scende una scalinata di pietra bianca in un museo, con vivaci poster di grafica alle loro spalle.' }
+      }
     )
   }}
 {% endblock %}

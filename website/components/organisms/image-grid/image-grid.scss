@@ -19,7 +19,7 @@
 
   .image-grid__items {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
     list-style: none;
     padding: 0;
   }
@@ -40,11 +40,7 @@
     }
 
     .image-grid__items {
-      grid-template-columns: 1fr 1fr 1fr;
-
-      //&:not(:first-child) {
-      //  margin-top: var(--padding-large);
-      //}
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 }

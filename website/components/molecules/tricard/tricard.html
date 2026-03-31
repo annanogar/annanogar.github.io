@@ -1,0 +1,104 @@
+{% import 'components/atoms/picture/picture.html' as atom_picture %}
+
+{% macro regular(href = '', title_1 = '', title_2 = '', title_3 = '', subtitle = '', image_1 = {}, image_2 = {}, image_3 = {}) %}
+  {% if href and title_1 and image_1 and image_1.src and image_2 and image_2.src and image_3 and image_3.src %}
+    <a class="tricard" href="{{ href }}">
+      {{
+        atom_picture.regular(
+          classes = 'tricard__picture tricard__picture--one',
+          sources = [
+            {
+              type: 'image/webp',
+              srcsets: [
+                '/static/media/' + image_1.src + '_640w.webp 640w',
+                '/static/media/' + image_1.src + '_854w.webp 854w',
+                '/static/media/' + image_1.src + '_1280w.webp 1280w'
+              ]
+            },
+            {
+              type: 'image/jpg',
+              srcsets: [
+                '/static/media/' + image_1.src + '_640w.jpg 640w',
+                '/static/media/' + image_1.src + '_854w.jpg 854w',
+                '/static/media/' + image_1.src + '_1280w.jpg 1280w'
+              ]
+            }
+          ],
+          alt = image_1.alt,
+          width = 320,
+          height = 320
+        )
+      }}
+
+      {{
+        atom_picture.regular(
+          classes = 'tricard__picture tricard__picture--two',
+          sources = [
+            {
+              type: 'image/webp',
+              srcsets: [
+                '/static/media/' + image_2.src + '_640w.webp 640w',
+                '/static/media/' + image_2.src + '_854w.webp 854w',
+                '/static/media/' + image_2.src + '_1280w.webp 1280w'
+              ]
+            },
+            {
+              type: 'image/jpg',
+              srcsets: [
+                '/static/media/' + image_2.src + '_640w.jpg 640w',
+                '/static/media/' + image_2.src + '_854w.jpg 854w',
+                '/static/media/' + image_2.src + '_1280w.jpg 1280w'
+              ]
+            }
+          ],
+          alt = image_2.alt,
+          width = 320,
+          height = 320
+        )
+      }}
+
+      {{
+        atom_picture.regular(
+          classes = 'tricard__picture tricard__picture--three',
+          sources = [
+            {
+              type: 'image/webp',
+              srcsets: [
+                '/static/media/' + image_3.src + '_640w.webp 640w',
+                '/static/media/' + image_3.src + '_854w.webp 854w',
+                '/static/media/' + image_3.src + '_1280w.webp 1280w'
+              ]
+            },
+            {
+              type: 'image/jpg',
+              srcsets: [
+                '/static/media/' + image_3.src + '_640w.jpg 640w',
+                '/static/media/' + image_3.src + '_854w.jpg 854w',
+                '/static/media/' + image_3.src + '_1280w.jpg 1280w'
+              ]
+            }
+          ],
+          alt = image_3.alt,
+          width = 320,
+          height = 320
+        )
+      }}
+
+      <div class="tricard__content">
+        {% if subtitle %}
+          <p class="tricard__subtitle">{{ subtitle }}</p>
+        {% endif %}
+
+        <p class="tricard__title">{{ title_1 }}</p>
+
+        {% if title_2 %}
+          <p class="tricard__title">{{ title_2 }}</p>
+        {% endif %}
+
+        {% if title_3 %}
+          <p class="tricard__title">{{ title_3 }}</p>
+        {% endif %}
+      </div>
+    </a>
+  {% endif %}
+{% endmacro %}
