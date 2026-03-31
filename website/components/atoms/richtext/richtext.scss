@@ -99,6 +99,13 @@
     margin: 1.5rem 0;
 
     @include typography.paragraph;
+
+    &.paragraph--gigantic {
+      margin-top: 0.5rem;
+      max-width: 50rem;
+
+      @include typography.paragraph-gigantic;
+    }
   }
 
   ul,
@@ -206,15 +213,5 @@
 .richtext--footer {
   p {
     @include typography.footer-text;
-  }
-}
-
-.richtext--gigantic {
-  max-width: 50rem;
-
-  p {
-    margin-top: 0.5rem;
-
-    @include typography.paragraph-gigantic;
   }
 }
