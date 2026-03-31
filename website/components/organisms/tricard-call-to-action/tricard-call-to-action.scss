@@ -2,37 +2,22 @@
 @use '../../../assets/stylesheets/definitions/grid' as grid;
 @use '../../../assets/stylesheets/definitions/typography' as typography;
 
-.card-grid {
+.tricard-call-to-action {
   position: relative;
 
-  .card-grid__title-wrapper {
-    padding: 0 var(--padding-large);
-  }
-
-  .card-grid__title {
-    margin-bottom: 0.75em;
-
-    @include typography.heading-4;
-  }
-
-  .card-grid__wrapper {
+  .tricard-call-to-action__wrapper {
     padding: 0;
   }
 
-  .card-grid__items {
-    display: grid;
-    grid-template-columns: 1fr;
+  .tricard-call-to-action__items {
+    display: block;
     list-style: none;
     padding: 0;
   }
 
   @include breakpoints.landscape {
-    .card-grid__title-wrapper {
+    .tricard-call-to-action__title-wrapper {
       padding: 0 calc(var(--padding-large) * 3.5) 0 var(--padding-large);
-    }
-
-    .card-grid__items {
-      grid-template-columns: repeat(3, 1fr);
     }
   }
 }

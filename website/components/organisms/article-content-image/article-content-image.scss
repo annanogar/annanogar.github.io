@@ -96,7 +96,7 @@
 
     .article-content-image__image-wrapper {
       flex: 0 0 33.333%;
-      margin-bottom: 0;
+      margin-bottom: var(--padding-large);
     }
 
     .article-content-image__content-wrapper {
@@ -126,7 +126,7 @@
 
     .article-content-image__image-wrapper {
       flex: 0 0 33.333%;
-      margin-bottom: 0;
+      margin-bottom: var(--padding-large);
     }
 
     .article-content-image__content-wrapper {
@@ -161,7 +161,7 @@
     .article-content-image__image-wrapper {
       align-self: flex-end;
       flex: 0 0 33.333%;
-      margin-bottom: 0;
+      margin-bottom: var(--padding-large);
     }
 
     .article-content-image__content-wrapper {
