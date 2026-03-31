@@ -94,6 +94,19 @@
   }
 }
 
+@mixin project-card-title--large {
+  font-size: fluid-value.get(32px, 38px, breakpoints.$mobile, breakpoints.$landscape);
+  letter-spacing: normal;
+  line-height: 1.2em;
+
+  @include font-poppins.apply($weight: 'bold', $style: 'roman');
+
+  @include breakpoints.landscape {
+    font-size: fluid-value.get(32px, 92px, breakpoints.$landscape, breakpoints.$desktop-large);
+    line-height: 1.333em;
+  }
+}
+
 @mixin button {
   font-size: fluid-value.get(16px, 24px, breakpoints.$mobile, breakpoints.$landscape);
   letter-spacing: normal;

@@ -1,0 +1,22 @@
+{% import 'components/molecules/tricard/tricard.html' as molecule_tricard %}
+
+{% macro regular(card = {}) %}
+  {% if card and card.image_1 and card.image_2 and card.image_3 %}
+    <div class="tricard-call-to-action">
+      {% if title %}
+        <div class="tricard-call-to-action__title-wrapper">
+          <h2 class="tricard-call-to-action__title">{{ title }}</h2>
+        </div>
+      {% endif %}
+
+      <div class="tricard-call-to-action__wrapper">
+        <ul class="tricard-call-to-action__items">
+          {{ object_set_value(card.image_1, 'loading', 'eager') }}
+          {{ object_set_value(card.image_2, 'loading', 'eager') }}
+          {{ object_set_value(card.image_3, 'loading', 'eager') }}
+          <li class="tricard-call-to-action__item">{{ molecule_tricard.regular(href = card.href, title_1 = card.title_1, title_2 = card.title_2, title_3 = card.title_3, subtitle = card.subtitle, image_1 = card.image_1, image_2 = card.image_2, image_3 = card.image_3) }}</li>
+        </ul>
+      </div>
+    </div>
+  {% endif %}
+{% endmacro %}

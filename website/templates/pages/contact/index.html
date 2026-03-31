@@ -1,7 +1,7 @@
 {% extends 'templates/_base.en.html' %}
-{% import 'components/organisms/article-content/article-content.html' as article_content %}
+{% import 'components/organisms/article-content-image/article-content-image.html' as article_content_image %}
+{% import 'components/organisms/article-header/article-header.html' as article_header %}
 {% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
-{% import 'components/organisms/landing-header/landing-header.html' as landing_header %}
 {% set page_title = 'Contact' %}
 {% set page_description = 'If you’d like to discuss a project, ask a question, or simply say hi, I’d love to hear from you.' %}
 {% set opengraph_image = '/static/media/misc/social_1200x630.jpg' %}
@@ -16,14 +16,22 @@
 
 {% block content %}
   {{
-    landing_header.regular(
-      title = page_title,
-      subtitle = page_description,
-      richtext = '<p>I’m currently based in Italy and work worldwide.</p>',
-      richtext_gigantic = '<p><a href="mailto:_send_me_an_">_send_me_an_</a><br/><a href="tel:_or_pick_up_the_">_or_pick_up_the_</a></p>',
-      more_richtext = '<p>P.IVA: IT01315520252</p>'
+    article_header.regular(
+      title = page_title
     )
   }}
+
+  {%
+    call article_content_image.regular(
+      variant = 'left',
+      image = { src: 'misc/vintage-telephone_pawel-czerwinski-unsplash_1x1', alt: 'An antique-style telephone with a wooden base and silver metal handset against a dark blue background.' }
+    )
+  %}
+    <p>{{ page_description }}</p>
+    <p>I’m currently based in Italy and work worldwide.</p>
+    <p class="paragraph--gigantic"><a href="mailto:_send_me_an_">_send_me_an_</a><br /><a href="tel:_or_pick_up_the_">_or_pick_up_the_</a></p>
+    <p style="font-variant: small-caps;">P.IVA: IT01315520252</p>
+  {% endcall %}
 
   {{
     call_to_action.regular(
