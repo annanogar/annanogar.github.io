@@ -1,0 +1,91 @@
+{% extends 'templates/_base.en.html' %}
+{% import 'components/organisms/article-content/article-content.html' as article_content %}
+{% import 'components/organisms/article-quote/article-quote.html' as article_quote %}
+{% import 'components/organisms/article-header/article-header.html' as article_header %}
+{% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
+{% set page_title = 'We are all temporarily able. Yes, you too.' %}
+{% set page_description = 'TODO' %}
+{% set opengraph_image = '/static/media/misc/social_1200x630.jpg' %}
+
+{% block content %}
+  {{
+    article_header.regular(
+      title = 'We are all temporarily able. <br/>Yes, you too.',
+      subtitle = '12/05/2026 | <em>12 min</em>'
+    )
+  }}
+
+  {% call article_content.regular() %}
+    <p>Let’s be honest: the word &ldquo;disabled&rdquo; makes people uncomfortable, not so much those who live with disability, but those who have to say the word aloud. We tend to avoid it, replacing it with softer labels such as <em>differently abled</em>, <em>person with special needs</em>, or <em>neurodivergent</em>. Sometimes we use those terms carefully, almost proudly, to show how sensitive and inclusive we are. Other times, we avoid the subject altogether because &ldquo;disabled&rdquo; feels too harsh, too direct, almost offensive.</p>
+    <p>But if being disabled weren’t something that concerns &ldquo;other people&rdquo;, but a concrete possibility that concerns all of us, then that word would stop feeling so distant. So uncomfortable.</p>
+    <p>This isn’t the first time we’ve changed a word in the hope of changing perspective.We moved, thankfully, from &ldquo;handicapped&rdquo; to &ldquo;disabled&rdquo;, precisely to shift attention from the person experiencing a difficulty to the environment that generates it. In fact, the term &ldquo;disabled&rdquo; refers to the difficulty or impossibility of carrying out a specific activity autonomously, in relation to particular contexts or barriers. Nothing offensive, nothing sanitised: simply a fact.</p>
+    <p>And yet the negative, discriminatory, or pity-driven connotations attached to disability are so deeply rooted that finding the right word for it has become almost impossible. Because, in truth, what makes us uncomfortable is not the word itself, but the idea behind it.</p>
+    <p>Honestly, I don’t think that reaction comes from an excess of sensitivity, but from the fact that most of us know very little about disability. Either because it does not feel like it concerns us, or because we are afraid to even sit with the idea. But how many times in our lives have we found ourselves, quite literally, <em>dis-abled</em>?</p>
+    <p>We break a limb, lose our glasses, don’t speak the language of the person in front of us: suddenly, the world is no longer built for us.</p>
+    <p>We’re blinded by the sun, exhausted after a sleepless night, or flattened by a migraine: even the simplest things become impossible.</p>
+    <p>These are just a few small examples of moments when we are all literally dis-abled, temporarily, yes, but dis-abled nonetheless.</p>
+    <p>According to the UN, in countries where life expectancy exceeds 70 years, it is estimated that a person spends on average around 8 years, equal to 11.5% of their life, living with some form of disability.</p>
+    <p>Let’s face reality, then: the chances of remaining fully able for an entire lifetime are extremely low, if not nonexistent. Our functionality, our autonomy, and our physical, cognitive, and emotional balance depend on factors we take for granted, until they’re gone.</p>
+  {% endcall %}
+
+  {{
+    article_quote.regular(
+      quote = 'That’s why I think it makes more sense to think we are all temporarily able. Yes, you too.'
+    )
+  }}
+
+  {% call article_content.regular() %}
+    <p>So if we’re all truly temporarily able, why do we find it so hard to relate to disability?</p>
+    <p>As mentioned earlier, the word disabled was meant to shift attention away from the individual and toward the environment around them. If society creates barriers, society creates disability. Without barriers, much of what we call disability would not exist in the same way.</p>
+    <p>This is precisely what <em>accessibility</em> is about: removing barriers so that environments and contexts do not disable people in the first place.</p>
+    <p>There are many examples of real disabilities that aren’t even perceived as such, because society has integrated them so successfully that they have become normalised.</p>
+    <p>Eyeglasses are a clear example. People who wear them don’t see well, so technically they have a limitation, but nobody thinks of them as disabled, because a solution exists that is so widespread that the condition has simply been absorbed into the system. It is no longer perceived as a barrier and therefore no longer named as disability, even though technically it is.</p>
+    <p>This shows how much the relationship between disability and context is far more important than we think, even just in defining the concept of disability itself.The same applies to anyone who needs an elevator, subtitles, or simplified instructions. These needs become disabilities only when the environment stops responding, stops offering alternatives, stops allowing flexibility.</p>
+  {% endcall %}
+
+  {{
+    article_quote.regular(
+      quote = 'In other words, disability isn’t something that belongs to a person; it’s an unequal relationship between that person and a context that never accounted for them.'
+    )
+  }}
+
+  {% call article_content.regular() %}
+    <p>That is why I want to challenge the assumption that the problem always lies in the individual.</p>
+    <p>If I cannot use stairs but I have access to a ramp that allows me to reach the same destination as everyone else, in what sense am I <em>dis-abled</em>? <em>Dis-abled</em> from doing what, exactly?</p>
+    <p>I do not want to deny disability or minimise the real difficulties many people face every day. Speaking about systemic barriers does not erase pain, fatigue, or discrimination. It explains them better. Because I deeply believe that it is also the context that defines disability, not just the body.</p>
+    <p>If we think about it, we admit this ourselves every time we celebrate a disabled person for having “made it <em>despite everything</em>.” It is precisely in that <em>“despite everything”</em> that the trick hides. Every time someone is applauded for achieving something despite their condition, we are implicitly acknowledging that the system was never designed for them or their needs. We are admitting that to achieve something ordinary, they had to make an extraordinary effort, and instead of questioning that unfair system, we applaud, but very little changes for the person involved.</p>
+    <p>The problem is that this way of thinking appears everywhere: in the places we inhabit, the services we use, and the experiences we design.</p>
+    <p>Accessibility is still treated as a kind concession, something to consider only if there’s time, budget, or if someone explicitly asks for it.</p>
+    <p>And yet today it is required by law. Finally, one might say.</p>
+    <p>In practice, however, it is often followed more to avoid penalties or look good than out of genuine conviction. It becomes a checklist completed at the last minute with the minimum effort possible. As if ticking a box were enough to say you’ve done your part.But accessibility is not an add-on, nor a formality: it is a collective responsibility.</p>
+    <p>A design competence that is necessary to guarantee the minimum conditions for something to truly work for all of us, and not only those who happen to fit a standard that, let’s be honest, in the end, represents almost no one.</p>
+  {% endcall %}
+
+  {{
+    article_quote.regular(
+      quote = 'I believe society is not afraid of disability itself. It is afraid of being treated the way disabled people are treated.'
+    )
+  }}
+
+  {%
+    call article_content.regular(
+      button = { href: '/resources/', title: 'Back to resources' }
+    )
+  %}
+    <p>So disability is avoided, stigmatised, or turned into inspirational symbolism. Meanwhile, we continue building physical, digital, and cultural barriers while congratulating ourselves for using the right words, but in reality, nothing has changed.</p>
+    <p>I'm not here to deny disability, but to reject the toxic narrative around it, because we could all be far more able, or at least given the conditions to be, if the world were designed to truly include every body, every mind, every experience.</p>
+    <p>The problem is not me. The problem is the world as it was designed. And the fact that we keep thinking of ourselves as able until we're not.</p>
+    <p>We changed the word.<br />Now we need to change perspective.</p>
+  {% endcall %}
+
+  {{
+    call_to_action.regular(
+      quote = 'Great ideas start with simple conversations.',
+      card = {
+        href: '/services/',
+        title: 'Discover my services',
+        image: { src: 'misc/reviewing-blueprints_rawpixel-unsplash_1x1', alt: 'Close-up of a designer in a red dress reviewing detailed blueprints in a brightly lit interior.' }
+      }
+    )
+  }}
+{% endblock %}

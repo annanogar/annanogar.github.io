@@ -6,12 +6,20 @@
   position: relative;
 
   .article-content__wrapper {
-    padding: calc(var(--padding-xl) * 1.6) var(--padding-large);
+    padding: 0 var(--padding-large) calc(var(--padding-xl) * 1.6);
+  }
+
+  .article-content__buttons {
+    margin-top: var(--padding-xl);
   }
 
   @include breakpoints.landscape {
     .article-content__wrapper {
-      padding: var(--padding-medium) calc(var(--padding-large) * 3.5) var(--padding-large) var(--padding-large);
+      padding: 0 var(--padding-large) var(--padding-large);
+    }
+
+    .article-content__buttons {
+      margin-top: var(--padding-medium);
     }
   }
 }

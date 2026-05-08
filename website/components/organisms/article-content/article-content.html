@@ -1,6 +1,7 @@
+{% import 'components/atoms/button/button.html' as atom_button %}
 {% import 'components/atoms/richtext/richtext.html' as atom_richtext %}
 
-{% macro regular(variant = '', richtext = '') %}
+{% macro regular(variant = '', richtext = '', button = {}) %}
   {% if richtext or caller %}
     <div class="article-content">
       <div class="article-content__wrapper">
@@ -14,6 +15,12 @@
               {{ child_context }}
             {% endcall %}
           {% endif %}
+        {% endif %}
+
+        {% if button.href and button.title %}
+          <div class="article-content__buttons">
+            {{ atom_button.regular(variant = 'primary', href = button.href, target = button.target, title = button.title) }}
+          </div>
         {% endif %}
       </div>
     </div>
