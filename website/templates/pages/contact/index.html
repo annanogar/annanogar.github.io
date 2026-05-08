@@ -5,14 +5,6 @@
 {% set page_title = 'Contact' %}
 {% set page_description = 'If you’d like to discuss a project, ask a question, or simply say hi, I’d love to hear from you.' %}
 {% set opengraph_image = '/static/media/misc/social_1200x630.jpg' %}
-{% set page_url_en = '/contact/' %}
-{% set page_url_it = '/it/contatti/' %}
-
-{% block linked_pages %}
-  <link rel="alternate" hreflang="en" href="https://annanogar.com{{ page_url_en }}" />
-  <link rel="alternate" hreflang="it" href="https://annanogar.com{{ page_url_it }}" />
-  <link rel="alternate" hreflang="x-default" href="https://annanogar.com{{ page_url_en }}" />
-{% endblock %}
 
 {% block content %}
   {{

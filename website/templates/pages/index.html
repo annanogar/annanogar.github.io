@@ -9,14 +9,6 @@
 {% set opengraph_image = '/static/media/misc/social_1200x630.jpg' %}
 {% set opengraph_title = page_title %}
 {% set opengraph_description = page_description %}
-{% set page_url_en = '/' %}
-{% set page_url_it = '/it/' %}
-
-{% block linked_pages %}
-  <link rel="alternate" hreflang="en" href="https://annanogar.com{{ page_url_en }}" />
-  <link rel="alternate" hreflang="it" href="https://annanogar.com{{ page_url_it }}" />
-  <link rel="alternate" hreflang="x-default" href="https://annanogar.com{{ page_url_en }}" />
-{% endblock %}
 
 {% block content %}
   {{
