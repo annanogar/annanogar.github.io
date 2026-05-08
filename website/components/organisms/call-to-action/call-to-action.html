@@ -1,6 +1,7 @@
 {% import 'components/atoms/badge/badge.html' as atom_badge %}
 {% import 'components/atoms/picture/picture.html' as atom_picture %}
 {% import 'components/molecules/project-card/project-card.html' as molecule_project_card %}
+{% import 'components/molecules/service-card/service-card.html' as molecule_service_card %}
 
 {% macro regular(variant = '', quote = '', badge = {}, image = {}, card = {}) %}
   {% set variant = variant or 'regular' %}
@@ -16,7 +17,11 @@
       {% endif %}
 
       {% if card and card.href %}
-        {{ molecule_project_card.regular(href = card.href, title = card.title, subtitle = card.subtitle, label = card.label, image = card.image) }}
+        {% if card.image %}
+          {{ molecule_project_card.regular(href = card.href, title = card.title, subtitle = card.subtitle, label = card.label, image = card.image) }}
+        {% else %}
+          {{ molecule_service_card.regular(href = card.href, title = card.title, subtitle = card.subtitle, label = card.label) }}
+        {% endif %}
       {% elif image and image.src %}
         {{
           atom_picture.regular(

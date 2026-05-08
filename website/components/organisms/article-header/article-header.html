@@ -1,4 +1,4 @@
-{% macro regular(title = '', subtitle = '') %}
+{% macro regular(title = '', subtitle = '', subtitle_2 = '') %}
   {% if title %}
     <div class="article-header">
       <div class="article-header__wrapper">
@@ -6,6 +6,10 @@
 
         {% if subtitle %}
           <p class="article-header__subtitle">{{ subtitle }}</p>
+        {% endif %}
+
+        {% if subtitle_2 %}
+          <p class="article-header__subtitle">{{ subtitle_2 }}</p>
         {% endif %}
       </div>
     </div>

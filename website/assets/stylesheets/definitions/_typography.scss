@@ -107,6 +107,18 @@
   }
 }
 
+@mixin card-title--small {
+  font-size: fluid-value.get(22px, 44px, breakpoints.$mobile, breakpoints.$landscape);
+  letter-spacing: normal;
+  line-height: 1.25em;
+
+  @include font-poppins.apply($weight: 'bold', $style: 'roman');
+
+  @include breakpoints.landscape {
+    font-size: fluid-value.get(27px, 55px, breakpoints.$landscape, breakpoints.$desktop-large);
+  }
+}
+
 @mixin card-subtitle {
   font-size: fluid-value.get(16px, 24px, breakpoints.$mobile, breakpoints.$landscape);
   letter-spacing: normal;

@@ -1,0 +1,55 @@
+@use '../../../assets/stylesheets/definitions/breakpoints' as breakpoints;
+@use '../../../assets/stylesheets/definitions/typography' as typography;
+
+.article-card {
+  display: block;
+  position: relative;
+  text-decoration: none;
+  width: 100%;
+
+  .article-card__content {
+    background-color: var(--color-blue);
+    color: var(--color-white);
+    display: flex;
+    flex-direction: column;
+    padding: 10vw 5vw;
+    transition: background-color var(--easing-slow);
+    z-index: 10;
+  }
+
+  .article-card__pretitle {
+    margin-bottom: 1.5rem;
+    max-width: 100%;
+    width: 100%;
+
+    @include typography.card-subtitle;
+  }
+
+  .article-card__title {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+
+    @include typography.card-title--small;
+  }
+
+  .article-card__subtitle {
+    margin-top: 1.5rem;
+    max-width: 100%;
+    width: 100%;
+
+    @include typography.card-subtitle;
+  }
+
+  &:hover,
+  &:focus-visible {
+    .article-card__content {
+      background-color: var(--color-pink);
+    }
+  }
+
+  @include breakpoints.landscape {
+    .article-card__content {
+      padding: 4rem 2rem;
+    }
+  }
+}
