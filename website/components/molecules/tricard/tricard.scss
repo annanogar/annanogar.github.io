@@ -44,14 +44,14 @@
     margin-bottom: 1.25rem;
     margin-top: 0.25rem;
 
-    @include typography.project-card-title--large;
+    @include typography.card-title--large;
   }
 
   .tricard__subtitle {
     margin-bottom: 0.75rem;
     padding: 0 1.5rem;
 
-    @include typography.subtitle;
+    @include typography.card-subtitle;
   }
 
   &:hover,

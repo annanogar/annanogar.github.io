@@ -1,4 +1,5 @@
 {% import 'components/molecules/project-card/project-card.html' as molecule_project_card %}
+{% import 'components/molecules/service-card/service-card.html' as molecule_service_card %}
 
 {% macro regular(cards = [], title = '') %}
   {% if cards|length %}
@@ -16,7 +17,13 @@
               {{ object_set_value(card.image, 'loading', 'eager') }}
             {% endif %}
 
-            <li class="card-grid__item">{{ molecule_project_card.regular(href = card.href, title = card.title, subtitle = card.subtitle, label = card.label, image = card.image) }}</li>
+            <li class="card-grid__item">
+              {% if card.image %}
+                {{ molecule_project_card.regular(href = card.href, title = card.title, subtitle = card.subtitle, label = card.label, image = card.image) }}
+              {% else %}
+                {{ molecule_service_card.regular(href = card.href, title = card.title, subtitle = card.subtitle, label = card.label) }}
+              {% endif %}
+              </li>
           {% endfor %}
         </ul>
       </div>

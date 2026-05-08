@@ -82,7 +82,7 @@
   }
 }
 
-@mixin project-card-title {
+@mixin card-title {
   font-size: fluid-value.get(32px, 64px, breakpoints.$mobile, breakpoints.$landscape);
   letter-spacing: normal;
   line-height: 1.25em;
@@ -94,7 +94,7 @@
   }
 }
 
-@mixin project-card-title--large {
+@mixin card-title--large {
   font-size: fluid-value.get(32px, 38px, breakpoints.$mobile, breakpoints.$landscape);
   letter-spacing: normal;
   line-height: 1.2em;
@@ -104,6 +104,18 @@
   @include breakpoints.landscape {
     font-size: fluid-value.get(32px, 92px, breakpoints.$landscape, breakpoints.$desktop-large);
     line-height: 1.333em;
+  }
+}
+
+@mixin card-subtitle {
+  font-size: fluid-value.get(16px, 24px, breakpoints.$mobile, breakpoints.$landscape);
+  letter-spacing: normal;
+  line-height: 1.5em;
+
+  @include font-noto-sans.apply($weight: 'regular', $style: 'roman');
+
+  @include breakpoints.landscape {
+    font-size: fluid-value.get(20px, 28px, breakpoints.$landscape, breakpoints.$desktop-large);
   }
 }
 

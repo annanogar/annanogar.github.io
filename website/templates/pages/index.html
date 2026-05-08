@@ -111,17 +111,28 @@
   }}
 
   {{
-    tricard_call_to_action.regular(
-      card = {
-        href: '/services/',
-        title_1: 'Interpretive Concept',
-        title_2: 'Creative Leadership',
-        title_3: 'Accessibility Strategy',
-        subtitle: 'Services',
-        image_1: { src: 'misc/reviewing-blueprints_rawpixel-unsplash_1x1', alt: 'Close-up of a designer in a red dress reviewing detailed blueprints in a brightly lit interior.' },
-        image_2: { src: 'misc/production-silhouette_sam-moghadam-unsplash_1x1', alt: 'Dramatic silhouette of a production crew and a wooden ladder against glowing blue and magenta walls.' },
-        image_3: { src: 'misc/crowd-in-museum_liam-mcgarry-unsplash_1x1', alt: 'A long-exposure shot of a crowd moving down white stone steps in a museum, with vibrant graphic design posters on the wall behind them.' }
-      }
+    card_grid.regular(
+      cards = [
+        {
+          href: '/services/',
+          title: 'Services',
+          subtitle: 'Interpretive Concept <br/>Creative Leadership <br/>Accessibility Strategy',
+          image: { src: 'misc/production-silhouette_sam-moghadam-unsplash_1x1', alt: 'Dramatic silhouette of a production crew and a wooden ladder against glowing blue and magenta walls.' }
+        },
+
+        {
+          href: '/manifesto/',
+          title: 'Manifesto',
+          subtitle: '',
+          image: { src: 'misc/wheelchair-sign_robert-harkness-unsplash_1x1', alt: 'Stylized wheelchair symbol painted on asphalt, with a small bouquet of flowers placed in the figure’s hands.' }
+        },
+
+        {
+          href: '/resources/',
+          title: 'Resources',
+          subtitle: 'A collection of articles, opinions, thoughts, and reflections.'
+        }
+      ]
     )
   }}
 {% endblock %}
