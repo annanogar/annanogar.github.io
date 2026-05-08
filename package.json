@@ -30,18 +30,18 @@
     "autoprefixer": "10.5.0",
     "browserslist": "4.28.2",
     "esbuild": "0.28.0",
-    "eslint": "10.2.0",
+    "eslint": "10.3.0",
     "eslint-config-prettier": "10.1.8",
-    "globals": "17.5.0",
+    "globals": "17.6.0",
     "nunjucks": "3.2.4",
     "picomatch": "4.0.4",
-    "postcss": "8.5.10",
+    "postcss": "8.5.14",
     "postcss-scss": "4.0.9",
     "prettier": "3.8.3",
-    "prettier-plugin-jinja-template": "2.1.0",
+    "prettier-plugin-jinja-template": "2.2.0",
     "sass-embedded": "1.99.0",
     "sharp": "0.34.5",
-    "stylelint": "17.8.0",
+    "stylelint": "17.11.0",
     "stylelint-config-recommended-scss": "17.0.1",
     "stylelint-config-standard": "40.0.0",
     "stylelint-order": "8.1.1",
@@ -54,7 +54,7 @@
     "dotenv": "16.4.5"
   },
   "dependencies": {
-    "focus-trap": "8.0.1"
+    "focus-trap": "8.2.0"
   },
   "resolutionExplanations": {
     "node-gyp": "linked to null because we don't need it - note: this breaks fs-events and @parcel/watcher (re-)compilation"
