@@ -3,7 +3,7 @@
 
 {% macro regular(variant = '', cards = [], title = '') %}
   {% if cards|length %}
-    <div class="card-grid card-grid--{{ variant or 'default'}}">
+    <div class="card-grid card-grid--{{ variant or 'default' }}">
       {% if title %}
         <div class="card-grid__title-wrapper">
           <h2 class="card-grid__title">{{ title }}</h2>

@@ -18,9 +18,7 @@
         {% endif %}
 
         {% if button.href and button.title %}
-          <div class="article-content__buttons">
-            {{ atom_button.regular(variant = 'primary', href = button.href, target = button.target, title = button.title) }}
-          </div>
+          <div class="article-content__buttons">{{ atom_button.regular(variant = 'primary', href = button.href, target = button.target, title = button.title) }}</div>
         {% endif %}
       </div>
     </div>

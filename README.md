@@ -23,7 +23,8 @@ yarn --version
 3. Install dependencies.
 
 ```zsh
-yarn
+yarn install
+yarn playwright install chromium
 ```
 
 4. Setup the environment (and update the values where needed).
@@ -48,6 +49,8 @@ Run `node sonic` to start development. You can also use `yarn dev` if you prefer
 
 Run `node sonic build` to build all static assets to `/build/`.
 This is a fully contained static website.
+
+Run `node sonic test` to run the accessibility tests, this will build the project first.
 
 Run `node sonic help` for more information about Sonic and how to use it.
 
