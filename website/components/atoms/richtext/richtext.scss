@@ -106,6 +106,10 @@
 
       @include typography.paragraph-gigantic;
     }
+
+    &.paragraph--pause {
+      margin-top: 0rem;
+    }
   }
 
   ul,

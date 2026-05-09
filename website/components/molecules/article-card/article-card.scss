@@ -26,15 +26,15 @@
   }
 
   .article-card__title {
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
+    //text-decoration: underline;
+    //text-decoration-thickness: 1px;
 
     @include typography.card-title--small;
   }
 
   .article-card__subtitle {
-    margin-top: 1.5rem;
-    max-width: 100%;
+    margin-top: 1.25rem;
+    max-width: min(100%, 65ch);
     width: 100%;
 
     @include typography.card-subtitle;

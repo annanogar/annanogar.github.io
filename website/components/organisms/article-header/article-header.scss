@@ -14,7 +14,7 @@
   }
 
   .article-header__subtitle {
-    margin-top: 2rem;
+    margin-top: 1rem;
     max-width: min(100%, 65ch);
 
     @include typography.subtitle;
