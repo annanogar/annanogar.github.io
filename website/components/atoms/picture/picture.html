@@ -1,11 +1,15 @@
-{% macro regular(classes = '', src = '', sources = [], width = 0, height = 0, alt = '', loading = '', decoding = '', hearts_shader = false) %}
+{% macro regular(classes = '', src = '', sources = [], width = 0, height = 0, sizes = '', alt = '', loading = '', decoding = '', hearts_shader = false) %}
   {% set loading = loading or 'lazy' %}
   {% set decoding = decoding or 'async' %}
+
+  {% if not sizes %}
+    {{ debug('Warning: No sizes attribute provided for picture component. This may lead to suboptimal image loading performance.', src, sources, alt) }}
+  {% endif %}
 
   {% if src or (sources and sources.length > 0) %}
     <picture class="picture {{ classes }}" {% if hearts_shader %}data-hearts-shader{% endif %}>
       {% for source in sources %}
-        <source srcset="{{ source.srcsets|join(', ') }}" type="{{ source.type }}" />
+        <source srcset="{{ source.srcsets|join(', ') }}" type="{{ source.type }}" {% if sizes %}sizes="{{ sizes }}"{% endif %} />
       {% endfor %}
 
       <img class="picture__image" src="{{ src or sources[0].srcsets[0]|split(' ')|first }}" alt="{{ alt }}" {% if width %}width="{{ width }}"{% endif %} {% if height %}height="{{ height }}"{% endif %} loading="{{ loading }}" decoding="{{ decoding }}" {% if loading == 'eager' %}fetchpriority="high"{% endif %} />

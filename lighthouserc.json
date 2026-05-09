@@ -1,0 +1,39 @@
+{
+  "ci": {
+    "collect": {
+      "staticDistDir": "./build",
+      "url": ["/", "/about/", "/projects/", "/projects/family-exhibits/", "/resources/", "/resources/we-are-all-temporarily-able-yes-you-too/"],
+      "numberOfRuns": 1,
+      "settings": {
+        "budgets": "./lighthouse-budget.json",
+        "onlyCategories": ["performance", "best-practices", "seo", "accessibility"],
+        "formFactor": "desktop",
+        "screenEmulation": {
+          "mobile": false,
+          "width": 1920,
+          "height": 1080,
+          "deviceScaleFactor": 1,
+          "disabled": false
+        }
+      }
+    },
+    "assert": {
+      "preset": "lighthouse:recommended",
+      "assertions": {
+        "first-contentful-paint": ["warn", { "maxNumericValue": 2000 }],
+        "largest-contentful-paint": ["warn", { "maxNumericValue": 3500 }],
+        "interactive": ["warn", { "maxNumericValue": 4000 }],
+        "speed-index": ["warn", { "maxNumericValue": 2500 }],
+        "total-blocking-time": ["warn", { "maxNumericValue": 300 }],
+        "uses-long-cache-ttl": "off",
+        "is-on-https": "off",
+        "color-contrast": "off",
+        "legacy-javascript": "off",
+        "image-delivery-insight": "off",
+        "network-dependency-tree-insight": "off",
+        "render-blocking-insight": "off",
+        "render-blocking-resources": "off"
+      }
+    }
+  }
+}

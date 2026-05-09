@@ -8,11 +8,6 @@ html {
   min-height: 100%;
   position: relative;
 
-  &.prevent-scrolling {
-    max-height: 100vh;
-    overflow: hidden;
-  }
-
   &.konami {
     --color-white: #{rgb(0, 255, 0)};
 

@@ -5,27 +5,11 @@
   <div class="article-content-image__image-wrapper">
     {{
       atom_picture.regular(
-        sources = [
-          {
-            type: 'image/webp',
-            srcsets: [
-              '/static/media/' + image.src + '_640w.webp 640w',
-              '/static/media/' + image.src + '_854w.webp 854w',
-              '/static/media/' + image.src + '_1280w.webp 1280w'
-            ]
-          },
-          {
-            type: 'image/jpg',
-            srcsets: [
-              '/static/media/' + image.src + '_640w.jpg 640w',
-              '/static/media/' + image.src + '_854w.jpg 854w',
-              '/static/media/' + image.src + '_1280w.jpg 1280w'
-            ]
-          }
-        ],
+        sources = [ { type: 'image/webp', srcsets: [ '/static/media/' + image.src + '_640w.webp 640w', '/static/media/' + image.src + '_854w.webp 854w', '/static/media/' + image.src + '_1280w.webp 1280w' ] } ],
         alt = image.alt,
         width = 320,
         height = 320,
+        sizes = '(min-width: 768px) 33.333vw, 100vw',
         loading = image.loading or 'lazy',
         hearts_shader = hearts_shader
       )
@@ -34,15 +18,33 @@
     {% if cpacc_badge %}
       <div class="article-content-image__badges">
         <div class="article-content-image__badge article-content-image__badge--cpacc">
-          <span class="article-content-image__badge-link">
-            <img class="article-content-image__badge-image" src="/static/images/iaap-certified-cpacc-badge.png" alt="Certified Professional in Accessibility Core Competencies (CPACC) badge" width="120" height="120" loading="lazy" decoding="async" />
-          </span>
+          {{
+            atom_picture.regular(
+              classes = 'article-content-image__badge-image',
+              sources = [ { type: 'image/webp', srcsets: [ '/static/images/badges/iaap-certified-cpacc-badge_180w.webp 180w', '/static/images/badges/iaap-certified-cpacc-badge_360w.webp 360w' ] } ],
+              alt = 'Certified Professional in Accessibility Core Competencies (CPACC) badge',
+              width = 180,
+              height = 180,
+              loading = 'lazy',
+              sizes = '(max-width: 768px) 17.5vw, 33vw',
+              loading = 'eager'
+            )
+          }}
         </div>
 
         <div class="article-content-image__badge article-content-image__badge--iaap">
-          <span class="article-content-image__badge-link">
-            <img class="article-content-image__badge-image" src="/static/images/iaap-professional-member-badge.png" alt="Certified by the Internal Association of Accessibility Professionals (IAAP) badge" width="120" height="120" loading="lazy" decoding="async" />
-          </span>
+          {{
+            atom_picture.regular(
+              classes = 'article-content-image__badge-image',
+              sources = [ { type: 'image/webp', srcsets: [ '/static/images/badges/iaap-professional-member-badge_180w.webp 180w', '/static/images/badges/iaap-professional-member-badge_360w.webp 360w' ] } ],
+              alt = 'Certified by the Internal Association of Accessibility Professionals (IAAP) badge',
+              width = 180,
+              height = 180,
+              loading = 'lazy',
+              sizes = '(max-width: 768px) 17.5vw, 33vw',
+              loading = 'eager'
+            )
+          }}
         </div>
       </div>
     {% endif %}

@@ -266,6 +266,9 @@ const filters = {
 
     return -1
   },
+
+  // Remove markup from string (very basic)
+  html_to_text: (string = '') => string.toString().replace(/<[^>]*>/g, ''),
 }
 
 // Block tags are Nunjucks tags that can be used to customize parsing and rendering of blocks, like so: {% blocktag %}...{% endblocktag %}

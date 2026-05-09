@@ -30,17 +30,17 @@
     z-index: 999;
   }
 
-  .article-content-image__badge-link {
+  .article-content-image__badge-image {
     aspect-ratio: 1 / 1;
     display: inline-block;
     vertical-align: top;
     width: var(--badge-size);
     z-index: 100;
-  }
 
-  .article-content-image__badge-image {
-    aspect-ratio: 1 / 1;
-    width: 100%;
+    > img {
+      aspect-ratio: 1 / 1;
+      width: 100%;
+    }
   }
 
   .article-content-image__content-wrapper {

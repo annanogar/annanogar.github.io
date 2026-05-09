@@ -6,81 +6,36 @@
       {{
         atom_picture.regular(
           classes = 'tricard__picture tricard__picture--one',
-          sources = [
-            {
-              type: 'image/webp',
-              srcsets: [
-                '/static/media/' + image_1.src + '_640w.webp 640w',
-                '/static/media/' + image_1.src + '_854w.webp 854w',
-                '/static/media/' + image_1.src + '_1280w.webp 1280w'
-              ]
-            },
-            {
-              type: 'image/jpg',
-              srcsets: [
-                '/static/media/' + image_1.src + '_640w.jpg 640w',
-                '/static/media/' + image_1.src + '_854w.jpg 854w',
-                '/static/media/' + image_1.src + '_1280w.jpg 1280w'
-              ]
-            }
-          ],
+          sources = [ { type: 'image/webp', srcsets: [ '/static/media/' + image_1.src + '_640w.webp 640w', '/static/media/' + image_1.src + '_854w.webp 854w', '/static/media/' + image_1.src + '_1280w.webp 1280w' ] } ],
           alt = image_1.alt,
           width = 320,
-          height = 320
+          height = 320,
+          sizes = '(min-width: 768px) 33.333vw, 100vw',
+          loading = image_1.loading or 'lazy'
         )
       }}
 
       {{
         atom_picture.regular(
           classes = 'tricard__picture tricard__picture--two',
-          sources = [
-            {
-              type: 'image/webp',
-              srcsets: [
-                '/static/media/' + image_2.src + '_640w.webp 640w',
-                '/static/media/' + image_2.src + '_854w.webp 854w',
-                '/static/media/' + image_2.src + '_1280w.webp 1280w'
-              ]
-            },
-            {
-              type: 'image/jpg',
-              srcsets: [
-                '/static/media/' + image_2.src + '_640w.jpg 640w',
-                '/static/media/' + image_2.src + '_854w.jpg 854w',
-                '/static/media/' + image_2.src + '_1280w.jpg 1280w'
-              ]
-            }
-          ],
+          sources = [ { type: 'image/webp', srcsets: [ '/static/media/' + image_2.src + '_640w.webp 640w', '/static/media/' + image_2.src + '_854w.webp 854w', '/static/media/' + image_2.src + '_1280w.webp 1280w' ] } ],
           alt = image_2.alt,
           width = 320,
-          height = 320
+          height = 320,
+          sizes = '(min-width: 768px) 33.333vw, 100vw',
+          loading = image_2.loading or 'lazy'
         )
       }}
 
       {{
         atom_picture.regular(
           classes = 'tricard__picture tricard__picture--three',
-          sources = [
-            {
-              type: 'image/webp',
-              srcsets: [
-                '/static/media/' + image_3.src + '_640w.webp 640w',
-                '/static/media/' + image_3.src + '_854w.webp 854w',
-                '/static/media/' + image_3.src + '_1280w.webp 1280w'
-              ]
-            },
-            {
-              type: 'image/jpg',
-              srcsets: [
-                '/static/media/' + image_3.src + '_640w.jpg 640w',
-                '/static/media/' + image_3.src + '_854w.jpg 854w',
-                '/static/media/' + image_3.src + '_1280w.jpg 1280w'
-              ]
-            }
-          ],
+          sources = [ { type: 'image/webp', srcsets: [ '/static/media/' + image_3.src + '_640w.webp 640w', '/static/media/' + image_3.src + '_854w.webp 854w', '/static/media/' + image_3.src + '_1280w.webp 1280w' ] } ],
           alt = image_3.alt,
           width = 320,
-          height = 320
+          height = 320,
+          sizes = '(min-width: 768px) 33.333vw, 100vw',
+          loading = image_3.loading or 'lazy'
         )
       }}
 

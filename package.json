@@ -19,7 +19,10 @@
     "dev": "node sonic",
     "build": "node sonic build",
     "deploy": "node sonic deploy",
-    "test": "node sonic build && playwright test tests/accessibility.spec.js"
+    "test:a11y": "playwright test tests/accessibility.spec.js",
+    "test": "node sonic build && yarn test:a11y",
+    "validate:lighthouse": "lhci collect && lhci assert",
+    "validate": "node sonic build && yarn validate:lighthouse"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.11.3",
@@ -28,6 +31,7 @@
     "@eklingen/glob-importers": "2.1.1",
     "@eklingen/nunjucks-dependencies": "1.0.0",
     "@eslint/js": "10.0.1",
+    "@lhci/cli": "0.15.1",
     "@parcel/watcher": "2.5.6",
     "@playwright/test": "1.59.1",
     "autoprefixer": "10.5.0",
@@ -56,9 +60,6 @@
   },
   "optionalDevDependencies": {
     "dotenv": "16.4.5"
-  },
-  "dependencies": {
-    "focus-trap": "8.2.0"
   },
   "resolutionExplanations": {
     "node-gyp": "linked to null because we don't need it - note: this breaks fs-events and @parcel/watcher (re-)compilation"

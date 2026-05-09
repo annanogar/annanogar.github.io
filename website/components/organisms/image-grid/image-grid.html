@@ -1,7 +1,7 @@
 {% import 'components/atoms/picture/picture.html' as atom_picture %}
 {% import 'components/atoms/richtext/richtext.html' as atom_richtext %}
 
-{% macro regular(title = '', richtext = '', introduction = '', items = []) %}
+{% macro regular(title = '', richtext = '', introduction = '', items = [], above_fold = false) %}
   <div class="image-grid">
     {% if title or introduction %}
       <div class="image-grid__wrapper">
@@ -18,33 +18,20 @@
     {% if items|length %}
       <ul class="image-grid__items">
         {% for item in items %}
+          {% if above_fold and loop.index < 4 %}
+            {{ object_set_value(item.image, 'loading', 'eager') }}
+          {% endif %}
+
           {% if contains_substring(item.image.src, '_2x1') %}
             <li class="image-grid__item image-grid__item--2x1">
               {{
                 atom_picture.regular(
-                  sources = [
-                    {
-                      type: 'image/webp',
-                      srcsets: [
-                        '/static/media/' + item.image.src + '_800w.webp 800w',
-                        '/static/media/' + item.image.src + '_1280w.webp 1280w',
-                        '/static/media/' + item.image.src + '_1707w.webp 1707w',
-                        '/static/media/' + item.image.src + '_2560w.webp 2560w'
-                      ]
-                    },
-                    {
-                      type: 'image/jpg',
-                      srcsets: [
-                        '/static/media/' + item.image.src + '_800w.jpg 800w',
-                        '/static/media/' + item.image.src + '_1280w.jpg 1280w',
-                        '/static/media/' + item.image.src + '_1707w.jpg 1707w',
-                        '/static/media/' + item.image.src + '_2560w.jpg 2560w'
-                      ]
-                    }
-                  ],
+                  sources = [ { type: 'image/webp', srcsets: [ '/static/media/' + item.image.src + '_800w.webp 800w', '/static/media/' + item.image.src + '_1280w.webp 1280w', '/static/media/' + item.image.src + '_1707w.webp 1707w', '/static/media/' + item.image.src + '_2560w.webp 2560w' ] } ],
                   alt = item.image.alt,
                   width = 400,
-                  height = 200
+                  height = 200,
+                  sizes = '(min-width: 768px) 66.666vw, 100vw',
+                  loading = item.image.loading or 'lazy'
                 )
               }}
             </li>
@@ -52,29 +39,12 @@
             <li class="image-grid__item image-grid__item--1x1">
               {{
                 atom_picture.regular(
-                  sources = [
-                    {
-                      type: 'image/webp',
-                      srcsets: [
-                        '/static/media/' + item.image.src + '_400w.webp 400w',
-                        '/static/media/' + item.image.src + '_640w.webp 640w',
-                        '/static/media/' + item.image.src + '_854w.webp 854w',
-                        '/static/media/' + item.image.src + '_1280w.webp 1280w'
-                      ]
-                    },
-                    {
-                      type: 'image/jpg',
-                      srcsets: [
-                        '/static/media/' + item.image.src + '_400w.jpg 400w',
-                        '/static/media/' + item.image.src + '_640w.jpg 640w',
-                        '/static/media/' + item.image.src + '_854w.jpg 854w',
-                        '/static/media/' + item.image.src + '_1280w.jpg 1280w'
-                      ]
-                    }
-                  ],
+                  sources = [ { type: 'image/webp', srcsets: [ '/static/media/' + item.image.src + '_400w.webp 400w', '/static/media/' + item.image.src + '_640w.webp 640w', '/static/media/' + item.image.src + '_854w.webp 854w', '/static/media/' + item.image.src + '_1280w.webp 1280w' ] } ],
                   alt = item.image.alt,
                   width = 320,
-                  height = 320
+                  height = 320,
+                  sizes = '(min-width: 768px) 33.333vw, 50vw',
+                  loading = item.image.loading or 'lazy'
                 )
               }}
             </li>
