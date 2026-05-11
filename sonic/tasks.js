@@ -116,6 +116,12 @@ export const composedTasks = {
 
     await tasks.compileScripts()
     await tasks.compileStylesheets()
+
+    // Reset chunked stylesheet globals for classic build - must be done after stylesheets compile but before templates
+    global.useChunkedStylesheets = false
+    global.chunkedStylesheetMap = undefined
+    global.chunkedStylesheetEntrypoints = undefined
+
     await tasks.compileTemplates()
 
     if (global.settings.formatOutputTemplates && global.environment === 'production') {
@@ -297,6 +303,22 @@ export const flows = {
     await composedTasks.clean(true)
     await composedTasks.link()
     await composedTasks.compile()
+    await composedTasks.serve()
+    await composedTasks.watch()
+
+    if (global.logLevel !== 'quiet') {
+      process.stdout.write(`${global.colors.warning}Ready${global.colors.reset}\n`)
+    }
+  },
+
+  startChunked: async () => {
+    if (global.logLevel !== 'quiet') {
+      process.stdout.write(`${global.colors.warning}Starting up with chunked stylesheets...${global.colors.reset}\n`)
+    }
+
+    await composedTasks.clean(true)
+    await composedTasks.link()
+    await composedTasks.compileChunked()
     await composedTasks.serve()
     await composedTasks.watch()
 

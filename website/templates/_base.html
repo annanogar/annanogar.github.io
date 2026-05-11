@@ -59,7 +59,7 @@
     {% endblock %}
 
     {% set chunked_stylesheets = get_chunked_stylesheets(current_template_path) %}
-    {% if chunked_stylesheets %}
+    {% if chunked_stylesheets|length %}
       {% for stylesheet in chunked_stylesheets %}
         <link rel="stylesheet" href="{{ asset_with_hash(stylesheet) }}" />
       {% endfor %}

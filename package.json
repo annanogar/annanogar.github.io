@@ -17,6 +17,7 @@
     "postinstall": "node sonic --postinstall",
     "start": "node sonic",
     "dev": "node sonic",
+    "dev:chunked": "node sonic start-chunked",
     "build": "node sonic build",
     "build:chunked": "node sonic build-chunked",
     "deploy": "node sonic deploy",
