@@ -12,7 +12,9 @@
       <div class="card-list__wrapper">
         <ul class="card-list__items">
           {% for card in cards %}
-            <li class="card-list__item">{{ molecule_article_card.regular(href = card.href, target = card.target, title = card.title, subtitle = card.subtitle, pretitle = card.pretitle, pretitle_2 = card.pretitle_2) }}</li>
+            {% if card.href and card.title %}
+              <li class="card-list__item">{{ molecule_article_card.regular(href = card.href, target = card.target, title = card.title, subtitle = card.subtitle, pretitle = card.pretitle, pretitle_2 = card.pretitle_2) }}</li>
+            {% endif %}
           {% endfor %}
         </ul>
       </div>

@@ -17,13 +17,15 @@
               {{ object_set_value(card.image, 'loading', 'eager') }}
             {% endif %}
 
-            <li class="card-grid__item">
-              {% if card.image %}
-                {{ molecule_project_card.regular(href = card.href, title = card.title, subtitle = card.subtitle, label = card.label, image = card.image, sizes = '(min-width: 768px) 33.333vw, 100vw') }}
-              {% else %}
-                {{ molecule_service_card.regular(href = card.href, title = card.title, subtitle = card.subtitle, label = card.label) }}
-              {% endif %}
-            </li>
+            {% if card.href and card.title %}
+              <li class="card-grid__item">
+                {% if card.image %}
+                  {{ molecule_project_card.regular(href = card.href, title = card.title, subtitle = card.subtitle, label = card.label, image = card.image, sizes = '(min-width: 768px) 33.333vw, 100vw') }}
+                {% else %}
+                  {{ molecule_service_card.regular(href = card.href, title = card.title, subtitle = card.subtitle, label = card.label) }}
+                {% endif %}
+              </li>
+            {% endif %}
           {% endfor %}
         </ul>
       </div>
