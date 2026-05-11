@@ -5,6 +5,7 @@
 .footer-bar {
   background-color: var(--color-blue);
   color: var(--color-white);
+  margin-top: 2px;
   position: relative;
 
   .footer-bar__wrapper {
@@ -41,13 +42,13 @@
     margin: 0.15em 0;
     padding: 0.1em 0;
     text-decoration: none;
-    text-decoration-thickness: 1px;
 
     @include typography.footer-link;
 
     &[href] {
       cursor: pointer;
       text-decoration: underline;
+      text-decoration-thickness: 1px;
 
       &:hover,
       &:focus-visible {

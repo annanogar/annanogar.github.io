@@ -6,7 +6,7 @@
   position: relative;
 
   .card-list__wrapper {
-    padding: 0 var(--padding-large) var(--padding-xl);
+    padding: 0 var(--padding-large) calc(var(--padding-xl) * 1.8);
   }
 
   .card-list__title-wrapper {

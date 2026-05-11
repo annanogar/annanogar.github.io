@@ -26,10 +26,6 @@
     padding: 0;
   }
 
-  &.card-grid--separated {
-    margin-bottom: 2px;
-  }
-
   @include breakpoints.landscape {
     .card-grid__title-wrapper {
       padding: 0 calc(var(--padding-large) * 3.5) 0 var(--padding-large);
