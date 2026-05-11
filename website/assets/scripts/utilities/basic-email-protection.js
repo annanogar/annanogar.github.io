@@ -2,7 +2,7 @@ export default function basicEmailProtection() {
   const elements = [...document.querySelectorAll('[href^="mailto:"], [href^="tel:"]')]
 
   elements.forEach(element => {
-    element.innerHTML = element.innerHTML.replace(/_send_me_an_/g, 'anna.nogar@gmail.com').replace(/_or_pick_up_the_/g, '+31&nbsp;(0)6&nbsp;2531&nbsp;5441')
+    element.innerHTML = element.innerHTML.replace(/_send_me_an_/g, 'anna.nogar@gmail.com').replace(/_or_pick_up_the_/g, '+31&nbsp;6&nbsp;2531&nbsp;5441')
 
     if (element.hasAttribute('href')) {
       const href = element.getAttribute('href')
