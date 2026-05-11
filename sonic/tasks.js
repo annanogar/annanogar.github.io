@@ -27,6 +27,7 @@ import actionCompileTemplates from './actions/compile-templates.js'
 import actionCopyFiles from './actions/copy-files.js'
 import actionDeletePath from './actions/delete-path.js'
 import actionFormatFiles from './actions/format-files.js'
+import actionGenerateChunkedStylesheets from './actions/generate-chunked-stylesheets.js'
 import actionLintScripts from './actions/lint-scripts.js'
 import actionLintStylesheets from './actions/lint-stylesheets.js'
 import actionOptimizeImages from './actions/optimize-images.js'
@@ -71,6 +72,7 @@ export const tasks = {
   formatScripts: async (paths = config.scripts.formatGlobs, hashCache = global.losslessSourceHashCache) => await actionFormatFiles(paths, 'scripts', hashCache),
   formatStylesheets: async (paths = config.stylesheets.formatGlobs, hashCache = global.losslessSourceHashCache) => await actionFormatFiles(paths, 'stylesheets', hashCache),
   formatTemplates: async (paths = config.templates.formatGlobs, hashCache = global.losslessSourceHashCache) => await actionFormatFiles(paths, 'templates', hashCache),
+  generateChunkedStylesheets: async () => await actionGenerateChunkedStylesheets(config.stylesheets.chunked),
   lintScripts: async (paths = config.scripts.lintGlobs, hashCache = global.losslessSourceHashCache) => await actionLintScripts(paths, hashCache),
   lintStylesheets: async (paths = config.stylesheets.lintGlobs, hashCache = global.losslessSourceHashCache) => await actionLintStylesheets(paths, hashCache),
   optimizeIcons: async (paths = config.icons.sourceGlobs, hashCache = global.losslessSourceHashCache) => await actionOptimizeVectors(paths, 'icons', hashCache),
@@ -114,6 +116,21 @@ export const composedTasks = {
 
     await tasks.compileScripts()
     await tasks.compileStylesheets()
+    await tasks.compileTemplates()
+
+    if (global.settings.formatOutputTemplates && global.environment === 'production') {
+      await tasks.formatOutputTemplates()
+    }
+  },
+
+  compileChunked: async () => {
+    if (global.logLevel !== 'quiet') {
+      process.stdout.write(`  ${global.colors.accent}Compiling${global.colors.reset} assets with chunked stylesheets...\n`)
+    }
+
+    await tasks.compileScripts()
+    await tasks.generateChunkedStylesheets()
+    await tasks.compileStylesheets(config.stylesheets.chunked.sourceGlobs)
     await tasks.compileTemplates()
 
     if (global.settings.formatOutputTemplates && global.environment === 'production') {
@@ -242,6 +259,20 @@ export const flows = {
     await composedTasks.optimize()
     await composedTasks.link()
     await composedTasks.compile()
+  },
+
+  buildChunked: async () => {
+    if (global.logLevel !== 'quiet') {
+      process.stdout.write(`${global.colors.warning}Generating production build with chunked stylesheets...${global.colors.reset}\n`)
+    }
+
+    await composedTasks.clean()
+    await composedTasks.lint()
+    await composedTasks.format()
+    await composedTasks.process()
+    await composedTasks.optimize()
+    await composedTasks.link()
+    await composedTasks.compileChunked()
   },
 
   deploy: async () => {

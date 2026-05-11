@@ -51,7 +51,7 @@ const setupDefaultArguments = () => {
 const setGlobals = () => {
   global.noColors = process.env.NO_COLOR || flagArguments.includes('--no-color') || flagArguments.includes('--no-colors') || flagArguments.includes('--postinstall')
   global.noCache = process.env.NO_CACHE || flagArguments.includes('--no-cache') || flagArguments.includes('--postinstall')
-  global.environment = flagArguments.includes('--production') || taskArguments.some(task => ['build', 'deploy'].includes(task)) ? 'production' : flagArguments.includes('--debug') ? 'debug' : 'development'
+  global.environment = flagArguments.includes('--production') || taskArguments.some(task => ['build', 'build-chunked', 'deploy'].includes(task)) ? 'production' : flagArguments.includes('--debug') ? 'debug' : 'development'
   global.useSymlinks = !flagArguments.includes('--fullcopy')
   global.autofix = !flagArguments.includes('--no-autofix')
 }

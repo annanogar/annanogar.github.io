@@ -24,7 +24,8 @@ let nunjucks, nunjucksConfig, nunjucksConfigPath
 // Process a single source file
 const processSource = async (path = '', sourcePath = '', destinationPath = '', compiler = null, config = null) => {
   // Compile the source file
-  const output = await compiler(resolvePath(process.cwd(), path), { ...config.nunjucks.data }).catch(error => console.error(error.message || error))
+  const normalizedPath = relativePath(process.cwd(), resolvePath(process.cwd(), path))
+  const output = await compiler(resolvePath(process.cwd(), path), { ...config.nunjucks.data, current_template_path: normalizedPath }).catch(error => console.error(error.message || error))
 
   // Get the filename and resolved path
   const filename = resolvePath(process.cwd(), joinPath(destinationPath, relativePath(sourcePath, path)))

@@ -58,7 +58,14 @@
       {#<link rel="preload" href="/static/fonts/noto-sans/noto-sans-black.woff2" as="font" type="font/woff2" crossorigin />#}
     {% endblock %}
 
-    <link rel="stylesheet" href="{{ asset_with_hash('stylesheets/main.css') }}" />
+    {% set chunked_stylesheets = get_chunked_stylesheets(current_template_path) %}
+    {% if chunked_stylesheets %}
+      {% for stylesheet in chunked_stylesheets %}
+        <link rel="stylesheet" href="{{ asset_with_hash(stylesheet) }}" />
+      {% endfor %}
+    {% else %}
+      <link rel="stylesheet" href="{{ asset_with_hash('stylesheets/main.css') }}" />
+    {% endif %}
     {% block stylesheets %}
     {% endblock %}
   </head>

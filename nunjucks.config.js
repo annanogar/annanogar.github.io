@@ -202,6 +202,15 @@ const tags = {
   contains_substring: (string = '', substring = '') => {
     return string && substring && string.indexOf(substring) !== -1
   },
+
+  // Get the stylesheet chunks for the current rendered template, if chunked CSS is enabled.
+  get_chunked_stylesheets: (templatePath = '') => {
+    if (!global.useChunkedStylesheets || !templatePath || !global.chunkedStylesheetMap) {
+      return []
+    }
+
+    return global.chunkedStylesheetMap[templatePath] || []
+  },
 }
 
 // Stub for thumbnail generation, for use in Django.

@@ -8,24 +8,11 @@ html {
   min-height: 100%;
   position: relative;
 
-  &.konami-code {
-    --color-white: #{rgb(0, 255, 0)};
+  &.konami-activated {
+    filter: hue-rotate(180deg);
 
-    .picture__image {
-      filter: grayscale(1) contrast(2.5);
-    }
-
-    .picture {
-      &::after {
-        background: #0f0;
-        content: '';
-        display: block;
-        inset: 0;
-        mix-blend-mode: multiply;
-        pointer-events: none;
-        position: absolute;
-        z-index: 1;
-      }
+    img {
+      filter: hue-rotate(135deg);
     }
   }
 }
