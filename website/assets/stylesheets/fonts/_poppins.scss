@@ -15,15 +15,15 @@ $feature-settings:
   'calt' 1,
   'case' 1;
 $weights: (
-  'thin': 100,
-  'extralight': 200,
-  'light': 300,
-  'regular': 400,
-  'medium': 500,
-  'semibold': 600,
+  // 'thin': 100,
+  // 'extralight': 200,
+  // 'light': 300,
+  // 'regular': 400,
+  // 'medium': 500,
+  // 'semibold': 600,
   'bold': 700,
-  'extrabold': 800,
-  'black': 900,
+  // 'extrabold': 800,
+   // 'black': 900,
 );
 $styles: (
   'regular': normal,
@@ -49,13 +49,13 @@ $styles: (
       }
 
       @font-face {
-        ascent-override: normal;
-        descent-override: normal;
+        // ascent-override: normal;
+        // descent-override: normal;
         font-display: swap;
         font-family: $name;
         font-style: $style-value;
         font-weight: $weight-value;
-        line-gap-override: normal;
+        // line-gap-override: normal;
         src: url($path + $filename + '-' + $weight + $style-name + '.woff2') format('woff2');
       }
     }
