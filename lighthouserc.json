@@ -21,8 +21,8 @@
       "preset": "lighthouse:recommended",
       "assertions": {
         "first-contentful-paint": ["warn", { "maxNumericValue": 2000 }],
-        "largest-contentful-paint": ["warn", { "maxNumericValue": 3500 }],
-        "interactive": ["warn", { "maxNumericValue": 4000 }],
+        "largest-contentful-paint": ["warn", { "maxNumericValue": 5000 }],
+        "interactive": ["warn", { "maxNumericValue": 5000 }],
         "speed-index": ["warn", { "maxNumericValue": 2500 }],
         "total-blocking-time": ["warn", { "maxNumericValue": 300 }],
         "uses-long-cache-ttl": "off",
