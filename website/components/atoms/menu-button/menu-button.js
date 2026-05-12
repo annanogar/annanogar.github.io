@@ -8,4 +8,4 @@ class MenuButtonComponent extends Component {
   }
 }
 
-window.addEventListener('init-load', () => loadComponent(document, 'menu-button', MenuButtonComponent))
+window.addEventListener('init-immediate', () => loadComponent(document, 'menu-button', MenuButtonComponent))

@@ -34,4 +34,4 @@ export default class SkipToMainComponent extends Component {
   }
 }
 
-window.addEventListener('init-load', () => loadComponent(document.documentElement, 'skip-to-main', SkipToMainComponent))
+window.addEventListener('init-immediate', () => loadComponent(document.documentElement, 'skip-to-main', SkipToMainComponent))

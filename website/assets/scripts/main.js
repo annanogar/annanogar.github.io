@@ -21,8 +21,8 @@ console.log('\n %cMade with %c♥%c by Elco Klingen \n', 'font: 16px serif;', 'f
 // Usually, the 'init-load' event will suffice.
 window.dispatchEvent(new CustomEvent('init-immediate'))
 window.addEventListener('DOMContentLoaded', () => window.dispatchEvent(new CustomEvent('init-load')))
-window.addEventListener('load', () => window.dispatchEvent(new CustomEvent('init-after-load')))
-window.addEventListener('load', () => window.setTimeout(() => window.dispatchEvent(new CustomEvent('init-delayed-load')), 1000))
+//window.addEventListener('load', () => window.dispatchEvent(new CustomEvent('init-after-load')))
+//window.addEventListener('load', () => window.setTimeout(() => window.dispatchEvent(new CustomEvent('init-delayed-load')), 1000))
 
 // Focus stuff
 document.addEventListener('keydown', () => document.documentElement.classList.add('key-pressed'))

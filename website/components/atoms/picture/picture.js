@@ -25,4 +25,4 @@ class PictureComponent extends Component {
   }
 }
 
-window.addEventListener('init-load', () => loadComponent(document, 'picture', PictureComponent))
+window.addEventListener('init-immediate', () => loadComponent(document, 'picture', PictureComponent))
