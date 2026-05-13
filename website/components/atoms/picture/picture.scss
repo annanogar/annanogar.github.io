@@ -5,8 +5,4 @@
   display: inline-block;
   position: relative;
   vertical-align: bottom;
-
-  img[width][height] {
-    height: calc(100% / attr(width, 0) * attr(height, 0));
-  }
 }
