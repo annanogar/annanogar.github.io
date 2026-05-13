@@ -7,7 +7,7 @@
   {% endif %}
 
   {% if src or (sources and sources.length > 0) %}
-    <picture class="picture {{ classes }}" {% if hearts_shader %}data-hearts-shader{% endif %}>
+    <picture class="picture {{ classes }}" {% if hearts_shader %}data-hearts-shader{% endif %} style="aspect-ratio: {{ width }} / {{ height }};">
       {% for source in sources %}
         <source srcset="{{ source.srcsets|join(', ') }}" type="{{ source.type }}" {% if sizes %}sizes="{{ sizes }}"{% endif %} />
       {% endfor %}
