@@ -103,4 +103,11 @@ export default {
     sourcePath: 'website/assets/mock-data',
     destinationPath: 'build/static/mock-data',
   },
+
+  shaders: {
+    sourceGlobs: ['website/assets/shaders/**/*.{vert,frag}'],
+    watchGlobs: ['website/assets/shaders/**/*.{vert,frag}'],
+    sourcePath: 'website/assets/shaders',
+    destinationPath: 'build/static/shaders',
+  },
 }

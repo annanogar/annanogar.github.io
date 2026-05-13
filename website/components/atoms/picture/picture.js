@@ -1,6 +1,5 @@
 import Component, { loadComponent } from '../../../assets/scripts/modules/component.js'
-
-let HeartsShader = null
+import HeartsShader from '../../../assets/scripts/utilities/hearts-shader/hearts-shader.js'
 
 class PictureComponent extends Component {
   init() {
@@ -10,16 +9,14 @@ class PictureComponent extends Component {
   }
 
   async initHeartsShader() {
-    HeartsShader = HeartsShader ?? (await import('../../../assets/scripts/utilities/hearts-shader/hearts-shader.js')).default
-
     let count = 0
 
-    this.element.addEventListener('click', () => {
+    this.element.addEventListener('click', async () => {
       count++
 
       if (count === 5) {
         this.shader = new HeartsShader(this.element)
-        this.shader.init()
+        await this.shader.init()
       }
     })
   }

@@ -1,9 +1,3 @@
-import * as fragmentShaderSource from './shaders/hearts.frag'
-import * as vertexShaderSource from './shaders/hearts.vert'
-
-const vertexShader = vertexShaderSource.default
-const fragmentShader = fragmentShaderSource.default
-
 export default class HeartsShader {
   constructor(element) {
     this.element = element
@@ -30,10 +24,14 @@ export default class HeartsShader {
     return this
   }
 
-  init() {
+  async init() {
     if (!this.gl) {
       return
     }
+
+    // Load shaders on demand
+    const fragmentShader = await fetch('/static/shaders/hearts.frag').then(response => response.text())
+    const vertexShader = await fetch('/static/shaders/hearts.vert').then(response => response.text())
 
     const program = this.createProgram(vertexShader, fragmentShader)
     const posLoc = this.gl.getAttribLocation(program, 'a_position')

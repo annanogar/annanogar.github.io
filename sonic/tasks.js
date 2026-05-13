@@ -67,6 +67,7 @@ export const tasks = {
   copyMedia: async (paths = config.media.sourceGlobs) => await actionCopyFiles(paths, config.media.sourcePath, config.media.destinationPath, 'media files'),
   copyMockData: async (paths = config.mockData.sourceGlobs) => await actionCopyFiles(paths, config.mockData.sourcePath, config.mockData.destinationPath, 'mock-data files'),
   copyVendor: async (paths = config.vendor.sourceGlobs) => await actionCopyFiles(paths, config.vendor.sourcePath, config.vendor.destinationPath, 'vendor files'),
+  copyShaders: async (paths = config.shaders.sourceGlobs) => await actionCopyFiles(paths, config.shaders.sourcePath, config.shaders.destinationPath, 'shader files'),
   formatMockData: async (paths = config.mockData.formatGlobs, hashCache = global.losslessSourceHashCache) => await actionFormatFiles(paths, 'mock-data', hashCache),
   formatOutputTemplates: async (paths = config.templates.formatOutputGlobs) => await actionFormatFiles(paths, 'output templates', null, false),
   formatScripts: async (paths = config.scripts.formatGlobs, hashCache = global.losslessSourceHashCache) => await actionFormatFiles(paths, 'scripts', hashCache),
@@ -181,6 +182,7 @@ export const composedTasks = {
     }
 
     await tasks.copyVendor()
+    await tasks.copyShaders()
     await tasks.copyMockData()
     await tasks.copyFonts()
     await tasks.copyImages()
@@ -400,6 +402,10 @@ export const watchTasks = {
     await tasks.copyVendor(path)
   },
 
+  shaders: async (path = '') => {
+    await tasks.copyShaders(path)
+  },
+
   mockData: async (path = '') => {
     await tasks.formatMockData(path)
     await tasks.copyMockData(path)
@@ -425,6 +431,7 @@ const aliases = {
   mockData: tasks.copyMockData,
   server: composedTasks.serve,
   vendor: tasks.copyVendor,
+  shaders: tasks.copyShaders,
 }
 
 export const cliTasksGrouped = { tasks: convertKeysToKebabCase(tasks), composedTasks: convertKeysToKebabCase(composedTasks), flows: convertKeysToKebabCase(flows), aliases: convertKeysToKebabCase(aliases) }
