@@ -7,11 +7,19 @@
 {% set page_description = 'Stop thinking of disability as something that happens to &ldquo;other people&rdquo;. Discover why we are all temporarily able and how changing our perspective on design and accessibility can build a world that works for everyone.' %}
 {% set opengraph_image = '/static/media/misc/social_1200x630.jpg' %}
 
+{% block og_metadata %}
+  <meta property="og:title" content="{{ page_title }}" />
+  <meta property="og:type" content="article" />
+  <meta property="article:published_time" content="2026-05-13T12:00:00+02:00" />
+  <meta property="article:modified_time" content="2026-05-13T12:00:00+02:00" />
+  <meta property="article:author" content="Anna Nogaré" />
+{% endblock %}
+
 {% block content %}
   {{
     article_header.regular(
       title = 'We are all temporarily able. <br/>Yes, you too.',
-      subtitle = 'Anna Nogaré | 12-05-2026 | <em>12 min</em>'
+      subtitle = 'Anna Nogaré | <time datetime="2026-05-13">13-05-2026</time> | <em>12 min</em>'
     )
   }}
 
