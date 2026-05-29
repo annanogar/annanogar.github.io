@@ -16,7 +16,7 @@
     landing_header.regular(
       title = data.sections.home.title_with_markup or data.sections.home.title,
       subtitle = data.sections.home.subtitle,
-      badge = { href: '/manifesto/', title: 'Read Accessibility Manifesto' }
+      badge = { href: '/manifesto/', title: data.base.badge_manifesto_title }
     )
   }}
 
@@ -100,14 +100,10 @@
     )
   }}
 
-  {{
-    call_to_action.regular(
-      variant = 'home',
-      quote = data.sections.home.cta_quote,
-      badge = { variant: 'bright', href: '/about/', title: 'Learn more about me' },
-      image = { src: 'misc/anna-dots_1x1', alt: data.alts['misc/anna-dots_1x1'] }
-    )
-  }}
+  {% set cta_quote = data.sections.home.cta_quote %}
+  {% set section_card = merge({}, data.section_cards.about) %}
+  {{ object_set_value(section_card, 'image', { src: section_card.image, alt: data.alts[section_card.image] }) }}
+  {{ call_to_action.regular(variant = 'home', quote = cta_quote, image = { src: 'misc/anna-dots_1x1', alt: data.alts['misc/anna-dots_1x1'] }, badge = { variant: 'bright', href: '/about/', title: data.base.badge_about_title }) }}
 
   {{
     card_grid.regular(

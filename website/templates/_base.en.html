@@ -1,47 +1,45 @@
 {% extends 'templates/_base.html' %}
+
 {% import 'components/structures/footer-bar/footer-bar.html' as footer_bar %}
 {% import 'components/structures/menu-bar/menu-bar.html' as menu_bar %}
 {% import 'components/structures/skip-to-main/skip-to-main.html' as skip_to_main %}
+
 {% set lang = 'en' %}
-{% set site_name = site_name or 'Anna Nogaré' %}
-{% set site_title = site_title or 'Anna Nogaré; Interpretive Design Director & Accessibility Strategist, CPACC' %}
-{% set site_description = site_description or 'Creating meaningful experiences that everyone can enjoy.' %}
+
+{% set site_name = data.base.site_name or site_name or 'Anna Nogaré' %}
+{% set site_title = data.base.site_title or site_title or 'Anna Nogaré; Interpretive Design Director & Accessibility Strategist, CPACC' %}
+{% set site_description = data.base.site_description or site_description or 'Creating meaningful experiences that everyone can enjoy.' %}
 
 {% block skip_to_main %}
-  {{
-    skip_to_main.regular(
-      title = 'Skip to main content',
-      aria_label = 'Skip to main content'
-    )
-  }}
+  {{ skip_to_main.regular(title = data.base.skiplink_aria_label, aria_label = data.base.skiplink_aria_label) }}
 {% endblock %}
 
 {% block header %}
   {{
     menu_bar.regular(
-      href = '/',
-      title = 'Anna Nogaré',
-      title_aria_label = 'Back to homepage',
-      aria_label = 'Main navigation',
-      dialog_aria_label = 'Menu dialog',
-      button_aria_label = 'Toggle menu dialog',
+      href = data.sections.home.href,
+      title = data.sections.home.menu_title,
+      title_aria_label = data.sections.home.menu_aria_label,
+      aria_label = data.base.navigation_aria_label,
+      dialog_aria_label = data.base.menu_dialog_aria_label,
+      button_aria_label = data.base.menu_button_aria_label,
       menu_items = [
-        { href: '/projects/', title: 'Selected <br />projects', aria_label: 'Explore selected projects', submenu_items: [
-          { href: '/projects/shifting-image/', title: 'Shifting Image', aria_label: 'Explore the Shifting Image project' },
-          { href: '/projects/maker-park/', title: 'Maker Park', aria_label: 'Explore the Maker Park project' },
-          { href: '/projects/family-exhibits/', title: 'Family Exhibits', aria_label: 'Explore the Family Exhibits project' },
-          { href: '/projects/joh-enschede/', title: 'Joh. Enschedé', aria_label: 'Explore the Joh. Enschedé project' },
-          { href: '/projects/cruquius-museum/', title: 'Cruquius Museum', aria_label: 'Explore the Cruquius Museum project' },
-          { href: '/projects/living-planet/', title: 'Living Planet', aria_label: 'Explore the Living Planet project' },
-          { href: '/projects/herman-boerhaave/', title: 'Herman Boerhaave', aria_label: 'Explore the Herman Boerhaave project' },
-          { href: '/projects/prodemos/', title: 'ProDemos', aria_label: 'Explore the ProDemos project' },
-          { href: '/projects/het-steen/', title: 'Het Steen', aria_label: 'Explore the Het Steen project' }
+        { href: data.sections.projects.href, title: data.sections.projects.menu_title, aria_label: data.sections.projects.aria_label, submenu_items: [
+          { href: data.projects.shifting_image.href, title: data.projects.shifting_image.menu_title, aria_label: data.projects.shifting_image.menu_aria_label },
+          { href: data.projects.maker_park.href, title: data.projects.maker_park.menu_title, aria_label: data.projects.maker_park.menu_aria_label },
+          { href: data.projects.family_exhibits.href, title: data.projects.family_exhibits.menu_title, aria_label: data.projects.family_exhibits.menu_aria_label },
+          { href: data.projects.joh_enschede.href, title: data.projects.joh_enschede.menu_title, aria_label: data.projects.joh_enschede.menu_aria_label },
+          { href: data.projects.cruquius_museum.href, title: data.projects.cruquius_museum.menu_title, aria_label: data.projects.cruquius_museum.menu_aria_label },
+          { href: data.projects.living_planet.href, title: data.projects.living_planet.menu_title, aria_label: data.projects.living_planet.menu_aria_label },
+          { href: data.projects.herman_boerhaave.href, title: data.projects.herman_boerhaave.menu_title, aria_label: data.projects.herman_boerhaave.menu_aria_label },
+          { href: data.projects.prodemos.href, title: data.projects.prodemos.menu_title, aria_label: data.projects.prodemos.menu_aria_label },
+          { href: data.projects.het_steen.href, title: data.projects.het_steen.menu_title, aria_label: data.projects.het_steen.menu_aria_label }
         ] },
-        { href: '/manifesto/', title: 'Manifesto', aria_label: 'Read Accessibility Manifesto' },
-        { href: '/about/', title: 'About', aria_label: 'Learn more about me' },
-        { href: '/services/', title: 'Services', aria_label: 'Discover my services' },
-        { href: '/resources/', title: 'Resources', aria_label: 'Read my opinions' },
-        { href: '/contact/', title: 'Contact', aria_label: 'Get in touch with me' }
+        { href: data.sections.manifesto.href, title: data.sections.manifesto.menu_title, aria_label: data.sections.manifesto.menu_aria_label },
+        { href: data.sections.about.href, title: data.sections.about.menu_title, aria_label: data.sections.about.menu_aria_label },
+        { href: data.sections.services.href, title: data.sections.services.menu_title, aria_label: data.sections.services.menu_aria_label },
+        { href: data.sections.resources.href, title: data.sections.resources.menu_title, aria_label: data.sections.resources.menu_aria_label },
+        { href: data.sections.contact.href, title: data.sections.contact.menu_title, aria_label: data.sections.contact.menu_aria_label }
       ]
     )
   }}
@@ -50,14 +48,14 @@
 {% block footer %}
   {{
     footer_bar.regular(
-      aria_label = 'Footer navigation',
+      aria_label = data.base.footer_aria_label,
       links_start = [
         { href: 'mailto:_send_me_an_', title: '_send_me_an_' },
         { href: 'tel:_or_pick_up_the_', title: '_or_pick_up_the_' }
       ],
       links_end = [
-        { href: 'https://nl.linkedin.com/in/anna-nogar%C3%A8-27948048', title: 'LinkedIn', target: '_blank' },
-        { href: 'https://www.behance.net/annanogar', title: 'Behance', target: '_blank' }
+        { href: data.socials.linkedin.href, title: data.socials.linkedin.title, target: '_blank' },
+        { href: data.socials.behance.href, title: data.socials.behance.title, target: '_blank' }
       ]
     )
   }}

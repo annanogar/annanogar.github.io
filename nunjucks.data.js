@@ -1,4 +1,30 @@
 /* eslint-disable camelcase */
+const base = {
+  site_name: 'Anna Nogaré',
+  site_title: 'Anna Nogaré; Interpretive Design Director & Accessibility Strategist, CPACC',
+  site_description: 'Creating meaningful experiences that everyone can enjoy.',
+  skiplink_aria_label: 'Skip to main content',
+  navigation_aria_label: 'Main navigation',
+  menu_dialog_aria_label: 'Menu dialog',
+  menu_button_aria_label: 'Toggle menu dialog',
+  footer_aria_label: 'Footer navigation',
+  badge_about_title: 'Learn more about me',
+  badge_contact_title: 'Get in touch!',
+  badge_manifesto_title: 'Read Accessibility Manifesto',
+  button_resources_title: 'Back to resources',
+}
+
+const socials = {
+  linkedin: {
+    href: 'https://nl.linkedin.com/in/anna-nogar%C3%A8-27948048',
+    title: 'LinkedIn',
+  },
+
+  behance: {
+    href: 'https://www.behance.net/annanogar',
+    title: 'Behance',
+  },
+}
 
 const alts = {
   'misc/anna-dots_1x1': 'Anna Nogaré facing the camera with colorful dot projections on her face and shirt, against a dark background.',
@@ -170,9 +196,10 @@ const alts = {
 
 const sections = {
   home: {
+    slug: 'home',
     href: '/',
     menu_title: 'Anna Nogaré',
-    aria_label: 'Back to homepage',
+    menu_aria_label: 'Back to homepage',
     title: 'Anna Nogaré; Interpretive Design Director & Accessibility Strategist, CPACC',
     description: 'Creating meaningful experiences that everyone can enjoy.',
     subtitle: 'I lead and design digital, physical, and hybrid experiences that turn complex content into inclusive journeys across cultural, educational, tourism, and public environments.',
@@ -180,7 +207,11 @@ const sections = {
   },
 
   about: {
+    slug: 'about',
     href: '/about/',
+    menu_title: 'About',
+    menu_aria_label: 'Learn more about me',
+    title: 'About me',
     description: 'I’m Anna Nogaré, an Interpretive Design Director & Accessibility Strategist working across cultural, educational, tourism, and public environments. A multidisciplinary designer at heart, I combine strategic leadership with hands-on design across digital, physical, and hybrid experiences, translating complex content into meaningful and inclusive journeys for diverse audiences.',
     cta_quote: 'Great ideas start with simple conversations.',
   },
@@ -188,27 +219,38 @@ const sections = {
   contact: {
     slug: 'contact',
     href: '/contact/',
+    menu_title: 'Contact',
+    menu_aria_label: 'Get in touch with me',
     title: 'Contact',
     description: 'If you’d like to discuss a project, ask a question, or simply say hi, I’d love to hear from you.',
     cta_quote: 'Always up for big ideas, or just a good decaf Americano.',
   },
 
   manifesto: {
+    slug: 'manifesto',
     href: '/manifesto/',
+    menu_title: 'Manifesto',
+    menu_aria_label: 'Read my Accessibility Manifesto',
     title: 'Accessibility Manifesto',
     description: 'It’s not about them in the end of a project. It’s about all of us from the very start.',
     cta_quote: 'Accessibility is <br/>strategic design. <br/>Not a compromise.',
   },
 
   projects: {
+    slug: 'projects',
     href: '/projects/',
+    menu_title: 'Selected <br />projects',
+    menu_aria_label: 'Explore selected projects',
     title: 'Selected projects',
     description: 'A selection of projects that explore different ways of creating meaningful experiences for diverse audiences. Each one reflects a unique goal, always shaped by a people-first approach.',
     cta_quote: 'Let curiosity shape your story. Together, we make it real.',
   },
 
   resources: {
+    slug: 'resources',
     href: '/resources/',
+    menu_title: 'Resources',
+    menu_aria_label: 'Read my opinions',
     title: 'Resources',
     description: 'A collection of articles, opinions, thoughts, and reflections.',
     subtitle: 'A collection of articles, opinions, thoughts, and reflections gathered over time, mostly around accessibility as strategic design. Some are polished, some are raw, some somewhere in between. All are still evolving.',
@@ -217,7 +259,10 @@ const sections = {
   },
 
   services: {
+    slug: 'services',
     href: '/services/',
+    menu_title: 'Services',
+    menu_aria_label: 'Discover my services',
     title: 'Services',
     description: 'I work across cultural, educational, tourism, and public environments, including museums, exhibitions, archives, schools, universities, visitor centres, municipalities, and heritage sites.',
     cta_quote: 'How we design matters. Let’s think about it.',
@@ -226,7 +271,10 @@ const sections = {
 
 const projects = {
   cruquius_museum: {
+    slug: 'cruquius-museum',
     href: '/projects/cruquius-museum/',
+    menu_title: 'Cruquius Museum',
+    aria_label: 'Explore the “Cruquius Museum” project',
     title: 'Cruquius Museum',
     description: 'An immersive look at Haarlemmermeer’s history and the world’s largest steam engine.',
     subtitle: 'Cruquius Museum, Cruquius (NL), 2020',
@@ -236,7 +284,10 @@ const projects = {
   },
 
   family_exhibits: {
+    slug: 'family-exhibits',
     href: '/projects/family-exhibits/',
+    menu_title: 'Family Exhibits',
+    menu_aria_label: 'Explore the “Family Exhibits” project',
     title: 'Family Exhibits',
     description: 'A multi-sensory family journey into Qatar’s heritage, shaped by play and discovery.',
     subtitle: 'National Museum of Qatar, Doha (QA), 2019',
@@ -246,7 +297,10 @@ const projects = {
   },
 
   herman_boerhaave: {
+    slug: 'herman-boerhaave',
     href: '/projects/herman-boerhaave/',
+    menu_title: 'Herman Boerhaave',
+    menu_aria_label: 'Explore the “Herman Boerhaave” project',
     title: 'Herman Boerhaave',
     description: 'A walk through the life and world of one of the most influential Dutch physicians.',
     subtitle: 'Rijksmuseum Boerhaave, Leiden (NL), 2018',
@@ -255,7 +309,10 @@ const projects = {
   },
 
   het_steen: {
+    slug: 'het-steen',
     href: '/projects/het-steen/',
+    menu_title: 'Het Steen',
+    menu_aria_label: 'Explore the “Het Steen” project',
     title: 'Het Steen',
     description: 'A visitor center inside Antwerp’s oldest building, made of stories, people, and places.',
     subtitle: 'Visit Antwerp, Antwerp (BE), 2021',
@@ -264,7 +321,10 @@ const projects = {
   },
 
   joh_enschede: {
+    slug: 'joh-enschede',
     href: '/projects/joh-enschede/',
+    menu_title: 'Joh. Enschedé',
+    menu_aria_label: 'Explore the “Joh. Enschedé” project',
     title: 'Joh. Enschedé',
     description: 'Exploring the printers behind pages, banknotes, and type that shaped a nation.',
     subtitle: 'Noord-Hollands Archief, Haarlem (NL), 2019',
@@ -274,7 +334,10 @@ const projects = {
   },
 
   living_planet: {
+    slug: 'living-planet',
     href: '/projects/living-planet/',
+    menu_title: 'Living Planet',
+    menu_aria_label: 'Explore the “Living Planet” project',
     title: 'Living Planet',
     description: 'Understanding biodiversity and ecosystems through playful investigation.',
     subtitle: 'Museum of Natural Sciences, Brussels (BE), 2020',
@@ -283,7 +346,10 @@ const projects = {
   },
 
   maker_park: {
+    slug: 'maker-park',
     href: '/projects/maker-park/',
+    menu_title: 'Maker Park',
+    menu_aria_label: 'Explore the “Maker Park” project',
     title: 'Maker Park',
     description: 'A digital platform for STREAM education through informal learning and games.',
     subtitle: 'ilmi Science Discovery & Innovation Center, Riyadh (SA), Expected opening in 2026',
@@ -292,7 +358,10 @@ const projects = {
   },
 
   prodemos: {
+    slug: 'prodemos',
     href: '/projects/prodemos/',
+    menu_title: 'ProDemos',
+    menu_aria_label: 'Explore the “ProDemos” project',
     title: 'ProDemos',
     description: 'A GPS game where students propose, debate, and bring their own laws to life.',
     subtitle: 'ProDemos, The Hague (NL), 2021',
@@ -301,7 +370,10 @@ const projects = {
   },
 
   shifting_image: {
+    slug: 'shifting-image',
     href: '/projects/shifting-image/',
+    menu_title: 'Shifting Image',
+    menu_aria_label: 'Explore the “Shifting Image” project',
     title: 'Shifting Image',
     description: 'An exhibition revealing the many perspectives surrounding Dutch colonial history.',
     subtitle: 'Mauritshuis, The Hague (NL), 2019',
@@ -313,7 +385,10 @@ const projects = {
 
 const resources = {
   we_are_all_temporarily_able_yes_you_too: {
+    slug: 'we-are-all-temporarily-able-yes-you-too',
     href: '/resources/we-are-all-temporarily-able-yes-you-too/',
+    menu_title: 'We are all temporarily able. Yes, you too.',
+    menu_aria_label: 'Read my “We are all temporarily able. Yes you too.” article',
     title: 'We are all temporarily able. Yes, you too.',
     title_with_markup: 'We are all temporarily able. <br/>Yes, you too.',
     description: 'Stop thinking of disability as something that happens to “other people”. Discover why we are all temporarily able and how changing our perspective on design and accessibility can build a world that works for everyone.',
@@ -452,6 +527,8 @@ const project_cards = {
 const resource_cards = {}
 
 export default {
+  base,
+  socials,
   alts,
   sections,
   projects,
