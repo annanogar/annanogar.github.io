@@ -27,7 +27,7 @@
           atom_picture.regular(
             classes = 'call-to-action__picture',
             sources = [ { type: 'image/webp', srcsets: [ '/static/media/' + image.src + '_640w.webp 640w', '/static/media/' + image.src + '_854w.webp 854w', '/static/media/' + image.src + '_1280w.webp 1280w' ] } ],
-            alt = image.alt,
+            alt = image.alt or data.alts[image.src],
             width = 320,
             height = 320,
             sizes = '(min-width: 768px) 33.333vw, 100vw',

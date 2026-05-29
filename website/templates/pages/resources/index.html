@@ -4,16 +4,19 @@
 {% import 'components/organisms/article-quote/article-quote.html' as article_quote %}
 {% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
 {% import 'components/organisms/card-list/card-list.html' as card_list %}
-{% set page_title = 'Resources' %}
-{% set page_description = 'A collection of articles, opinions, thoughts, and reflections.' %}
+
+{% set page_title = data.sections.resources.title %}
+{% set page_description = data.sections.resources.description %}
+
+{% set opengraph_title = page_title %}
+{% set opengraph_description = page_description %}
 {% set opengraph_image = '/static/media/misc/social_1200x630.jpg' %}
 
 {% block content %}
   {{
     article_header.regular(
-      title = page_title,
-      subtitle = 'A collection of articles, opinions, thoughts, and reflections gathered over time, mostly around accessibility as strategic design. Some are polished, some are raw, some somewhere in between. All are still evolving.',
-      subtitle_2 = 'This is a space to think and share out loud, because the more we talk about these things, the harder they are to ignore.'
+      title = data.sections.resources.title_with_markup or data.sections.resources.title,
+      subtitle = data.sections.resources.subtitle, subtitle_2 = data.sections.resources.subtitle_2
     )
   }}
 
@@ -24,7 +27,7 @@
           href: '/resources/we-are-all-temporarily-able-yes-you-too',
           pretitle: '<time datetime="2026-05-13">13-05-2026</time> | <em>12 min</em>',
           title: 'We are all temporarily able. Yes, you too.',
-          subtitle: 'Stop thinking of disability as something that happens to &ldquo;other people&rdquo;. Discover why we are all temporarily able and how changing our perspective on design and accessibility can build a world that works for everyone.'
+          subtitle: 'Stop thinking of disability as something that happens to “other people”. Discover why we are all temporarily able and how changing our perspective on design and accessibility can build a world that works for everyone.'
         },
 
         {
@@ -38,14 +41,8 @@
     )
   }}
 
-  {{
-    call_to_action.regular(
-      quote = 'The more we talk about it, the harder it gets to ignore.',
-      card = {
-        href: '/contact/',
-        title: 'Get in touch',
-        image: { src: 'misc/vintage-telephone_pawel-czerwinski-unsplash_1x1', alt: 'An antique-style telephone with a wooden base and silver metal handset against a dark blue background.' }
-      }
-    )
-  }}
+  {% set cta_quote = data.sections.resources.cta_quote %}
+  {% set section_card = merge({}, data.section_cards.contact) %}
+  {{ object_set_value(section_card, 'image', { src: section_card.image, alt: data.alts[section_card.image] }) }}
+  {{ call_to_action.regular(quote = cta_quote, card = section_card) }}
 {% endblock %}

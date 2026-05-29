@@ -1,0 +1,463 @@
+/* eslint-disable camelcase */
+
+const alts = {
+  'misc/anna-dots_1x1': 'Anna Nogaré facing the camera with colorful dot projections on her face and shirt, against a dark background.',
+  'misc/anna-leaning-forward_1x1': 'Anna Nogaré leaning forward at a table with sticky notes, listening while a man writes in the background.',
+  'misc/crowd-in-museum_1x1': 'A long-exposure shot of a crowd moving down white stone steps in a museum, with vibrant graphic design posters on the wall behind them.',
+  'misc/production-silhouette_1x1': 'Dramatic silhouette of a production crew and a wooden ladder against glowing blue and magenta walls.',
+  'misc/reviewing-blueprints_1x1': 'Close-up of a designer in a red dress reviewing detailed blueprints in a brightly lit interior.',
+  'misc/service-gradient-1_1x1': 'TODO: alt',
+  'misc/service-gradient-2_1x1': 'TODO: alt',
+  'misc/service-gradient-3_1x1': 'TODO: alt',
+  'misc/vintage-telephone_1x1': 'An antique-style telephone with a wooden base and silver metal handset against a dark blue background. (Image copyright: Pawel Czerwinski via Unsplash)',
+  'misc/wheelchair-sign_1x1': 'Stylized wheelchair symbol painted on asphalt, with a small bouquet of flowers placed in the figure’s hands. (Image copyright: Robert Harkness via Unsplash)',
+  'misc/yall-means-all_1x1': 'Rainbow-striped Pride flag with bold white text reading “Y’all Means All!” hanging inside a window. (Image copyright: Megan Bucknall via Unsplash)',
+  'projects/cruquius-museum/01_2x1': 'Woman ascending a staircase inside the museum, with typographic quotes from 17th-century poetry and documents displayed on the surrounding walls.',
+  'projects/cruquius-museum/02_1x1': 'Two visitors standing in front of a large projected historical illustration of the Cruquius pumping station, part of the museum’s narrative on land reclamation.',
+  'projects/cruquius-museum/03_1x1': 'Close-up of a hand interacting with a digital map showing historical topography, part of an interactive display explaining the geography of Haarlemmermeer.',
+  'projects/cruquius-museum/04_2x1': 'Museum visitor exploring a display case containing navigation instruments, maps, and archaeological artifacts, with a touch screen integrated into the surface.',
+  'projects/cruquius-museum/05_2x1': 'Panoramic view of the gallery featuring an immersive wall projection of historical maps and a portrait of King Willem I, with visitors engaging with the exhibits.',
+  'projects/cruquius-museum/06_1x1': 'Woman interacting with a digital touchscreen in front of a large decorative map, using the interface to explore historical information.',
+  'projects/cruquius-museum/07_1x1': 'Two visitors interacting with a long display table featuring historical navigation tools, ceramic artifacts, and a digital map interface, in a gallery combining exposed brick and museum lighting.',
+  'projects/cruquius-museum/08_2x1': 'Woman examining a large wall-mounted visual timeline that traces the development of steam technology from 1643 onward, featuring historical texts and illustrations.',
+  'projects/cruquius-museum/09_2x1': 'Child peering into a reconstructed boiler installation, while two other children in the foreground use audio handsets to explore the exhibit in the “Boiler Room” section.',
+  'projects/cruquius-museum/10_1x1': 'Young boy using a touchscreen embedded in a wall panel to learn about the properties and transformations of steam.',
+  'projects/cruquius-museum/11_1x1': 'Child interacting with a horizontal touchscreen table, placed in front of a large infographic panel showing engineering data and historical timelines of the pumping station.',
+  'projects/cruquius-museum/12_2x1': 'Children interacting with tall, black cylindrical structures that present historical information about steam power, surrounded by other exhibits and timeline graphics.',
+  'projects/cruquius-museum/13_2x1': 'Three children closely examining a hands-on model of a steam engine, focusing on its moving mechanical parts.',
+  'projects/cruquius-museum/14_1x1': 'A young woman observing a detailed infographic display with historical data, diagrams, and scale models related to the Cruquius pumping station and its steam engines.',
+  'projects/cruquius-museum/15_1x1': 'Visitor standing near the massive Cruquius engine installation, surrounded by large iron components and a spiral staircase inside the museum.',
+  'projects/cruquius-museum/16_2x1': 'Children seated at a long interactive counter, experimenting with steam engine models, assisted by a woman under a “Stoomlab” sign in the background.',
+  'projects/cruquius-museum/cover_3x1': 'Entrance to the Cruquius Museum featuring exposed brick walls and illuminated signage, with a blurred figure walking through the doorway.',
+  'projects/cruquius-museum/thumbnail_1x1': 'Museum visitor exploring a display case containing navigation instruments, maps, and archaeological artifacts, with a touch screen integrated into the surface.',
+  'projects/family-exhibits/01_2x1': 'Wide view of the archaeological gallery, with large amphora replicas, touchscreen tables, and animated projections illustrating layers of earth and excavation scenes.',
+  'projects/family-exhibits/02_1x1': 'Two young girls interacting with a sand-textured touchscreen interface, part of a digital digging game that simulates uncovering buried artifacts in different soil layers.',
+  'projects/family-exhibits/03_1x1': 'Close-up of a girl using a circular interactive screen that mimics ancient decorative patterns, part of an archaeology-themed activity about reconstructing cultural objects from fragments.',
+  'projects/family-exhibits/04_1x1': 'Two teenagers engaging with a large horizontal touchscreen as part of an interactive archaeological game, set within a gallery where colorful stratigraphic layers are projected on the walls to simulate excavation contexts.',
+  'projects/family-exhibits/05_1x1': 'A toddler inserting a puzzle piece into a large interactive ceramic-alike amphora, part of a hands-on archaeological activity, while an adult woman looks on.',
+  'projects/family-exhibits/06_2x1': 'Boy and father engaging with an interactive table game where participants place their hands over specific object replicas to trigger animated projections on the wall, revealing excavation layers and archaeological timelines.',
+  'projects/family-exhibits/07_1x1': 'Children using a multi-user touchscreen to uncover virtual artifacts in a digging-themed game, while parents look on, in a gallery designed to simulate a layered archaeological dig site.',
+  'projects/family-exhibits/08_1x1': 'Young girl smiling while playing with a tactile puzzle on a large amphora replica, part of an interactive installation that invites children to reconstruct broken archaeological artifacts.',
+  'projects/family-exhibits/09_2x1': 'A child interacting with replicas of ancient artifacts on a round table; wall projections above respond with animated historical scenes and layers representing excavation contexts. Two adult men are observing the game.',
+  'projects/family-exhibits/10_2x1': 'Wide view of a gallery with immersive underwater projections covering the walls; traditional fishing tools, props and interactive screens are arranged on display, and a large stylized pearl shell sits at the center.',
+  'projects/family-exhibits/11_1x1': 'Young girl sitting playfully inside a large sculpted pearl shell in the middle of the gallery, surrounded by vivid marine-themed projections.',
+  'projects/family-exhibits/12_1x1': 'Three children roleplaying a traditional cooking activity, using tongs to place toy fish over a simulated grill lit with glowing red light to mimic fire.',
+  'projects/family-exhibits/13_2x1': 'Child and adult woman exploring an interactive touch display set into a counter, with vibrant coral reef animations projected on the surrounding gallery walls.',
+  'projects/family-exhibits/14_1x1': 'Young girl standing in front of a wall display featuring brightly lit circular windows, each showcasing a different sea creature linked to the marine life of the Gulf.',
+  'projects/family-exhibits/15_1x1': 'Close-up of a touchscreen game interface with a grid of numbered pearl illustrations, inviting visitors to find the most precious pearl known as the Dana or Jiwan.',
+  'projects/family-exhibits/16_1x1': 'Two girls engaging with a digital touchscreen embedded under a large wooden dhow model, exploring pearl-themed interactive content with projected coral reef graphics.',
+  'projects/family-exhibits/17_1x1': 'Young boy exploring a large boat model beneath a sail-shaped screen projecting a pearl diving scene, opening side compartments to discover the vessel’s interior features.',
+  'projects/family-exhibits/18_2x1': 'Three children using large interactive wooden oars, simulating the rowing experience of pearl divers in a boat installation surrounded by an underwater environment.',
+  'projects/family-exhibits/19_1x1': 'Wide view of an immersive energy-themed room with glowing floor tiles and colorful wall graphics depicting Qatar’s energy landscape and infrastructure.',
+  'projects/family-exhibits/20_1x1': 'Two children and an adult joyfully interacting with an illuminated game floor, triggering projected animations and feedback related to Qatar’s energy journey.',
+  'projects/family-exhibits/21_1x1': 'Child scanning colorful 3D-printed plastic objects shaped like consumer goods using a handheld barcode scanner at an interactive wall.',
+  'projects/family-exhibits/22_1x1': 'Group of children standing barefoot on a glowing interactive floor, focusing on triggering visual responses through movement.',
+  'projects/family-exhibits/23_2x1': 'Illuminated interactive floor displaying a stylized map of Qatar, with LED-lit illustrations on the wall representing national energy sources. A rainbow-colored screen above the floor provides game instructions in Arabic.',
+  'projects/family-exhibits/cover_3x1': 'Exterior view of the National Museum of Qatar, with its iconic interlocking disc design and water features, seen through an artistic sculptural installation in the foreground.',
+  'projects/family-exhibits/thumbnail_1x1': 'Children using a multi-user touchscreen to uncover virtual artifacts in a digging-themed game, while parents look on, in a gallery designed to simulate a layered archaeological dig site.',
+  'projects/herman-boerhaave/01_2x1': 'A young woman kneeling in front of a glass case containing a bronze bust, carefully observing the sculpture below a graphic wall that combines Herman Boerhaave’s name and stylized portrait.',
+  'projects/herman-boerhaave/02_1x1': 'Two visitors standing side by side watching a large screen playing a video interview with English subtitles, in a gallery section centered on experimentation and scientific thought.',
+  'projects/herman-boerhaave/03_1x1': 'Glass case displaying a decorative urn placed on a dark pedestal, accompanied by a colorful wall panel that presents contextual information about Boerhaave’s life and work in Leiden.',
+  'projects/herman-boerhaave/04_2x1': 'A young woman leaning forward to read a display in a room filled with colorful graphics and scientific illustrations, while a man in the background engages with another exhibit.',
+  'projects/herman-boerhaave/05_2x1': 'Two visitors observing a collection of scientific and medical instruments in glass cases, surrounded by vibrant graphic panels illustrating bedside practices and experimental methods.',
+  'projects/herman-boerhaave/06_1x1': 'A man in a blue shirt using a tactile interactive station, with buttons and dials, in a gallery filled with historic scientific tools and instructional displays.',
+  'projects/herman-boerhaave/07_1x1': 'A young woman carefully examining a historical thermometer encased in glass, set against a brightly colored wall display with interpretive text about Fahrenheit’s innovations.',
+  'projects/herman-boerhaave/08_2x1': 'Museum visitor exploring an exhibit of glass-encased scientific instruments and apothecary tools, surrounded by stylized wall graphics referencing laboratory experimentation.',
+  'projects/herman-boerhaave/09_2x1': 'Two museum visitors navigating a gallery on bedside teaching, featuring engraved medical scenes, information panels, and historic ceramic vessels inside glass displays.',
+  'projects/herman-boerhaave/10_1x1': 'Young woman leaning over a display case to observe a historical scientific object, with detailed background illustrations and text highlighting the tool’s significance.',
+  'projects/herman-boerhaave/11_1x1': 'Young man interacting with a botanical display that includes herbarium sheets and plant illustrations, framed by vivid green walls decorated with foliage motifs.',
+  'projects/herman-boerhaave/12_2x1': 'Woman closely reading a glass case containing handwritten medical notes, with a backdrop of engraved portraits and a large wall illustration of a teaching scene.',
+  'projects/herman-boerhaave/13_2x1': 'Three visitors inside a museum gallery featuring a finely crafted wooden dresser as a central exhibit, with a large family portrait and colorful illustrated walls displaying quotes and silhouettes, including a panel about Carl Linnaeus.',
+  'projects/herman-boerhaave/14_1x1': 'Two young visitors conversing in front of a large illustrated wall showing Leiden’s historic botanical garden and university buildings, with nearby panels on botanical research.',
+  'projects/herman-boerhaave/15_1x1': 'Close-up of four ornate apothecary jars labeled in Latin, each adorned with a decorative crest, arranged inside a glass display against a clean backdrop.',
+  'projects/herman-boerhaave/16_2x1': 'Woman smiling as she observes a glass case displaying fine porcelain tableware, set within a gallery of vivid wall illustrations and a historic portrait hanging in the background.',
+  'projects/herman-boerhaave/cover_3x1': 'Entrance area of the exhibition featuring a large wall graphic with the name “Herman Boerhaave” and a silhouette cutout, with a man standing in a dimly lit space beyond the entrance.',
+  'projects/herman-boerhaave/thumbnail_1x1': 'Young man standing in front of a glass case containing a tall historical measuring instrument, examining it closely.',
+  'projects/het-steen/01_2x1': 'Female visitor touching a vertical touchscreen display embedded in a large cabinet structure, revealing layered stories through artworks and animated content.',
+  'projects/het-steen/02_1x1': 'Distant view of an immersive theatrical installation, with a woman seated in the foreground watching life-sized projections of actors in costume performing inside a recreated artist’s studio.',
+  'projects/het-steen/03_1x1': 'Child seated among oversized wooden architectural models, gazing up in awe at a screen embedded in the wooden structure above.',
+  'projects/het-steen/04_1x1': 'Woman looking up inside a vertical wooden structure with a digital ceiling screen displaying a kaleidoscopic architectural animation.',
+  'projects/het-steen/05_1x1': 'Child interacting with a large touchscreen display embedded in a wooden exhibit structure, surrounded by architectural models and warm lighting.',
+  'projects/het-steen/06_2x1': 'Woman exploring a room lined with life-size vertical screens, each presenting cultural stories and visuals from different neighborhoods of Antwerp.',
+  'projects/het-steen/07_1x1': 'Woman using a large horizontal touchscreen map alongside a wooden scale model of Antwerp, in a sunlit room with tall windows.',
+  'projects/het-steen/08_1x1': 'Woman and child inside an immersive panoramic projection room with floor-to-ceiling visuals of a car terminal and cargo ship.',
+  'projects/het-steen/09_2x1': 'Woman and child engaging with a large interactive map table; both smiling and pointing to different elements on the digital surface in a warmly lit room.',
+  'projects/het-steen/10_2x1': 'Woman interacting with a horizontal touchscreen exhibit focused on craftsmanship and local industry, featuring large visuals and text in a softly lit space.',
+  'projects/het-steen/11_1x1': 'Woman standing in a dimly lit attic space, listening to an audio track through a handset while interacting with a touchscreen display embedded in a wooden podium.',
+  'projects/het-steen/12_1x1': 'Two women and a child observing a large vertical digital display showing a high-resolution reproduction of a classical painting, inside a bright gallery space with tall windows.',
+  'projects/het-steen/13_2x1': 'A child sits on the floor while a woman stands nearby, both immersed in an interactive installation where colorful visuals and texts about Antwerp’s creative industry are projected onto the floor and wall.',
+  'projects/het-steen/cover_3x1': 'Parent and child closely examining the drawers of a historic wooden cabinet in a red-patterned room at Het Steen, discovering tactile and visual elements of Antwerp’s past.',
+  'projects/het-steen/thumbnail_1x1': 'Woman and child engaging with a large interactive map table; both smiling and pointing to different elements on the digital surface in a warmly lit room.',
+  'projects/joh-enschede/01_1x1': 'Display on bookmaking, featuring a historical printing press surrounded by books and miniature figures, with suspended printed pages above and colorful stained glass at the back.',
+  'projects/joh-enschede/02_1x1': 'Typography-themed station with metal type installations hanging overhead, display cases with printing materials below, and stained glass windows adding depth to the gallery.',
+  'projects/joh-enschede/03_1x1': 'Banknote station with large printing rollers suspended above a display case of financial documents, set against an exposed brick wall and vibrant stained glass inspired by currency design.',
+  'projects/joh-enschede/04_1x1': 'Interactive station with antique tools and a touchscreen, set against a stained glass window featuring collage-style banknote imagery and historical references.',
+  'projects/joh-enschede/05_1x1': 'Close-up of a vibrant stained glass window featuring a collage of portraiture, patterns, and typographic elements from Dutch banknotes and various printed motifs and patterns.',
+  'projects/joh-enschede/06_1x1': 'Display case containing metal printing tools and lead type molds, beneath a mounted infographic panel explaining the process of making lead type.',
+  'projects/joh-enschede/07_1x1': 'Two children wearing headphones and holding clipboards, engaging with an interactive exhibit on printing techniques and history.',
+  'projects/joh-enschede/08_1x1': 'Woman engaging with a hands-on printing exhibit, pulling a lever on a wooden structure below a screen that explains how to set up and use a historical press.',
+  'projects/joh-enschede/09_1x1': 'Two young women reading and discussing a book displayed on a glass-topped museum table, surrounded by other printing-related displays and exhibition graphics.',
+  'projects/joh-enschede/10_1x1': 'Two boys interacting with an illuminated display table, one pointing to a printing-related exhibit beneath the glass, with educational diagrams about lead type in the background.',
+  'projects/joh-enschede/11_2x1': 'Man and woman smiling as they engage with a digital screen embedded in a display table, surrounded by colorful exhibition elements and brick walls.',
+  'projects/joh-enschede/12_1x1': 'Close-up of two visitors interacting with a touchscreen showing historical Dutch banknote specimens, pointing to enlarged images on the screen.',
+  'projects/joh-enschede/13_1x1': 'Detailed view of a digital display featuring an interactive design tool, where a user is selecting security features for a banknote as part of an educational museum experience.',
+  'projects/joh-enschede/14_1x1': 'Two young girls interacting with a touchscreen display in the museum, one pointing at the interface while the other attentively observes, with printing equipment visible in the background.',
+  'projects/joh-enschede/15_1x1': 'Group of children gathered around a display case labeled “De Duitse stempelsnijder” (“The German Punchcutter”), observing and discussing its contents, with an adult guiding them.',
+  'projects/joh-enschede/16_2x1': 'Close-up of two adults smiling and using an interactive digital screen labeled “Wealth in letters,” with a printing press and suspended sheets visible above.',
+  'projects/joh-enschede/cover_3x1': 'Young man closely inspecting a backlit historical timeline of portraits and key events in the legacy of Joh. Enschedé, a Dutch printer of value documents.',
+  'projects/joh-enschede/thumbnail_1x1': 'Group of children gathered around a display case labeled “De Duitse stempelsnijder” (“The German Punchcutter”), observing and discussing its contents, with an adult guiding them.',
+  'projects/living-planet/01_2x1': 'Family of four gathered around a touchscreen in the natural history gallery, as the mother points toward a taxidermy animal in the exhibit, surrounded by a diverse array of mounted species.',
+  'projects/living-planet/02_1x1': 'Taxidermy dingo displayed on a white platform, surrounded by bears and wild cat specimens in an open exhibition space.',
+  'projects/living-planet/03_1x1': 'Young woman pointing toward a group of taxidermy animals while standing next to an interactive screen displaying species-related content.',
+  'projects/living-planet/04_1x1': 'Young boy in a red t-shirt looking up in awe, surrounded by taxidermy animals in a white exhibition space.',
+  'projects/living-planet/05_1x1': 'Woman wearing a face mask pointing toward an animal specimen while two young children lean over a low railing in a gallery filled with large taxidermy mammals.',
+  'projects/living-planet/06_2x1': 'A cheetah and an African wild dog stand side by side on a display platform, surrounded by various birds and mammals.',
+  'projects/living-planet/07_1x1': 'Teenage visitor wearing a mask and green checkered shirt, engaging with an angled touchscreen among mounted animal specimens.',
+  'projects/living-planet/08_1x1': 'Close-up of a touchscreen interface titled “Vivre sur la Terre” (“Living on Earth”) with a visual network of animal images and taxidermy specimens in the background.',
+  'projects/living-planet/09_2x1': 'Mother and young child standing in front of a deer specimen while the child gestures excitedly, with other visitors and animal displays in the background.',
+  'projects/living-planet/10_2x1': 'Two young children exploring a yellow circular hands-on table with small animal models, including one placed on top, tactile elements, and circular openings.',
+  'projects/living-planet/11_1x1': 'A woman seated at a circular yellow interactive station using a touchscreen surrounded by animal figures, with mounted taxidermy animals in the background.',
+  'projects/living-planet/12_1x1': 'Child interacting with a touchscreen embedded in a curved table showing a game about identifying camouflaged animals, with taxidermy specimens displayed nearby.',
+  'projects/living-planet/13_2x1': 'Adult and child interacting with a yellow circular hands-on table featuring small colored blocks inside a transparent dome, within a gallery of taxidermy animals.',
+  'projects/living-planet/14_1x1': 'Two children examining yellow hands-on tables with circular openings and small animal models placed inside.',
+  'projects/living-planet/15_1x1': 'Visitors gather around a large immersive projection showing abstract, colourful nature imagery and a white branching structure in the center.',
+  'projects/living-planet/16_1x1': 'Wide view of a museum gallery with circular display platforms presenting taxidermy animals, interactive screens, and low yellow tables integrated among the specimens.',
+  'projects/living-planet/17_1x1': 'Close-up of a touchscreen showing a Dutch-language interactive explaining how oceans produce oxygen, with visuals of phytoplankton and coral reefs.',
+  'projects/living-planet/18_2x1': 'Curved wall projection displaying four large interactive touchscreens, each in front of a section of animated visuals representing different ecosystems, such as grasslands, forests, and ocean life.',
+  'projects/living-planet/19_1x1': 'A woman stands in a dimly lit gallery space, interacting with a touchscreen in front of a natural history exhibit featuring an elk and a scenic tundra backdrop, with wolves and other animals displayed behind her and in the background.',
+  'projects/living-planet/20_1x1': 'Close-up of a horizontal touchscreen showing an interface with a rainforest image, a location map, biodiversity stats, and a finger selecting one of the circular data points.',
+  'projects/living-planet/21_1x1': 'A woman engaging with a large digital table displaying an interactive globe, surrounded by nature-themed projections of underwater vegetation and marine life.',
+  'projects/living-planet/22_1x1': 'A woman standing in an immersive room with walls covered in large-scale projections of forest and mountain environments, surrounded by vivid color and light.',
+  'projects/living-planet/23_2x1': 'Immersive installation showing high-resolution projections of a chipmunk on one wall and a grazing reindeer on the other, wrapping around freestanding structures in the space.',
+  'projects/living-planet/cover': 'Wide-angle view of a gallery filled with taxidermy animals arranged along curved white arches, showcasing biodiversity across species and environments.',
+  'projects/living-planet/thumbnail_1x1': 'Mother and young child standing in front of a deer specimen while the child gestures excitedly, with other visitors and animal displays in the background.',
+  'projects/maker-park/01_2x1': 'Daytime view of Ilmi Center showing families and school children walking toward the iconic reflective sphere, surrounded by gardens and flowering trees.',
+  'projects/maker-park/02_1x1': 'Portrait of a young boy smiling in traditional Saudi attire, representing the target audience of the educational initiative.',
+  'projects/maker-park/03_1x1': 'Aerial night rendering of the Ilmi Center lit up against a dark desert landscape, with illuminated pathways and the luminous central sphere at the heart of the design.',
+  'projects/maker-park/04_2x1': 'Front-facing rendering of Ilmi Center at dusk, showing visitors entering the museum through a tunnel-like entrance beneath the glowing orb.',
+  'projects/maker-park/05_2x1': 'Colorful 3D illustration of a robot hands holding a smartphone displaying the “Maker Park” gate from the Ilmi app, with gamified learning visuals in the background.',
+  'projects/maker-park/06_1x1': 'Cartoon robot wearing a green jersey with the number 1, cheerfully raising a golden trophy with confetti falling around, celebrating a game achievement on a bright blue background.',
+  'projects/maker-park/07_1x1': 'TODO: alt',
+  'projects/maker-park/08_2x1': 'A cheerful robot holds its face in surprise next to a floating game controller and a smartphone showing a colorful hexagonal map interface from the educational platform, all set against a vibrant gradient background.',
+  'projects/maker-park/cover_3x1': 'Architectural rendering of Ilmi Center at sunset, featuring a glowing spherical structure at the center of a landscaped cultural park filled with visitors.',
+  'projects/maker-park/thumbnail_1x1': 'TODO: alt',
+  'projects/prodemos/01_2x1': 'A girl smiles while another student films her using a tablet, capturing a scene for the interactive assignment indoors.',
+  'projects/prodemos/02_1x1': 'Three girls stand in a tree-lined area, focused on a tablet screen as they work together on one of the GPS-based challenges.',
+  'projects/prodemos/03_1x1': 'Three girls sit on a park bench, looking at a tablet together, one pointing at the screen as they discuss.',
+  'projects/prodemos/04_1x1': 'Tablet screen showing a final congratulatory screen in Dutch with stars and a crown, marking the completion of the game.',
+  'projects/prodemos/05_1x1': 'Tablet screen displaying the structure of the activity and tasks to complete, with headings and icons in purple on an orange background.',
+  'projects/prodemos/06_2x1': 'A group of teenage students gathers in a leafy urban area, wearing red lanyards and name badges. Some are seated on a bench while others stand around them, smiling and holding tablets as part of an educational activity.',
+  'projects/prodemos/07_1x1': 'Two girls stand on the sidewalk in front of a staircase, one holding a tablet and the other gesturing while talking, engaged in discussion.',
+  'projects/prodemos/08_1x1': 'Four young men stand under a tree, gathered around a tablet, collaborating on a task during the outdoor activity.',
+  'projects/prodemos/09_2x1': 'Close-up of a tablet screen showing a digital interface where users select a Dutch government minister as part of the game.',
+  'projects/prodemos/cover_3x1': 'Five teenage girls walk side by side through a city street, smiling and chatting. They wear red lanyards with badges, and some hold tablets as part of an educational activity.',
+  'projects/prodemos/thumbnail_1x1': 'Group of teenagers sitting and standing around a park bench, holding tablets and wearing event badges during an outdoor learning activity.',
+  'projects/shifting-image/cover_3x1': 'Bust of Johan Maurits positioned in front of a wall covered with identical sculpted heads. Around the room, visitors observe large colonial paintings and immersive wall projections of tropical landscapes and ruins.',
+  'projects/shifting-image/thumbnail_1x1': 'Close-up of a woman gazing at a large colonial painting depicting a noblewoman with children. The woman stands in a dark gallery lit by focused spotlights on the artworks.',
+  'projects/shifting-images/01_2x1': 'Exhibition room with colonial portraits and a timeline wall. A large painting of a woman accompanied by a white child and a Black child dominates the foreground, while visitors quietly observe other paintings in the surroundings.',
+  'projects/shifting-images/02_1x1': 'A woman interacts with a touchscreen display in front of a large, ornately framed portrait of Johan Maurits. In the background, projected images and a smaller portraits of two Black men are visible.',
+  'projects/shifting-images/03_1x1': 'Close-up of a woman gazing at a large colonial painting depicting a noblewoman with children. The woman stands in a dark gallery lit by focused spotlights on the artworks.',
+  'projects/shifting-images/04_2x1': 'Two women explore a gallery space featuring a detailed white architectural model and framed portraits of Black men. On the left wall, an exhibition timeline in Dutch and English provides historical context.',
+  'projects/shifting-images/05_2x1': 'Gallery scene with a bust of Johan Maurits in the center, surrounded by wall-mounted colonial paintings and immersive projections of exotic landscapes. Several visitors explore the room independently.',
+  'projects/shifting-images/06_1x1': 'White architectural model of a classical building, made of imitation sugar cubes and displayed under a spotlight. The model sits on a circular base covered in loose sugar cubes, all set within a dark exhibition room.',
+  'projects/shifting-images/07_1x1': 'A woman stands closely in front of a large colonial portrait of a white woman accompanied by a Black servant. Projected market scenes and paintings are layered across the back wall.',
+  'projects/shifting-images/08_2x1': 'Side view of a woman reading from a touchscreen next to a large white architectural model of a neoclassical building, made of imitation sugar cubes. The installation is surrounded by a base of loose sugar cubes and illuminated in a dark room.',
+  'projects/shifting-images/09_2x1': 'Panoramic view of the exhibition room with a timeline wall, large projected colonial portraits, and a seated visitor. The bust of Johan Maurits appears in the foreground, partially turned.',
+  'projects/shifting-images/10_1x1': 'Bust of Johan Maurits in a spotlight, set against a textured wall covered in repeating versions of the same sculpted face. The statue’s elaborate military uniform and expression are clearly visible.',
+  'projects/shifting-images/11_1x1': 'A young woman stands in front of a series of framed landscape paintings, attentively engaging with a touchscreen. Projected scenes of natural environments extend across the walls in the background.',
+  'projects/shifting-images/12_2x1': 'Interactive panel titled “Wat vraagt u zich af?” (“What would you like to know?”) invites visitors to reflect on the legacy of Johan Maurits and colonial history, featuring a mix of Dutch and English explanatory text and survey questions.',
+}
+
+const sections = {
+  home: {
+    href: '/',
+    menu_title: 'Anna Nogaré',
+    aria_label: 'Back to homepage',
+    title: 'Anna Nogaré; Interpretive Design Director & Accessibility Strategist, CPACC',
+    description: 'Creating meaningful experiences that everyone can enjoy.',
+    subtitle: 'I lead and design digital, physical, and hybrid experiences that turn complex content into inclusive journeys across cultural, educational, tourism, and public environments.',
+    cta_quote: 'It’s not about <em>them</em> in the end. It’s about <em>all of us</em> from the very start.',
+  },
+
+  about: {
+    href: '/about/',
+    description: 'I’m Anna Nogaré, an Interpretive Design Director & Accessibility Strategist working across cultural, educational, tourism, and public environments. A multidisciplinary designer at heart, I combine strategic leadership with hands-on design across digital, physical, and hybrid experiences, translating complex content into meaningful and inclusive journeys for diverse audiences.',
+    cta_quote: 'Great ideas start with simple conversations.',
+  },
+
+  contact: {
+    slug: 'contact',
+    href: '/contact/',
+    title: 'Contact',
+    description: 'If you’d like to discuss a project, ask a question, or simply say hi, I’d love to hear from you.',
+    cta_quote: 'Always up for big ideas, or just a good decaf Americano.',
+  },
+
+  manifesto: {
+    href: '/manifesto/',
+    title: 'Accessibility Manifesto',
+    description: 'It’s not about them in the end of a project. It’s about all of us from the very start.',
+    cta_quote: 'Accessibility is <br/>strategic design. <br/>Not a compromise.',
+  },
+
+  projects: {
+    href: '/projects/',
+    title: 'Selected projects',
+    description: 'A selection of projects that explore different ways of creating meaningful experiences for diverse audiences. Each one reflects a unique goal, always shaped by a people-first approach.',
+    cta_quote: 'Let curiosity shape your story. Together, we make it real.',
+  },
+
+  resources: {
+    href: '/resources/',
+    title: 'Resources',
+    description: 'A collection of articles, opinions, thoughts, and reflections.',
+    subtitle: 'A collection of articles, opinions, thoughts, and reflections gathered over time, mostly around accessibility as strategic design. Some are polished, some are raw, some somewhere in between. All are still evolving.',
+    subtitle_2: 'This is a space to think and share out loud, because the more we talk about these things, the harder they are to ignore.',
+    cta_quote: 'The more we talk about it, the harder it gets to ignore.',
+  },
+
+  services: {
+    href: '/services/',
+    title: 'Services',
+    description: 'I work across cultural, educational, tourism, and public environments, including museums, exhibitions, archives, schools, universities, visitor centres, municipalities, and heritage sites.',
+    cta_quote: 'How we design matters. Let’s think about it.',
+  },
+}
+
+const projects = {
+  cruquius_museum: {
+    href: '/projects/cruquius-museum/',
+    title: 'Cruquius Museum',
+    description: 'An immersive look at Haarlemmermeer’s history and the world’s largest steam engine.',
+    subtitle: 'Cruquius Museum, Cruquius (NL), 2020',
+    subtitle_short: 'Cruquius Museum, Cruquius (NL)',
+    label: 'Featured',
+    cta_quote: 'Explore the next project or drop me a message.',
+  },
+
+  family_exhibits: {
+    href: '/projects/family-exhibits/',
+    title: 'Family Exhibits',
+    description: 'A multi-sensory family journey into Qatar’s heritage, shaped by play and discovery.',
+    subtitle: 'National Museum of Qatar, Doha (QA), 2019',
+    subtitle_short: 'National Museum of Qatar, Doha (QA)',
+    label: 'Awarded',
+    cta_quote: 'Explore the next project or drop me a message.',
+  },
+
+  herman_boerhaave: {
+    href: '/projects/herman-boerhaave/',
+    title: 'Herman Boerhaave',
+    description: 'A walk through the life and world of one of the most influential Dutch physicians.',
+    subtitle: 'Rijksmuseum Boerhaave, Leiden (NL), 2018',
+    subtitle_short: 'Rijksmuseum Boerhaave, Leiden (NL)',
+    cta_quote: 'Explore the next project or drop me a message.',
+  },
+
+  het_steen: {
+    href: '/projects/het-steen/',
+    title: 'Het Steen',
+    description: 'A visitor center inside Antwerp’s oldest building, made of stories, people, and places.',
+    subtitle: 'Visit Antwerp, Antwerp (BE), 2021',
+    subtitle_short: 'Visit Antwerp, Antwerp (BE)',
+    cta_quote: 'Explore the next project or drop me a message.',
+  },
+
+  joh_enschede: {
+    href: '/projects/joh-enschede/',
+    title: 'Joh. Enschedé',
+    description: 'Exploring the printers behind pages, banknotes, and type that shaped a nation.',
+    subtitle: 'Noord-Hollands Archief, Haarlem (NL), 2019',
+    subtitle_short: 'Noord-Hollands Archief, Haarlem (NL)',
+    label: 'Awarded + Featured',
+    cta_quote: 'Explore the next project or drop me a message.',
+  },
+
+  living_planet: {
+    href: '/projects/living-planet/',
+    title: 'Living Planet',
+    description: 'Understanding biodiversity and ecosystems through playful investigation.',
+    subtitle: 'Museum of Natural Sciences, Brussels (BE), 2020',
+    subtitle_short: 'Museum of Natural Sciences, Brussels (BE)',
+    cta_quote: 'Explore the next project or drop me a message.',
+  },
+
+  maker_park: {
+    href: '/projects/maker-park/',
+    title: 'Maker Park',
+    description: 'A digital platform for STREAM education through informal learning and games.',
+    subtitle: 'ilmi Science Discovery & Innovation Center, Riyadh (SA), Expected opening in 2026',
+    subtitle_short: 'ilmi Science Discovery & Innovation Center, Riyadh (SA)',
+    cta_quote: 'Explore the next project or drop me a message.',
+  },
+
+  prodemos: {
+    href: '/projects/prodemos/',
+    title: 'ProDemos',
+    description: 'A GPS game where students propose, debate, and bring their own laws to life.',
+    subtitle: 'ProDemos, The Hague (NL), 2021',
+    subtitle_short: 'ProDemos, The Hague (NL)',
+    cta_quote: 'Explore the next project or start a conversation.',
+  },
+
+  shifting_image: {
+    href: '/projects/shifting-image/',
+    title: 'Shifting Image',
+    description: 'An exhibition revealing the many perspectives surrounding Dutch colonial history.',
+    subtitle: 'Mauritshuis, The Hague (NL), 2019',
+    subtitle_short: 'Mauritshuis, The Hague (NL)',
+    label: 'Awarded',
+    cta_quote: 'Explore the next project or drop me a message.',
+  },
+}
+
+const resources = {
+  we_are_all_temporarily_able_yes_you_too: {
+    href: '/resources/we-are-all-temporarily-able-yes-you-too/',
+    title: 'We are all temporarily able. Yes, you too.',
+    title_with_markup: 'We are all temporarily able. <br/>Yes, you too.',
+    description: 'Stop thinking of disability as something that happens to “other people”. Discover why we are all temporarily able and how changing our perspective on design and accessibility can build a world that works for everyone.',
+    subtitle: 'Anna Nogaré | <time datetime="2026-05-13">13-05-2026</time> | <em>12 min</em>',
+    cta_quote: 'The more we talk about it, the harder it gets to ignore.',
+  },
+}
+
+const section_cards = {
+  about: {
+    href: '/about/',
+    title: 'Learn more about me',
+    image: 'misc/anna-dots_1x1',
+  },
+
+  contact: {
+    href: '/contact/',
+    title: 'Get in touch',
+    image: 'misc/vintage-telephone_1x1',
+  },
+
+  manifesto: {
+    href: '/manifesto/',
+    title: 'Read Accessibility Manifesto',
+    image: 'misc/wheelchair-sign_1x1',
+  },
+
+  projects: {
+    href: '/projects/',
+    title: 'Selected projects',
+    image: 'projects/shifting-image/thumbnail_1x1',
+  },
+
+  resources: {
+    href: '/resources/',
+    title: 'Resources',
+    subtitle: 'A collection of articles, opinions, thoughts, and reflections.',
+  },
+
+  services: {
+    href: '/services/',
+    title: 'Discover my services',
+    image: 'misc/reviewing-blueprints_1x1',
+  },
+}
+
+const section_text_cards = {
+  manifesto: {
+    href: '/manifesto/',
+    title: 'Manifesto',
+    subtitle: 'We are all temporarily able. Yes, you too. And once you see it, you can’t unsee it.',
+  },
+
+  resources: {
+    href: '/resources/',
+    title: 'Resources',
+    subtitle: 'A collection of articles, opinions, thoughts, and reflections.',
+  },
+
+  services: {
+    href: '/services/',
+    title: 'Services',
+    subtitle: 'Interpretive Concept <br/>Creative Leadership <br/>Accessibility Strategy',
+  },
+}
+
+const project_cards = {
+  living_planet: {
+    href: '/projects/living-planet/',
+    title: 'Living planet',
+    subtitle: 'Museum of Natural Sciences, Brussels (BE)',
+    image: 'projects/living-planet/thumbnail_1x1',
+  },
+
+  joh_enschede: {
+    href: '/projects/joh-enschede/',
+    title: 'Joh. Enschedé',
+    subtitle: 'Noord-Hollands Archief, Haarlem (NL)',
+    label: 'Awarded + Featured',
+    image: 'projects/joh-enschede/thumbnail_1x1',
+  },
+
+  prodemos: {
+    href: '/projects/prodemos/',
+    title: 'ProDemos',
+    subtitle: 'ProDemos, The Hague (NL)',
+    image: 'projects/prodemos/thumbnail_1x1',
+  },
+
+  shifting_image: {
+    href: '/projects/shifting-image/',
+    title: 'Shifting Image',
+    subtitle: 'Mauritshuis, The Hague (NL)',
+    label: 'Awarded',
+    image: 'projects/shifting-image/thumbnail_1x1',
+  },
+
+  cruquius_museum: {
+    href: '/projects/cruquius-museum/',
+    title: 'Cruquius museum',
+    subtitle: 'Cruquius Museum, Cruquius (NL)',
+    label: 'Featured',
+    image: 'projects/cruquius-museum/thumbnail_1x1',
+  },
+
+  herman_boerhaave: {
+    href: '/projects/herman-boerhaave/',
+    title: 'Herman Boerhaave',
+    subtitle: 'Rijksmuseum Boerhaave, Leiden (NL)',
+    image: 'projects/herman-boerhaave/thumbnail_1x1',
+  },
+
+  makerpark: {
+    href: '/projects/family-exhibits/',
+    title: 'Family Exhibits',
+    subtitle: 'National Museum of Qatar, Doha (QA)',
+    label: 'Awarded',
+    image: 'projects/family-exhibits/thumbnail_1x1',
+  },
+
+  het_steen: {
+    href: '/projects/het-steen/',
+    title: 'Het Steen',
+    subtitle: 'Visit Antwerp, Antwerp (BE)',
+    image: 'projects/het-steen/thumbnail_1x1',
+  },
+
+  maker_park: {
+    href: '/projects/maker-park/',
+    title: 'Maker park',
+    subtitle: 'ilmi Science Discovery & Innovation Center, Riyadh (SA)',
+    image: 'projects/maker-park/thumbnail_1x1',
+  },
+}
+
+const resource_cards = {}
+
+export default {
+  alts,
+  sections,
+  projects,
+  resources,
+  section_cards,
+  section_text_cards,
+  project_cards,
+  resource_cards,
+}

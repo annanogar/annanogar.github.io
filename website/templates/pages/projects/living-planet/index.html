@@ -3,18 +3,21 @@
 {% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
 {% import 'components/organisms/image-grid/image-grid.html' as image_grid %}
 {% import 'components/organisms/image-header/image-header.html' as image_header %}
-{% set page_title = 'Living planet' %}
-{% set page_description = 'Understanding biodiversity and ecosystems through playful investigation.' %}
-{% set project_slug = 'living-planet' %}
-{% set opengraph_image = '/static/media/projects/' + project_slug + '/social_1200x630.jpg' %}
+
+{% set page_title = data.projects.living_planet.title %}
+{% set page_description = data.projects.living_planet.description %}
+
+{% set opengraph_title = page_title %}
+{% set opengraph_description = page_description %}
+{% set opengraph_image = '/static/media/projects/living-planet/social_1200x630.jpg' %}
 
 {% block content %}
   {{
     image_header.regular(
-      title = page_title,
-      description = page_description,
-      subtitle = 'Museum of Natural Sciences, Brussels (BE), 2020',
-      image = { src: 'projects/' + project_slug + '/cover_3x1', alt: 'Wide-angle view of a gallery filled with taxidermy animals arranged along curved white arches, showcasing biodiversity across species and environments.' }
+      title = data.projects.living_planet.title_with_markup or data.projects.living_planet.title,
+      description = data.projects.living_planet.description_with_markup or data.projects.living_planet.description,
+      subtitle = data.projects.living_planet.subtitle,
+      image = { src: 'projects/living-planet/cover_3x1', alt: data.alts['projects/living-planet/cover_3x1'] }
     )
   }}
 
@@ -24,15 +27,15 @@
       title = 'Overview',
       richtext = '<p>The <em>Living Planet</em> exhibition guides visitors through an educational journey into the ecosystems that make Earth both vibrant and deeply interconnected.</p><p>Spread across two floors, the exhibition presents more than 800 animal species, highlighting the delicate balance between living organisms and their environments.</p><p>These connections are explored through interactive screens, projections, and immersive activities designed to deepen understanding through hands-on engagement.</p>',
       items = [
-        { image: { src: 'projects/' + project_slug + '/01_2x1', alt: 'Family of four gathered around a touchscreen in the natural history gallery, as the mother points toward a taxidermy animal in the exhibit, surrounded by a diverse array of mounted species.' } },
-        { image: { src: 'projects/' + project_slug + '/02_1x1', alt: 'Taxidermy dingo displayed on a white platform, surrounded by bears and wild cat specimens in an open exhibition space.' } },
-        { image: { src: 'projects/' + project_slug + '/03_1x1', alt: 'Young woman pointing toward a group of taxidermy animals while standing next to an interactive screen displaying species-related content.' } },
-        { image: { src: 'projects/' + project_slug + '/04_1x1', alt: 'Young boy in a red t-shirt looking up in awe, surrounded by taxidermy animals in a white exhibition space.' } },
-        { image: { src: 'projects/' + project_slug + '/05_1x1', alt: 'Woman wearing a face mask pointing toward an animal specimen while two young children lean over a low railing in a gallery filled with large taxidermy mammals.' } },
-        { image: { src: 'projects/' + project_slug + '/06_2x1', alt: 'A cheetah and an African wild dog stand side by side on a display platform, surrounded by various birds and mammals.' } },
-        { image: { src: 'projects/' + project_slug + '/07_1x1', alt: 'Teenage visitor wearing a mask and green checkered shirt, engaging with an angled touchscreen among mounted animal specimens.' } },
-        { image: { src: 'projects/' + project_slug + '/08_1x1', alt: 'Close-up of a touchscreen interface titled “Vivre sur la Terre” (“Living on Earth”) with a visual network of animal images and taxidermy specimens in the background.' } },
-        { image: { src: 'projects/' + project_slug + '/09_2x1', alt: 'Mother and young child standing in front of a deer specimen while the child gestures excitedly, with other visitors and animal displays in the background.' } }
+        { image: { src: 'projects/living-planet/01_2x1', alt: data.alts['projects/living-planet/01_2x1'] } },
+        { image: { src: 'projects/living-planet/02_1x1', alt: data.alts['projects/living-planet/02_1x1'] } },
+        { image: { src: 'projects/living-planet/03_1x1', alt: data.alts['projects/living-planet/03_1x1'] } },
+        { image: { src: 'projects/living-planet/04_1x1', alt: data.alts['projects/living-planet/04_1x1'] } },
+        { image: { src: 'projects/living-planet/05_1x1', alt: data.alts['projects/living-planet/05_1x1'] } },
+        { image: { src: 'projects/living-planet/06_2x1', alt: data.alts['projects/living-planet/06_2x1'] } },
+        { image: { src: 'projects/living-planet/07_1x1', alt: data.alts['projects/living-planet/07_1x1'] } },
+        { image: { src: 'projects/living-planet/08_1x1', alt: data.alts['projects/living-planet/08_1x1'] } },
+        { image: { src: 'projects/living-planet/09_2x1', alt: data.alts['projects/living-planet/09_2x1'] } }
       ]
     )
   }}
@@ -42,15 +45,15 @@
       title = 'Contribution',
       richtext = '<p>I shaped the exhibition’s experience framework and UX/UI approach, alongside the visual, multimedia, and audiovisual design, creating interactive and immersive installations that translate complex scientific concepts into accessible and engaging content for a wide audience.</p><p>I coordinated internal and external teams across the Benelux region, combining art direction with hands-on design production throughout the year-and-a-half development process. My role included defining a structured interaction system linking large volumes of scientific content to the physical specimens on display, ensuring consistency across screens, projections, and immersive installations.</p><p>The process involved iterative design, prototyping, and continuous coordination to align content, interaction design, and visual execution. Delivery took place during the European COVID-19 lockdown, strengthening my ability to adapt workflows and ensure continuity under non-standard operational constraints.</p>',
       items = [
-        { image: { src: 'projects/' + project_slug + '/10_2x1', alt: 'Two young children exploring a yellow circular hands-on table with small animal models, including one placed on top, tactile elements, and circular openings.' } },
-        { image: { src: 'projects/' + project_slug + '/11_1x1', alt: 'A woman seated at a circular yellow interactive station using a touchscreen surrounded by animal figures, with mounted taxidermy animals in the background.' } },
-        { image: { src: 'projects/' + project_slug + '/12_1x1', alt: 'Child interacting with a touchscreen embedded in a curved table showing a game about identifying camouflaged animals, with taxidermy specimens displayed nearby.' } },
-        { image: { src: 'projects/' + project_slug + '/13_2x1', alt: 'Adult and child interacting with a yellow circular hands-on table featuring small colored blocks inside a transparent dome, within a gallery of taxidermy animals.' } },
-        { image: { src: 'projects/' + project_slug + '/14_1x1', alt: 'Two children examining yellow hands-on tables with circular openings and small animal models placed inside.' } },
-        { image: { src: 'projects/' + project_slug + '/15_1x1', alt: 'Visitors gather around a large immersive projection showing abstract, colourful nature imagery and a white branching structure in the center.' } },
-        { image: { src: 'projects/' + project_slug + '/16_1x1', alt: 'Wide view of a museum gallery with circular display platforms presenting taxidermy animals, interactive screens, and low yellow tables integrated among the specimens.' } },
-        { image: { src: 'projects/' + project_slug + '/17_1x1', alt: 'Close-up of a touchscreen showing a Dutch-language interactive explaining how oceans produce oxygen, with visuals of phytoplankton and coral reefs.' } },
-        { image: { src: 'projects/' + project_slug + '/18_2x1', alt: 'Curved wall projection displaying four large interactive touchscreens, each in front of a section of animated visuals representing different ecosystems, such as grasslands, forests, and ocean life.' } }
+        { image: { src: 'projects/living-planet/10_2x1', alt: data.alts['projects/living-planet/10_2x1'] } },
+        { image: { src: 'projects/living-planet/11_1x1', alt: data.alts['projects/living-planet/11_1x1'] } },
+        { image: { src: 'projects/living-planet/12_1x1', alt: data.alts['projects/living-planet/12_1x1'] } },
+        { image: { src: 'projects/living-planet/13_2x1', alt: data.alts['projects/living-planet/13_2x1'] } },
+        { image: { src: 'projects/living-planet/14_1x1', alt: data.alts['projects/living-planet/14_1x1'] } },
+        { image: { src: 'projects/living-planet/15_1x1', alt: data.alts['projects/living-planet/15_1x1'] } },
+        { image: { src: 'projects/living-planet/16_1x1', alt: data.alts['projects/living-planet/16_1x1'] } },
+        { image: { src: 'projects/living-planet/17_1x1', alt: data.alts['projects/living-planet/17_1x1'] } },
+        { image: { src: 'projects/living-planet/18_2x1', alt: data.alts['projects/living-planet/18_2x1'] } }
       ]
     )
   }}
@@ -60,11 +63,11 @@
       title = 'Key achievements',
       richtext = '<ul><li>Defined the experience framework, UX/UI and interaction design and strategy for a large-scale natural science exhibition.</li><li>Built structured interaction and content systems connecting digital stations to physical specimens.</li><li>Coordinated multidisciplinary teams across a long and content-heavy process.</li><li>Applied iterative prototyping to validate interaction flows across screens, projections, and immersive installations.</li><li>Ensured consistency across content, interactions, and touchpoints within a multi-level exhibition space.</li><li>Integrated inclusive design principles to support diverse public audiences.</li><li>Maintained delivery quality while navigating COVID-19 operational constraints.</li></ul>',
       items = [
-        { image: { src: 'projects/' + project_slug + '/19_1x1', alt: 'A woman stands in a dimly lit gallery space, interacting with a touchscreen in front of a natural history exhibit featuring an elk and a scenic tundra backdrop, with wolves and other animals displayed behind her and in the background.' } },
-        { image: { src: 'projects/' + project_slug + '/20_1x1', alt: 'Close-up of a horizontal touchscreen showing an interface with a rainforest image, a location map, biodiversity stats, and a finger selecting one of the circular data points.' } },
-        { image: { src: 'projects/' + project_slug + '/21_1x1', alt: 'A woman engaging with a large digital table displaying an interactive globe, surrounded by nature-themed projections of underwater vegetation and marine life.' } },
-        { image: { src: 'projects/' + project_slug + '/22_1x1', alt: 'A woman standing in an immersive room with walls covered in large-scale projections of forest and mountain environments, surrounded by vivid color and light.' } },
-        { image: { src: 'projects/' + project_slug + '/23_2x1', alt: 'Immersive installation showing high-resolution projections of a chipmunk on one wall and a grazing reindeer on the other, wrapping around freestanding structures in the space.' } }
+        { image: { src: 'projects/living-planet/19_1x1', alt: data.alts['projects/living-planet/19_1x1'] } },
+        { image: { src: 'projects/living-planet/20_1x1', alt: data.alts['projects/living-planet/20_1x1'] } },
+        { image: { src: 'projects/living-planet/21_1x1', alt: data.alts['projects/living-planet/21_1x1'] } },
+        { image: { src: 'projects/living-planet/22_1x1', alt: data.alts['projects/living-planet/22_1x1'] } },
+        { image: { src: 'projects/living-planet/23_2x1', alt: data.alts['projects/living-planet/23_2x1'] } }
       ]
     )
   }}
@@ -82,16 +85,8 @@
     <p>© All rights reserved to Studio Louter</p>
   {% endcall %}
 
-  {{
-    call_to_action.regular(
-      variant = 'badge',
-      quote = 'Explore the next project or drop me a message.',
-      card = {
-        href: '/projects/herman-boerhaave/',
-        title: 'Herman Boerhaave',
-        subtitle: 'Rijksmuseum Boerhaave, Leiden (NL)',
-        image: { src: 'projects/herman-boerhaave/thumbnail_1x1', alt: 'Young man standing in front of a glass case containing a tall historical measuring instrument, examining it closely.' }
-      }
-    )
-  }}
+  {% set cta_quote = data.projects.living_planet.cta_quote %}
+  {% set project_card = merge({}, data.project_cards.herman_boerhaave) %}
+  {{ object_set_value(project_card, 'image', { src: project_card.image, alt: data.alts[project_card.image] }) }}
+  {{ call_to_action.regular(variant = 'badge', quote = cta_quote, card = project_card) }}
 {% endblock %}

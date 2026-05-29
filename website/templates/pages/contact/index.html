@@ -2,36 +2,34 @@
 {% import 'components/organisms/article-content-image/article-content-image.html' as article_content_image %}
 {% import 'components/organisms/article-header/article-header.html' as article_header %}
 {% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
-{% set page_title = 'Contact' %}
-{% set page_description = 'If you’d like to discuss a project, ask a question, or simply say hi, I’d love to hear from you.' %}
+
+{% set page_title = data.sections.contact.title %}
+{% set page_description = data.sections.contact.description %}
+
+{% set opengraph_title = page_title %}
+{% set opengraph_description = page_description %}
 {% set opengraph_image = '/static/media/misc/social_1200x630.jpg' %}
 
 {% block content %}
   {{
     article_header.regular(
-      title = page_title
+      title = data.sections.contact.title_with_markup or data.sections.contact.title
     )
   }}
 
   {%
     call article_content_image.regular(
       variant = 'left',
-      image = { loading: 'eager', src: 'misc/vintage-telephone_pawel-czerwinski-unsplash_1x1', alt: 'An antique-style telephone with a wooden base and silver metal handset against a dark blue background.' }
+      image = { loading: 'eager', src: 'misc/vintage-telephone_1x1', alt: data.alts['misc/vintage-telephone_1x1'] }
     )
   %}
-    <p>{{ page_description }}</p>
+    <p>If you’d like to discuss a project, ask a question, or simply say hi, I’d love to hear from you.</p>
     <p>I’m currently based in Italy and work worldwide.</p>
     <p class="paragraph--gigantic"><a href="mailto:_send_me_an_">_send_me_an_</a><br /><a href="tel:_or_pick_up_the_">_or_pick_up_the_</a></p>
   {% endcall %}
 
-  {{
-    call_to_action.regular(
-      quote = 'Always up for big ideas, or just a good decaf Americano.',
-      card = {
-        href: '/projects/',
-        title: 'Selected projects',
-        image: { src: 'projects/shifting-image/thumbnail_1x1', alt: 'Close-up of a woman gazing at a large colonial painting depicting a noblewoman with children. The woman stands in a dark gallery lit by focused spotlights on the artworks.' }
-      }
-    )
-  }}
+  {% set cta_quote = data.sections.contact.cta_quote %}
+  {% set section_card = merge({}, data.section_cards.projects) %}
+  {{ object_set_value(section_card, 'image', { src: section_card.image, alt: data.alts[section_card.image] }) }}
+  {{ call_to_action.regular(quote = cta_quote, card = section_card) }}
 {% endblock %}

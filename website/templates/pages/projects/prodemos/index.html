@@ -3,18 +3,21 @@
 {% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
 {% import 'components/organisms/image-grid/image-grid.html' as image_grid %}
 {% import 'components/organisms/image-header/image-header.html' as image_header %}
-{% set page_title = 'ProDemos' %}
-{% set page_description = 'A GPS game where students propose, debate, and bring their own laws to life.' %}
-{% set project_slug = 'prodemos' %}
-{% set opengraph_image = '/static/media/projects/' + project_slug + '/social_1200x630.jpg' %}
+
+{% set page_title = data.projects.prodemos.title %}
+{% set page_description = data.projects.prodemos.description %}
+
+{% set opengraph_title = page_title %}
+{% set opengraph_description = page_description %}
+{% set opengraph_image = '/static/media/projects/prodemos/social_1200x630.jpg' %}
 
 {% block content %}
   {{
     image_header.regular(
-      title = page_title,
-      description = page_description,
-      subtitle = 'ProDemos, The Hague (NL), 2021',
-      image = { src: 'projects/' + project_slug + '/cover_3x1', alt: 'Five teenage girls walk side by side through a city street, smiling and chatting. They wear red lanyards with badges, and some hold tablets as part of an educational activity.' }
+      title = data.projects.prodemos.title_with_markup or data.projects.prodemos.title,
+      description = data.projects.prodemos.description_with_markup or data.projects.prodemos.description,
+      subtitle = data.projects.prodemos.subtitle,
+      image = { src: 'projects/prodemos/cover_3x1', alt: data.alts['projects/prodemos/cover_3x1'] }
     )
   }}
 
@@ -24,11 +27,11 @@
       title = 'Overview',
       richtext = '<p>ProDemos is an organization in The Hague that educates citizens, particularly students, about Dutch democracy and the rule of law.</p><p>Their educational program begins in the classroom, where students draft their own bill proposals. During their visit to the ProDemos Center, they split into teams and take part in a GPS-guided game that leads them through key landmarks, completing tasks that illustrate the lawmaking process.</p><p>The experience concludes with a shared animated film designed to spark further discussion when they’re back in the classroom.</p>',
       items = [
-        { image: { src: 'projects/' + project_slug + '/01_2x1', alt: 'A girl smiles while another student films her using a tablet, capturing a scene for the interactive assignment indoors.' } },
-        { image: { src: 'projects/' + project_slug + '/02_1x1', alt: 'Three girls stand in a tree-lined area, focused on a tablet screen as they work together on one of the GPS-based challenges.' } },
-        { image: { src: 'projects/' + project_slug + '/03_1x1', alt: 'Three girls sit on a park bench, looking at a tablet together, one pointing at the screen as they discuss.' } },
-        { image: { src: 'projects/' + project_slug + '/04_1x1', alt: 'Tablet screen showing a final congratulatory screen in Dutch with stars and a crown, marking the completion of the game.' } },
-        { image: { src: 'projects/' + project_slug + '/05_1x1', alt: 'Tablet screen displaying the structure of the activity and tasks to complete, with headings and icons in purple on an orange background.' } }
+        { image: { src: 'projects/prodemos/01_2x1', alt: data.alts['projects/prodemos/01_2x1'] } },
+        { image: { src: 'projects/prodemos/02_1x1', alt: data.alts['projects/prodemos/02_1x1'] } },
+        { image: { src: 'projects/prodemos/03_1x1', alt: data.alts['projects/prodemos/03_1x1'] } },
+        { image: { src: 'projects/prodemos/04_1x1', alt: data.alts['projects/prodemos/04_1x1'] } },
+        { image: { src: 'projects/prodemos/05_1x1', alt: data.alts['projects/prodemos/05_1x1'] } }
       ]
     )
   }}
@@ -45,10 +48,10 @@
       title = 'Key achievements',
       richtext = '<ul><li>Led UX/UI and visual direction for a GPS-based educational game.</li><li>Designed a connected learning journey linking classroom preparation to on-site interactive play.</li><li>Coordinated a dedicated team and collaborated with external partners.</li><li>Applied iterative research and testing to validate engagement and comprehension.</li><li>Embedded inclusive design principles to ensure accessibility and safety for diverse student groups.</li><li>Applied game mechanics and motivation models to support playful, goal-oriented learning.</li></ul>',
       items = [
-        { image: { src: 'projects/' + project_slug + '/06_2x1', alt: 'A group of teenage students gathers in a leafy urban area, wearing red lanyards and name badges. Some are seated on a bench while others stand around them, smiling and holding tablets as part of an educational activity.' } },
-        { image: { src: 'projects/' + project_slug + '/07_1x1', alt: 'Two girls stand on the sidewalk in front of a staircase, one holding a tablet and the other gesturing while talking, engaged in discussion.' } },
-        { image: { src: 'projects/' + project_slug + '/08_1x1', alt: 'Four young men stand under a tree, gathered around a tablet, collaborating on a task during the outdoor activity.' } },
-        { image: { src: 'projects/' + project_slug + '/09_2x1', alt: 'Close-up of a tablet screen showing a digital interface where users select a Dutch government minister as part of the game.' } }
+        { image: { src: 'projects/prodemos/06_2x1', alt: data.alts['projects/prodemos/06_2x1'] } },
+        { image: { src: 'projects/prodemos/07_1x1', alt: data.alts['projects/prodemos/07_1x1'] } },
+        { image: { src: 'projects/prodemos/08_1x1', alt: data.alts['projects/prodemos/08_1x1'] } },
+        { image: { src: 'projects/prodemos/09_2x1', alt: data.alts['projects/prodemos/09_2x1'] } }
       ]
     )
   }}
@@ -66,16 +69,8 @@
     <p>© All rights reserved to Studio Louter</p>
   {% endcall %}
 
-  {{
-    call_to_action.regular(
-      variant = 'badge',
-      quote = 'Explore the next project or start a conversation.',
-      card = {
-        href: '/projects/het-steen/',
-        title: 'Het Steen',
-        subtitle: 'Visit Antwerp, Antwerp (BE)',
-        image: { src: 'projects/het-steen/thumbnail_1x1', alt: 'Woman and child engaging with a large interactive map table; both smiling and pointing to different elements on the digital surface in a warmly lit room.' }
-      }
-    )
-  }}
+  {% set cta_quote = data.projects.prodemos.cta_quote %}
+  {% set project_card = merge({}, data.project_cards.het_steen) %}
+  {{ object_set_value(project_card, 'image', { src: project_card.image, alt: data.alts[project_card.image] }) }}
+  {{ call_to_action.regular(variant = 'badge', quote = cta_quote, card = project_card) }}
 {% endblock %}

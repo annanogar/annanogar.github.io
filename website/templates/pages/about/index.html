@@ -2,28 +2,32 @@
 {% import 'components/organisms/article-content-image/article-content-image.html' as article_content_image %}
 {% import 'components/organisms/article-header/article-header.html' as article_header %}
 {% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
-{% set page_title = 'About' %}
-{% set page_description = 'I’m Anna Nogaré, an Interpretive Design Director & Accessibility Strategist working across cultural, educational, tourism, and public environments. A multidisciplinary designer at heart, I combine strategic leadership with hands-on design across digital, physical, and hybrid experiences, translating complex content into meaningful and inclusive journeys for diverse audiences.' %}
+
+{% set page_title = data.sections.about.title %}
+{% set page_description = data.sections.about.description %}
+
+{% set opengraph_title = page_title %}
+{% set opengraph_description = page_description %}
 {% set opengraph_image = '/static/media/misc/social_1200x630.jpg' %}
 
 {% block content %}
   {{
     article_header.regular(
-      title = page_title
+      title = data.sections.about.title_with_markup or data.sections.about.title
     )
   }}
 
   {%
     call article_content_image.regular(
       variant = 'left',
-      image = { loading: 'eager', src: 'misc/anna-dots_1x1', alt: 'Anna Nogaré facing the camera with colorful dot projections on her face and shirt, against a dark background.' },
+      image = { loading: 'eager', src: 'misc/anna-dots_1x1', alt: data.alts['misc/anna-dots_1x1'] },
       cpacc_badge = true,
       hearts_shader = true
     )
   %}
     <h2>Profile</h2>
 
-    <p>{{ page_description }}</p>
+    <p>I’m Anna Nogaré, an Interpretive Design Director & Accessibility Strategist working across cultural, educational, tourism, and public environments. A multidisciplinary designer at heart, I combine strategic leadership with hands-on design across digital, physical, and hybrid experiences, translating complex content into meaningful and inclusive journeys for diverse audiences.</p>
     <p>With over ten years of international experience, I’ve worked on large-scale projects across Europe and the Middle East, collaborating with multidisciplinary teams and cross-functional stakeholders to bring ideas from concept to delivery.</p>
     <p>I’m CPACC-certified (Certified Professional in Accessibility Core Competencies) by the International Association of Accessibility Professionals (IAAP), and an active member of the association.</p>
     <p>Some of the organizations I’ve worked with include the National Museum of Qatar, ilmi Science Discovery & Innovation Center (Riyadh), the Museum of Natural Sciences (Brussels), the Icelandic Museum of Natural History, Het Steen Visitor Center (Antwerp), Canon Professional Network, Amnesty International, the Dutch National Police, and others across different sectors.</p>
@@ -32,7 +36,7 @@
   {%
     call article_content_image.regular(
       variant = 'right',
-      image = { src: 'misc/anna-leaning-forward_1x1', alt: 'Anna Nogaré leaning forward at a table with sticky notes, listening while a man writes in the background.' }
+      image = { src: 'misc/anna-leaning-forward_1x1', alt: data.alts['misc/anna-leaning-forward_1x1'] }
     )
   %}
     <h2>Approach</h2>
@@ -45,14 +49,8 @@
     <p>By combining information design, informal learning, game mechanics, and emotional engagement, journeys become more meaningful and memorable, and the experience becomes more human, grounded in empathy, exploration, and discovery.</p>
   {% endcall %}
 
-  {{
-    call_to_action.regular(
-      quote = 'Great ideas start with simple conversations.',
-      card = {
-        href: '/services/',
-        title: 'Discover my services',
-        image: { src: 'misc/reviewing-blueprints_rawpixel-unsplash_1x1', alt: 'Close-up of a designer in a red dress reviewing detailed blueprints in a brightly lit interior.' }
-      }
-    )
-  }}
+  {% set cta_quote = data.sections.about.cta_quote %}
+  {% set section_card = merge({}, data.section_cards.services) %}
+  {{ object_set_value(section_card, 'image', { src: section_card.image, alt: data.alts[section_card.image] }) }}
+  {{ call_to_action.regular(quote = cta_quote, card = section_card) }}
 {% endblock %}

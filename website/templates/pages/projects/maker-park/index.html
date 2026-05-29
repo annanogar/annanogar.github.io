@@ -5,18 +5,21 @@
 {% import 'components/organisms/image-grid/image-grid.html' as image_grid %}
 {% import 'components/organisms/image-header/image-header.html' as image_header %}
 {% import 'components/organisms/video-player/video-player.html' as video_player %}
-{% set page_title = 'Maker park' %}
-{% set page_description = 'A digital platform for STREAM education through informal learning and games.' %}
-{% set project_slug = 'maker-park' %}
-{% set opengraph_image = '/static/media/projects/' + project_slug + '/social_1200x630.jpg' %}
+
+{% set page_title = data.projects.maker_park.title %}
+{% set page_description = data.projects.maker_park.description %}
+
+{% set opengraph_title = page_title %}
+{% set opengraph_description = page_description %}
+{% set opengraph_image = '/static/media/projects/maker-park/social_1200x630.jpg' %}
 
 {% block content %}
   {{
     image_header.regular(
-      title = page_title,
-      description = page_description,
-      subtitle = 'ilmi Science Discovery and Innovation Center, Riyadh (SA), Expected opening in 2026',
-      image = { src: 'projects/' + project_slug + '/cover_3x1', alt: 'Architectural rendering of Ilmi Center at sunset, featuring a glowing spherical structure at the center of a landscaped cultural park filled with visitors.' }
+      title = data.projects.maker_park.title_with_markup or data.projects.maker_park.title,
+      description = data.projects.maker_park.description_with_markup or data.projects.maker_park.description,
+      subtitle = data.projects.maker_park.subtitle,
+      image = { src: 'projects/maker-park/cover_3x1', alt: data.alts['projects/maker-park/cover_3x1'] }
     )
   }}
 
@@ -26,10 +29,10 @@
       title = 'Overview',
       richtext = '<p>Ilmi is a new science and innovation center opening in Riyadh, Saudi Arabia. With 38,000 square meters of immersive and interactive installations, it is conceived as a national cultural hub for families and a flagship for informal learning in STREAM disciplines (Science, Technology, Reading, Engineering, Art, Mathematics).</p><p>Beyond the physical space, Ilmi includes a digital platform that extends the experience nationwide. Designed as a freemium ecosystem, it combines educational content, gamified mechanics, interactive features, and external integrations to support continuity between on-site and off-site learning.</p>',
       items = [
-        { image: { src: 'projects/' + project_slug + '/01_2x1', alt: 'Daytime view of Ilmi Center showing families and school children walking toward the iconic reflective sphere, surrounded by gardens and flowering trees.' } },
-        { image: { src: 'projects/' + project_slug + '/02_1x1', alt: 'Portrait of a young boy smiling in traditional Saudi attire, representing the target audience of the educational initiative.' } },
-        { image: { src: 'projects/' + project_slug + '/03_1x1', alt: 'Aerial night rendering of the Ilmi Center lit up against a dark desert landscape, with illuminated pathways and the luminous central sphere at the heart of the design.' } },
-        { image: { src: 'projects/' + project_slug + '/04_2x1', alt: 'Front-facing rendering of Ilmi Center at dusk, showing visitors entering the museum through a tunnel-like entrance beneath the glowing orb.' } }
+        { image: { src: 'projects/maker-park/01_2x1', alt: data.alts['projects/maker-park/01_2x1'] } },
+        { image: { src: 'projects/maker-park/02_1x1', alt: data.alts['projects/maker-park/02_1x1'] } },
+        { image: { src: 'projects/maker-park/03_1x1', alt: data.alts['projects/maker-park/03_1x1'] } },
+        { image: { src: 'projects/maker-park/04_2x1', alt: data.alts['projects/maker-park/04_2x1'] } }
       ]
     )
   }}
@@ -39,10 +42,10 @@
       title = 'Contribution',
       richtext = '<p>Over 3+ years, I led the creative direction and the overall experience strategy for the prototype of the digital platform and its ecosystem, contributing to the center’s Learning Digital Strategy while guiding accessibility guidelines.</p><p>I led the full design cycle and UX/UI strategy in a fast-paced, high-pressure environment, translating playful learning objectives and business needs into retention-driven concepts and scalable experience frameworks.</p><p>The process combined extensive research and continuous testing, using qualitative and quantitative methods to shape design iterations and validate decisions. I coordinated an international network of partners and vendors, ensuring alignment between learning content, creative intent, technical constraints, and delivery objectives.</p>',
       items = [
-        { image: { src: 'projects/' + project_slug + '/05_2x1', alt: 'Colorful 3D illustration of a robot hands holding a smartphone displaying the “Maker Park” gate from the Ilmi app, with gamified learning visuals in the background.' } },
-        { image: { src: 'projects/' + project_slug + '/15_1x1', alt: 'Cartoon robot wearing large golden medals, with a glowing electric battery being activated by a tap gesture, set on a blue background with lightning effects.' } },
-        { image: { src: 'projects/' + project_slug + '/19_1x1', alt: 'Cartoon robot wearing a green jersey with the number 1, cheerfully raising a golden trophy with confetti falling around, celebrating a game achievement on a bright blue background.' } },
-        { image: { src: 'projects/' + project_slug + '/13_2x1', alt: 'A cheerful robot holds its face in surprise next to a floating game controller and a smartphone showing a colorful hexagonal map interface from the educational platform, all set against a vibrant gradient background.' } }
+        { image: { src: 'projects/maker-park/05_2x1', alt: data.alts['projects/maker-park/05_2x1'] } },
+        { image: { src: 'projects/maker-park/06_1x1', alt: data.alts['projects/maker-park/06_1x1'] } },
+        { image: { src: 'projects/maker-park/07_1x1', alt: data.alts['projects/maker-park/07_1x1'] } },
+        { image: { src: 'projects/maker-park/08_2x1', alt: data.alts['projects/maker-park/08_2x1'] } }
       ]
     )
   }}
@@ -76,17 +79,8 @@
     <p>© All rights reserved to IJsfontein</p>
   {% endcall %}
 
-  {{
-    call_to_action.regular(
-      variant = 'badge',
-      quote = 'Explore the next project or drop me a message.',
-      card = {
-        href: '/projects/family-exhibits/',
-        title: 'Family Exhibits',
-        subtitle: 'National Museum of Qatar, Doha (QA)',
-        label: 'Awarded',
-        image: { src: 'projects/family-exhibits/thumbnail_1x1', alt: 'Children using a multi-user touchscreen to uncover virtual artifacts in a digging-themed game, while parents look on, in a gallery designed to simulate a layered archaeological dig site.' }
-      }
-    )
-  }}
+  {% set cta_quote = data.projects.maker_park.cta_quote %}
+  {% set project_card = merge({}, data.project_cards.family_exhibits) %}
+  {{ object_set_value(project_card, 'image', { src: project_card.image, alt: data.alts[project_card.image] }) }}
+  {{ call_to_action.regular(variant = 'badge', quote = cta_quote, card = project_card) }}
 {% endblock %}

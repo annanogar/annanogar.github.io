@@ -3,8 +3,13 @@
 {% import 'components/organisms/article-quote/article-quote.html' as article_quote %}
 {% import 'components/organisms/article-header/article-header.html' as article_header %}
 {% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
-{% set page_title = 'We are all temporarily able. Yes, you too.' %}
-{% set page_description = 'Stop thinking of disability as something that happens to &ldquo;other people&rdquo;. Discover why we are all temporarily able and how changing our perspective on design and accessibility can build a world that works for everyone.' %}
+
+{% set resource_slug = 'we-are-all-temporarily-able-yes-you-too' %}
+
+{% set page_title = data.resources.we_are_all_temporarily_able_yes_you_too.title %}
+{% set page_description = data.resources.we_are_all_temporarily_able_yes_you_too.description %}
+{% set opengraph_title = page_title %}
+{% set opengraph_description = page_description %}
 {% set opengraph_image = '/static/media/misc/social_1200x630.jpg' %}
 
 {% block og_metadata %}
@@ -18,15 +23,15 @@
 {% block content %}
   {{
     article_header.regular(
-      title = 'We are all temporarily able. <br/>Yes, you too.',
-      subtitle = 'Anna Nogaré | <time datetime="2026-05-13">13-05-2026</time> | <em>12 min</em>'
+      title = data.resources.we_are_all_temporarily_able_yes_you_too.title_with_markup or data.resources.we_are_all_temporarily_able_yes_you_too.title,
+      subtitle = data.resources.we_are_all_temporarily_able_yes_you_too.subtitle
     )
   }}
 
   {% call article_content.regular() %}
-    <p>Let’s be honest: the word &ldquo;disabled&rdquo; makes people uncomfortable, not so much those who live with disability, but those who have to say the word aloud. We tend to avoid it, replacing it with softer labels such as <em>differently abled</em>, <em>person with special needs</em>, or <em>neurodivergent</em>. Sometimes we use those terms carefully, almost proudly, to show how sensitive and inclusive we are. Other times, we avoid the subject altogether because &ldquo;disabled&rdquo; feels too harsh, too direct, almost offensive.</p>
-    <p>But if being disabled weren’t something that concerns &ldquo;other people&rdquo;, but a concrete possibility that concerns all of us, then that word would stop feeling so distant. So uncomfortable.</p>
-    <p>This isn’t the first time we’ve changed a word in the hope of changing perspective.We moved, thankfully, from &ldquo;handicapped&rdquo; to &ldquo;disabled&rdquo;, precisely to shift attention from the person experiencing a difficulty to the environment that generates it. In fact, the term &ldquo;disabled&rdquo; refers to the difficulty or impossibility of carrying out a specific activity autonomously, in relation to particular contexts or barriers. Nothing offensive, nothing sanitised: simply a fact.</p>
+    <p>Let’s be honest: the word “disabled” makes people uncomfortable, not so much those who live with disability, but those who have to say the word aloud. We tend to avoid it, replacing it with softer labels such as <em>differently abled</em>, <em>person with special needs</em>, or <em>neurodivergent</em>. Sometimes we use those terms carefully, almost proudly, to show how sensitive and inclusive we are. Other times, we avoid the subject altogether because “disabled” feels too harsh, too direct, almost offensive.</p>
+    <p>But if being disabled weren’t something that concerns “other people”, but a concrete possibility that concerns all of us, then that word would stop feeling so distant. So uncomfortable.</p>
+    <p>This isn’t the first time we’ve changed a word in the hope of changing perspective.We moved, thankfully, from “handicapped” to “disabled”, precisely to shift attention from the person experiencing a difficulty to the environment that generates it. In fact, the term “disabled” refers to the difficulty or impossibility of carrying out a specific activity autonomously, in relation to particular contexts or barriers. Nothing offensive, nothing sanitised: simply a fact.</p>
     <p>And yet the negative, discriminatory, or pity-driven connotations attached to disability are so deeply rooted that finding the right word for it has become almost impossible. Because, in truth, what makes us uncomfortable is not the word itself, but the idea behind it.</p>
     <p>Honestly, I don’t think that reaction comes from an excess of sensitivity, but from the fact that most of us know very little about disability. Either because it does not feel like it concerns us, or because we are afraid to even sit with the idea. But how many times in our lives have we found ourselves, quite literally, <em>dis-abled</em>?</p>
     <p>We break a limb, lose our glasses, don’t speak the language of the person in front of us: suddenly, the world is no longer built for us.</p>
@@ -75,11 +80,7 @@
     )
   }}
 
-  {%
-    call article_content.regular(
-      button = { href: '/resources/', title: 'Back to resources' }
-    )
-  %}
+  {% call article_content.regular(button = { href: '/resources/', title: 'Back to resources' }) %}
     <p>So disability is avoided, stigmatised, or turned into inspirational symbolism. Meanwhile, we continue building physical, digital, and cultural barriers while congratulating ourselves for using the right words, but in reality, nothing has changed.</p>
     <p>I'm not here to deny disability, but to reject the toxic narrative around it, because we could all be far more able, or at least given the conditions to be, if the world were designed to truly include every body, every mind, every experience.</p>
     <p>The problem is not me. The problem is the world as it was designed. And the fact that we keep thinking of ourselves as able until we're not.</p>
@@ -87,14 +88,8 @@
     <p class="paragraph--pause">Now we need to change perspective.</p>
   {% endcall %}
 
-  {{
-    call_to_action.regular(
-      quote = 'The more we talk about it, the harder it gets to ignore.',
-      card = {
-        href: '/contact/',
-        title: 'Get in touch',
-        image: { src: 'misc/vintage-telephone_pawel-czerwinski-unsplash_1x1', alt: 'An antique-style telephone with a wooden base and silver metal handset against a dark blue background.' }
-      }
-    )
-  }}
+  {% set cta_quote = data.resources.we_are_all_temporarily_able_yes_you_too.cta_quote %}
+  {% set section_card = merge({}, data.section_cards.contact) %}
+  {{ object_set_value(section_card, 'image', { src: section_card.image, alt: data.alts[section_card.image] }) }}
+  {{ call_to_action.regular(quote = cta_quote, card = section_card) }}
 {% endblock %}

@@ -70,7 +70,7 @@ export default async function compileTemplates(sourceGlobs = '', sourcePath = ''
 
   // Initialize Nunjucks and its environment
   // TODO: Should we reinitialize config here, or initialize it once on the import?
-  const config = nunjucksConfig({ env: global.environment })
+  const config = await nunjucksConfig({ env: global.environment })
   //nunjucks.configure('', config.envOptions)
   const environment = new nunjucks.Environment(config.nunjucks.loaders, config.envOptions)
   config.nunjucks.manageEnv && config.nunjucks.manageEnv.call(null, environment)

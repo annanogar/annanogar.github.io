@@ -3,21 +3,25 @@
 {% import 'components/organisms/article-header/article-header.html' as article_header %}
 {% import 'components/organisms/article-quote/article-quote.html' as article_quote %}
 {% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
-{% set page_title = 'Accessibility Manifesto' %}
-{% set page_description = 'It’s not about them in the end of a project. It’s about all of us from the very start.' %}
+
+{% set page_title = data.sections.manifesto.title %}
+{% set page_description = data.sections.manifesto.description %}
+
+{% set opengraph_title = page_title %}
+{% set opengraph_description = page_description %}
 {% set opengraph_image = '/static/media/misc/social_1200x630.jpg' %}
 
 {% block content %}
   {{
     article_header.regular(
-      title = page_title
+      title = data.sections.manifesto.title_with_markup or data.sections.manifesto.title
     )
   }}
 
   {%
     call article_content_image.regular(
       variant = 'left',
-      image = { loading: 'eager', src: 'misc/wheelchair-sign_robert-harkness-unsplash_1x1', alt: 'Stylized wheelchair symbol painted on asphalt, with a small bouquet of flowers placed in the figure’s hands.' }
+      image = { loading: 'eager', src: 'misc/wheelchair-sign_1x1', alt: data.alts['misc/wheelchair-sign_1x1'] }
     )
   %}
     <p>Accessibility isn’t a favor. It’s not about being benevolent.<br />And it’s definitely not just for <em>the few</em>.</p>
@@ -39,7 +43,7 @@
   {%
     call article_content_image.regular(
       variant = 'right-reversed',
-      image = { src: 'misc/yall-means-all_megan-bucknall-unsplash_1x1', alt: 'Rainbow-striped Pride flag with bold white text reading “Y’all Means All!” hanging inside a window.' }
+      image = { src: 'misc/yall-means-all_1x1', alt: data.alts['misc/yall-means-all_1x1'] }
     )
   %}
     <p>I want to make things less frustrating for everyone.</p>
@@ -48,14 +52,7 @@
     <p>Not just in my work, but by changing the way we think about accessibility: it shouldn’t be an afterthought but a mindset.</p>
   {% endcall %}
 
-  {{
-    call_to_action.regular(
-      quote = 'Accessibility is <br/>strategic design. <br/>Not a compromise.',
-      card = {
-        href: '/resources/',
-        title: 'Resources',
-        subtitle: 'A collection of articles, opinions, thoughts, and reflections.'
-      }
-    )
-  }}
+  {% set cta_quote = data.sections.manifesto.cta_quote %}
+  {% set section_card = merge({}, data.section_cards.resources) %}
+  {{ call_to_action.regular(quote = cta_quote, card = section_card) }}
 {% endblock %}

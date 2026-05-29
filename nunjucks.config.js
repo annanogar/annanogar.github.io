@@ -6,6 +6,8 @@
 import { createHash } from 'node:crypto'
 import { existsSync, readFileSync } from 'node:fs'
 import { join as joinPath, resolve as resolvePath } from 'node:path'
+import { pathToFileURL } from 'node:url'
+
 import nunjucks from 'nunjucks'
 import config from './sonic.config.js'
 
@@ -303,7 +305,7 @@ const blockTags = {
 }
 
 // Nunjucks configuration
-export default function (api) {
+export default async function nunjucksConfig(api) {
   const manageEnv = function (env) {
     // Set global variables
     env.addGlobal('environment', api.env)
@@ -319,18 +321,20 @@ export default function (api) {
     env.addGlobal('set_global', (key, value) => env.addGlobal(key, value))
   }
 
-  let mockData = {}
+  let globalData = {}
 
   try {
-    const contentData = readFileSync(resolvePath(process.cwd(), config.mockData.sourcePath, 'content.json'), 'utf-8')
-    mockData = contentData ? { content: JSON.parse(contentData) } : {}
-  } catch {}
+    const dataPath = resolvePath(process.cwd(), 'nunjucks.data.js')
+    globalData = existsSync(dataPath) ? (await import(pathToFileURL(dataPath).href)).default : {}
+  } catch (error) {
+    console.error('Error loading data file:', error)
+  }
 
   return {
     nunjucks: {
       path: resolvePath(process.cwd(), config.project.sourcePath),
       ext: '.html',
-      data: { mockData },
+      data: { data: globalData },
       manageEnv,
       loaders: [new nunjucks.FileSystemLoader(resolvePath(process.cwd(), config.project.sourcePath))],
     },
