@@ -17,79 +17,31 @@
     )
   }}
 
-  {{
-    card_grid.regular(
-      above_fold = true,
-      cards = [
-        {
-          href: '/projects/shifting-image/',
-          title: 'Shifting Image',
-          subtitle: 'Mauritshuis, The Hague (NL)',
-          label: 'Awarded',
-          image: { src: 'projects/shifting-image/thumbnail_1x1', alt: data.alts['projects/shifting-image/thumbnail_1x1'] }
-        },
+  {%
+    set project_cards = [
+      merge({}, data.project_cards.shifting_image),
+      merge({}, data.project_cards.maker_park),
+      merge({}, data.project_cards.family_exhibits),
+      merge({}, data.project_cards.vanishing),
+      merge({}, data.project_cards.cruquius_museum),
+      merge({}, data.project_cards.joh_enschede),
+      merge({}, data.project_cards.herman_boerhaave),
+      merge({}, data.project_cards.living_planet),
+      merge({}, data.project_cards.badge_academy),
+      merge({}, data.project_cards.parassita),
+      merge({}, data.project_cards.canon),
+      merge({}, data.project_cards.het_steen),
+      merge({}, data.project_cards.middelen_meter),
+      merge({}, data.project_cards.prodemos),
+      merge({}, data.project_cards.interplanetary),
+    ]
+  %}
 
-        {
-          href: '/projects/maker-park/',
-          title: 'Maker park',
-          subtitle: 'ilmi Science Discovery & Innovation Center, Riyadh (SA)',
-          image: { src: 'projects/maker-park/thumbnail_1x1', alt: data.alts['projects/maker-park/thumbnail_1x1'] }
-        },
+  {% for project_card in project_cards %}
+    {{ object_set_value(project_card, 'image', { src: project_card.image, alt: data.alts[project_card.image] }) }}
+  {% endfor %}
 
-        {
-          href: '/projects/family-exhibits/',
-          title: 'Family Exhibits',
-          subtitle: 'National Museum of Qatar, Doha (QA)',
-          label: 'Awarded',
-          image: { src: 'projects/family-exhibits/thumbnail_1x1', alt: data.alts['projects/family-exhibits/thumbnail_1x1'] }
-        },
-
-        {
-          href: '/projects/cruquius-museum/',
-          title: 'Cruquius museum',
-          subtitle: 'Cruquius Museum, Cruquius (NL)',
-          label: 'Featured',
-          image: { src: 'projects/cruquius-museum/thumbnail_1x1', alt: data.alts['projects/cruquius-museum/thumbnail_1x1'] }
-        },
-
-        {
-          href: '/projects/joh-enschede/',
-          title: 'Joh. Enschedé',
-          subtitle: 'Noord-Hollands Archief, Haarlem (NL)',
-          label: 'Awarded + Featured',
-          image: { src: 'projects/joh-enschede/thumbnail_1x1', alt: data.alts['projects/joh-enschede/thumbnail_1x1'] }
-        },
-
-        {
-          href: '/projects/living-planet/',
-          title: 'Living planet',
-          subtitle: 'Museum of Natural Sciences, Brussels (BE)',
-          image: { src: 'projects/living-planet/thumbnail_1x1', alt: data.alts['projects/living-planet/thumbnail_1x1'] }
-        },
-
-        {
-          href: '/projects/herman-boerhaave/',
-          title: 'Herman Boerhaave',
-          subtitle: 'Rijksmuseum Boerhaave, Leiden (NL)',
-          image: { src: 'projects/herman-boerhaave/thumbnail_1x1', alt: data.alts['projects/herman-boerhaave/thumbnail_1x1'] }
-        },
-
-        {
-          href: '/projects/prodemos/',
-          title: 'ProDemos',
-          subtitle: 'ProDemos, The Hague (NL)',
-          image: { src: 'projects/prodemos/thumbnail_1x1', alt: data.alts['projects/prodemos/thumbnail_1x1'] }
-        },
-
-        {
-          href: '/projects/het-steen/',
-          title: 'Het Steen',
-          subtitle: 'Visit Antwerp, Antwerp (BE)',
-          image: { src: 'projects/het-steen/thumbnail_1x1', alt: data.alts['projects/het-steen/thumbnail_1x1'] }
-        }
-      ]
-    )
-  }}
+  {{ card_grid.regular(above_fold = true, cards = project_cards) }}
 
   {{
     call_to_nonaction.regular(

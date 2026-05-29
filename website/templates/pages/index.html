@@ -20,85 +20,31 @@
     )
   }}
 
-  {{
-    card_grid.regular(
-      above_fold = true,
-      title = 'Selected projects',
-      cards = [
-        {
-          href: '/projects/shifting-image/',
-          image: { src: 'projects/shifting-image/thumbnail_1x1', alt: data.alts['projects/shifting-image/thumbnail_1x1'] },
-          title: data.projects.shifting_image.title_short or data.projects.shifting_image.title,
-          subtitle: data.projects.shifting_image.subtitle_short or data.projects.shifting_image.subtitle,
-          label: data.projects.shifting_image.label
-        },
+  {%
+    set project_cards = [
+      merge({}, data.project_cards.shifting_image),
+      merge({}, data.project_cards.maker_park),
+      merge({}, data.project_cards.family_exhibits),
+      merge({}, data.project_cards.vanishing),
+      merge({}, data.project_cards.cruquius_museum),
+      merge({}, data.project_cards.joh_enschede),
+      merge({}, data.project_cards.herman_boerhaave),
+      merge({}, data.project_cards.living_planet),
+      merge({}, data.project_cards.badge_academy),
+      merge({}, data.project_cards.parassita),
+      merge({}, data.project_cards.canon),
+      merge({}, data.project_cards.het_steen),
+      merge({}, data.project_cards.middelen_meter),
+      merge({}, data.project_cards.prodemos),
+      merge({}, data.project_cards.interplanetary),
+    ]
+  %}
 
-        {
-          href: '/projects/maker-park/',
-          image: { src: 'projects/maker-park/thumbnail_1x1', alt: data.alts['projects/maker-park/thumbnail_1x1'] },
-          title: data.projects.maker_park.title_short or data.projects.maker_park.title,
-          subtitle: data.projects.maker_park.subtitle_short or data.projects.maker_park.subtitle,
-          label: data.projects.maker_park.label
-        },
+  {% for project_card in project_cards %}
+    {{ object_set_value(project_card, 'image', { src: project_card.image, alt: data.alts[project_card.image] }) }}
+  {% endfor %}
 
-        {
-          href: '/projects/family-exhibits/',
-          image: { src: 'projects/family-exhibits/thumbnail_1x1', alt: data.alts['projects/family-exhibits/thumbnail_1x1'] },
-          title: data.projects.family_exhibits.title_short or data.projects.family_exhibits.title,
-          subtitle: data.projects.family_exhibits.subtitle_short or data.projects.family_exhibits.subtitle,
-          label: data.projects.family_exhibits.label
-        },
-
-        {
-          href: '/projects/joh-enschede/',
-          image: { src: 'projects/joh-enschede/thumbnail_1x1', alt: data.alts['projects/joh-enschede/thumbnail_1x1'] },
-          title: data.projects.joh_enschede.title_short or data.projects.joh_enschede.title,
-          subtitle: data.projects.joh_enschede.subtitle_short or data.projects.joh_enschede.subtitle,
-          label: data.projects.joh_enschede.label
-        },
-
-        {
-          href: '/projects/cruquius-museum/',
-          image: { src: 'projects/cruquius-museum/thumbnail_1x1', alt: data.alts['projects/cruquius-museum/thumbnail_1x1'] },
-          title: data.projects.cruquius_museum.title_short or data.projects.cruquius_museum.title,
-          subtitle: data.projects.cruquius_museum.subtitle_short or data.projects.cruquius_museum.subtitle,
-          label: data.projects.cruquius_museum.label
-        },
-
-        {
-          href: '/projects/living-planet/',
-          image: { src: 'projects/living-planet/thumbnail_1x1', alt: data.alts['projects/living-planet/thumbnail_1x1'] },
-          title: data.projects.living_planet.title_short or data.projects.living_planet.title,
-          subtitle: data.projects.living_planet.subtitle_short or data.projects.living_planet.subtitle,
-          label: data.projects.living_planet.label
-        },
-
-        {
-          href: '/projects/herman-boerhaave/',
-          image: { src: 'projects/herman-boerhaave/thumbnail_1x1', alt: data.alts['projects/herman-boerhaave/thumbnail_1x1'] },
-          title: data.projects.herman_boerhaave.title_short or data.projects.herman_boerhaave.title,
-          subtitle: data.projects.herman_boerhaave.subtitle_short or data.projects.herman_boerhaave.subtitle,
-          label: data.projects.herman_boerhaave.label
-        },
-
-        {
-          href: '/projects/prodemos/',
-          image: { src: 'projects/prodemos/thumbnail_1x1', alt: data.alts['projects/prodemos/thumbnail_1x1'] },
-          title: data.projects.prodemos.title_short or data.projects.prodemos.title,
-          subtitle: data.projects.prodemos.subtitle_short or data.projects.prodemos.subtitle,
-          label: data.projects.prodemos.label
-        },
-
-        {
-          href: '/projects/het-steen/',
-          image: { src: 'projects/het-steen/thumbnail_1x1', alt: data.alts['projects/het-steen/thumbnail_1x1'] },
-          title: data.projects.het_steen.title_short or data.projects.het_steen.title,
-          subtitle: data.projects.het_steen.subtitle_short or data.projects.het_steen.subtitle,
-          label: data.projects.het_steen.label
-        }
-      ]
-    )
-  }}
+  {{ card_grid.regular(above_fold = true, title: data.base.selected_projects_title, cards = project_cards) }}
 
   {% set cta_quote = data.sections.home.cta_quote %}
   {% set section_card = merge({}, data.section_cards.about) %}

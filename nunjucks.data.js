@@ -2,7 +2,7 @@
 const base = {
   site_name: 'Anna Nogaré',
   site_title: 'Anna Nogaré; Interpretive Design Director & Accessibility Strategist, CPACC',
-  site_description: 'Creating meaningful experiences that everyone can enjoy.',
+  site_description: 'Creating experiences we give a damn about.',
   skiplink_aria_label: 'Skip to main content',
   navigation_aria_label: 'Main navigation',
   menu_dialog_aria_label: 'Menu dialog',
@@ -12,6 +12,7 @@ const base = {
   badge_contact_title: 'Get in touch!',
   badge_manifesto_title: 'Read Accessibility Manifesto',
   button_resources_title: 'Back to resources',
+  selected_projects_title: 'Selected Projects',
 }
 
 const socials = {
@@ -340,8 +341,8 @@ const sections = {
     menu_title: 'Anna Nogaré',
     menu_aria_label: 'Back to homepage',
     title: 'Anna Nogaré; Interpretive Design Director & Accessibility Strategist, CPACC',
-    description: 'Creating meaningful experiences that everyone can enjoy.',
-    subtitle: 'I lead and design digital, physical, and hybrid experiences that turn complex content into inclusive journeys across cultural, educational, tourism, and public environments.',
+    description: 'Creating experiences we give a damn about.',
+    subtitle: 'I lead and design inclusive experiences across digital, physical, and hybrid environments, from cultural institutions to product ecosystems, turning complex content into meaningful journeys.',
     cta_quote: 'It’s not about <em>them</em> in the end. It’s about <em>all of us</em> from the very start.',
   },
 
@@ -409,6 +410,28 @@ const sections = {
 }
 
 const projects = {
+  badge_academy: {
+    slug: 'badge-academy',
+    href: '/projects/badge-academy/',
+    menu_title: 'Badge Academy',
+    aria_label: 'Explore the “Badge Academy” project',
+    title: 'TODO:',
+    description: 'TODO:',
+    subtitle: 'Dutch Police, Amsterdam (NL), TODO:',
+    cta_quote: 'TODO:',
+  },
+
+  canon: {
+    slug: 'canon',
+    href: '/projects/canon/',
+    menu_title: 'Canon Pro Network',
+    aria_label: 'Explore the “Canon Pro Network” project',
+    title: 'TODO:',
+    description: 'TODO:',
+    subtitle: 'Canon Europe, London (UK), TODO:',
+    cta_quote: 'TODO:',
+  },
+
   cruquius_museum: {
     slug: 'cruquius-museum',
     href: '/projects/cruquius-museum/',
@@ -417,9 +440,8 @@ const projects = {
     title: 'Cruquius Museum',
     description: 'An immersive look at Haarlemmermeer’s history and the world’s largest steam engine.',
     subtitle: 'Cruquius Museum, Cruquius (NL), 2020',
-    subtitle_short: 'Cruquius Museum, Cruquius (NL)',
-    label: 'Featured',
     cta_quote: 'Explore the next project or drop me a message.',
+    label: 'Featured',
   },
 
   family_exhibits: {
@@ -430,9 +452,8 @@ const projects = {
     title: 'Family Exhibits',
     description: 'A multi-sensory family journey into Qatar’s heritage, shaped by play and discovery.',
     subtitle: 'National Museum of Qatar, Doha (QA), 2019',
-    subtitle_short: 'National Museum of Qatar, Doha (QA)',
-    label: 'Awarded',
     cta_quote: 'Explore the next project or drop me a message.',
+    label: 'Awarded',
   },
 
   herman_boerhaave: {
@@ -443,20 +464,29 @@ const projects = {
     title: 'Herman Boerhaave',
     description: 'A walk through the life and world of one of the most influential Dutch physicians.',
     subtitle: 'Rijksmuseum Boerhaave, Leiden (NL), 2018',
-    subtitle_short: 'Rijksmuseum Boerhaave, Leiden (NL)',
     cta_quote: 'Explore the next project or drop me a message.',
   },
 
   het_steen: {
     slug: 'het-steen',
     href: '/projects/het-steen/',
-    menu_title: 'Het Steen',
-    menu_aria_label: 'Explore the “Het Steen” project',
-    title: 'Het Steen',
+    menu_title: 'Visit Antwerp',
+    menu_aria_label: 'Explore the “Visit Antwerp” project',
+    title: 'Visit Antwerp',
     description: 'A visitor center inside Antwerp’s oldest building, made of stories, people, and places.',
-    subtitle: 'Visit Antwerp, Antwerp (BE), 2021',
-    subtitle_short: 'Visit Antwerp, Antwerp (BE)',
+    subtitle: 'Het Steen, Antwerp (BE), 2021',
     cta_quote: 'Explore the next project or drop me a message.',
+  },
+
+  interplanetary: {
+    slug: 'interplanetary',
+    href: '/projects/interplanetary/',
+    menu_title: 'Interplanetary',
+    menu_aria_label: 'Explore the “Interplanetary” project',
+    title: 'TODO:',
+    description: 'TODO:',
+    subtitle: 'University IUAV of Venice, Venice (IT), TODO:',
+    cta_quote: 'TODO:',
   },
 
   joh_enschede: {
@@ -467,9 +497,8 @@ const projects = {
     title: 'Joh. Enschedé',
     description: 'Exploring the printers behind pages, banknotes, and type that shaped a nation.',
     subtitle: 'Noord-Hollands Archief, Haarlem (NL), 2019',
-    subtitle_short: 'Noord-Hollands Archief, Haarlem (NL)',
-    label: 'Awarded + Featured',
     cta_quote: 'Explore the next project or drop me a message.',
+    label: 'Awarded + Featured',
   },
 
   living_planet: {
@@ -480,7 +509,6 @@ const projects = {
     title: 'Living Planet',
     description: 'Understanding biodiversity and ecosystems through playful investigation.',
     subtitle: 'Museum of Natural Sciences, Brussels (BE), 2020',
-    subtitle_short: 'Museum of Natural Sciences, Brussels (BE)',
     cta_quote: 'Explore the next project or drop me a message.',
   },
 
@@ -492,19 +520,39 @@ const projects = {
     title: 'Maker Park',
     description: 'A digital platform for STREAM education through informal learning and games.',
     subtitle: 'ilmi Science Discovery & Innovation Center, Riyadh (SA), Expected opening in 2026',
-    subtitle_short: 'ilmi Science Discovery & Innovation Center, Riyadh (SA)',
     cta_quote: 'Explore the next project or drop me a message.',
+  },
+
+  middelen_meter: {
+    slug: 'middelen-meter',
+    href: '/projects/middelen-meter/',
+    menu_title: 'Middelen Meter',
+    menu_aria_label: 'Explore the “Middelen Meter” project',
+    title: 'TODO:',
+    description: 'TODO:',
+    subtitle: 'Jellinek, Amsterdam (NL), 2023, TODO:',
+    cta_quote: 'TODO:',
+  },
+
+  parassita: {
+    slug: 'parassita',
+    href: '/projects/parassita/',
+    menu_title: 'Parassita',
+    menu_aria_label: 'Explore the “Parassita” project',
+    title: 'TODO:',
+    description: 'TODO:',
+    subtitle: 'Personal project, Amsterdam (NL), TODO:',
+    cta_quote: 'TODO:',
   },
 
   prodemos: {
     slug: 'prodemos',
     href: '/projects/prodemos/',
-    menu_title: 'ProDemos',
-    menu_aria_label: 'Explore the “ProDemos” project',
-    title: 'ProDemos',
+    menu_title: 'Make your own law',
+    menu_aria_label: 'Explore the “Make your own law” project',
+    title: 'Make your own law',
     description: 'A GPS game where students propose, debate, and bring their own laws to life.',
     subtitle: 'ProDemos, The Hague (NL), 2021',
-    subtitle_short: 'ProDemos, The Hague (NL)',
     cta_quote: 'Explore the next project or start a conversation.',
   },
 
@@ -516,9 +564,20 @@ const projects = {
     title: 'Shifting Image',
     description: 'An exhibition revealing the many perspectives surrounding Dutch colonial history.',
     subtitle: 'Mauritshuis, The Hague (NL), 2019',
-    subtitle_short: 'Mauritshuis, The Hague (NL)',
-    label: 'Awarded',
     cta_quote: 'Explore the next project or drop me a message.',
+    label: 'Awarded',
+  },
+
+  vanishing: {
+    slug: 'vanishing',
+    href: '/projects/vanishing/',
+    menu_title: 'Vanishing',
+    menu_aria_label: 'Explore the “Vanishing” project',
+    title: 'TODO:',
+    description: 'TODO:',
+    subtitle: 'University IUAV of Venice, Venice (IT), TODO:',
+    cta_quote: 'TODO:',
+    label: 'Featured',
   },
 }
 
@@ -538,36 +597,42 @@ const resources = {
 
 const section_cards = {
   about: {
+    slug: 'about',
     href: '/about/',
     title: 'Learn more about me',
     image: 'misc/anna-dots_1x1',
   },
 
   contact: {
+    slug: 'contact',
     href: '/contact/',
     title: 'Get in touch',
     image: 'misc/vintage-telephone_1x1',
   },
 
   manifesto: {
+    slug: 'manifesto',
     href: '/manifesto/',
     title: 'Read Accessibility Manifesto',
     image: 'misc/wheelchair-sign_1x1',
   },
 
   projects: {
+    slug: 'projects',
     href: '/projects/',
     title: 'Selected projects',
     image: 'projects/shifting-image/thumbnail_1x1',
   },
 
   resources: {
+    slug: 'resources',
     href: '/resources/',
     title: 'Resources',
     subtitle: 'A collection of articles, opinions, thoughts, and reflections.',
   },
 
   services: {
+    slug: 'services',
     href: '/services/',
     title: 'Discover my services',
     image: 'misc/reviewing-blueprints_1x1',
@@ -576,90 +641,151 @@ const section_cards = {
 
 const section_text_cards = {
   manifesto: {
+    slug: 'manifesto',
     href: '/manifesto/',
     title: 'Manifesto',
     subtitle: 'We are all temporarily able. Yes, you too. And once you see it, you can’t unsee it.',
   },
 
   resources: {
+    slug: 'resources',
     href: '/resources/',
     title: 'Resources',
-    subtitle: 'A collection of articles, opinions, thoughts, and reflections.',
+    subtitle: 'Articles and thoughts on accessibility and design. Raw, evolving, worth talking about.',
   },
 
   services: {
+    slug: 'services',
     href: '/services/',
     title: 'Services',
-    subtitle: 'Interpretive Concept <br/>Creative Leadership <br/>Accessibility Strategy',
+    subtitle: 'Concept & Experience Strategy <br/>Creative Leadership & Execution <br/>Accessibility & Inclusive Design',
   },
 }
 
 const project_cards = {
-  living_planet: {
-    href: '/projects/living-planet/',
-    title: 'Living planet',
-    subtitle: 'Museum of Natural Sciences, Brussels (BE)',
-    image: 'projects/living-planet/thumbnail_1x1',
+  badge_academy: {
+    slug: 'badge-academy',
+    href: '/projects/badge-academy/',
+    title: 'Badge Academy',
+    subtitle: 'Dutch Police, Amsterdam (NL)',
+    image: 'projects/badge-academy/thumbnail_1x1',
   },
 
-  joh_enschede: {
-    href: '/projects/joh-enschede/',
-    title: 'Joh. Enschedé',
-    subtitle: 'Noord-Hollands Archief, Haarlem (NL)',
-    label: 'Awarded + Featured',
-    image: 'projects/joh-enschede/thumbnail_1x1',
-  },
-
-  prodemos: {
-    href: '/projects/prodemos/',
-    title: 'ProDemos',
-    subtitle: 'ProDemos, The Hague (NL)',
-    image: 'projects/prodemos/thumbnail_1x1',
-  },
-
-  shifting_image: {
-    href: '/projects/shifting-image/',
-    title: 'Shifting Image',
-    subtitle: 'Mauritshuis, The Hague (NL)',
-    label: 'Awarded',
-    image: 'projects/shifting-image/thumbnail_1x1',
+  canon: {
+    slug: 'canon',
+    href: '/projects/canon/',
+    title: 'Canon Pro Network',
+    subtitle: 'Canon Europe, London (UK)',
+    image: 'projects/canon/thumbnail_1x1',
   },
 
   cruquius_museum: {
+    slug: 'cruquius-museum',
     href: '/projects/cruquius-museum/',
     title: 'Cruquius museum',
     subtitle: 'Cruquius Museum, Cruquius (NL)',
-    label: 'Featured',
     image: 'projects/cruquius-museum/thumbnail_1x1',
+    label: 'Featured',
+  },
+
+  family_exhibits: {
+    slug: 'family-exhibits',
+    href: '/projects/family-exhibits/',
+    title: 'Family Exhibits',
+    subtitle: 'National Museum of Qatar, Doha (QA)',
+    image: 'projects/family-exhibits/thumbnail_1x1',
+    label: 'Awarded',
   },
 
   herman_boerhaave: {
+    slug: 'herman-boerhaave',
     href: '/projects/herman-boerhaave/',
     title: 'Herman Boerhaave',
     subtitle: 'Rijksmuseum Boerhaave, Leiden (NL)',
     image: 'projects/herman-boerhaave/thumbnail_1x1',
   },
 
-  makerpark: {
-    href: '/projects/family-exhibits/',
-    title: 'Family Exhibits',
-    subtitle: 'National Museum of Qatar, Doha (QA)',
-    label: 'Awarded',
-    image: 'projects/family-exhibits/thumbnail_1x1',
-  },
-
   het_steen: {
+    slug: 'het-steen',
     href: '/projects/het-steen/',
-    title: 'Het Steen',
-    subtitle: 'Visit Antwerp, Antwerp (BE)',
+    title: 'Visit Antwerp',
+    subtitle: 'Het Steen, Antwerp (BE)',
     image: 'projects/het-steen/thumbnail_1x1',
   },
 
+  interplanetary: {
+    slug: 'interplanetary',
+    href: '/projects/interplanetary/',
+    title: 'Inter&shy;planetary',
+    subtitle: 'University IUAV of Venice, Venice (IT)',
+    image: 'projects/interplanetary/thumbnail_1x1',
+  },
+
+  joh_enschede: {
+    slug: 'joh-enschede',
+    href: '/projects/joh-enschede/',
+    title: 'Joh. Enschedé',
+    subtitle: 'Noord-Hollands Archief, Haarlem (NL)',
+    image: 'projects/joh-enschede/thumbnail_1x1',
+    label: 'Awarded + Featured',
+  },
+
+  living_planet: {
+    slug: 'living-planet',
+    href: '/projects/living-planet/',
+    title: 'Living planet',
+    subtitle: 'Museum of Natural Sciences, Brussels (BE)',
+    image: 'projects/living-planet/thumbnail_1x1',
+  },
+
   maker_park: {
+    slug: 'maker-park',
     href: '/projects/maker-park/',
     title: 'Maker park',
     subtitle: 'ilmi Science Discovery & Innovation Center, Riyadh (SA)',
     image: 'projects/maker-park/thumbnail_1x1',
+  },
+
+  middelen_meter: {
+    slug: 'middelen-meter',
+    href: '/projects/middelen-meter/',
+    title: 'Middelen Meter',
+    subtitle: 'Jellinek, Amsterdam (NL), 2023',
+    image: 'projects/middelen-meter/thumbnail_1x1',
+  },
+
+  parassita: {
+    slug: 'parassita',
+    href: '/projects/parassita/',
+    title: 'Parassita',
+    subtitle: 'Personal project, Amsterdam (NL)',
+    image: 'projects/parassita/thumbnail_1x1',
+  },
+
+  prodemos: {
+    slug: 'prodemos',
+    href: '/projects/prodemos/',
+    title: 'Make your own law',
+    subtitle: 'ProDemos, The Hague (NL)',
+    image: 'projects/prodemos/thumbnail_1x1',
+  },
+
+  shifting_image: {
+    slug: 'shifting-image',
+    href: '/projects/shifting-image/',
+    title: 'Shifting Image',
+    subtitle: 'Mauritshuis, The Hague (NL)',
+    image: 'projects/shifting-image/thumbnail_1x1',
+    label: 'Awarded',
+  },
+
+  vanishing: {
+    slug: 'vanishing',
+    href: '/projects/vanishing/',
+    title: 'Vanishing',
+    subtitle: 'University IUAV of Venice, Venice (IT)',
+    image: 'projects/vanishing/thumbnail_1x1',
+    label: 'Featured',
   },
 }
 

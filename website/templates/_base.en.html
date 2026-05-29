@@ -5,9 +5,9 @@
 
 {% set lang = 'en' %}
 
-{% set site_name = data.base.site_name or site_name or 'Anna Nogaré' %}
-{% set site_title = data.base.site_title or site_title or 'Anna Nogaré; Interpretive Design Director & Accessibility Strategist, CPACC' %}
-{% set site_description = data.base.site_description or site_description or 'Creating meaningful experiences that everyone can enjoy.' %}
+{% set site_name = data.base.site_name or site_name %}
+{% set site_title = data.base.site_title or site_title %}
+{% set site_description = data.base.site_description or site_description %}
 
 {% block skip_to_main %}
   {{ skip_to_main.regular(title = data.base.skiplink_aria_label, aria_label = data.base.skiplink_aria_label) }}
@@ -27,11 +27,16 @@
           { href: data.projects.shifting_image.href, title: data.projects.shifting_image.menu_title, aria_label: data.projects.shifting_image.menu_aria_label },
           { href: data.projects.maker_park.href, title: data.projects.maker_park.menu_title, aria_label: data.projects.maker_park.menu_aria_label },
           { href: data.projects.family_exhibits.href, title: data.projects.family_exhibits.menu_title, aria_label: data.projects.family_exhibits.menu_aria_label },
-          { href: data.projects.joh_enschede.href, title: data.projects.joh_enschede.menu_title, aria_label: data.projects.joh_enschede.menu_aria_label },
+          { href: data.projects.vanishing.href, title: data.projects.vanishing.menu_title, aria_label: data.projects.vanishing.aria_label },
           { href: data.projects.cruquius_museum.href, title: data.projects.cruquius_museum.menu_title, aria_label: data.projects.cruquius_museum.menu_aria_label },
-          { href: data.projects.living_planet.href, title: data.projects.living_planet.menu_title, aria_label: data.projects.living_planet.menu_aria_label },
+          { href: data.projects.joh_enschede.href, title: data.projects.joh_enschede.menu_title, aria_label: data.projects.joh_enschede.menu_aria_label },
           { href: data.projects.herman_boerhaave.href, title: data.projects.herman_boerhaave.menu_title, aria_label: data.projects.herman_boerhaave.menu_aria_label },
+          { href: data.projects.living_planet.href, title: data.projects.living_planet.menu_title, aria_label: data.projects.living_planet.menu_aria_label },
+          { href: data.projects.interplanetary.href, title: data.projects.interplanetary.menu_title, aria_label: data.projects.interplanetary.menu_aria_label },
+          { href: data.projects.parassita.href, title: data.projects.parassita.menu_title, aria_label: data.projects.parassita.menu_aria_label },
+          { href: data.projects.canon.href, title: data.projects.canon.menu_title, aria_label: data.projects.canon.menu_aria_label },
           { href: data.projects.prodemos.href, title: data.projects.prodemos.menu_title, aria_label: data.projects.prodemos.menu_aria_label },
+          { href: data.projects.badge_academy.href, title: data.projects.badge_academy.menu_title, aria_label: data.projects.badge_academy.menu_aria_label },
           { href: data.projects.het_steen.href, title: data.projects.het_steen.menu_title, aria_label: data.projects.het_steen.menu_aria_label }
         ] },
         { href: data.sections.manifesto.href, title: data.sections.manifesto.menu_title, aria_label: data.sections.manifesto.menu_aria_label },
