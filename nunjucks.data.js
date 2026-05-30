@@ -434,7 +434,7 @@ const sections = {
     textcard_title: 'Services',
     textcard_subtitle: 'Concept & Experience Strategy <br/>Creative Leadership & Execution <br/>Accessibility & Inclusive Design',
     title: 'Services',
-    description: 'I work across cultural, educational, tourism, and public environments, including museums, exhibitions, archives, schools, universities, visitor centres, municipalities, and heritage sites.',
+    description: '',
     cta_quote: 'How we design matters. Let’s think about it.',
   },
 }
