@@ -5,9 +5,11 @@
 {% import 'components/organisms/landing-header/landing-header.html' as landing_header %}
 {% import 'components/organisms/tricard-call-to-action/tricard-call-to-action.html' as tricard_call_to_action %}
 
-{% set page_title = data.sections.home.title %}
-{% set page_description = data.sections.home.description %}
-{% set page_href = data.sections.home.href %}
+{% set section = data.sections.home %}
+
+{% set page_title = section.title %}
+{% set page_description = section.description %}
+{% set page_href = section.href %}
 
 {% set opengraph_title = page_title %}
 {% set opengraph_description = page_description %}
@@ -16,13 +18,13 @@
 {% block content %}
   {{
     landing_header.regular(
-      title = data.sections.home.title_with_markup or data.sections.home.title,
-      subtitle = data.sections.home.subtitle,
+      title = section.title_with_markup or section.title,
+      subtitle = section.subtitle,
       badge = { href: '/manifesto/', title: data.base.badge_manifesto_title }
     )
   }}
 
   {{ card_grid.regular(above_fold = true, title = data.base.selected_projects_title, cards = project_grid_cards) }}
-  {{ call_to_action.regular(variant = 'home', quote = data.sections.home.cta_quote, image = { src: 'misc/anna-dots_1x1', alt: data.alts['misc/anna-dots_1x1'] }, badge = { variant: 'bright', href: '/about/', title: data.base.badge_about_title }) }}
+  {{ call_to_action.regular(variant = 'home', quote = section.cta_quote, image = { src: 'misc/anna-dots_1x1', alt: data.alts['misc/anna-dots_1x1'] }, badge = { variant: 'bright', href: '/about/', title: data.base.badge_about_title }) }}
   {{ card_grid.regular(cards = [section_text_cards.services, section_text_cards.manifesto, section_text_cards.resources]) }}
 {% endblock %}

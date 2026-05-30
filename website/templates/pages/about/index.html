@@ -3,19 +3,17 @@
 {% import 'components/organisms/article-header/article-header.html' as article_header %}
 {% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
 
-{% set page_title = data.sections.about.title %}
-{% set page_description = data.sections.about.description %}
-{% set page_href = data.sections.about.href %}
+{% set section = data.sections.about %}
+
+{% set page_title = section.title %}
+{% set page_description = section.description %}
+{% set page_href = section.href %}
 
 {% set opengraph_title = page_title %}
 {% set opengraph_description = page_description %}
 
 {% block content %}
-  {{
-    article_header.regular(
-      title = data.sections.about.title_with_markup or data.sections.about.title
-    )
-  }}
+  {{ article_header.regular(title = section.title_with_markup or section.title) }}
 
   {%
     call article_content_image.regular(
@@ -49,5 +47,5 @@
     <p>By combining information design, informal learning, game mechanics, and emotional engagement, journeys become more meaningful and memorable, and the experience becomes more human, grounded in empathy, exploration, and discovery.</p>
   {% endcall %}
 
-  {{ call_to_action.regular(quote = data.sections.about.cta_quote, card = section_cards.services) }}
+  {{ call_to_action.regular(quote = section.cta_quote, card = section_cards.services) }}
 {% endblock %}

@@ -1,3 +1,5 @@
+// Translatable strings and rich content
+
 const base = {
   site_name: 'Anna Nogaré',
   site_title: 'Anna Nogaré; Interpretive Design Director & Accessibility Strategist, CPACC',
@@ -833,7 +835,7 @@ const content_blocks = {
       title: 'The overview',
       richtext: `
 <p><em>Badge Academy</em> is an Android game developed for the Dutch National Police to give teenagers a taste of the force. Instead of a dry public service announcement, the app drops players into a simulated training academy where they earn badges, tackle live cases, and hunt down an entire family of recurring criminals, each with their own backstory and personality.</p>
-<p>To keep the game replayable, players face random encounters with the family members across eight distinct mini-games. The real test of focus comes from intentional distraction screens where characters jump out mid-game to break the player's concentration. It takes the high-stress reality of police work, from administering first aid to chasing suspects, and packages it into a competitive, goal-driven experience that slyly doubles as a recruitment tool.</p>
+<p>To keep the game replayable, players face random encounters with the family members across eight distinct mini-games. The real test of focus comes from intentional distraction screens where characters jump out mid-game to break the player’s concentration. It takes the high-stress reality of police work, from administering first aid to chasing suspects, and packages it into a competitive, goal-driven experience that slyly doubles as a recruitment tool.</p>
       `,
       images: ['projects/badge-academy/01_2x1', 'projects/badge-academy/02_1x1', 'projects/badge-academy/03_1x1', 'projects/badge-academy/04_2x1', 'projects/badge-academy/05_2x1', 'projects/badge-academy/06_1x1', 'projects/badge-academy/07_1x1', 'projects/badge-academy/08_2x1'],
     },
@@ -879,7 +881,7 @@ const content_blocks = {
       type: 'image-grid',
       title: 'The work',
       richtext: `
-<p>As a Visual Designer on the team for a solid year, my job was to make sure our layouts didn't insult our audience's eyeballs. I designed website pages, custom microsites, newsletters, and campaign assets. The real work here was in the choice of the assets themselves: curating imagery, establishing strict visual hierarchies, and building layouts that let the photography breathe while adhering to Canon's colossal corporate guidelines.</p>
+<p>As a Visual Designer on the team for a solid year, my job was to make sure our layouts didn’t insult our audience’s eyeballs. I designed website pages, custom microsites, newsletters, and campaign assets. The real work here was in the choice of the assets themselves: curating imagery, establishing strict visual hierarchies, and building layouts that let the photography breathe while adhering to Canon’s colossal corporate guidelines.</p>
 <p>Beyond the daily content grind, I curated the visual identity for recurring global photo contests and featured stories. It was an intense bootcamp in high-volume, premium production that forced me to evaluate hundreds of world-class photos every week. Consider it a masterclass in visual storytelling that finely tuned my eye, while occasionally giving me a serious case of imposter syndrome.</p>
       `,
       images: [],
@@ -893,7 +895,7 @@ const content_blocks = {
   <li>Managed the editorial design for a high-volume platform serving photography professionals across Europe.</li>
   <li>Translated raw content into compelling visual narratives through intentional photography curation, image hierarchy, and layout.</li>
   <li>Built and deployed across a toolkit of formats, including web pages, microsites, newsletters, and campaign assets.</li>
-  <li>Upheld Canon's premium standards across every single output without letting the quality slip over time.</li>
+  <li>Upheld Canon’s premium standards across every single output without letting the quality slip over time.</li>
 </ul>
       `,
       images: ['projects/canon/05_2x1', 'projects/canon/06_1x1', 'projects/canon/07_1x1', 'projects/canon/08_2x1'],
@@ -943,8 +945,8 @@ const content_blocks = {
       type: 'image-grid',
       title: 'The overview',
       richtext: `
-<p>The National Museum of Qatar takes visitors on a 1.5-kilometre journey through the country's history, blending movement, touch, and storytelling. Within that journey, the <em>Family Exhibits</em> bring Qatar's heritage to life for children aged 5 to 15 through several galleries.</p>
-<p>I worked on three of them: <em>Archaeology</em>, <em>Life on the Coast</em>, and <em>Energy</em>, where visitors dig up ancient artifacts, discover traditional pearl diving culture, and explore the role energy plays in country's story. Each gallery combines interactive games, hands-on activities, and immersive projections to make Qatari’s history and culture feel lived-in, not lectured.</p>
+<p>The National Museum of Qatar takes visitors on a 1.5-kilometre journey through the country’s history, blending movement, touch, and storytelling. Within that journey, the <em>Family Exhibits</em> bring Qatar’s heritage to life for children aged 5 to 15 through several galleries.</p>
+<p>I worked on three of them: <em>Archaeology</em>, <em>Life on the Coast</em>, and <em>Energy</em>, where visitors dig up ancient artifacts, discover traditional pearl diving culture, and explore the role energy plays in country’s story. Each gallery combines interactive games, hands-on activities, and immersive projections to make Qatari’s history and culture feel lived-in, not lectured.</p>
       `,
       images: ['projects/family-exhibits/01_2x1', 'projects/family-exhibits/02_1x1', 'projects/family-exhibits/03_1x1', 'projects/family-exhibits/04_1x1', 'projects/family-exhibits/05_1x1', 'projects/family-exhibits/06_2x1', 'projects/family-exhibits/07_1x1', 'projects/family-exhibits/08_1x1', 'projects/family-exhibits/09_2x1'],
     },
@@ -993,7 +995,7 @@ const content_blocks = {
       title: 'The work',
       richtext: `
 <p>I was the sole designer on this project, which meant taking full ownership of the exhibition’s visual design, graphic language, and material choices from initial concept down to final execution. My job was to build a reading logic and wayfinding system from scratch, using color and sharp typography to guide visitors through dense historical and medical data without letting them get lost in the weeds.</p>
-<p>Flying solo meant working directly in the trenches with curators, content designers, and fabrication partners. I had to balance narrative clarity with physical spatial rhythms, pushing for a bold, contemporary aesthetic that intentionally contrasted with the antique subject matter. It was about proving that historical medical exhibitions don't have to look clinical or dated to be deeply impactful.</p>
+<p>Flying solo meant working directly in the trenches with curators, content designers, and fabrication partners. I had to balance narrative clarity with physical spatial rhythms, pushing for a bold, contemporary aesthetic that intentionally contrasted with the antique subject matter. It was about proving that historical medical exhibitions don’t have to look clinical or dated to be deeply impactful.</p>
       `,
       images: ['projects/herman-boerhaave/05_2x1', 'projects/herman-boerhaave/06_1x1', 'projects/herman-boerhaave/07_1x1', 'projects/herman-boerhaave/08_2x1', 'projects/herman-boerhaave/09_2x1', 'projects/herman-boerhaave/10_1x1', 'projects/herman-boerhaave/11_1x1', 'projects/herman-boerhaave/12_2x1'],
     },
@@ -1055,7 +1057,7 @@ const content_blocks = {
       type: 'image-grid',
       title: 'The overview',
       richtext: `
-<p>The <em>Atlas of Contemporary Networks</em> was an ambitious project at IUAV University of Venice mapping complex infrastructure through a mix of print editorial and digital design. For our chapter, my partner and I were handed the single word "Interplanetary" and a wish of good luck. We had to build the entire content strategy from scratch, deciding to visually organize the universe's network systems by their distance from Earth. The resulting narrative arc scaled all the way from low-orbit satellites and the International Space Station out to the Milky Way and the NASA Deep Space Network.</p>
+<p>The <em>Atlas of Contemporary Networks</em> was an ambitious project at IUAV University of Venice mapping complex infrastructure through a mix of print editorial and digital design. For our chapter, my partner and I were handed the single word “Interplanetary” and a wish of good luck. We had to build the entire content strategy from scratch, deciding to visually organize the universe’s network systems by their distance from Earth. The resulting narrative arc scaled all the way from low-orbit satellites and the International Space Station out to the Milky Way and the NASA Deep Space Network.</p>
 <p>The print project eventually bled into the digital world with @AtlasDSN, a Twitter-based installation designed to teach users the meaning of cosmic patience. Visually styled after Atari’s 1979 Asteroids game, a nod to the Voyager launch era, the installation transmitted real tweets to space probes using real signal travel times. If you wanted to ping Mars, you had to wait 20 minutes for the signal to arrive. If you wanted to talk to Voyager I outside the Solar System, you were looking at an 18-hour delay. It was the ultimate antidote to modern instant gratification.</p>
       `,
       images: ['projects/interplanetary/01_2x1', 'projects/interplanetary/02_1x1', 'projects/interplanetary/03_1x1', 'projects/interplanetary/04_2x1', 'projects/interplanetary/05_2x1', 'projects/interplanetary/06_1x1', 'projects/interplanetary/07_1x1', 'projects/interplanetary/08_2x1'],
@@ -1066,8 +1068,8 @@ const content_blocks = {
       title: 'The work',
       richtext: `
 <p>I took charge of translating the raw data into a visual language, building the information architecture, content design, and entire graphic ecosystem from the ground up. I owned the print side of the room, executing every layout, typesetting choice, illustration, and complex data visualization. The major curveball was executing all of this within a strict, shared two-color Risograph framework, a beautiful but unforgiving constraint that applied to the entire publication.</p>
-<p>Since astrophysics data doesn't naturally care about human readability, the job was all about stripping away technical density to engineer clear and layered visual narratives. I embedded myself with the developer during the concept phase to pitch and build the foundation. We ended up developing two entirely separate visual languages: a meticulous, data-heavy layout for print, and a retro, interactive interface for the digital installation.</p>
-<p>I won't lie, because it was a duet show performed in just three months, it was pure blood, sweat, and tears. But it became the ultimate workout on information design and partner bonding. We still call each other business partner after more than a decade.</p>
+<p>Since astrophysics data doesn’t naturally care about human readability, the job was all about stripping away technical density to engineer clear and layered visual narratives. I embedded myself with the developer during the concept phase to pitch and build the foundation. We ended up developing two entirely separate visual languages: a meticulous, data-heavy layout for print, and a retro, interactive interface for the digital installation.</p>
+<p>I won’t lie, because it was a duet show performed in just three months, it was pure blood, sweat, and tears. But it became the ultimate workout on information design and partner bonding. We still call each other business partner after more than a decade.</p>
       `,
       images: ['projects/interplanetary/09_2x1', 'projects/interplanetary/10_1x1', 'projects/interplanetary/11_1x1', 'projects/interplanetary/12_2x1', 'projects/interplanetary/13_2x1', 'projects/interplanetary/14_1x1', 'projects/interplanetary/15_1x1', 'projects/interplanetary/16_2x1'],
     },
@@ -1092,7 +1094,7 @@ const content_blocks = {
       type: 'image-grid',
       title: 'The overview',
       richtext: `
-<p>The Noord-Hollands Archief opened a permanent exhibition dedicated to Joh. Enschedé, the legendary printing house that spent centuries producing the Netherlands' banknotes, stamps, and typefaces.</p>
+<p>The Noord-Hollands Archief opened a permanent exhibition dedicated to Joh. Enschedé, the legendary printing house that spent centuries producing the Netherlands’ banknotes, stamps, and typefaces.</p>
 <p>A striking, five-meter-high glass façade creates a vibrant atmosphere, framing three heavy-hitting historical installations: an 18th-century printing press, a showcase of rare typefaces, and a massive banknote printer’s roll. By pairing interactive screens and physical games with a raw workshop environment, the exhibition strips away the stuffiness of archival history and invites people to actually touch the precision craftsmanship behind everyday objects.</p>
       `,
       images: ['projects/joh-enschede/01_1x1', 'projects/joh-enschede/02_1x1', 'projects/joh-enschede/03_1x1', 'projects/joh-enschede/04_1x1', 'projects/joh-enschede/05_1x1', 'projects/joh-enschede/06_1x1'],
@@ -1102,8 +1104,8 @@ const content_blocks = {
       type: 'image-grid',
       title: 'The work',
       richtext: `
-<p>I ran the visual direction and graphic layer, establishing the entire typographic system, color palette, and material choices from scratch. My focus was on building a tight visual identity where every label, case graphic, and display element felt like a natural extension of a master printer's legacy.</p>
-<p>When you are dealing with a five-meter window to decorate and delicate, centuries-old archival artifacts, you don't get to use standard solutions. It required hyper-detailed production planning and custom-built cases to make sure the graphics and physical structures worked together perfectly. By acting as the bridge between the client and the production teams, I aligned the dense history of security printing with a modern visual identity that completely cuts through the potential heaviness of the topic.</p>
+<p>I ran the visual direction and graphic layer, establishing the entire typographic system, color palette, and material choices from scratch. My focus was on building a tight visual identity where every label, case graphic, and display element felt like a natural extension of a master printer’s legacy.</p>
+<p>When you are dealing with a five-meter window to decorate and delicate, centuries-old archival artifacts, you don’t get to use standard solutions. It required hyper-detailed production planning and custom-built cases to make sure the graphics and physical structures worked together perfectly. By acting as the bridge between the client and the production teams, I aligned the dense history of security printing with a modern visual identity that completely cuts through the potential heaviness of the topic.</p>
       `,
       images: ['projects/joh-enschede/07_1x1', 'projects/joh-enschede/08_1x1', 'projects/joh-enschede/09_1x1', 'projects/joh-enschede/10_1x1', 'projects/joh-enschede/11_2x1'],
     },
@@ -1177,7 +1179,7 @@ const content_blocks = {
       type: 'image-grid',
       title: 'The work',
       richtext: `
-<p>For over three years, I wore three hats simultaneously: lead designer, creative director, and strategist. I didn't just design the prototype of the digital platform; I contributed to the center’s Digital Learning Strategy while guiding the accessibility guidelines.</p>
+<p>For over three years, I wore three hats simultaneously: lead designer, creative director, and strategist. I didn’t just design the prototype of the digital platform; I contributed to the center’s Digital Learning Strategy while guiding the accessibility guidelines.</p>
 <p>Working in a high-profile, fast-paced ecosystem meant translating playful learning objectives and sky-high business requirements into scalable, retention-driven concepts. The briefs constantly evolved, the timelines were intense, and the expectations were huge, but so far this is the project where I’ve learned the most, no doubt! It was a catalyst as well, because the intense intersection of game mechanics and diverse learners’ needs led me straight to my CPACC accessibility certification.</p>
 <p>Through it all, I coordinated a global network of partners, cross-functional teams, and vendors. I acted as the captain of the boat keeping everyone and everything aligned, and pulling off miracles under pressure. It was a brutal masterclass in high-stakes leadership, and honestly? The most rewarding project I’ve worked on so far.</p>
       `,
@@ -1190,7 +1192,7 @@ const content_blocks = {
       richtext: `
 <ul>
   <li>Led end-to-end UX/UI and experience strategy for a large-scale nationwide digital learning ecosystem.</li>
-  <li>Co-authored the center's Learning Digital Strategy from the ground up.</li>
+  <li>Co-authored the center’s Learning Digital Strategy from the ground up.</li>
   <li>Pioneered foundational accessibility standards across the entire ecosystem.</li>
   <li>Mastered informal learning and game mechanics, to turn educational goals into engaging experiences.</li>
   <li>Orchestrated a global network of teams and vendors through constantly shifting requirements.</li>
@@ -1211,7 +1213,7 @@ const content_blocks = {
       title: 'The overview',
       richtext: `
 <p><em>Middelen Meter</em> is a self-monitoring app developed by Jellinek, one of the leading organizations for addiction care in the Netherlands. The tool helps users track their consumption of alcohol, tobacco, cannabis, and medication, giving them a clear, data-driven look at their personal patterns over time.</p>
-<p>Because tracking these kinds of habits requires absolute trust, the app is built as a free, privacy-first tool where all data stays local, strictly on the user's device. Instead of acting like a digital scold or forcing a specific treatment plan, the simple interface focuses on multi-substance tracking that encourages honest self-reflection. It serves as a practical, low-barrier companion for individuals checking in on their habits and the care professionals supporting them.</p>
+<p>Because tracking these kinds of habits requires absolute trust, the app is built as a free, privacy-first tool where all data stays local, strictly on the user’s device. Instead of acting like a digital scold or forcing a specific treatment plan, the simple interface focuses on multi-substance tracking that encourages honest self-reflection. It serves as a practical, low-barrier companion for individuals checking in on their habits and the care professionals supporting them.</p>
       `,
       images: ['projects/middelen-meter/01_2x1', 'projects/middelen-meter/02_1x1', 'projects/middelen-meter/03_1x1', 'projects/middelen-meter/04_2x1'],
     },
@@ -1249,7 +1251,7 @@ const content_blocks = {
       richtext: `
 <p>Lacking an official distribution network, Parassita is an independent magazine about Italy that survives by hitchhiking, reaching Italian expats and Amsterdam residents through a slightly criminal guerrilla distribution strategy where it is secretly slipped inside existing books, magazines, and fanzines across bookstores, newsstands, and public spaces.</p>
 <p>Designed for an international audience looking to connect with Italian culture, the magazine bypasses dusty travel clichés, using heavy data visualization, rigorous information design, and sharp visual narratives to dissect the country from an entirely fresh perspective.</p>
-<p>Parassita was presented as the thesis project for the Master's degree in Visual Communication and Multimedia Design at IUAV University of Venice, and it made me a proud mama because it completely subverts standard editorial design.</p>
+<p>Parassita was presented as the thesis project for the Master’s degree in Visual Communication and Multimedia Design at IUAV University of Venice, and it made me a proud mama because it completely subverts standard editorial design.</p>
       `,
       images: ['projects/parassita/01_1x1', 'projects/parassita/02_1x1', 'projects/parassita/03_1x1', 'projects/parassita/04_1x1', 'projects/parassita/05_2x1', 'projects/parassita/06_2x1', 'projects/parassita/07_1x1', 'projects/parassita/08_1x1', 'projects/parassita/09_1x1', 'projects/parassita/10_1x1'],
     },
@@ -1406,7 +1408,77 @@ const content_blocks = {
     },
   ],
 
-  we_are_all_temporarily_able_yes_you_too: [],
+  we_are_all_temporarily_able_yes_you_too: [
+    {
+      type: 'article-content',
+      richtext: `
+<p>Let’s be honest: the word “disabled” makes people uncomfortable, not so much those who live with disability, but those who have to say the word aloud. We tend to avoid it, replacing it with softer labels such as <em>differently abled</em>, <em>person with special needs</em>, or <em>neurodivergent</em>. Sometimes we use those terms carefully, almost proudly, to show how sensitive and inclusive we are. Other times, we avoid the subject altogether because “disabled” feels too harsh, too direct, almost offensive.</p>
+<p>But if being disabled weren’t something that concerns “other people”, but a concrete possibility that concerns all of us, then that word would stop feeling so distant. So uncomfortable.</p>
+<p>This isn’t the first time we’ve changed a word in the hope of changing perspective.We moved, thankfully, from “handicapped” to “disabled”, precisely to shift attention from the person experiencing a difficulty to the environment that generates it. In fact, the term “disabled” refers to the difficulty or impossibility of carrying out a specific activity autonomously, in relation to particular contexts or barriers. Nothing offensive, nothing sanitised: simply a fact.</p>
+<p>And yet the negative, discriminatory, or pity-driven connotations attached to disability are so deeply rooted that finding the right word for it has become almost impossible. Because, in truth, what makes us uncomfortable is not the word itself, but the idea behind it.</p>
+<p>Honestly, I don’t think that reaction comes from an excess of sensitivity, but from the fact that most of us know very little about disability. Either because it does not feel like it concerns us, or because we are afraid to even sit with the idea. But how many times in our lives have we found ourselves, quite literally, <em>dis-abled</em>?</p>
+<p>We break a limb, lose our glasses, don’t speak the language of the person in front of us: suddenly, the world is no longer built for us.</p>
+<p class="paragraph--pause">We’re blinded by the sun, exhausted after a sleepless night, or flattened by a migraine: even the simplest things become impossible.</p>
+<p class="paragraph--pause">These are just a few small examples of moments when we are all literally dis-abled, temporarily, yes, but dis-abled nonetheless.</p>
+<p>According to the UN, in countries where life expectancy exceeds 70 years, it is estimated that a person spends on average around 8 years, equal to 11.5% of their life, living with some form of disability.</p>
+<p class="paragraph--pause">Let’s face reality, then: the chances of remaining fully able for an entire lifetime are extremely low, if not nonexistent. Our functionality, our autonomy, and our physical, cognitive, and emotional balance depend on factors we take for granted, until they’re gone.</p>
+      `,
+    },
+
+    {
+      type: 'article-quote',
+      quote: 'That’s why I think it makes more sense to think we are all temporarily able. Yes, you too.',
+    },
+
+    {
+      type: 'article-content',
+      richtext: `
+<p>So if we’re all truly temporarily able, why do we find it so hard to relate to disability?</p>
+<p>As mentioned earlier, the word disabled was meant to shift attention away from the individual and toward the environment around them. If society creates barriers, society creates disability. Without barriers, much of what we call disability would not exist in the same way.</p>
+<p class="paragraph--pause">This is precisely what <em>accessibility</em> is about: removing barriers so that environments and contexts do not disable people in the first place.</p>
+<p>There are many examples of real disabilities that aren’t even perceived as such, because society has integrated them so successfully that they have become normalised.</p>
+<p class="paragraph--pause">Eyeglasses are a clear example. People who wear them don’t see well, so technically they have a limitation, but nobody thinks of them as disabled, because a solution exists that is so widespread that the condition has simply been absorbed into the system. It is no longer perceived as a barrier and therefore no longer named as disability, even though technically it is.</p>
+<p>This shows how much the relationship between disability and context is far more important than we think, even just in defining the concept of disability itself.The same applies to anyone who needs an elevator, subtitles, or simplified instructions. These needs become disabilities only when the environment stops responding, stops offering alternatives, stops allowing flexibility.</p>
+      `,
+    },
+
+    {
+      type: 'article-quote',
+      quote: 'In other words, disability isn’t something that belongs to a person; it’s an unequal relationship between that person and a context that never accounted for them.',
+    },
+
+    {
+      type: 'article-content',
+      richtext: `
+<p>That is why I want to challenge the assumption that the problem always lies in the individual.</p>
+<p class="paragraph--pause">If I cannot use stairs but I have access to a ramp that allows me to reach the same destination as everyone else, in what sense am I <em>dis-abled</em>? <em>Dis-abled</em> from doing what, exactly?</p>
+<p>I do not want to deny disability or minimise the real difficulties many people face every day. Speaking about systemic barriers does not erase pain, fatigue, or discrimination. It explains them better. Because I deeply believe that it is also the context that defines disability, not just the body.</p>
+<p>If we think about it, we admit this ourselves every time we celebrate a disabled person for having “made it <em>despite everything</em>.” It is precisely in that <em>“despite everything”</em> that the trick hides. Every time someone is applauded for achieving something despite their condition, we are implicitly acknowledging that the system was never designed for them or their needs. We are admitting that to achieve something ordinary, they had to make an extraordinary effort, and instead of questioning that unfair system, we applaud, but very little changes for the person involved.</p>
+<p>The problem is that this way of thinking appears everywhere: in the places we inhabit, the services we use, and the experiences we design.</p>
+<p class="paragraph--pause">Accessibility is still treated as a kind concession, something to consider only if there’s time, budget, or if someone explicitly asks for it.</p>
+<p class="paragraph--pause">And yet today it is required by law. Finally, one might say.</p>
+<p>In practice, however, it is often followed more to avoid penalties or look good than out of genuine conviction. It becomes a checklist completed at the last minute with the minimum effort possible. As if ticking a box were enough to say you’ve done your part.But accessibility is not an add-on, nor a formality: it is a collective responsibility.</p>
+<p>A design competence that is necessary to guarantee the minimum conditions for something to truly work for all of us, and not only those who happen to fit a standard that, let’s be honest, in the end, represents almost no one.</p>
+      `,
+    },
+
+    {
+      type: 'article-quote',
+      quote: 'I believe society is not afraid of disability itself. It is afraid of being treated the way disabled people are treated.',
+    },
+
+    {
+      type: 'article-content',
+      button: { href: '/resources/', title: base.button_resources_title },
+      richtext: `
+<p>So disability is avoided, stigmatised, or turned into inspirational symbolism. Meanwhile, we continue building physical, digital, and cultural barriers while congratulating ourselves for using the right words, but in reality, nothing has changed.</p>
+<p>I'm not here to deny disability, but to reject the toxic narrative around it, because we could all be far more able, or at least given the conditions to be, if the world were designed to truly include every body, every mind, every experience.</p>
+<p>The problem is not me. The problem is the world as it was designed. And the fact that we keep thinking of ourselves as able until we're not.</p>
+<p>We changed the word.</p>
+<p class="paragraph--pause">Now we need to change perspective.</p>
+      `,
+    },
+  ],
 }
 
 // ------------- Code below ---
@@ -1446,6 +1518,5 @@ export default {
   resources: setImageAlts(resources, alts),
   menu_items: getMenuItems(base.menu_sections, base.menu_projects, sections, projects),
   footer_socials: base.footer_socials.map(slug => ({ ...socials[slug], target: '_blank' })),
-
   content_blocks: setBlockImageAlts(content_blocks, alts),
 }
