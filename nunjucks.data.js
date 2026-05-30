@@ -347,7 +347,7 @@ const sections = {
     description: 'I lead and design inclusive experiences across digital, physical, and hybrid environments, from cultural institutions to product ecosystems, turning complex content into journeys that stick.',
     subtitle: 'I lead and design inclusive experiences across digital, physical, and hybrid environments, from cultural institutions to product ecosystems, turning complex content into meaningful journeys.',
     cta_quote: 'It’s not about <em>them</em> in the end. It’s about <em>all of us</em> from the very start.',
-    cta_image: 'misc/anna-dots-1x1',
+    cta_image: 'misc/anna-dots_1x1',
     cta_badge: { variant: 'bright', href: '/about/', title: base.badge_about_title },
     header_badge: { href: '/manifesto/', title: base.badge_manifesto_title },
   },
@@ -835,7 +835,7 @@ const resource_cards = [
     href: resources.we_are_all_temporarily_able_yes_you_too.href,
     pretitle: resources.we_are_all_temporarily_able_yes_you_too.subtitle_short,
     title: resources.we_are_all_temporarily_able_yes_you_too.title,
-    subtitle: resources.we_are_all_temporarily_able_yes_you_too.description
+    subtitle: resources.we_are_all_temporarily_able_yes_you_too.description,
   },
 
   {
@@ -843,8 +843,8 @@ const resource_cards = [
     target: '_blank',
     pretitle: '<time datetime="2026-05-04">04-05-2026</time> | <em>14 min</em>',
     subtitle: 'Published on Goodjob!',
-    title: 'Interpretive design: progettare cultura accessibile non è un favore per pochi, ma migliora la vita di tutti'
-  }
+    title: 'Interpretive design: progettare cultura accessibile non è un favore per pochi, ma migliora la vita di tutti',
+  },
 ]
 
 // eslint-disable-next-line camelcase
