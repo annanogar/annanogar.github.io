@@ -21,7 +21,7 @@ const base = {
   recognitions_title: 'Recognition',
   credits_title: 'Credits',
   project_cta_quote: 'Explore the next project or drop me a message.',
-  project_overview_quote: 'More projects on Behance. TODO: LINK',
+  project_overview_quote: 'More projects on Behance. TODO: MAKE LINK IN COMPONENT',
 }
 
 const socials = {
@@ -1528,7 +1528,7 @@ const content_blocks = {
     {
       type: 'article-highlight',
       title: 'TODO:',
-      text: 'ADD VIDEO',
+      text: 'ADD VIDEO (https://vimeo.com/101531290)',
     },
 
     {
@@ -1544,7 +1544,7 @@ const content_blocks = {
     {
       type: 'article-highlight',
       title: 'TODO:',
-      text: 'ADD VIDEO',
+      text: 'ADD VIDEO (https://vimeo.com/101524505) (needs vimeo account)',
     },
 
     {

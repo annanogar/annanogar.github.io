@@ -29,7 +29,7 @@ export const pathExists = async path =>
     .then(() => true)
     .catch(() => false)
 
-// Lazy load globbing (TODO: use native globbing later, now in experimental node v22)
+// Lazy load globbing
 // Always ignore anything starting with ___
 export const glob = (pattern, options = {}) => tGlob(pattern, { ...options, ignore: [...(options.ignore || []), '**/___*'] })
 

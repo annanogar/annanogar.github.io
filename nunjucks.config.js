@@ -162,7 +162,6 @@ const tags = {
   asset_with_hash: (string = '', addFileHash = true) => `${config.project.staticURI}/${string}${addFileHash ? `?v=${getFileHash(string)}` : ``}`,
 
   // Render an object with a bound macro or with a default macro if it is unbound and optionally overwrite some values.
-  // TODO: Rewrite without destructuring.
   render: (object = {}, defaultMacro = null, override = null) => {
     let macro, value
 
@@ -265,7 +264,6 @@ const filters = {
   random_hash: (prefix = '') => prefix.toString() + Math.random().toString(36).slice(2, -2),
 
   // Convert to string and trim whitespace.
-  // TODO: Rename this, it overwrites Nunjucks "trim" filter!
   trim: (string = '') => string.toString().trim(),
 
   // Split string by key (such as a comma-separated list)

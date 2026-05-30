@@ -354,10 +354,9 @@ export const watchTasks = {
 
   icons: async (path = '') => {
     await tasks.optimizeIcons(path)
-    //await tasks.compileTemplates() // TODO: It would be preferred to only compile the templates that actually use the icons that changed. Perhaps we can recursively go through the templates to find instances of the path?
 
     if (global.settings.formatOutputTemplates && global.environment === 'production') {
-      await tasks.formatOutputTemplates() // TODO: Once we compile only the paths that change, we can format the same subset.
+      await tasks.formatOutputTemplates()
     }
   },
 
@@ -374,13 +373,13 @@ export const watchTasks = {
   scripts: async (path = '') => {
     await tasks.lintScripts(path)
     await tasks.formatScripts(path)
-    await tasks.compileScripts() // TODO: It would be preferred to only compile the scripts that actually use the scripts that changed.
+    await tasks.compileScripts()
   },
 
   stylesheets: async (path = '') => {
     await tasks.lintStylesheets(path)
     await tasks.formatStylesheets(path)
-    await tasks.compileStylesheets() // TODO: It would be preferred to only compile the scripts that actually use the scripts that changed.
+    await tasks.compileStylesheets()
 
     if (global.settings.useAutoprefixer) {
       await tasks.processStylesheets(path)

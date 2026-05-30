@@ -106,7 +106,6 @@ export default async function formatFiles(sourceGlobs = '', type = 'files', hash
 
   if (useHashCache) {
     // Save the cache
-    // TODO: Check if this should be before or after return if no items? for all instances
     await hashCache?.save()
   }
 
