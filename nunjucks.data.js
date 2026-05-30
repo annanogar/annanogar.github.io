@@ -21,7 +21,7 @@ const base = {
   recognitions_title: 'Recognition',
   credits_title: 'Credits',
   project_cta_quote: 'Explore the next project or drop me a message.',
-  project_overview_quote: 'More projects on Behance. TODO: MAKE LINK IN COMPONENT',
+  project_overview_quote: 'More projects on <a href="https://www.behance.net/annanogar" target="_blank" rel="noopener nofollow">Behance</a>.',
 }
 
 const socials = {
