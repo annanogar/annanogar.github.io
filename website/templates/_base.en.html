@@ -9,9 +9,31 @@
 {% set site_title = data.base.site_title or site_title %}
 {% set site_description = data.base.site_description or site_description %}
 
+{% set opengraph_title = site_title %}
+{% set opengraph_description = site_description %}
+{% set opengraph_image = '/static/media/misc/social_1200x630.jpg' %}
+
 {% set section_cards = create_object_from_schema(data.sections, { slug: 'slug', href: 'href', title: 'card_title', subtitle: 'card_subtitle', image: 'card_image' }) %}
 {% set section_text_cards = create_object_from_schema(data.sections, { slug: 'slug', href: 'href', title: 'textcard_title', subtitle: 'textcard_subtitle' }) %}
 {% set project_cards = create_object_from_schema(data.projects, { slug: 'slug', href: 'href', title: 'card_title', subtitle: 'card_subtitle', image: 'card_image', label: 'label' }) %}
+
+{% set project_grid_cards = [
+  project_cards.shifting_image,
+  project_cards.maker_park,
+  project_cards.family_exhibits,
+  project_cards.vanishing,
+  project_cards.cruquius_museum,
+  project_cards.joh_enschede,
+  project_cards.herman_boerhaave,
+  project_cards.living_planet,
+  project_cards.badge_academy,
+  project_cards.parassita,
+  project_cards.canon,
+  project_cards.het_steen,
+  project_cards.middelen_meter,
+  project_cards.prodemos,
+  project_cards.interplanetary
+] %}
 
 {% block skip_to_main %}
   {{ skip_to_main.regular(title = data.base.skiplink_aria_label, aria_label = data.base.skiplink_aria_label) }}
@@ -26,29 +48,7 @@
       aria_label = data.base.navigation_aria_label,
       dialog_aria_label = data.base.menu_dialog_aria_label,
       button_aria_label = data.base.menu_button_aria_label,
-      menu_items = [
-        { href: data.sections.projects.href, title: data.sections.projects.menu_title, aria_label: data.sections.projects.aria_label, submenu_items: [
-          { href: data.projects.shifting_image.href, title: data.projects.shifting_image.menu_title, aria_label: data.projects.shifting_image.menu_aria_label },
-          { href: data.projects.maker_park.href, title: data.projects.maker_park.menu_title, aria_label: data.projects.maker_park.menu_aria_label },
-          { href: data.projects.family_exhibits.href, title: data.projects.family_exhibits.menu_title, aria_label: data.projects.family_exhibits.menu_aria_label },
-          { href: data.projects.vanishing.href, title: data.projects.vanishing.menu_title, aria_label: data.projects.vanishing.aria_label },
-          { href: data.projects.cruquius_museum.href, title: data.projects.cruquius_museum.menu_title, aria_label: data.projects.cruquius_museum.menu_aria_label },
-          { href: data.projects.joh_enschede.href, title: data.projects.joh_enschede.menu_title, aria_label: data.projects.joh_enschede.menu_aria_label },
-          { href: data.projects.herman_boerhaave.href, title: data.projects.herman_boerhaave.menu_title, aria_label: data.projects.herman_boerhaave.menu_aria_label },
-          { href: data.projects.living_planet.href, title: data.projects.living_planet.menu_title, aria_label: data.projects.living_planet.menu_aria_label },
-          { href: data.projects.interplanetary.href, title: data.projects.interplanetary.menu_title, aria_label: data.projects.interplanetary.menu_aria_label },
-          { href: data.projects.parassita.href, title: data.projects.parassita.menu_title, aria_label: data.projects.parassita.menu_aria_label },
-          { href: data.projects.canon.href, title: data.projects.canon.menu_title, aria_label: data.projects.canon.menu_aria_label },
-          { href: data.projects.prodemos.href, title: data.projects.prodemos.menu_title, aria_label: data.projects.prodemos.menu_aria_label },
-          { href: data.projects.badge_academy.href, title: data.projects.badge_academy.menu_title, aria_label: data.projects.badge_academy.menu_aria_label },
-          { href: data.projects.het_steen.href, title: data.projects.het_steen.menu_title, aria_label: data.projects.het_steen.menu_aria_label }
-        ] },
-        { href: data.sections.manifesto.href, title: data.sections.manifesto.menu_title, aria_label: data.sections.manifesto.menu_aria_label },
-        { href: data.sections.about.href, title: data.sections.about.menu_title, aria_label: data.sections.about.menu_aria_label },
-        { href: data.sections.services.href, title: data.sections.services.menu_title, aria_label: data.sections.services.menu_aria_label },
-        { href: data.sections.resources.href, title: data.sections.resources.menu_title, aria_label: data.sections.resources.menu_aria_label },
-        { href: data.sections.contact.href, title: data.sections.contact.menu_title, aria_label: data.sections.contact.menu_aria_label }
-      ]
+      menu_items = data.menu_items
     )
   }}
 {% endblock %}

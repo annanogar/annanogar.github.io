@@ -3,11 +3,12 @@
 
   {% if richtext or caller %}
     <div class="richtext richtext--regular">
-      {% if richtext %}
-        {{ richtext|safe }}
-      {% elif caller %}
+      {% if caller %}
         {% set child_context = caller() %}
         {{ child_context }}
+        {{ richtext }}
+      {% elif richtext %}
+        {{ richtext|safe }}
       {% endif %}
     </div>
   {% endif %}

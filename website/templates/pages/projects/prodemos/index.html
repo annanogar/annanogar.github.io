@@ -9,7 +9,6 @@
 
 {% set opengraph_title = page_title %}
 {% set opengraph_description = page_description %}
-{% set opengraph_image = '/static/media/projects/prodemos/social_1200x630.jpg' %}
 
 {% block content %}
   {{
@@ -56,18 +55,17 @@
     )
   }}
 
-  {% call article_footer.regular() %}
-    <h3>Credits</h3>
-
-    <p>
-      Role: <strong>Art Director | Lead Designer</strong><br />
-      Employer: <strong>Studio Louter</strong><br />
-      Client: <strong>ProDemos</strong><br />
-      Photography: <strong>Bas van Vliet + Studio Louter</strong>
-    </p>
-
-    <p>© All rights reserved to Studio Louter</p>
-  {% endcall %}
+  {{
+    article_footer.regular(
+      awards_title = data.base.awards_title,
+      awards = data.projects.prodemos.awards,
+      recognitions_title = data.base.recognitions_title,
+      recognitions = data.projects.prodemos.recognitions,
+      credits_title = data.base.credits_title,
+      credits = data.projects.prodemos.credits,
+      copyright = data.projects.prodemos.copyright
+    )
+  }}
 
   {{ call_to_action.regular(variant = 'badge', quote = data.projects.prodemos.cta_quote, card = project_cards.het_steen) }}
 {% endblock %}

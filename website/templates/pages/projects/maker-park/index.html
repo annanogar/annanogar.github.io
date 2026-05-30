@@ -11,7 +11,6 @@
 
 {% set opengraph_title = page_title %}
 {% set opengraph_description = page_description %}
-{% set opengraph_image = '/static/media/projects/maker-park/social_1200x630.jpg' %}
 
 {% block content %}
   {{
@@ -64,20 +63,17 @@
     )
   }}
 
-  {% call article_footer.regular() %}
-    <h3>Credits</h3>
-
-    <p>
-      Role: <strong>Creative Director | Strategist</strong><br />
-      Employer: <strong>IJsfontein</strong><br />
-      Client: <strong>Misk Foundation</strong><br />
-      Photography: <strong>Unsplash</strong><br />
-      Renders: <strong>Provided by client</strong><br />
-      Mockups & video: <strong>IJsfontein</strong>
-    </p>
-
-    <p>© All rights reserved to IJsfontein</p>
-  {% endcall %}
+  {{
+    article_footer.regular(
+      awards_title = data.base.awards_title,
+      awards = data.projects.maker_park.awards,
+      recognitions_title = data.base.recognitions_title,
+      recognitions = data.projects.maker_park.recognitions,
+      credits_title = data.base.credits_title,
+      credits = data.projects.maker_park.credits,
+      copyright = data.projects.maker_park.copyright
+    )
+  }}
 
   {{ call_to_action.regular(variant = 'badge', quote = data.projects.maker_park.cta_quote, card = project_cards.family_exhibits) }}
 {% endblock %}

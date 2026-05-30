@@ -7,7 +7,9 @@
 
 {% set page_title = data.sections.projects.title %}
 {% set page_description = data.sections.projects.description %}
-{% set opengraph_image = '/static/media/misc/social_1200x630.jpg' %}
+
+{% set opengraph_title = page_title %}
+{% set opengraph_description = page_description %}
 
 {% block content %}
   {{
@@ -17,27 +19,7 @@
     )
   }}
 
-  {%
-    set cards = [
-      merge({}, project_cards.shifting_image),
-      merge({}, project_cards.maker_park),
-      merge({}, project_cards.family_exhibits),
-      merge({}, project_cards.vanishing),
-      merge({}, project_cards.cruquius_museum),
-      merge({}, project_cards.joh_enschede),
-      merge({}, project_cards.herman_boerhaave),
-      merge({}, project_cards.living_planet),
-      merge({}, project_cards.badge_academy),
-      merge({}, project_cards.parassita),
-      merge({}, project_cards.canon),
-      merge({}, project_cards.het_steen),
-      merge({}, project_cards.middelen_meter),
-      merge({}, project_cards.prodemos),
-      merge({}, project_cards.interplanetary)
-    ]
-  %}
-
-  {{ card_grid.regular(above_fold = true, cards = cards) }}
+  {{ card_grid.regular(above_fold = true, cards = project_grid_cards) }}
 
   {{
     call_to_nonaction.regular(

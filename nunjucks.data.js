@@ -12,18 +12,14 @@ const base = {
   badge_manifesto_title: 'Read Accessibility Manifesto',
   button_resources_title: 'Back to resources',
   selected_projects_title: 'Selected Projects',
+  awards_title: 'Awards',
+  recognitions_title: 'Recognition',
+  credits_title: 'Credits',
 }
 
 const socials = {
-  linkedin: {
-    href: 'https://nl.linkedin.com/in/anna-nogar%C3%A8-27948048',
-    title: 'LinkedIn',
-  },
-
-  behance: {
-    href: 'https://www.behance.net/annanogar',
-    title: 'Behance',
-  },
+  linkedin: { href: 'https://nl.linkedin.com/in/anna-nogar%C3%A8-27948048', title: 'LinkedIn' },
+  behance: { href: 'https://www.behance.net/annanogar', title: 'Behance' },
 }
 
 const alts = {
@@ -449,6 +445,10 @@ const projects = {
     description: 'TODO:',
     subtitle: 'Dutch Police, Amsterdam (NL), TODO:',
     cta_quote: 'TODO:',
+    awards: ['TODO:'],
+    recognitions: ['TODO:'],
+    credits: ['TODO:'],
+    copyright: 'TODO:',
   },
 
   canon: {
@@ -463,6 +463,10 @@ const projects = {
     description: 'TODO:',
     subtitle: 'Canon Europe, London (UK), TODO:',
     cta_quote: 'TODO:',
+    awards: ['TODO:'],
+    recognitions: ['TODO:'],
+    credits: ['TODO:'],
+    copyright: 'TODO:',
   },
 
   cruquius_museum: {
@@ -478,6 +482,18 @@ const projects = {
     subtitle: 'Cruquius Museum, Cruquius (NL), 2020',
     cta_quote: 'Explore the next project or drop me a message.',
     label: 'Featured',
+    awards: [],
+    recognitions: [
+      { title: 'Featured on Behance’s Graphic Design gallery', description: 'Exhibition & Signage category' },
+      { title: 'Featured on Behance’s Illustrator gallery', description: '' },
+    ],
+    credits: [
+      { title: 'Role', description: 'Art Director | Lead Designer' },
+      { title: 'Employer', description: 'Studio Louter' },
+      { title: 'Client', description: 'Cruquius Museum' },
+      { title: 'Photography', description: 'Mike Bink' },
+    ],
+    copyright: '© Studio Louter. All rights reserved.',
   },
 
   family_exhibits: {
@@ -493,6 +509,20 @@ const projects = {
     subtitle: 'National Museum of Qatar, Doha (QA), 2019',
     cta_quote: 'Explore the next project or drop me a message.',
     label: 'Awarded',
+    awards: [
+      { title: 'AVICOM F@IMP 2.0 2020', description: 'Winner | Interpreting exhibition installation' },
+      { title: 'International Design Award 2020', description: 'Bronze | Multimedia-Interactive Media' },
+      { title: 'Muse Design Awards 2019', description: 'Silver | Interior Design Exhibits, Pavilions, & Exhibitions' },
+      { title: 'SBID Awards 2019', description: 'Nomination | Public Space Design' },
+    ],
+    recognitions: [],
+    credits: [
+      { title: 'Role', description: 'Art Director | Lead Designer' },
+      { title: 'Employer', description: 'Studio Louter' },
+      { title: 'Client', description: 'National Museum of Qatar' },
+      { title: 'Photography', description: 'Studio Louter' },
+    ],
+    copyright: '© Studio Louter. All rights reserved.',
   },
 
   herman_boerhaave: {
@@ -507,6 +537,15 @@ const projects = {
     description: 'A walk through the life and world of one of the most influential Dutch physicians.',
     subtitle: 'Rijksmuseum Boerhaave, Leiden (NL), 2018',
     cta_quote: 'Explore the next project or drop me a message.',
+    awards: [],
+    recognitions: [],
+    credits: [
+      { title: 'Role', description: 'Art Director | Lead Designer' },
+      { title: 'Employer', description: 'Studio Louter' },
+      { title: 'Client', description: 'Rijksmuseum Boerhaave' },
+      { title: 'Photography', description: 'Mike Bink' },
+    ],
+    copyright: '© Studio Louter. All rights reserved.',
   },
 
   het_steen: {
@@ -521,6 +560,15 @@ const projects = {
     description: 'A visitor center inside Antwerp’s oldest building, made of stories, people, and places.',
     subtitle: 'Het Steen, Antwerp (BE), 2021',
     cta_quote: 'Explore the next project or drop me a message.',
+    awards: [],
+    recognitions: [],
+    credits: [
+      { title: 'Role', description: 'Art Director | Lead Designer' },
+      { title: 'Employer', description: 'Studio Louter' },
+      { title: 'Client', description: 'Visit Antwerp' },
+      { title: 'Photography', description: 'Ocular' },
+    ],
+    copyright: '© Studio Louter. All rights reserved.',
   },
 
   interplanetary: {
@@ -535,6 +583,10 @@ const projects = {
     description: 'TODO:',
     subtitle: 'University IUAV of Venice, Venice (IT), TODO:',
     cta_quote: 'TODO:',
+    awards: ['TODO:'],
+    recognitions: ['TODO:'],
+    credits: ['TODO:'],
+    copyright: 'TODO:',
   },
 
   joh_enschede: {
@@ -550,6 +602,21 @@ const projects = {
     subtitle: 'Noord-Hollands Archief, Haarlem (NL), 2019',
     cta_quote: 'Explore the next project or drop me a message.',
     label: 'Awarded + Featured',
+    awards: [
+      //
+      { title: 'Muse Design Awards 2020', description: 'Platinum | Design, Exhibition, Pavilions & Exhibitions' },
+    ],
+    recognitions: [
+      { title: 'Featured on Behance’s Graphic Design gallery', description: 'Exhibition & Signage category' },
+      { title: 'Featured on Behance’s Illustrator gallery', description: '' },
+    ],
+    credits: [
+      { title: 'Role', description: 'Art Director | Lead Designer' },
+      { title: 'Employer', description: 'Studio Louter' },
+      { title: 'Client', description: 'Noord-Hollands Archief' },
+      { title: 'Photography', description: 'Mike Bink' },
+    ],
+    copyright: '© Studio Louter. All rights reserved.',
   },
 
   living_planet: {
@@ -564,6 +631,15 @@ const projects = {
     description: 'Understanding biodiversity and ecosystems through playful investigation.',
     subtitle: 'Museum of Natural Sciences, Brussels (BE), 2020',
     cta_quote: 'Explore the next project or drop me a message.',
+    awards: [],
+    recognitions: [],
+    credits: [
+      { title: 'Role', description: 'Art Director | Lead Designer' },
+      { title: 'Employer', description: 'Studio Louter' },
+      { title: 'Client', description: 'Museum of Natural Sciences' },
+      { title: 'Photography', description: 'Museum + Studio Louter' },
+    ],
+    copyright: '© Studio Louter. All rights reserved.',
   },
 
   maker_park: {
@@ -578,6 +654,17 @@ const projects = {
     description: 'A digital platform for STREAM education through informal learning and games.',
     subtitle: 'ilmi Science Discovery & Innovation Center, Riyadh (SA), Expected opening in 2026',
     cta_quote: 'Explore the next project or drop me a message.',
+    awards: [],
+    recognitions: [],
+    credits: [
+      { title: 'Role', description: 'Creative Director | Strategist' },
+      { title: 'Employer', description: 'IJsfontein' },
+      { title: 'Client', description: 'Misk Foundation' },
+      { title: 'Photography', description: 'Unsplash' },
+      { title: 'Renders', description: 'Provided by client' },
+      { title: 'Mockups & Video', description: 'IJsfontein' },
+    ],
+    copyright: '© IJsfontein. All rights reserved.',
   },
 
   middelen_meter: {
@@ -592,6 +679,10 @@ const projects = {
     description: 'TODO:',
     subtitle: 'Jellinek, Amsterdam (NL), 2023, TODO:',
     cta_quote: 'TODO:',
+    awards: ['TODO:'],
+    recognitions: ['TODO:'],
+    credits: ['TODO:'],
+    copyright: 'TODO:',
   },
 
   parassita: {
@@ -606,6 +697,10 @@ const projects = {
     description: 'TODO:',
     subtitle: 'Personal project, Amsterdam (NL), TODO:',
     cta_quote: 'TODO:',
+    awards: ['TODO:'],
+    recognitions: ['TODO:'],
+    credits: ['TODO:'],
+    copyright: 'TODO:',
   },
 
   prodemos: {
@@ -620,6 +715,15 @@ const projects = {
     description: 'A GPS game where students propose, debate, and bring their own laws to life.',
     subtitle: 'ProDemos, The Hague (NL), 2021',
     cta_quote: 'Explore the next project or start a conversation.',
+    awars: [],
+    recognitions: [],
+    credits: [
+      { title: 'Role', description: 'Art Director | Lead Designer' },
+      { title: 'Employer', description: 'Studio Louter' },
+      { title: 'Client', description: 'ProDemos' },
+      { title: 'Photography', description: 'Bas van Vliet + Studio Louter' },
+    ],
+    copyright: '© Studio Louter. All rights reserved.',
   },
 
   shifting_image: {
@@ -635,6 +739,23 @@ const projects = {
     subtitle: 'Mauritshuis, The Hague (NL), 2019',
     cta_quote: 'Explore the next project or drop me a message.',
     label: 'Awarded',
+    awards: [
+      { title: 'AVICOM F@IMP 2.0 2020', description: 'Winner | Scenography' },
+      { title: 'Museums + Heritage Award 2020', description: 'Winner | The International Project of the Year &lt; £1m' },
+      { title: 'European Design Awards 2020', description: 'Bronze | Exhibition Design' },
+      { title: 'FX Design Award 2020', description: 'Finalist | Museum or Exhibition Space' },
+      { title: 'Frame Awards 2020', description: 'Longlist | Exhibition of the Year' },
+      { title: 'Muse Design Awards 2019', description: 'Gold | Interior Design Exhibits, Pavilions, & Exhibitions' },
+      { title: 'SBID Awards 2019', description: 'Nomination | Public Space Design' },
+    ],
+    recognitions: [],
+    credits: [
+      { title: 'Role', description: 'Art Director | Lead Designer' },
+      { title: 'Employer', description: 'Studio Louter' },
+      { title: 'Client', description: 'Mauritshuis' },
+      { title: 'Photography', description: 'Mike Bink' },
+    ],
+    copyright: '© Studio Louter. All rights reserved.',
   },
 
   vanishing: {
@@ -650,6 +771,10 @@ const projects = {
     subtitle: 'University IUAV of Venice, Venice (IT), TODO:',
     cta_quote: 'TODO:',
     label: 'Featured',
+    awards: ['TODO:'],
+    recognitions: ['TODO:'],
+    credits: ['TODO:'],
+    copyright: 'TODO:',
   },
 }
 
@@ -667,9 +792,36 @@ const resources = {
   },
 }
 
+const menuSections = ['projects', 'manifesto', 'about', 'services', 'resources', 'contact']
+const menuProjects = ['shifting-image', 'maker-park', 'family-exhibits', 'vanishing', 'cruquius-museum', 'joh-enschede', 'herman-boerhaave', 'living-planet', 'badge-academy', 'parassita', 'canon', 'het-steen', 'middelen-meter', 'prodemos', 'interplanetary']
+
 // ------------- Code below ---
 
 const setImageAlts = (object, lookup = {}) => (!object ? {} : Object.fromEntries(Object.entries(object).map(([key, value]) => (!value || typeof value !== 'object' ? [key, value] : [key, Object.fromEntries(Object.entries(value).map(([propKey, propValue]) => (propKey.endsWith('image') && typeof propValue === 'string' ? [propKey, { src: propValue, alt: lookup[propValue] || '' }] : [propKey, propValue])))]))))
+const findBySlug = (collection, slug) => Object.values(collection).find(item => item.slug === slug || item.href?.includes(slug))
+const formatMenuItem = item => ({ href: item.href, title: item.menu_title, aria_label: item.aria_label || item.menu_aria_label })
+const getMenuItems = (sectionSlugs, projectSlugs, allSections, allProjects) => {
+  const mappedSlugs = sectionSlugs.map(slug => {
+    const section = findBySlug(allSections, slug)
+
+    if (!section) {
+      return null
+    }
+
+    const menuItem = formatMenuItem(section)
+
+    if (slug === 'projects') {
+      menuItem.submenu_items = projectSlugs
+        .map(pSlug => findBySlug(allProjects, pSlug))
+        .filter(Boolean)
+        .map(formatMenuItem)
+    }
+
+    return menuItem
+  })
+
+  return mappedSlugs.filter(Boolean)
+}
 
 export default {
   base,
@@ -678,4 +830,5 @@ export default {
   sections: setImageAlts(sections, alts),
   projects: setImageAlts(projects, alts),
   resources: setImageAlts(resources, alts),
+  menu_items: getMenuItems(menuSections, menuProjects, sections, projects),
 }
