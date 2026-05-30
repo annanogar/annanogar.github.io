@@ -7,6 +7,9 @@ const base = {
   menu_dialog_aria_label: 'Menu dialog',
   menu_button_aria_label: 'Toggle menu dialog',
   footer_aria_label: 'Footer navigation',
+  menu_sections: ['projects', 'manifesto', 'about', 'services', 'resources', 'contact'],
+  menu_projects: ['shifting-image', 'maker-park', 'family-exhibits', 'vanishing', 'cruquius-museum', 'joh-enschede', 'herman-boerhaave', 'living-planet', 'badge-academy', 'parassita', 'canon', 'het-steen', 'middelen-meter', 'prodemos', 'interplanetary'],
+  footer_socials: ['linkedin', 'behance'],
   badge_about_title: 'Learn more about me',
   badge_contact_title: 'Get in touch!',
   badge_manifesto_title: 'Read Accessibility Manifesto',
@@ -792,9 +795,6 @@ const resources = {
   },
 }
 
-const menuSections = ['projects', 'manifesto', 'about', 'services', 'resources', 'contact']
-const menuProjects = ['shifting-image', 'maker-park', 'family-exhibits', 'vanishing', 'cruquius-museum', 'joh-enschede', 'herman-boerhaave', 'living-planet', 'badge-academy', 'parassita', 'canon', 'het-steen', 'middelen-meter', 'prodemos', 'interplanetary']
-
 // ------------- Code below ---
 
 const setImageAlts = (object, lookup = {}) => (!object ? {} : Object.fromEntries(Object.entries(object).map(([key, value]) => (!value || typeof value !== 'object' ? [key, value] : [key, Object.fromEntries(Object.entries(value).map(([propKey, propValue]) => (propKey.endsWith('image') && typeof propValue === 'string' ? [propKey, { src: propValue, alt: lookup[propValue] || '' }] : [propKey, propValue])))]))))
@@ -808,16 +808,15 @@ const getMenuItems = (sectionSlugs, projectSlugs, allSections, allProjects) => {
       return null
     }
 
-    const menuItem = formatMenuItem(section)
+    const submenuItems =
+      slug === 'projects'
+        ? projectSlugs
+            .map(pSlug => findBySlug(allProjects, pSlug))
+            .filter(Boolean)
+            .map(formatMenuItem)
+        : null
 
-    if (slug === 'projects') {
-      menuItem.submenu_items = projectSlugs
-        .map(pSlug => findBySlug(allProjects, pSlug))
-        .filter(Boolean)
-        .map(formatMenuItem)
-    }
-
-    return menuItem
+    return { ...formatMenuItem(section), submenu_items: submenuItems }
   })
 
   return mappedSlugs.filter(Boolean)
@@ -830,5 +829,6 @@ export default {
   sections: setImageAlts(sections, alts),
   projects: setImageAlts(projects, alts),
   resources: setImageAlts(resources, alts),
-  menu_items: getMenuItems(menuSections, menuProjects, sections, projects),
+  menu_items: getMenuItems(base.menu_sections, base.menu_projects, sections, projects),
+  footer_socials: base.footer_socials.map(slug => ({ ...socials[slug], target: '_blank' })),
 }

@@ -1,6 +1,6 @@
 {% import 'components/atoms/menu-button/menu-button.html' as atom_menu_button %}
 
-{% macro regular(classes = '', href = '', title = '', title_aria_label = '', aria_label = '') %}
+{% macro regular(classes = '', page_href = '', href = '', title = '', title_aria_label = '', aria_label = '') %}
   {% set title_aria_label = title + ' — ' + title_aria_label %}
 
   {% if title %}

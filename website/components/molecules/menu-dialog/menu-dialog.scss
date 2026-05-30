@@ -82,6 +82,10 @@
       &:focus-visible {
         color: var(--color-navy);
       }
+
+      &[aria-current='page'] {
+        color: var(--color-navy);
+      }
     }
   }
 

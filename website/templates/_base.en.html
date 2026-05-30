@@ -42,6 +42,7 @@
 {% block header %}
   {{
     menu_bar.regular(
+      page_href = page_href,
       href = data.sections.home.href,
       title = data.sections.home.menu_title,
       title_aria_label = data.sections.home.menu_aria_label,
@@ -61,10 +62,7 @@
         { href: 'mailto:_send_me_an_', title: '_send_me_an_' },
         { href: 'tel:_or_pick_up_the_', title: '_or_pick_up_the_' }
       ],
-      links_end = [
-        { href: data.socials.linkedin.href, title: data.socials.linkedin.title, target: '_blank' },
-        { href: data.socials.behance.href, title: data.socials.behance.title, target: '_blank' }
-      ]
+      links_end = data.footer_socials
     )
   }}
 {% endblock %}

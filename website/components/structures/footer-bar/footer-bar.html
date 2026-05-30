@@ -10,7 +10,7 @@
         <div class="footer-bar__links footer-bar__links--start">
           {% for link in links_start %}
             {% if link.href %}
-              <a class="footer-bar__link" href="{{ link.href }}">
+              <a class="footer-bar__link" href="{{ link.href }}" {% if link.lang %}lang="{{ link.lang }}"{% endif %} {% if link.target %}target="{{ link.target }}"{% endif %} {% if link.target === '_blank' %}rel="noopener noreferrer"{% endif %}>
                 <strong>{{ link.title }}</strong>
               </a>
             {% else %}
@@ -21,7 +21,7 @@
 
         <div class="footer-bar__links footer-bar__links--end">
           {% for link in links_end %}
-            <a class="footer-bar__link" href="{{ link.href }}" {% if link.lang %}lang="{{ link.lang }}"{% endif %}>
+            <a class="footer-bar__link" href="{{ link.href }}" {% if link.lang %}lang="{{ link.lang }}"{% endif %} {% if link.target %}target="{{ link.target }}"{% endif %} {% if link.target === '_blank' %}rel="noopener noreferrer"{% endif %}>
               <strong>{{ link.title }}</strong>
             </a>
           {% endfor %}

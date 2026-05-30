@@ -2,7 +2,7 @@
 {% import 'components/atoms/menu-button/menu-button.html' as atom_menu_button %}
 {% import 'components/molecules/menu-bar-contents/menu-bar-contents.html' as molecule_menu_bar_contents %}
 
-{% macro regular(classes = '', href = '', title = '', title_aria_label = '', aria_label = '', button_aria_label = '', dialog_aria_label = '', menu_items = []) %}
+{% macro regular(classes = '', page_href = '', href = '', title = '', title_aria_label = '', aria_label = '', button_aria_label = '', dialog_aria_label = '', menu_items = []) %}
   {% set aria_label = aria_label or 'Menu dialog' %}
 
   <dialog class="menu-dialog {{ classes }}" aria-label="{{ aria_label }}" inert>
@@ -14,7 +14,7 @@
           {% for menu_item in menu_items %}
             <li class="menu-dialog__menu-item">
               {% if menu_item.href %}
-                <a class="menu-dialog__menu-link" href="{{ menu_item.href }}" aria-label="{{ menu_item.aria_label }}" {% if menu_item.lang %}lang="{{ menu_item.lang }}"{% endif %}>{{ menu_item.title }}</a>
+                <a class="menu-dialog__menu-link" href="{{ menu_item.href }}" aria-label="{{ menu_item.aria_label }}" {% if menu_item.lang %}lang="{{ menu_item.lang }}"{% endif %} {% if menu_item.href === page_href %}aria-current="page"{% endif %}>{{ menu_item.title }}</a>
               {% else %}
                 <span class="menu-dialog__menu-link" {% if menu_item.lang %}lang="{{ menu_item.lang }}"{% endif %}>{{ menu_item.title }}</span>
               {% endif %}
@@ -23,7 +23,7 @@
                 <ul class="menu-dialog__submenu-list">
                   {% for submenu_item in menu_item.submenu_items %}
                     <li class="menu-dialog__submenu-item">
-                      <a class="menu-dialog__submenu-link" href="{{ submenu_item.href }}" aria-label="{{ submenu_item.aria_label }}">{{ submenu_item.title }}</a>
+                      <a class="menu-dialog__submenu-link" href="{{ submenu_item.href }}" aria-label="{{ submenu_item.aria_label }}" {% if submenu_item.lang %}lang="{{ submenu_item.lang }}"{% endif %} {% if submenu_item.href === page_href %}aria-current="page"{% endif %}>{{ submenu_item.title }}</a>
                     </li>
                   {% endfor %}
                 </ul>
