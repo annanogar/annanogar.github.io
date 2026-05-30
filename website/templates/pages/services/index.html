@@ -75,8 +75,5 @@
     </ul>
   {% endcall %}
 
-  {% set cta_quote = data.sections.services.cta_quote %}
-  {% set section_card = merge({}, data.section_cards.manifesto) %}
-  {{ object_set_value(section_card, 'image', { src: section_card.image, alt: data.alts[section_card.image] }) }}
-  {{ call_to_action.regular(quote = cta_quote, card = section_card) }}
+  {{ call_to_action.regular(quote = data.sections.services.cta_quote, card = section_cards.manifesto) }}
 {% endblock %}

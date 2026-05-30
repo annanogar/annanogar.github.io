@@ -9,6 +9,10 @@
 {% set site_title = data.base.site_title or site_title %}
 {% set site_description = data.base.site_description or site_description %}
 
+{% set section_cards = create_object_from_schema(data.sections, { slug: 'slug', href: 'href', title: 'card_title', subtitle: 'card_subtitle', image: 'card_image' }) %}
+{% set section_text_cards = create_object_from_schema(data.sections, { slug: 'slug', href: 'href', title: 'textcard_title', subtitle: 'textcard_subtitle' }) %}
+{% set project_cards = create_object_from_schema(data.projects, { slug: 'slug', href: 'href', title: 'card_title', subtitle: 'card_subtitle', image: 'card_image', label: 'label' }) %}
+
 {% block skip_to_main %}
   {{ skip_to_main.regular(title = data.base.skiplink_aria_label, aria_label = data.base.skiplink_aria_label) }}
 {% endblock %}

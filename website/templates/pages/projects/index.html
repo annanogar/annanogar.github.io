@@ -18,30 +18,26 @@
   }}
 
   {%
-    set project_cards = [
-      merge({}, data.project_cards.shifting_image),
-      merge({}, data.project_cards.maker_park),
-      merge({}, data.project_cards.family_exhibits),
-      merge({}, data.project_cards.vanishing),
-      merge({}, data.project_cards.cruquius_museum),
-      merge({}, data.project_cards.joh_enschede),
-      merge({}, data.project_cards.herman_boerhaave),
-      merge({}, data.project_cards.living_planet),
-      merge({}, data.project_cards.badge_academy),
-      merge({}, data.project_cards.parassita),
-      merge({}, data.project_cards.canon),
-      merge({}, data.project_cards.het_steen),
-      merge({}, data.project_cards.middelen_meter),
-      merge({}, data.project_cards.prodemos),
-      merge({}, data.project_cards.interplanetary),
+    set cards = [
+      merge({}, project_cards.shifting_image),
+      merge({}, project_cards.maker_park),
+      merge({}, project_cards.family_exhibits),
+      merge({}, project_cards.vanishing),
+      merge({}, project_cards.cruquius_museum),
+      merge({}, project_cards.joh_enschede),
+      merge({}, project_cards.herman_boerhaave),
+      merge({}, project_cards.living_planet),
+      merge({}, project_cards.badge_academy),
+      merge({}, project_cards.parassita),
+      merge({}, project_cards.canon),
+      merge({}, project_cards.het_steen),
+      merge({}, project_cards.middelen_meter),
+      merge({}, project_cards.prodemos),
+      merge({}, project_cards.interplanetary)
     ]
   %}
 
-  {% for project_card in project_cards %}
-    {{ object_set_value(project_card, 'image', { src: project_card.image, alt: data.alts[project_card.image] }) }}
-  {% endfor %}
-
-  {{ card_grid.regular(above_fold = true, cards = project_cards) }}
+  {{ card_grid.regular(above_fold = true, cards = cards) }}
 
   {{
     call_to_nonaction.regular(
@@ -49,8 +45,5 @@
     )
   }}
 
-  {% set cta_quote = data.sections.projects.cta_quote %}
-  {% set section_card = merge({}, data.section_cards.about) %}
-  {{ object_set_value(section_card, 'image', { src: section_card.image, alt: data.alts[section_card.image] }) }}
-  {{ call_to_action.regular(quote = cta_quote, card = section_card, badge = { variant: 'bright', href: 'mailto:_send_me_an_', title: data.base.badge_contact_title }) }}
+  {{ call_to_action.regular(quote = data.sections.projects.cta_quote, card = section_cards.abo, badge = { variant: 'bright', href: 'mailto:_send_me_an_', title: data.base.badge_contact_title }) }}
 {% endblock %}

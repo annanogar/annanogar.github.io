@@ -41,8 +41,5 @@
     )
   }}
 
-  {% set cta_quote = data.sections.resources.cta_quote %}
-  {% set section_card = merge({}, data.section_cards.contact) %}
-  {{ object_set_value(section_card, 'image', { src: section_card.image, alt: data.alts[section_card.image] }) }}
-  {{ call_to_action.regular(quote = cta_quote, card = section_card) }}
+  {{ call_to_action.regular(quote = data.sections.resources.cta_quote, card = section_cards.contact) }}
 {% endblock %}

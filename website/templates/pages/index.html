@@ -21,43 +21,26 @@
   }}
 
   {%
-    set project_cards = [
-      merge({}, data.project_cards.shifting_image),
-      merge({}, data.project_cards.maker_park),
-      merge({}, data.project_cards.family_exhibits),
-      merge({}, data.project_cards.vanishing),
-      merge({}, data.project_cards.cruquius_museum),
-      merge({}, data.project_cards.joh_enschede),
-      merge({}, data.project_cards.herman_boerhaave),
-      merge({}, data.project_cards.living_planet),
-      merge({}, data.project_cards.badge_academy),
-      merge({}, data.project_cards.parassita),
-      merge({}, data.project_cards.canon),
-      merge({}, data.project_cards.het_steen),
-      merge({}, data.project_cards.middelen_meter),
-      merge({}, data.project_cards.prodemos),
-      merge({}, data.project_cards.interplanetary),
+    set cards = [
+      merge({}, project_cards.shifting_image),
+      merge({}, project_cards.maker_park),
+      merge({}, project_cards.family_exhibits),
+      merge({}, project_cards.vanishing),
+      merge({}, project_cards.cruquius_museum),
+      merge({}, project_cards.joh_enschede),
+      merge({}, project_cards.herman_boerhaave),
+      merge({}, project_cards.living_planet),
+      merge({}, project_cards.badge_academy),
+      merge({}, project_cards.parassita),
+      merge({}, project_cards.canon),
+      merge({}, project_cards.het_steen),
+      merge({}, project_cards.middelen_meter),
+      merge({}, project_cards.prodemos),
+      merge({}, project_cards.interplanetary)
     ]
   %}
 
-  {% for project_card in project_cards %}
-    {{ object_set_value(project_card, 'image', { src: project_card.image, alt: data.alts[project_card.image] }) }}
-  {% endfor %}
-
-  {{ card_grid.regular(above_fold = true, title: data.base.selected_projects_title, cards = project_cards) }}
-
-  {% set cta_quote = data.sections.home.cta_quote %}
-  {% set section_card = merge({}, data.section_cards.about) %}
-  {{ object_set_value(section_card, 'image', { src: section_card.image, alt: data.alts[section_card.image] }) }}
-  {{ call_to_action.regular(variant = 'home', quote = cta_quote, image = { src: 'misc/anna-dots_1x1', alt: data.alts['misc/anna-dots_1x1'] }, badge = { variant: 'bright', href: '/about/', title: data.base.badge_about_title }) }}
-
-  {{
-    card_grid.regular(
-      cards = [
-        data.section_text_cards.services,
-        data.section_text_cards.manifesto,
-        data.section_text_cards.resources
-      ]
-    )
-  }}
+  {{ card_grid.regular(above_fold = true, title = data.base.selected_projects_title, cards = cards) }}
+  {{ call_to_action.regular(variant = 'home', quote = data.sections.home.cta_quote, image = { src: 'misc/anna-dots_1x1', alt: data.alts['misc/anna-dots_1x1'] }, badge = { variant: 'bright', href: '/about/', title: data.base.badge_about_title }) }}
+  {{ card_grid.regular(cards = [section_text_cards.services, section_text_cards.manifesto, section_text_cards.resources]) }}
 {% endblock %}

@@ -213,6 +213,27 @@ const tags = {
 
     return global.chunkedStylesheetMap[templatePath] || []
   },
+
+  // Create object from schema
+  create_object_from_schema: (dataSource, schema) => {
+    if (!dataSource || !schema) {
+      return {}
+    }
+
+    const result = Object.fromEntries(
+      Object.entries(dataSource).map(([key, src]) => {
+        const mappedValue = {}
+
+        for (const [targetKey, sourceKey] of Object.entries(schema)) {
+          mappedValue[targetKey] = src[sourceKey] || null
+        }
+
+        return [key, mappedValue]
+      }),
+    )
+
+    return result
+  },
 }
 
 // Stub for thumbnail generation, for use in Django.
@@ -329,6 +350,22 @@ export default async function nunjucksConfig(api) {
   } catch (error) {
     console.error('Error loading data file:', error)
   }
+
+  /*
+  if (globalData) {
+    const createCards = (dataSource, mapper) => Object.fromEntries(Object.entries(dataSource).map(([key, src]) => [key, mapper(src)]))
+
+    // eslint-disable-next-line camelcase
+    const section_cards = createCards(globalData.sections, src => ({ slug: src.slug, href: src.href, title: src.card_title, subtitle: src.card_subtitle || null, image: src.card_image || null }))
+    // eslint-disable-next-line camelcase
+    const section_text_cards = createCards(globalData.sections, src => ({ slug: src.slug, href: src.href, title: src.textcard_title, subtitle: src.textcard_subtitle || null }))
+    // eslint-disable-next-line camelcase
+    const project_cards = createCards(globalData.projects, src => ({ slug: src.slug, href: src.href, title: src.card_title, subtitle: src.card_subtitle || null, image: src.card_image || null, label: src.label || null }))
+
+    // eslint-disable-next-line camelcase
+    globalData = { ...globalData, section_cards, section_text_cards, project_cards }
+  }
+  */
 
   return {
     nunjucks: {

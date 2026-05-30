@@ -75,8 +75,5 @@
     <p>© All rights reserved to Studio Louter</p>
   {% endcall %}
 
-  {% set cta_quote = data.projects.het_steen.cta_quote %}
-  {% set project_card = merge({}, data.project_cards.shifting_image) %}
-  {{ object_set_value(project_card, 'image', { src: project_card.image, alt: data.alts[project_card.image] }) }}
-  {{ call_to_action.regular(variant = 'badge', quote = cta_quote, card = project_card) }}
+  {{ call_to_action.regular(variant = 'badge', quote = data.projects.het_steen.cta_quote, card = project_cards.shifting_image) }}
 {% endblock %}

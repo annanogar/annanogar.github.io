@@ -49,8 +49,5 @@
     <p>By combining information design, informal learning, game mechanics, and emotional engagement, journeys become more meaningful and memorable, and the experience becomes more human, grounded in empathy, exploration, and discovery.</p>
   {% endcall %}
 
-  {% set cta_quote = data.sections.about.cta_quote %}
-  {% set section_card = merge({}, data.section_cards.services) %}
-  {{ object_set_value(section_card, 'image', { src: section_card.image, alt: data.alts[section_card.image] }) }}
-  {{ call_to_action.regular(quote = cta_quote, card = section_card) }}
+  {{ call_to_action.regular(quote = data.sections.about.cta_quote, card = section_cards.services) }}
 {% endblock %}
