@@ -54,6 +54,10 @@
 {% macro regular(variant = '', image = {}, richtext = '', cpacc_badge = false, hearts_shader = false) %}
   {% set variant = variant or 'left' %}
 
+  {% if cpacc_badge %}
+    {#{{ debug(variant, image, richtext) }}#}
+  {% endif %}
+
   {% if (richtext or caller) and image and image.src %}
     <div class="article-content-image article-content-image--{{ variant }}">
       <div class="article-content-image__wrapper">

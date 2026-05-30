@@ -1,9 +1,11 @@
 {% extends 'templates/_base.en.html' %}
 {% import 'components/organisms/article-content-image/article-content-image.html' as article_content_image %}
 {% import 'components/organisms/article-header/article-header.html' as article_header %}
+{% import 'components/organisms/article-quote/article-quote.html' as article_quote %}
 {% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
 
 {% set section = data.sections.about %}
+{% set content_blocks = data.content_blocks.about %}
 
 {% set page_title = section.title %}
 {% set page_description = section.description %}
@@ -15,37 +17,14 @@
 {% block content %}
   {{ article_header.regular(title = section.title_with_markup or section.title) }}
 
-  {%
-    call article_content_image.regular(
-      variant = 'left',
-      image = { loading: 'eager', src: 'misc/anna-dots_1x1', alt: data.alts['misc/anna-dots_1x1'] },
-      cpacc_badge = true,
-      hearts_shader = true
-    )
-  %}
-    <h2>Profile</h2>
-
-    <p>I’m Anna Nogaré, an Interpretive Design Director & Accessibility Strategist working across cultural, educational, tourism, and public environments. A multidisciplinary designer at heart, I combine strategic leadership with hands-on design across digital, physical, and hybrid experiences, translating complex content into meaningful and inclusive journeys for diverse audiences.</p>
-    <p>With over ten years of international experience, I’ve worked on large-scale projects across Europe and the Middle East, collaborating with multidisciplinary teams and cross-functional stakeholders to bring ideas from concept to delivery.</p>
-    <p>I’m CPACC-certified (Certified Professional in Accessibility Core Competencies) by the International Association of Accessibility Professionals (IAAP), and an active member of the association.</p>
-    <p>Some of the organizations I’ve worked with include the National Museum of Qatar, ilmi Science Discovery & Innovation Center (Riyadh), the Museum of Natural Sciences (Brussels), the Icelandic Museum of Natural History, Het Steen Visitor Center (Antwerp), Canon Professional Network, Amnesty International, the Dutch National Police, and others across different sectors.</p>
-  {% endcall %}
-
-  {%
-    call article_content_image.regular(
-      variant = 'right',
-      image = { src: 'misc/anna-leaning-forward_1x1', alt: data.alts['misc/anna-leaning-forward_1x1'] }
-    )
-  %}
-    <h2>Approach</h2>
-
-    <p>Engagement starts by meeting people where they are.</p>
-    <p>Everyone understands, learns, and expresses themselves differently through images, stories, sound, movement, or interaction. It’s important to create spaces where people can feel, connect, reflect, and take something with them.</p>
-    <p>I design with this in mind.</p>
-    <p>I create flexible and welcoming experiences that respond to diverse needs and ways of being, shaping multi-sensory journeys where people can reach the same destination in different ways, at their own pace and in their own style.</p>
-    <p>I start by understanding who the experience is for, what it should enable, and how people will move through it. From there, I shape a clear direction and work with teams to bring it to life, balancing ambition with feasibility and ideas with real-world constraints.</p>
-    <p>By combining information design, informal learning, game mechanics, and emotional engagement, journeys become more meaningful and memorable, and the experience becomes more human, grounded in empathy, exploration, and discovery.</p>
-  {% endcall %}
+  {% for block in content_blocks %}
+    {% if block.type === 'article-content-image' %}
+      {% set loading = 'eager' if not loop.index0 else 'lazy' %}
+      {{ article_content_image.regular(richtext = block.richtext, variant = block.variant, image = { loading: loading, src: block.image.src, alt: block.image.alt }, cpacc_badge = block.cpacc_badge, hearts_shader = block.hearts_shader) }}
+    {% elif block.type === 'article-quote' %}
+      {{ article_quote.regular(quote = block.quote) }}
+    {% endif %}
+  {% endfor %}
 
   {{ call_to_action.regular(quote = section.cta_quote, card = section_cards.services) }}
 {% endblock %}

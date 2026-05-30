@@ -21,6 +21,7 @@ const base = {
   recognitions_title: 'Recognition',
   credits_title: 'Credits',
   project_cta_quote: 'Explore the next project or drop me a message.',
+  project_overview_quote: 'More projects on Behance. TODO: LINK',
 }
 
 const socials = {
@@ -31,9 +32,6 @@ const socials = {
 const alts = {
   'misc/anna-dots_1x1': 'Anna Nogaré facing the camera with colorful dot projections on her face and shirt, against a dark background.',
   'misc/anna-leaning-forward_1x1': 'Anna Nogaré leaning forward at a table with sticky notes, listening while a man writes in the background.',
-  'misc/crowd-in-museum_1x1': 'A long-exposure shot of a crowd moving down white stone steps in a museum, with vibrant graphic design posters on the wall behind them.',
-  'misc/production-silhouette_1x1': 'Dramatic silhouette of a production crew and a wooden ladder against glowing blue and magenta walls.',
-  'misc/reviewing-blueprints_1x1': 'Close-up of a designer in a red dress reviewing detailed blueprints in a brightly lit interior.',
   'misc/service-gradient-1_1x1': 'A smooth, fluid abstract gradient of luminous colors. A prominent band of magenta and hot pink sweeps diagonally through the centre, transitioning from bright cyan and purple in the top-left to deep navy blue and dark red in the bottom-right. The lighting gives it a soft, neon glow.',
   'misc/service-gradient-2_1x1': 'An abstract digital gradient composed of bold diagonal color bands. It transitions smoothly from a warm peach-orange in the top-left to soft pink and violet. The bottom-right features a dramatic contrast of deep royal blue, followed by a dark shadow and a final, sharp streak of crimson.',
   'misc/service-gradient-3_1x1': 'A textured abstract gradient with a distinct, grainy, paper-like finish. Bright bands of yellow, orange, red, and pink sweep diagonally across the frame from the bottom-left toward the top-right. This warmth is balanced by a soft expanse of sky blue in the bottom-right.',
@@ -349,6 +347,9 @@ const sections = {
     description: 'I lead and design inclusive experiences across digital, physical, and hybrid environments, from cultural institutions to product ecosystems, turning complex content into journeys that stick.',
     subtitle: 'I lead and design inclusive experiences across digital, physical, and hybrid environments, from cultural institutions to product ecosystems, turning complex content into meaningful journeys.',
     cta_quote: 'It’s not about <em>them</em> in the end. It’s about <em>all of us</em> from the very start.',
+    cta_image: 'misc/anna-dots-1x1',
+    cta_badge: { variant: 'bright', href: '/about/', title: base.badge_about_title },
+    header_badge: { href: '/manifesto/', title: base.badge_manifesto_title },
   },
 
   about: {
@@ -403,7 +404,7 @@ const sections = {
     textcard_title: 'Selected projects',
     textcard_subtitle: 'A collection of articles, opinions, thoughts, and reflections.',
     title: 'Selected projects',
-    description: 'A selection of projects that explore different ways of creating meaningful experiences for diverse audiences. Each one reflects a unique goal, always shaped by a people-first approach.',
+    description: 'A mix of projects, all shaped by the same principle: people first, always. From exhibitions to products, each one plays with emotion, inclusion, and the stuff that actually sticks.',
     cta_quote: 'Let curiosity shape your story. Together, we make it real.',
   },
 
@@ -429,7 +430,7 @@ const sections = {
     menu_title: 'Services',
     menu_aria_label: 'Discover my services',
     card_title: 'Discover my services',
-    card_image: 'misc/reviewing-blueprints_1x1',
+    card_image: 'misc/service-gradient-1_1x1',
     textcard_title: 'Services',
     textcard_subtitle: 'Concept & Experience Strategy <br/>Creative Leadership & Execution <br/>Accessibility & Inclusive Design',
     title: 'Services',
@@ -823,12 +824,62 @@ const resources = {
     title_with_markup: 'We are all temporarily able. <br/>Yes, you too.',
     description: 'Stop thinking of disability as something that happens to “other people”. Discover why we are all temporarily able and how changing our perspective on design and accessibility can build a world that works for everyone.',
     subtitle: 'Anna Nogaré | <time datetime="2026-05-13">13-05-2026</time> | <em>12 min</em>',
+    subtitle_short: '<time datetime="2026-05-13">13-05-2026</time> | <em>12 min</em>',
     cta_quote: 'The more we talk about it, the harder it gets to ignore.',
   },
 }
 
 // eslint-disable-next-line camelcase
+const resource_cards = [
+  {
+    href: resources.we_are_all_temporarily_able_yes_you_too.href,
+    pretitle: resources.we_are_all_temporarily_able_yes_you_too.subtitle_short,
+    title: resources.we_are_all_temporarily_able_yes_you_too.title,
+    subtitle: resources.we_are_all_temporarily_able_yes_you_too.description
+  },
+
+  {
+    href: 'https://goodjob.vision/interpretive-design-italia-cultura-accessibile/',
+    target: '_blank',
+    pretitle: '<time datetime="2026-05-04">04-05-2026</time> | <em>14 min</em>',
+    subtitle: 'Published on Goodjob!',
+    title: 'Interpretive design: progettare cultura accessibile non è un favore per pochi, ma migliora la vita di tutti'
+  }
+]
+
+// eslint-disable-next-line camelcase
 const content_blocks = {
+  about: [
+    {
+      type: 'article-content-image',
+      variant: 'left',
+      cpacc_badge: true,
+      hearts_shader: true,
+      image: 'misc/anna-dots_1x1',
+      richtext: `
+<h2>Profile</h2>
+<p>I’m a Senior Experience Designer & Accessibility Strategist with over a decade of international experience leading and designing digital, physical, and hybrid experiences across Europe and the Middle East, turning complex content into journeys that stick with people.</p>
+<p>My multidisciplinary career is shaped by deep dives into several disciplines of design, hands-on mastery, and cross-functional collaborations that naturally evolved into leadership roles. Now, I don’t just look at design; I pull together strategy, storytelling, and logistics too. I’ve led global teams, mentored people, dealt with impossible stakeholders, survived crazy deadlines, and delivered a few miracles on repeat, all while keeping my hands dirty and having fun building things with people.</p>
+<p>Also, I’m obsessed with accessibility. Beyond the human aspect, it is just basic logic. In a digital world full of inaccessible patterns that AI is learning from, true accessibility expertise matters. I became <a href="https://www.accessibilityassociation.org/cpacc" target="_blank" rel="noopener nofollow" title="More information about the CPACC certification; opens in a new tab or window">CPACC-certified</a> through the <a href="https://www.accessibilityassociation.org/" target="_blank" rel="noopener nofollow" title="More information about the IAAP; opens in a new tab or window">IAAP</a> to back it up with the heavy technical weight needed to defend and advocate for it.</p>
+<p>Some of the organizations I’ve partnered with to make the impossible possible include the National Museum of Qatar, ilmi Science Discovery & Innovation Center (Riyadh), the Museum of Natural Sciences (Brussels), the Icelandic Museum of Natural History, Het Steen Visitor Center (Antwerp), Canon Professional Network, Amnesty International, the Dutch National Police, and others across different sectors.</p>
+      `,
+    },
+
+    {
+      type: 'article-content-image',
+      variant: 'right',
+      image: 'misc/anna-leaning-forward_1x1',
+      richtext: `
+<h2>Approach</h2>
+
+<p>Engagement starts by meeting people where they are. Everyone understands, learns, and expresses themselves differently, and I design with that in mind.</p>
+<p>My approach is built around asking uncomfortable questions, untangling the chaos behind the scenes, listening to the volley of absurd requests, refusing to play it safe, and killing the ego talks in the room.</p>
+<p>The goal is simple: creating experiences where everyone reaches the same destination at their own pace.</p>
+<p>Messy? Yes. Worth it? Always.</p>
+      `,
+    },
+  ],
+
   badge_academy: [
     {
       type: 'image-grid',
@@ -899,6 +950,19 @@ const content_blocks = {
 </ul>
       `,
       images: ['projects/canon/05_2x1', 'projects/canon/06_1x1', 'projects/canon/07_1x1', 'projects/canon/08_2x1'],
+    },
+  ],
+
+  contact: [
+    {
+      type: 'article-content-image',
+      variant: 'left',
+      image: 'misc/vintage-telephone_1x1',
+      richtext: `
+<p>I am currently based in Italy, planning my move back to the Netherlands, and working worldwide.</p>
+<p>Anyway, you know what to do. Don’t wait any longer 👇</p>
+<p class="paragraph--gigantic"><a href="mailto:_send_me_an_">_send_me_an_</a><br />NL: <a href="tel:_or_pick_up_the_">_or_pick_up_the_</a><br />IT: <a href="tel:_or_otherwise_pick_up_the_">_or_otherwise_pick_up_the_</a></p>
+      `,
     },
   ],
 
@@ -1207,6 +1271,41 @@ const content_blocks = {
     },
   ],
 
+  manifesto: [
+    {
+      type: 'article-content-image',
+      variant: 'left',
+      image: 'misc/wheelchair-sign_1x1',
+      richtext: `
+<p>Accessibility isn’t a favor. It’s not about being benevolent.<br />And it’s definitely not just for <em>the few</em>.</p>
+<p><strong>It’s about ability, and that changes all the time.</strong></p>
+<p>Break an arm? Lose your glasses? Struggling with a new language? Suddenly, the world isn’t built for you.<br />Blinded by the sun? Exhausted? Have a killer headache? Suddenly, even the simplest tasks feel impossible.</p>
+<p>Let’s face it: the chances of you staying fully able-bodied your entire life are extremely low, if not nonexistent.<br />That’s why it makes more sense to think of everyone as <em>temporarily able-bodied</em>.</p>
+<p><strong>Accessibility isn’t special treatment.</strong></p>
+<p>It’s just making things better for everyone because we all benefit from subtitles, automatic doors, and easy-to-read instructions. As simple as that.</p>
+<p><strong>So, why do we still treat accessibility like a bureaucratic checklist to verify at the end of a project?</strong></p>
+<p>It’s time to change that, and I’m all in. I want to create experiences where everyone feels welcome, capable, and comfortable.</p>
+      `,
+    },
+
+    {
+      type: 'article-quote',
+      quote: 'It’s not about <em>them</em> at the end of a project. It’s about <em>all of us</em> from the very start.',
+    },
+
+    {
+      type: 'article-content-image',
+      variant: 'right-reversed',
+      image: 'misc/yall-means-all_1x1',
+      richtext: `
+<p>I want to make things less frustrating for everyone.</p>
+<p>There’s still a lot of stigma around human diversity, and we often get trapped in rigid ways of thinking. But I’m glad to see that inclusivity is gaining more and more attention.</p>
+<p><strong>The revolution is happening, and I want to be part of it!</strong></p>
+<p>Not just in my work, but by changing the way we think about accessibility: it shouldn’t be an afterthought but a mindset.</p>
+      `,
+    },
+  ],
+
   middelen_meter: [
     {
       type: 'image-grid',
@@ -1317,6 +1416,62 @@ const content_blocks = {
 </ul>
       `,
       images: ['projects/prodemos/06_2x1', 'projects/prodemos/07_1x1', 'projects/prodemos/08_1x1', 'projects/prodemos/09_2x1'],
+    },
+  ],
+
+  services: [
+    {
+      type: 'article-content-image',
+      variant: 'left',
+      image: 'misc/service-gradient-1_1x1',
+      richtext: `
+<h2>Concept & Experience Strategy</h2>
+<p>Define what the experience is, who it is for, and how it works.</p>
+<ul>
+  <li>Audience research and journey mapping</li>
+  <li>Concept development and experience structure</li>
+  <li>Content translation and narrative framing</li>
+  <li>Early-stage project definition</li>
+  <li>Development and management of pitches and tenders</li>
+  <li>Stakeholder alignment and project framing</li>
+</ul>
+      `,
+    },
+
+    {
+      type: 'article-content-image',
+      variant: 'right',
+      image: 'misc/service-gradient-2_1x1',
+      richtext: `
+<h2>Creative Leadership & Execution</h2>
+<p>Guide projects from concept to delivery, across all touchpoints.</p>
+<ul>
+  <li>Creative and art direction</li>
+  <li>Experience design (physical, digital, and hybrid)</li>
+  <li>Visual design, graphic systems, and design production</li>
+  <li>Interaction design, informal learning, and game mechanics</li>
+  <li>Information design, content integration, and narrative flow</li>
+  <li>Leading multidisciplinary teams and guiding stakeholders</li>
+</ul>
+      `,
+    },
+
+    {
+      type: 'article-content-image',
+      variant: 'left',
+      image: 'misc/service-gradient-3_1x1',
+      richtext: `
+<h2>Accessibility & Inclusive Design</h2>
+<p>Integrate accessibility and advocate for more inclusive practices.</p>
+<ul>
+  <li>Accessibility integration in design processes and workflows</li>
+  <li>Applying universal design and accessibility standards</li>
+  <li>Research and development of accessibility guidelines</li>
+  <li>Accessibility audits, testing and reviews</li>
+  <li>Strategic advisory and capacity building</li>
+  <li>Workshops and lectures for diverse audiences and contexts</li>
+</ul>
+      `,
     },
   ],
 
@@ -1485,6 +1640,10 @@ const content_blocks = {
 
 const setImageAlts = (object, lookup = {}) => (!object ? {} : Object.fromEntries(Object.entries(object).map(([key, value]) => (!value || typeof value !== 'object' ? [key, value] : [key, Object.fromEntries(Object.entries(value).map(([propKey, propValue]) => (propKey.endsWith('image') && typeof propValue === 'string' ? [propKey, { src: propValue, alt: lookup[propValue] || '' }] : [propKey, propValue])))]))))
 const setBlockImageAlts = (object, lookup = {}) => (!object ? {} : Object.fromEntries(Object.entries(object).map(([key, blockList]) => [key, blockList.map(block => Object.fromEntries(Object.entries(block).map(([propKey, propValue]) => (propKey.endsWith('images') && Array.isArray(propValue) ? [propKey, propValue.map(src => ({ src, alt: lookup[src] || '' }))] : [propKey, propValue]))))])))
+const setAllImageAlts = (object, lookup = {}) => {
+  const transform = val => (!val || typeof val !== 'object' ? val : Array.isArray(val) ? val.map(transform) : Object.fromEntries(Object.entries(val).map(([k, v]) => (k.endsWith('images') && Array.isArray(v) ? [k, v.map(src => ({ src, alt: lookup[src] || '' }))] : k.endsWith('image') && typeof v === 'string' ? [k, { src: v, alt: lookup[v] || '' }] : [k, transform(v)]))))
+  return transform(object)
+}
 const findBySlug = (collection, slug) => Object.values(collection).find(item => item.slug === slug || item.href?.includes(slug))
 const formatMenuItem = item => ({ href: item.href, title: item.menu_title, aria_label: item.aria_label || item.menu_aria_label })
 const getMenuItems = (sectionSlugs, projectSlugs, allSections, allProjects) => {
@@ -1518,5 +1677,7 @@ export default {
   resources: setImageAlts(resources, alts),
   menu_items: getMenuItems(base.menu_sections, base.menu_projects, sections, projects),
   footer_socials: base.footer_socials.map(slug => ({ ...socials[slug], target: '_blank' })),
-  content_blocks: setBlockImageAlts(content_blocks, alts),
+  // eslint-disable-next-line camelcase
+  resource_cards,
+  content_blocks: setAllImageAlts(content_blocks, alts),
 }

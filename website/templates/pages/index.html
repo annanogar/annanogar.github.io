@@ -16,15 +16,8 @@
 {% set opengraph_image = '/static/media/misc/social_1200x630.jpg' %}
 
 {% block content %}
-  {{
-    landing_header.regular(
-      title = section.title_with_markup or section.title,
-      subtitle = section.subtitle,
-      badge = { href: '/manifesto/', title: data.base.badge_manifesto_title }
-    )
-  }}
-
+  {{ landing_header.regular(title = section.title_with_markup or section.title, subtitle = section.subtitle, badge = section.header_badge) }}
   {{ card_grid.regular(above_fold = true, title = data.base.selected_projects_title, cards = project_grid_cards) }}
-  {{ call_to_action.regular(variant = 'home', quote = section.cta_quote, image = { src: 'misc/anna-dots_1x1', alt: data.alts['misc/anna-dots_1x1'] }, badge = { variant: 'bright', href: '/about/', title: data.base.badge_about_title }) }}
+  {{ call_to_action.regular(variant = 'home', quote = section.cta_quote, image = section.cta_image, badge = section.cta_badge) }}
   {{ card_grid.regular(cards = [section_text_cards.services, section_text_cards.manifesto, section_text_cards.resources]) }}
 {% endblock %}
