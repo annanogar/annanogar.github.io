@@ -1,78 +1,34 @@
 {% extends 'templates/_base.en.html' %}
 {% import 'components/organisms/article-footer/article-footer.html' as article_footer %}
+{% import 'components/organisms/article-highlight/article-highlight.html' as article_highlight %}
 {% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
 {% import 'components/organisms/image-grid/image-grid.html' as image_grid %}
 {% import 'components/organisms/image-header/image-header.html' as image_header %}
+{% import 'components/organisms/video-player/video-player.html' as video_player %}
 
-{% set page_title = data.projects.het_steen.title %}
-{% set page_description = data.projects.het_steen.description %}
-{% set page_href = data.projects.het_steen.href %}
+{% set project = data.projects.het_steen %}
+{% set content_blocks = data.content_blocks.het_steen %}
+
+{% set page_title = project.title %}
+{% set page_description = project.description %}
+{% set page_href = project.href %}
 
 {% set opengraph_title = page_title %}
 {% set opengraph_description = page_description %}
 
 {% block content %}
-  {{
-    image_header.regular(
-      title = data.projects.het_steen.title_with_markup or data.projects.het_steen.title,
-      description = data.projects.het_steen.description_with_markup or data.projects.het_steen.description,
-      subtitle = data.projects.het_steen.subtitle,
-      image = { src: 'projects/het-steen/cover_3x1', alt: data.alts['projects/het-steen/cover_3x1'] }
-    )
-  }}
+  {{ image_header.regular(title = project.title_with_markup or project.title, description = project.description_with_markup or project.description, subtitle = project.subtitle, image = project.header_image) }}
 
-  {{
-    image_grid.regular(
-      above_fold = true,
-      title = 'Overview',
-      richtext = '<p>Het Steen Visitor Center, located in the oldest building in Antwerp, is the city’s main visitor center, serving as a gateway for international and local audiences. Visitors explore the historic fortress along an 11-room path, discovering diverse neighborhoods, iconic landmarks, and expressions of the city’s vibrant culture.</p><p>The experience combines digital media, interactive installations, and spatial storytelling to introduce Antwerp’s history, identity, and contemporary culture. Through immersive and accessible interpretation, visitors are invited to explore the city’s past and present while orienting themselves within the broader urban context.</p>',
-      items = [
-        { image: { src: 'projects/het-steen/01_2x1', alt: data.alts['projects/het-steen/01_2x1'] } },
-        { image: { src: 'projects/het-steen/02_1x1', alt: data.alts['projects/het-steen/02_1x1'] } },
-        { image: { src: 'projects/het-steen/03_1x1', alt: data.alts['projects/het-steen/03_1x1'] } },
-        { image: { src: 'projects/het-steen/04_1x1', alt: data.alts['projects/het-steen/04_1x1'] } },
-        { image: { src: 'projects/het-steen/05_1x1', alt: data.alts['projects/het-steen/05_1x1'] } }
-      ]
-    )
-  }}
+  {% for block in content_blocks %}
+    {% if block.type === 'image-grid' %}
+      {{ image_grid.regular(above_fold = not loop.index0, title = block.title, richtext = block.richtext, images = block.images or []) }}
+    {% elif block.type === 'article-highlight' %}
+      {{ article_highlight.regular(title = block.title, text = block.text) }}
+    {% endif %}
+  {% endfor %}
 
-  {{
-    image_grid.regular(
-      title = 'Contribution',
-      richtext = '<p>I led the UX/UI and multimedia design of the visitor experience, translating the visual approach into a variety of interactive experiences, audiovisual installations elements, 360° projections, and immersive installations.</p><p>My role included defining a coherent visual and interaction system connecting screens, projections, and spatial touchpoints, ensuring clarity, consistency, and orientation across the visitor journey.</p><p>I coordinated internal and external teams across design, content, and production, working within the operational constraints of the COVID-19 period. Navigating remote collaboration, shifting timelines, and on-site limitations strengthened my ability to adapt workflows and ensure continuity and quality under non-standard conditions.</p>',
-      items = [
-        { image: { src: 'projects/het-steen/06_2x1', alt: data.alts['projects/het-steen/06_2x1'] } },
-        { image: { src: 'projects/het-steen/07_1x1', alt: data.alts['projects/het-steen/07_1x1'] } },
-        { image: { src: 'projects/het-steen/08_1x1', alt: data.alts['projects/het-steen/08_1x1'] } },
-        { image: { src: 'projects/het-steen/09_2x1', alt: data.alts['projects/het-steen/09_2x1'] } }
-      ]
-    )
-  }}
+  {{ article_footer.regular(awards_title = data.base.awards_title, awards = project.awards, recognitions_title = data.base.recognitions_title, recognitions = project.recognitions, credits_title = data.base.credits_title, credits = project.credits, copyright = project.copyright) }}
 
-  {{
-    image_grid.regular(
-      title = 'Key achievements',
-      richtext = '<ul><li>Led UX/UI and multimedia design for a city-scale visitor center experience.</li><li>Built a coherent visual and interaction system across digital and spatial touchpoints.</li><li>Translated historical and cultural content into accessible, engaging experiences.</li><li>Coordinated multidisciplinary teams across design, content, and production.</li><li>Delivered the project under COVID-19 constraints while maintaining quality and continuity.</li></ul>',
-      items = [
-        { image: { src: 'projects/het-steen/10_2x1', alt: data.alts['projects/het-steen/10_2x1'] } },
-        { image: { src: 'projects/het-steen/11_1x1', alt: data.alts['projects/het-steen/11_1x1'] } },
-        { image: { src: 'projects/het-steen/12_1x1', alt: data.alts['projects/het-steen/12_1x1'] } },
-        { image: { src: 'projects/het-steen/13_2x1', alt: data.alts['projects/het-steen/13_2x1'] } }
-      ]
-    )
-  }}
-
-  {{
-    article_footer.regular(
-      awards_title = data.base.awards_title,
-      awards = data.projects.het_steen.awards,
-      recognitions_title = data.base.recognitions_title,
-      recognitions = data.projects.het_steen.recognitions,
-      credits_title = data.base.credits_title,
-      credits = data.projects.het_steen.credits,
-      copyright = data.projects.het_steen.copyright
-    )
-  }}
-
-  {{ call_to_action.regular(variant = 'badge', quote = data.projects.het_steen.cta_quote, card = project_cards.shifting_image) }}
+  {% set next_project_card = get_next_in_array(project_grid_cards, project.slug, 'slug') %}
+  {{ call_to_action.regular(variant = 'badge', quote = data.base.project_cta_quote, card = next_project_card) }}
 {% endblock %}

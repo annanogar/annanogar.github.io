@@ -1,79 +1,34 @@
 {% extends 'templates/_base.en.html' %}
 {% import 'components/organisms/article-footer/article-footer.html' as article_footer %}
+{% import 'components/organisms/article-highlight/article-highlight.html' as article_highlight %}
 {% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
 {% import 'components/organisms/image-grid/image-grid.html' as image_grid %}
 {% import 'components/organisms/image-header/image-header.html' as image_header %}
+{% import 'components/organisms/video-player/video-player.html' as video_player %}
 
-{% set page_title = data.projects.herman_boerhaave.title %}
-{% set page_description = data.projects.herman_boerhaave.description %}
-{% set page_href = data.projects.herman_boerhaave.href %}
+{% set project = data.projects.herman_boerhaave %}
+{% set content_blocks = data.content_blocks.herman_boerhaave %}
+
+{% set page_title = project.title %}
+{% set page_description = project.description %}
+{% set page_href = project.href %}
 
 {% set opengraph_title = page_title %}
 {% set opengraph_description = page_description %}
 
 {% block content %}
-  {{
-    image_header.regular(
-      title = data.projects.herman_boerhaave.title_with_markup or data.projects.herman_boerhaave.title,
-      description = data.projects.herman_boerhaave.description_with_markup or data.projects.herman_boerhaave.description,
-      subtitle = data.projects.herman_boerhaave.subtitle,
-      image = { src: 'projects/herman-boerhaave/cover_3x1', alt: data.alts['projects/herman-boerhaave/cover_3x1'] }
-    )
-  }}
+  {{ image_header.regular(title = project.title_with_markup or project.title, description = project.description_with_markup or project.description, subtitle = project.subtitle, image = project.header_image) }}
 
-  {{
-    image_grid.regular(
-      above_fold = true,
-      title = 'Overview',
-      richtext = '<p>The Rijksmuseum Boerhaave celebrated the 350th birthday of Herman Boerhaave with a temporary exhibition that brought his scientific legacy to life. Visitors followed the physician’s milestones through historic Leiden, exploring key locations from the botanical garden to his home.</p><p>It combines historical artifacts, scientific instruments, and archival documents to tell the story of Boerhaave’s life and contributions. Through carefully composed visual presentation, spatial sequencing, and multimedia elements, the experience uncovered his fight against scientific misinformation and his lasting impact on medicine.</p>',
-      items = [
-        { image: { src: 'projects/herman-boerhaave/01_2x1', alt: data.alts['projects/herman-boerhaave/01_2x1'] } },
-        { image: { src: 'projects/herman-boerhaave/02_1x1', alt: data.alts['projects/herman-boerhaave/02_1x1'] } },
-        { image: { src: 'projects/herman-boerhaave/03_1x1', alt: data.alts['projects/herman-boerhaave/03_1x1'] } },
-        { image: { src: 'projects/herman-boerhaave/04_2x1', alt: data.alts['projects/herman-boerhaave/04_2x1'] } }
-      ]
-    )
-  }}
-  {{
-    image_grid.regular(
-      title = 'Contribution',
-      richtext = '<p>I led the exhibition’s visual design, defining its visual layer, typography, graphic language, and material choices. As the sole designer on the project, I was responsible for both the conceptual direction and hands-on execution of visual assets throughout the space.</p><p>My role involved translating historical and scientific content into a coherent and meaningful visual system, where color, typography, and graphic language support interpretation, reading logic, and wayfinding across the exhibition.</p><p>Working closely with curators, content designers, and production partners, I balanced narrative clarity, spatial rhythm, and material expression, while embracing a bold and contemporary visual approach to ensure the exhibition felt distinctive and impactful.</p>',
-      items = [
-        { image: { src: 'projects/herman-boerhaave/05_2x1', alt: data.alts['projects/herman-boerhaave/05_2x1'] } },
-        { image: { src: 'projects/herman-boerhaave/06_1x1', alt: data.alts['projects/herman-boerhaave/06_1x1'] } },
-        { image: { src: 'projects/herman-boerhaave/07_1x1', alt: data.alts['projects/herman-boerhaave/07_1x1'] } },
-        { image: { src: 'projects/herman-boerhaave/08_2x1', alt: data.alts['projects/herman-boerhaave/08_2x1'] } },
-        { image: { src: 'projects/herman-boerhaave/09_2x1', alt: data.alts['projects/herman-boerhaave/09_2x1'] } },
-        { image: { src: 'projects/herman-boerhaave/10_1x1', alt: data.alts['projects/herman-boerhaave/10_1x1'] } },
-        { image: { src: 'projects/herman-boerhaave/11_1x1', alt: data.alts['projects/herman-boerhaave/11_1x1'] } },
-        { image: { src: 'projects/herman-boerhaave/12_2x1', alt: data.alts['projects/herman-boerhaave/12_2x1'] } }
-      ]
-    )
-  }}
-  {{
-    image_grid.regular(
-      title = 'Key achievements',
-      richtext = '<ul><li>Led visual design and graphic language for a museum exhibition focused on scientific history.</li><li>Defined typography, color palette system, and visual graphics to support interpretation and wayfinding.</li><li>Translated historical and scientific content into a coherent visual experience.</li><li>Managed design execution as the sole designer, from concept through production.</li><li>Coordinated with curators and production partners across content, design, and production.</li></ul>',
-      items = [
-        { image: { src: 'projects/herman-boerhaave/13_2x1', alt: data.alts['projects/herman-boerhaave/13_2x1'] } },
-        { image: { src: 'projects/herman-boerhaave/14_1x1', alt: data.alts['projects/herman-boerhaave/14_1x1'] } },
-        { image: { src: 'projects/herman-boerhaave/15_1x1', alt: data.alts['projects/herman-boerhaave/15_1x1'] } },
-        { image: { src: 'projects/herman-boerhaave/16_2x1', alt: data.alts['projects/herman-boerhaave/16_2x1'] } }
-      ]
-    )
-  }}
+  {% for block in content_blocks %}
+    {% if block.type === 'image-grid' %}
+      {{ image_grid.regular(above_fold = not loop.index0, title = block.title, richtext = block.richtext, images = block.images or []) }}
+    {% elif block.type === 'article-highlight' %}
+      {{ article_highlight.regular(title = block.title, text = block.text) }}
+    {% endif %}
+  {% endfor %}
 
-  {{
-    article_footer.regular(
-      awards_title = data.base.awards_title,
-      awards = data.projects.herman_boerhaave.awards,
-      recognitions_title = data.base.recognitions_title,
-      recognitions = data.projects.herman_boerhaave.recognitions,
-      credits_title = data.base.credits_title,
-      credits = data.projects.herman_boerhaave.credits,
-      copyright = data.projects.herman_boerhaave.copyright
-    )
-  }}
+  {{ article_footer.regular(awards_title = data.base.awards_title, awards = project.awards, recognitions_title = data.base.recognitions_title, recognitions = project.recognitions, credits_title = data.base.credits_title, credits = project.credits, copyright = project.copyright) }}
 
-  {{ call_to_action.regular(variant = 'badge', quote = data.projects.herman_boerhaave.cta_quote, card = project_cards.prodemos) }}
+  {% set next_project_card = get_next_in_array(project_grid_cards, project.slug, 'slug') %}
+  {{ call_to_action.regular(variant = 'badge', quote = data.base.project_cta_quote, card = next_project_card) }}
 {% endblock %}

@@ -6,75 +6,29 @@
 {% import 'components/organisms/image-header/image-header.html' as image_header %}
 {% import 'components/organisms/video-player/video-player.html' as video_player %}
 
-{% set page_title = data.projects.maker_park.title %}
-{% set page_description = data.projects.maker_park.description %}
-{% set page_href = data.projects.maker_park.href %}
+{% set project = data.projects.maker_park %}
+{% set content_blocks = data.content_blocks.maker_park %}
+
+{% set page_title = project.title %}
+{% set page_description = project.description %}
+{% set page_href = project.href %}
 
 {% set opengraph_title = page_title %}
 {% set opengraph_description = page_description %}
 
 {% block content %}
-  {{
-    image_header.regular(
-      title = data.projects.maker_park.title_with_markup or data.projects.maker_park.title,
-      description = data.projects.maker_park.description_with_markup or data.projects.maker_park.description,
-      subtitle = data.projects.maker_park.subtitle,
-      image = { src: 'projects/maker-park/cover_3x1', alt: data.alts['projects/maker-park/cover_3x1'] }
-    )
-  }}
+  {{ image_header.regular(title = project.title_with_markup or project.title, description = project.description_with_markup or project.description, subtitle = project.subtitle, image = project.header_image) }}
 
-  {{
-    image_grid.regular(
-      above_fold = true,
-      title = 'Overview',
-      richtext = '<p>Ilmi is a new science and innovation center opening in Riyadh, Saudi Arabia. With 38,000 square meters of immersive and interactive installations, it is conceived as a national cultural hub for families and a flagship for informal learning in STREAM disciplines (Science, Technology, Reading, Engineering, Art, Mathematics).</p><p>Beyond the physical space, Ilmi includes a digital platform that extends the experience nationwide. Designed as a freemium ecosystem, it combines educational content, gamified mechanics, interactive features, and external integrations to support continuity between on-site and off-site learning.</p>',
-      items = [
-        { image: { src: 'projects/maker-park/01_2x1', alt: data.alts['projects/maker-park/01_2x1'] } },
-        { image: { src: 'projects/maker-park/02_1x1', alt: data.alts['projects/maker-park/02_1x1'] } },
-        { image: { src: 'projects/maker-park/03_1x1', alt: data.alts['projects/maker-park/03_1x1'] } },
-        { image: { src: 'projects/maker-park/04_2x1', alt: data.alts['projects/maker-park/04_2x1'] } }
-      ]
-    )
-  }}
+  {% for block in content_blocks %}
+    {% if block.type === 'image-grid' %}
+      {{ image_grid.regular(above_fold = not loop.index0, title = block.title, richtext = block.richtext, images = block.images or []) }}
+    {% elif block.type === 'article-highlight' %}
+      {{ article_highlight.regular(title = block.title, text = block.text) }}
+    {% endif %}
+  {% endfor %}
 
-  {{
-    image_grid.regular(
-      title = 'Contribution',
-      richtext = '<p>Over 3+ years, I led the creative direction and the overall experience strategy for the prototype of the digital platform and its ecosystem, contributing to the center’s Learning Digital Strategy while guiding accessibility guidelines.</p><p>I led the full design cycle and UX/UI strategy in a fast-paced, high-pressure environment, translating playful learning objectives and business needs into retention-driven concepts and scalable experience frameworks.</p><p>The process combined extensive research and continuous testing, using qualitative and quantitative methods to shape design iterations and validate decisions. I coordinated an international network of partners and vendors, ensuring alignment between learning content, creative intent, technical constraints, and delivery objectives.</p>',
-      items = [
-        { image: { src: 'projects/maker-park/05_2x1', alt: data.alts['projects/maker-park/05_2x1'] } },
-        { image: { src: 'projects/maker-park/06_1x1', alt: data.alts['projects/maker-park/06_1x1'] } },
-        { image: { src: 'projects/maker-park/07_1x1', alt: data.alts['projects/maker-park/07_1x1'] } },
-        { image: { src: 'projects/maker-park/08_2x1', alt: data.alts['projects/maker-park/08_2x1'] } }
-      ]
-    )
-  }}
+  {{ article_footer.regular(awards_title = data.base.awards_title, awards = project.awards, recognitions_title = data.base.recognitions_title, recognitions = project.recognitions, credits_title = data.base.credits_title, credits = project.credits, copyright = project.copyright) }}
 
-  {{
-    image_grid.regular(
-      title = 'Key achievements',
-      richtext = '<ul><li>Led end-to-end UX/UI and experience strategy for a large-scale digital learning ecosystem.</li><li>Built scalable experience frameworks and guidelines to ensure consistency across multiple touchpoints.</li><li>Coordinated international, cross-functional teams and external partners.</li><li>Embedded accessibility as a structural requirement.</li><li>Used research and testing to validate design decisions and reduce risk.</li><li>Contributed to shaping a new vision for informal education in KSA.</li></ul>'
-    )
-  }}
-
-  {{
-    article_highlight.regular(
-      title = 'Note',
-      text = 'This project is still in development and subject to NDA, so only a limited overview can be shared.'
-    )
-  }}
-
-  {{
-    article_footer.regular(
-      awards_title = data.base.awards_title,
-      awards = data.projects.maker_park.awards,
-      recognitions_title = data.base.recognitions_title,
-      recognitions = data.projects.maker_park.recognitions,
-      credits_title = data.base.credits_title,
-      credits = data.projects.maker_park.credits,
-      copyright = data.projects.maker_park.copyright
-    )
-  }}
-
-  {{ call_to_action.regular(variant = 'badge', quote = data.projects.maker_park.cta_quote, card = project_cards.family_exhibits) }}
+  {% set next_project_card = get_next_in_array(project_grid_cards, project.slug, 'slug') %}
+  {{ call_to_action.regular(variant = 'badge', quote = data.base.project_cta_quote, card = next_project_card) }}
 {% endblock %}

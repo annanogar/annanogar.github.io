@@ -17,19 +17,19 @@
     margin-top: 1rem;
   }
 
-  .image-grid__items {
+  .image-grid__images {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     list-style: none;
     padding: 0;
   }
 
-  .image-grid__item--1x1 {
+  .image-grid__image--1x1 {
     aspect-ratio: 1 / 1;
     grid-column: span 1;
   }
 
-  .image-grid__item--2x1 {
+  .image-grid__image--2x1 {
     aspect-ratio: 2 / 1;
     grid-column: span 2;
   }
@@ -39,7 +39,7 @@
       padding: var(--padding-large) var(--padding-large);
     }
 
-    .image-grid__items {
+    .image-grid__images {
       grid-template-columns: repeat(3, 1fr);
     }
   }

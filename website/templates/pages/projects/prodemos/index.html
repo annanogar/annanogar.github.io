@@ -1,72 +1,34 @@
 {% extends 'templates/_base.en.html' %}
 {% import 'components/organisms/article-footer/article-footer.html' as article_footer %}
+{% import 'components/organisms/article-highlight/article-highlight.html' as article_highlight %}
 {% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
 {% import 'components/organisms/image-grid/image-grid.html' as image_grid %}
 {% import 'components/organisms/image-header/image-header.html' as image_header %}
+{% import 'components/organisms/video-player/video-player.html' as video_player %}
 
-{% set page_title = data.projects.prodemos.title %}
-{% set page_description = data.projects.prodemos.description %}
-{% set page_href = data.projects.prodemos.href %}
+{% set project = data.projects.prodemos %}
+{% set content_blocks = data.content_blocks.prodemos %}
+
+{% set page_title = project.title %}
+{% set page_description = project.description %}
+{% set page_href = project.href %}
 
 {% set opengraph_title = page_title %}
 {% set opengraph_description = page_description %}
 
 {% block content %}
-  {{
-    image_header.regular(
-      title = data.projects.prodemos.title_with_markup or data.projects.prodemos.title,
-      description = data.projects.prodemos.description_with_markup or data.projects.prodemos.description,
-      subtitle = data.projects.prodemos.subtitle,
-      image = { src: 'projects/prodemos/cover_3x1', alt: data.alts['projects/prodemos/cover_3x1'] }
-    )
-  }}
+  {{ image_header.regular(title = project.title_with_markup or project.title, description = project.description_with_markup or project.description, subtitle = project.subtitle, image = project.header_image) }}
 
-  {{
-    image_grid.regular(
-      above_fold = true,
-      title = 'Overview',
-      richtext = '<p>ProDemos is an organization in The Hague that educates citizens, particularly students, about Dutch democracy and the rule of law.</p><p>Their educational program begins in the classroom, where students draft their own bill proposals. During their visit to the ProDemos Center, they split into teams and take part in a GPS-guided game that leads them through key landmarks, completing tasks that illustrate the lawmaking process.</p><p>The experience concludes with a shared animated film designed to spark further discussion when they’re back in the classroom.</p>',
-      items = [
-        { image: { src: 'projects/prodemos/01_2x1', alt: data.alts['projects/prodemos/01_2x1'] } },
-        { image: { src: 'projects/prodemos/02_1x1', alt: data.alts['projects/prodemos/02_1x1'] } },
-        { image: { src: 'projects/prodemos/03_1x1', alt: data.alts['projects/prodemos/03_1x1'] } },
-        { image: { src: 'projects/prodemos/04_1x1', alt: data.alts['projects/prodemos/04_1x1'] } },
-        { image: { src: 'projects/prodemos/05_1x1', alt: data.alts['projects/prodemos/05_1x1'] } }
-      ]
-    )
-  }}
+  {% for block in content_blocks %}
+    {% if block.type === 'image-grid' %}
+      {{ image_grid.regular(above_fold = not loop.index0, title = block.title, richtext = block.richtext, images = block.images or []) }}
+    {% elif block.type === 'article-highlight' %}
+      {{ article_highlight.regular(title = block.title, text = block.text) }}
+    {% endif %}
+  {% endfor %}
 
-  {{
-    image_grid.regular(
-      title = 'Contribution',
-      richtext = '<p>I led the UI/UX design and visual direction, coordinating a dedicated team and collaborating with external stakeholders to create a location-based learning experience.</p><p>The project required connecting different contexts into one journey, balancing learning, organizational, and narrative goals. Strong focus was placed on safety and game dynamics to support playful and inclusive experiences for diverse groups of students.</p><p>The process involved ideation, focus groups, and testing to refine interaction logic, usability, and motivation models, ensuring the experience remained impactful, engaging, and accessible.</p>'
-    )
-  }}
+  {{ article_footer.regular(awards_title = data.base.awards_title, awards = project.awards, recognitions_title = data.base.recognitions_title, recognitions = project.recognitions, credits_title = data.base.credits_title, credits = project.credits, copyright = project.copyright) }}
 
-  {{
-    image_grid.regular(
-      title = 'Key achievements',
-      richtext = '<ul><li>Led UX/UI and visual direction for a GPS-based educational game.</li><li>Designed a connected learning journey linking classroom preparation to on-site interactive play.</li><li>Coordinated a dedicated team and collaborated with external partners.</li><li>Applied iterative research and testing to validate engagement and comprehension.</li><li>Embedded inclusive design principles to ensure accessibility and safety for diverse student groups.</li><li>Applied game mechanics and motivation models to support playful, goal-oriented learning.</li></ul>',
-      items = [
-        { image: { src: 'projects/prodemos/06_2x1', alt: data.alts['projects/prodemos/06_2x1'] } },
-        { image: { src: 'projects/prodemos/07_1x1', alt: data.alts['projects/prodemos/07_1x1'] } },
-        { image: { src: 'projects/prodemos/08_1x1', alt: data.alts['projects/prodemos/08_1x1'] } },
-        { image: { src: 'projects/prodemos/09_2x1', alt: data.alts['projects/prodemos/09_2x1'] } }
-      ]
-    )
-  }}
-
-  {{
-    article_footer.regular(
-      awards_title = data.base.awards_title,
-      awards = data.projects.prodemos.awards,
-      recognitions_title = data.base.recognitions_title,
-      recognitions = data.projects.prodemos.recognitions,
-      credits_title = data.base.credits_title,
-      credits = data.projects.prodemos.credits,
-      copyright = data.projects.prodemos.copyright
-    )
-  }}
-
-  {{ call_to_action.regular(variant = 'badge', quote = data.projects.prodemos.cta_quote, card = project_cards.het_steen) }}
+  {% set next_project_card = get_next_in_array(project_grid_cards, project.slug, 'slug') %}
+  {{ call_to_action.regular(variant = 'badge', quote = data.base.project_cta_quote, card = next_project_card) }}
 {% endblock %}

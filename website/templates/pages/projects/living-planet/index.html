@@ -1,88 +1,34 @@
 {% extends 'templates/_base.en.html' %}
 {% import 'components/organisms/article-footer/article-footer.html' as article_footer %}
+{% import 'components/organisms/article-highlight/article-highlight.html' as article_highlight %}
 {% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
 {% import 'components/organisms/image-grid/image-grid.html' as image_grid %}
 {% import 'components/organisms/image-header/image-header.html' as image_header %}
+{% import 'components/organisms/video-player/video-player.html' as video_player %}
 
-{% set page_title = data.projects.living_planet.title %}
-{% set page_description = data.projects.living_planet.description %}
-{% set page_href = data.projects.living_planet.href %}
+{% set project = data.projects.living_planet %}
+{% set content_blocks = data.content_blocks.living_planet %}
+
+{% set page_title = project.title %}
+{% set page_description = project.description %}
+{% set page_href = project.href %}
 
 {% set opengraph_title = page_title %}
 {% set opengraph_description = page_description %}
 
 {% block content %}
-  {{
-    image_header.regular(
-      title = data.projects.living_planet.title_with_markup or data.projects.living_planet.title,
-      description = data.projects.living_planet.description_with_markup or data.projects.living_planet.description,
-      subtitle = data.projects.living_planet.subtitle,
-      image = { src: 'projects/living-planet/cover_3x1', alt: data.alts['projects/living-planet/cover_3x1'] }
-    )
-  }}
+  {{ image_header.regular(title = project.title_with_markup or project.title, description = project.description_with_markup or project.description, subtitle = project.subtitle, image = project.header_image) }}
 
-  {{
-    image_grid.regular(
-      above_fold = true,
-      title = 'Overview',
-      richtext = '<p>The <em>Living Planet</em> exhibition guides visitors through an educational journey into the ecosystems that make Earth both vibrant and deeply interconnected.</p><p>Spread across two floors, the exhibition presents more than 800 animal species, highlighting the delicate balance between living organisms and their environments.</p><p>These connections are explored through interactive screens, projections, and immersive activities designed to deepen understanding through hands-on engagement.</p>',
-      items = [
-        { image: { src: 'projects/living-planet/01_2x1', alt: data.alts['projects/living-planet/01_2x1'] } },
-        { image: { src: 'projects/living-planet/02_1x1', alt: data.alts['projects/living-planet/02_1x1'] } },
-        { image: { src: 'projects/living-planet/03_1x1', alt: data.alts['projects/living-planet/03_1x1'] } },
-        { image: { src: 'projects/living-planet/04_1x1', alt: data.alts['projects/living-planet/04_1x1'] } },
-        { image: { src: 'projects/living-planet/05_1x1', alt: data.alts['projects/living-planet/05_1x1'] } },
-        { image: { src: 'projects/living-planet/06_2x1', alt: data.alts['projects/living-planet/06_2x1'] } },
-        { image: { src: 'projects/living-planet/07_1x1', alt: data.alts['projects/living-planet/07_1x1'] } },
-        { image: { src: 'projects/living-planet/08_1x1', alt: data.alts['projects/living-planet/08_1x1'] } },
-        { image: { src: 'projects/living-planet/09_2x1', alt: data.alts['projects/living-planet/09_2x1'] } }
-      ]
-    )
-  }}
+  {% for block in content_blocks %}
+    {% if block.type === 'image-grid' %}
+      {{ image_grid.regular(above_fold = not loop.index0, title = block.title, richtext = block.richtext, images = block.images or []) }}
+    {% elif block.type === 'article-highlight' %}
+      {{ article_highlight.regular(title = block.title, text = block.text) }}
+    {% endif %}
+  {% endfor %}
 
-  {{
-    image_grid.regular(
-      title = 'Contribution',
-      richtext = '<p>I shaped the exhibition’s experience framework and UX/UI approach, alongside the visual, multimedia, and audiovisual design, creating interactive and immersive installations that translate complex scientific concepts into accessible and engaging content for a wide audience.</p><p>I coordinated internal and external teams across the Benelux region, combining art direction with hands-on design production throughout the year-and-a-half development process. My role included defining a structured interaction system linking large volumes of scientific content to the physical specimens on display, ensuring consistency across screens, projections, and immersive installations.</p><p>The process involved iterative design, prototyping, and continuous coordination to align content, interaction design, and visual execution. Delivery took place during the European COVID-19 lockdown, strengthening my ability to adapt workflows and ensure continuity under non-standard operational constraints.</p>',
-      items = [
-        { image: { src: 'projects/living-planet/10_2x1', alt: data.alts['projects/living-planet/10_2x1'] } },
-        { image: { src: 'projects/living-planet/11_1x1', alt: data.alts['projects/living-planet/11_1x1'] } },
-        { image: { src: 'projects/living-planet/12_1x1', alt: data.alts['projects/living-planet/12_1x1'] } },
-        { image: { src: 'projects/living-planet/13_2x1', alt: data.alts['projects/living-planet/13_2x1'] } },
-        { image: { src: 'projects/living-planet/14_1x1', alt: data.alts['projects/living-planet/14_1x1'] } },
-        { image: { src: 'projects/living-planet/15_1x1', alt: data.alts['projects/living-planet/15_1x1'] } },
-        { image: { src: 'projects/living-planet/16_1x1', alt: data.alts['projects/living-planet/16_1x1'] } },
-        { image: { src: 'projects/living-planet/17_1x1', alt: data.alts['projects/living-planet/17_1x1'] } },
-        { image: { src: 'projects/living-planet/18_2x1', alt: data.alts['projects/living-planet/18_2x1'] } }
-      ]
-    )
-  }}
+  {{ article_footer.regular(awards_title = data.base.awards_title, awards = project.awards, recognitions_title = data.base.recognitions_title, recognitions = project.recognitions, credits_title = data.base.credits_title, credits = project.credits, copyright = project.copyright) }}
 
-  {{
-    image_grid.regular(
-      title = 'Key achievements',
-      richtext = '<ul><li>Defined the experience framework, UX/UI and interaction design and strategy for a large-scale natural science exhibition.</li><li>Built structured interaction and content systems connecting digital stations to physical specimens.</li><li>Coordinated multidisciplinary teams across a long and content-heavy process.</li><li>Applied iterative prototyping to validate interaction flows across screens, projections, and immersive installations.</li><li>Ensured consistency across content, interactions, and touchpoints within a multi-level exhibition space.</li><li>Integrated inclusive design principles to support diverse public audiences.</li><li>Maintained delivery quality while navigating COVID-19 operational constraints.</li></ul>',
-      items = [
-        { image: { src: 'projects/living-planet/19_1x1', alt: data.alts['projects/living-planet/19_1x1'] } },
-        { image: { src: 'projects/living-planet/20_1x1', alt: data.alts['projects/living-planet/20_1x1'] } },
-        { image: { src: 'projects/living-planet/21_1x1', alt: data.alts['projects/living-planet/21_1x1'] } },
-        { image: { src: 'projects/living-planet/22_1x1', alt: data.alts['projects/living-planet/22_1x1'] } },
-        { image: { src: 'projects/living-planet/23_2x1', alt: data.alts['projects/living-planet/23_2x1'] } }
-      ]
-    )
-  }}
-
-  {{
-    article_footer.regular(
-      awards_title = data.base.awards_title,
-      awards = data.projects.living_planet.awards,
-      recognitions_title = data.base.recognitions_title,
-      recognitions = data.projects.living_planet.recognitions,
-      credits_title = data.base.credits_title,
-      credits = data.projects.living_planet.credits,
-      copyright = data.projects.living_planet.copyright
-    )
-  }}
-
-  {{ call_to_action.regular(variant = 'badge', quote = data.projects.living_planet.cta_quote, card = project_cards.herman_boerhaave) }}
+  {% set next_project_card = get_next_in_array(project_grid_cards, project.slug, 'slug') %}
+  {{ call_to_action.regular(variant = 'badge', quote = data.base.project_cta_quote, card = next_project_card) }}
 {% endblock %}

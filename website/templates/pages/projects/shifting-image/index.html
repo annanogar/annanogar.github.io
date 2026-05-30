@@ -1,77 +1,34 @@
 {% extends 'templates/_base.en.html' %}
 {% import 'components/organisms/article-footer/article-footer.html' as article_footer %}
+{% import 'components/organisms/article-highlight/article-highlight.html' as article_highlight %}
 {% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
 {% import 'components/organisms/image-grid/image-grid.html' as image_grid %}
 {% import 'components/organisms/image-header/image-header.html' as image_header %}
+{% import 'components/organisms/video-player/video-player.html' as video_player %}
 
-{% set page_title = data.projects.shifting_image.title %}
-{% set page_description = data.projects.shifting_image.description %}
-{% set page_href = data.projects.shifting_image.href %}
+{% set project = data.projects.shifting_image %}
+{% set content_blocks = data.content_blocks.shifting_image %}
+
+{% set page_title = project.title %}
+{% set page_description = project.description %}
+{% set page_href = project.href %}
 
 {% set opengraph_title = page_title %}
 {% set opengraph_description = page_description %}
 
 {% block content %}
-  {{
-    image_header.regular(
-      title = data.projects.shifting_image.title_with_markup or data.projects.shifting_image.title,
-      description = data.projects.shifting_image.description_with_markup or data.projects.shifting_image.description,
-      subtitle = data.projects.shifting_image.subtitle,
-      image = { src: 'projects/shifting-image/cover_3x1', alt: data.alts['projects/shifting-image/cover_3x1'] }
-    )
-  }}
+  {{ image_header.regular(title = project.title_with_markup or project.title, description = project.description_with_markup or project.description, subtitle = project.subtitle, image = project.header_image) }}
 
-  {{
-    image_grid.regular(
-      above_fold = true,
-      title = 'Overview',
-      richtext = '<p>The Mauritshuis developed <em>Shifting Image</em>, an interpretive project examining the legacy of Johan Maurits, Count of Nassau-Siegen, and the Dutch colonial presence in Brazil, including its connection to the transatlantic slave trade.</p><p>The exhibition investigates how colonial history has been portrayed, interpreted, and debated over time, combining historical material with contemporary perspectives.</p><p>Through digital interfaces and interactive installations, visitors are invited to explore multiple viewpoints and reflect on how images, narratives, and power relations shape collective memory.</p>',
-      items = [
-        { image: { src: 'projects/shifting-image/01_2x1', alt: data.alts['projects/shifting-image/01_2x1'] } },
-        { image: { src: 'projects/shifting-image/02_1x1', alt: data.alts['projects/shifting-image/02_1x1'] } },
-        { image: { src: 'projects/shifting-image/03_1x1', alt: data.alts['projects/shifting-image/03_1x1'] } },
-        { image: { src: 'projects/shifting-image/04_2x1', alt: data.alts['projects/shifting-image/04_2x1'] } }
-      ]
-    )
-  }}
+  {% for block in content_blocks %}
+    {% if block.type === 'image-grid' %}
+      {{ image_grid.regular(above_fold = not loop.index0, title = block.title, richtext = block.richtext, images = block.images or []) }}
+    {% elif block.type === 'article-highlight' %}
+      {{ article_highlight.regular(title = block.title, text = block.text) }}
+    {% endif %}
+  {% endfor %}
 
-  {{
-    image_grid.regular(
-      title = 'Contribution',
-      richtext = '<p>I led the UX/UI strategy and multimedia design of the exhibition’s components, defining the interaction logic of the digital interfaces and coordinating how screens, projections, and interactive elements worked together within the exhibition space. The large volume of layered content required a UX/UI system capable of giving equal visibility to parallel narratives.</p><p>Accessibility and cognitive clarity were fundamental throughout the process. Particular attention was given to hierarchy, readability, and interaction patterns, ensuring that complex and potentially challenging content remained approachable, non-intrusive, and usable for a broad audience.</p><p>Guiding internal and external teams, I aligned content structure, interaction behaviour, and visual language across iPads, projections, and symbolic installations, translating complex interpretive goals into a clear and consistent experience framework.</p>',
-      items = [
-        { image: { src: 'projects/shifting-image/05_2x1', alt: data.alts['projects/shifting-image/05_2x1'] } },
-        { image: { src: 'projects/shifting-image/06_1x1', alt: data.alts['projects/shifting-image/06_1x1'] } },
-        { image: { src: 'projects/shifting-image/07_1x1', alt: data.alts['projects/shifting-image/07_1x1'] } },
-        { image: { src: 'projects/shifting-image/08_2x1', alt: data.alts['projects/shifting-image/08_2x1'] } }
-      ]
-    )
-  }}
+  {{ article_footer.regular(awards_title = data.base.awards_title, awards = project.awards, recognitions_title = data.base.recognitions_title, recognitions = project.recognitions, credits_title = data.base.credits_title, credits = project.credits, copyright = project.copyright) }}
 
-  {{
-    image_grid.regular(
-      title = 'Key achievements',
-      richtext = '<ul><li>Led interpretive, UX/UI strategy and multimedia design for a sensitive, multi-perspective exhibition.</li><li>Designed experience logic and content systems capable of handling layered narratives without overwhelming visitors.</li><li>Coordinated internal and external specialists across interfaces, projections, and installations.</li><li>Ensured consistent interaction behaviour and visual language across digital and physical touchpoints.</li><li>Embedded accessibility and cognitive clarity to support diverse audiences engaging with complex content.</li><li>Recognized with 7+ international awards.</li></ul>',
-      items = [
-        { image: { src: 'projects/shifting-image/09_2x1', alt: data.alts['projects/shifting-image/09_2x1'] } },
-        { image: { src: 'projects/shifting-image/10_1x1', alt: data.alts['projects/shifting-image/10_1x1'] } },
-        { image: { src: 'projects/shifting-image/11_1x1', alt: data.alts['projects/shifting-image/11_1x1'] } },
-        { image: { src: 'projects/shifting-image/12_2x1', alt: data.alts['projects/shifting-image/12_2x1'] } }
-      ]
-    )
-  }}
-
-  {{
-    article_footer.regular(
-      awards_title = data.base.awards_title,
-      awards = data.projects.shifting_image.awards,
-      recognitions_title = data.base.recognitions_title,
-      recognitions = data.projects.shifting_image.recognitions,
-      credits_title = data.base.credits_title,
-      credits = data.projects.shifting_image.credits,
-      copyright = data.projects.shifting_image.copyright
-    )
-  }}
-
-  {{ call_to_action.regular(variant = 'badge', quote = data.projects.shifting_image.cta_quote, card = project_cards.maker_park) }}
+  {% set next_project_card = get_next_in_array(project_grid_cards, project.slug, 'slug') %}
+  {{ call_to_action.regular(variant = 'badge', quote = data.base.project_cta_quote, card = next_project_card) }}
 {% endblock %}

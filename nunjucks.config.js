@@ -234,6 +234,21 @@ const tags = {
 
     return result
   },
+
+  // Get next item in object
+  get_next_in_array: (array, current, propKey) => {
+    if (!array || array.length === 0) {
+      return null
+    }
+
+    const currentIndex = array.findIndex(item => (propKey ? item && item[propKey] === current : item === current))
+
+    if (currentIndex === -1) {
+      return array[0]
+    }
+
+    return array[(currentIndex + 1) % array.length]
+  },
 }
 
 // Stub for thumbnail generation, for use in Django.
