@@ -11,6 +11,7 @@
 
   .video-player__wrapper {
     grid-column: column 1 / span var(--grid-columns);
+    padding: calc(var(--padding-xl) * 1.6) var(--padding-large) 0;
   }
 
   .video-player__video {
@@ -24,5 +25,11 @@
 
   .video-player__figcaption {
     padding: 0.5rem var(--padding-large) var(--padding-large) var(--padding-large);
+  }
+
+  @include breakpoints.landscape {
+    .video-player__wrapper {
+      padding: var(--padding-large) var(--padding-large) 0;
+    }
   }
 }

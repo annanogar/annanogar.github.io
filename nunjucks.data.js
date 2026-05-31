@@ -1528,12 +1528,6 @@ const content_blocks = {
     },
 
     {
-      type: 'article-highlight',
-      title: 'TODO:',
-      text: 'ADD VIDEO (https://vimeo.com/101531290)',
-    },
-
-    {
       type: 'video-player',
       video: 'projects/vanishing/video-visualisation_16x9',
       ratio: '16x9',
@@ -1547,12 +1541,6 @@ const content_blocks = {
 <p>The digital expansion was an entirely different beast where my role spanned concept, visual direction, and interaction design. We were building three wildly different components, with each demanding a completely distinct UX approach. My job was to shape the visual and experiential logic for all three, making sure they worked as standalone experiments while still feeling like they belonged to the same conceptual family. Three months of intense work, three people involved, three digital experiences (and one printed chapter) delivered, infinite satisfaction achieved.</p>
       `,
       images: ['projects/vanishing/09_2x1', 'projects/vanishing/10_1x1', 'projects/vanishing/11_1x1', 'projects/vanishing/12_2x1'],
-    },
-
-    {
-      type: 'article-highlight',
-      title: 'TODO:',
-      text: 'ADD VIDEO (https://vimeo.com/101524505) (needs vimeo account)',
     },
 
     {
