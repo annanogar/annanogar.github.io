@@ -14,13 +14,13 @@
   }
 
   .image-header__description {
-    margin-top: 1rem;
+    margin-top: 1.5rem;
 
     @include typography.heading-2;
   }
 
   .image-header__subtitle {
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     max-width: 100%;
 
     @include typography.subtitle;

@@ -6,7 +6,7 @@
   position: relative;
 
   .article-header__wrapper {
-    padding: var(--padding-xl) var(--padding-large) var(--padding-xl);
+    padding: var(--padding-xl) var(--padding-large) var(--padding-large);
   }
 
   .article-header__title {
@@ -14,7 +14,7 @@
   }
 
   .article-header__subtitle {
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     max-width: min(100%, 65ch);
 
     @include typography.subtitle;
@@ -22,7 +22,7 @@
 
   @include breakpoints.landscape {
     .article-header__wrapper {
-      padding: var(--padding-medium) var(--padding-large) var(--padding-large);
+      padding: var(--padding-medium) var(--padding-large) var(--padding-medium);
     }
   }
 }

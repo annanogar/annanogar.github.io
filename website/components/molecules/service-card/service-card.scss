@@ -53,7 +53,7 @@
   &:hover,
   &:focus-visible {
     .service-card__content {
-      --color-selection-background: var(--color-navy);
+      --color-selection-background: var(--color-black);
       --color-selection-foreground: var(--color-white);
 
       background-color: var(--color-pink);

@@ -13,7 +13,7 @@
 }
 
 .menu-dialog {
-  --color-selection-background: var(--color-navy);
+  --color-selection-background: var(--color-black);
   --color-selection-foreground: var(--color-white);
 
   background: var(--color-pink);
@@ -83,11 +83,11 @@
 
       &:hover,
       &:focus-visible {
-        color: var(--color-navy);
+        color: var(--color-black);
       }
 
       &[aria-current='page'] {
-        color: var(--color-navy);
+        color: var(--color-black);
       }
     }
   }

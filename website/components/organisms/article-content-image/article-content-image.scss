@@ -64,6 +64,16 @@
       left: unset;
       right: 2.25rem;
     }
+
+    @at-root {
+      *:nth-last-child(1 of .article-content-image):has(+ .call-to-action) {
+        background: red !important;
+
+        .article-content-image__image-wrapper {
+          margin-bottom: 0;
+        }
+      }
+    }
   }
 
   @include breakpoints.notebook {
