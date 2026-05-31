@@ -6,7 +6,7 @@
   position: relative;
 
   .image-grid__wrapper {
-    padding: calc(var(--padding-xl) * 1.6) var(--padding-large) calc(var(--padding-xl) * 1.8);
+    padding: calc(var(--padding-xl) * 1.6) var(--padding-large) 0;
   }
 
   .image-grid__title {
@@ -34,13 +34,25 @@
     grid-column: span 2;
   }
 
+  &:has(.image-grid__images) {
+    .image-grid__wrapper {
+      padding-bottom: calc(var(--padding-xl) * 1.8);
+    }
+  }
+
   @include breakpoints.landscape {
     .image-grid__wrapper {
-      padding: var(--padding-large) var(--padding-large);
+      padding: var(--padding-large) var(--padding-large) 0;
     }
 
     .image-grid__images {
       grid-template-columns: repeat(3, 1fr);
+    }
+
+    &:has(.image-grid__images) {
+      .image-grid__wrapper {
+        padding-bottom: var(--padding-large);
+      }
     }
   }
 }

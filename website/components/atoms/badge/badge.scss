@@ -39,7 +39,7 @@
   &:hover,
   &:focus-visible {
     &::before {
-      --color-selection-background: var(--color-black);
+      --color-selection-background: var(--color-navy);
       --color-selection-foreground: var(--color-white);
 
       background-color: var(--color-pink);
@@ -110,7 +110,7 @@
   &:hover,
   &:focus-visible {
     &::before {
-      --color-selection-background: var(--color-black);
+      --color-selection-background: var(--color-navy);
       --color-selection-foreground: var(--color-white);
 
       background-color: var(--color-pink);

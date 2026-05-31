@@ -13,7 +13,7 @@
 }
 
 .menu-dialog {
-  --color-selection-background: var(--color-black);
+  --color-selection-background: var(--color-navy);
   --color-selection-foreground: var(--color-white);
 
   background: var(--color-pink);
@@ -40,7 +40,7 @@
   }
 
   .menu-bar-contents {
-    --color-logo-hover-override: var(--color-black);
+    --color-logo-hover-override: var(--color-navy);
 
     flex: 0 0 auto;
   }
@@ -83,11 +83,11 @@
 
       &:hover,
       &:focus-visible {
-        color: var(--color-black);
+        color: var(--color-navy);
       }
 
       &[aria-current='page'] {
-        color: var(--color-black);
+        color: var(--color-navy);
       }
     }
   }

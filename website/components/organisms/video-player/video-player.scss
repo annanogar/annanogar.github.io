@@ -58,12 +58,12 @@
     position: absolute;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 5rem;
+    width: 4rem;
     z-index: 1;
 
     &::before {
       background: transparent;
-      border: 0.5rem solid currentcolor;
+      border: 0.33rem solid currentcolor;
       border-radius: 50%;
       content: '';
       display: block;

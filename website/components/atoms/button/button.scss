@@ -53,7 +53,7 @@
   &:hover:not(.button--disabled, :disabled),
   &:focus-visible:not(.button--disabled, :disabled),
   &.button--selected {
-    --color-selection-background: var(--color-black);
+    --color-selection-background: var(--color-navy);
     --color-selection-foreground: var(--color-white);
 
     background-color: var(--color-pink);
@@ -70,7 +70,7 @@
   &:hover:not(.button--disabled, :disabled),
   &:focus-visible:not(.button--disabled, :disabled),
   &.button--selected {
-    --color-selection-background: var(--color-black);
+    --color-selection-background: var(--color-navy);
     --color-selection-foreground: var(--color-white);
 
     background-color: var(--color-pink);

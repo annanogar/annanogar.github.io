@@ -15,7 +15,7 @@
 {% set opengraph_description = page_description %}
 
 {% block content %}
-  {{ article_header.regular(title = section.title_with_markup or section.title, subtitle = section.description_with_markup or section.description) }}
+  {{ article_header.regular(title = section.title_with_markup or section.title) }}
 
   {% for block in content_blocks %}
     {% if block.type === 'article-content-image' %}
