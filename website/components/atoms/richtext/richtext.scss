@@ -114,6 +114,18 @@
     &.paragraph--stop {
       margin-bottom: 3rem;
     }
+
+    .paragraph__span--country-code {
+      border: 1px solid currentcolor;
+      display: inline-block;
+      font-size: 60%;
+      line-height: 1.45em;
+      margin-right: 0.25em;
+      padding: 0 0.5rem;
+      text-align: center;
+      transform: translateY(-0.16em);
+      width: 2.5em;
+    }
   }
 
   ul,

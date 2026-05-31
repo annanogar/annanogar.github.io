@@ -3,7 +3,7 @@
 const base = {
   site_name: 'Anna Nogaré',
   site_title: 'Anna Nogaré; Interpretive Design Director & Accessibility Strategist, CPACC',
-  site_description: 'Creating experiences that we all give a damn about.',
+  site_description: 'Creating experiences that we give a damn about. No shortcuts.',
   skiplink_aria_label: 'Skip to main content',
   navigation_aria_label: 'Main navigation',
   menu_dialog_aria_label: 'Menu dialog',
@@ -347,7 +347,7 @@ const sections = {
     textcard_subtitle: 'Back to homepage',
     title: base.site_description,
     description: 'I lead and design inclusive experiences across digital, physical, and hybrid environments, from cultural institutions to product ecosystems, turning complex content into journeys that stick.',
-    subtitle: 'I lead and design inclusive experiences across digital, physical, and hybrid environments, from cultural institutions to product ecosystems, turning complex content into meaningful journeys.',
+    subtitle: 'I lead and design inclusive experiences across digital, physical, and hybrid environments, from cultural institutions to product ecosystems, turning complex content into journeys that stick.',
     cta_quote: 'It’s not about <em>them</em> in the end. It’s about <em>all of us</em> from the very start.',
     cta_image: 'misc/anna-dots_1x1',
     cta_badge: { variant: 'bright', href: '/about/', title: base.badge_about_title },
@@ -359,12 +359,12 @@ const sections = {
     href: '/about/',
     menu_title: 'About',
     menu_aria_label: 'Learn more about me',
-    card_title: 'About me',
+    card_title: 'About',
     card_image: 'misc/anna-dots_1x1',
-    textcard_title: 'About me',
+    textcard_title: 'About',
     textcard_subtitle: 'Learn more about me',
-    title: 'About me',
-    description: 'I’m Anna Nogaré, an Interpretive Design Director & Accessibility Strategist working across cultural, educational, tourism, and public environments. A multidisciplinary designer at heart, I combine strategic leadership with hands-on design across digital, physical, and hybrid experiences, translating complex content into meaningful and inclusive journeys for diverse audiences.',
+    title: 'About',
+    description: 'I’m a Senior Experience Designer & Accessibility Strategist with over a decade of international experience leading and designing digital, physical, and hybrid experiences across Europe and the Middle East, turning complex content into journeys that stick with people.',
     cta_quote: 'Great ideas start with simple conversations.',
   },
 
@@ -373,12 +373,12 @@ const sections = {
     href: '/contact/',
     menu_title: 'Contact',
     menu_aria_label: 'Get in touch with me',
-    card_title: 'Get in touch',
+    card_title: 'Contact',
     card_image: 'misc/vintage-telephone_1x1',
     textcard_title: 'Contact',
     textcard_subtitle: 'Get in touch with me',
     title: 'Contact',
-    description: 'If you’d like to discuss a project, ask a question, or simply say hi, I’d love to hear from you.',
+    description: 'I am currently based in Italy, soon back in the Netherlands, and working worldwide. Anyway, you know what to do. Don’t wait any longer 👇',
     cta_quote: 'Always up for big ideas, or just a good decaf Americano.',
   },
 
@@ -387,9 +387,9 @@ const sections = {
     href: '/manifesto/',
     menu_title: 'Manifesto',
     menu_aria_label: 'Read my Accessibility Manifesto',
-    card_title: 'Read Accessibility Manifesto',
+    card_title: 'Accessibility Manifesto',
     card_image: 'misc/wheelchair-sign_1x1',
-    textcard_title: 'Manifesto',
+    textcard_title: 'Accessibility Manifesto',
     textcard_subtitle: 'We are all temporarily able. Yes, you too. And once you see it, you can’t unsee it.',
     title: 'Accessibility Manifesto',
     description: 'It’s not about them in the end of a project. It’s about all of us from the very start.',
@@ -420,9 +420,9 @@ const sections = {
     textcard_title: 'Resources',
     textcard_subtitle: 'Articles and thoughts on accessibility and design. Raw, evolving, worth talking about.',
     title: 'Resources',
-    description: 'A collection of articles, opinions, thoughts, and reflections.',
-    subtitle: 'A collection of articles, opinions, thoughts, and reflections gathered over time, mostly around accessibility as strategic design. Some are polished, some are raw, some somewhere in between. All are still evolving.',
-    subtitle_2: 'This is a space to think and share out loud, because the more we talk about these things, the harder they are to ignore.',
+    description: 'A collection of articles, unfiltered opinions, rough thoughts, and reflections gathered over time, mostly around accessibility, our society, and design.',
+    subtitle: 'A collection of articles, unfiltered opinions, rough thoughts, and reflections gathered over time, mostly around accessibility, our society, and design. Some are polished, some are raw, some somewhere in between. All are still evolving.',
+    subtitle_2: 'This is a space to think out loud, because the more we talk about it, the harder it gets to ignore.',
     cta_quote: 'The more we talk about it, the harder it gets to ignore.',
   },
 
@@ -436,7 +436,7 @@ const sections = {
     textcard_title: 'Services',
     textcard_subtitle: 'Concept & Experience Strategy <br/>Creative Leadership & Execution <br/>Accessibility & Inclusive Design',
     title: 'Services',
-    description: '',
+    description: 'A list of expertises and skills that I offer.',
     cta_quote: 'How we design matters. Let’s think about it.',
   },
 }
@@ -604,7 +604,7 @@ const projects = {
     awards: [],
     recognitions: [],
     credits: [
-      { title: 'Role', description: 'Art Director | Solo Designer | Illustrator' },
+      { title: 'Role', description: 'Sole Designer | Illustrator' },
       { title: 'Concept', description: 'Anna Nogaré, Andrea Fasolo Rao' },
       { title: 'Academic supervision', description: 'Marco Ferrari, Ivor Williams' },
     ],
@@ -727,7 +727,7 @@ const projects = {
     awards: [],
     recognitions: [],
     credits: [
-      { title: 'Role', description: 'Art Director | Solo Designer | Illustrator' },
+      { title: 'Role', description: 'Sole Designer | Illustrator' },
       { title: 'Co-relator', description: 'David Pino (NL)' },
       { title: 'Supervisor', description: 'Emanuela Bonini Lessing (IT)' },
     ],
@@ -808,7 +808,7 @@ const projects = {
       { title: 'Featured on the Leap Motion official blog:', description: 'On the Verge of Extinction' },
     ],
     credits: [
-      { title: 'Role', description: 'Art Director | Lead Designer | Illustrator' },
+      { title: 'Role', description: 'Lead Designer | Illustrator' },
       { title: 'Concept', description: 'Anna Nogaré, Andrea Fasolo Rao, Riccardo Gioria' },
       { title: 'Academic supervision', description: 'Marco Ferrari, Ivor Williams' },
     ],
@@ -961,9 +961,12 @@ const content_blocks = {
       variant: 'left',
       image: 'misc/vintage-telephone_1x1',
       richtext: `
-<p>I am currently based in Italy, planning my move back to the Netherlands, and working worldwide.</p>
+<p>I am currently based in Italy, soon back in the Netherlands, and working worldwide.</p>
 <p class="paragraph--stop">Anyway, you know what to do. Don’t wait any longer 👇</p>
-<p class="paragraph--gigantic"><a href="mailto:_send_me_an_">_send_me_an_</a><br />NL: <a href="tel:_or_pick_up_the_">_or_pick_up_the_</a><br />IT: <a href="tel:_or_otherwise_pick_up_the_">_or_otherwise_pick_up_the_</a></p>
+<p class="paragraph--gigantic"><a href="mailto:_send_me_an_">_send_me_an_</a><br />
+  <span class="paragraph__span--country-code">NL</span>&nbsp;<a href="tel:_or_pick_up_the_">_or_pick_up_the_</a><br />
+  <span class="paragraph__span--country-code">IT</span>&nbsp;<a href="tel:_or_otherwise_pick_up_the_">_or_otherwise_pick_up_the_</a>
+</p>
       `,
     },
   ],

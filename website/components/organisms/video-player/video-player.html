@@ -5,8 +5,14 @@
     <div class="video-player">
       <div class="video-player__grid">
         <figure class="video-player__wrapper">
-          <video class="video-player__video {% if video.ratio !== '16x9' %}video-player__video--ratio-{{ video.ratio }}{% endif %}" controls controlsList="nodownload" loading="lazy" poster="{{ '/static/media/' + video.poster + '.webp' }}" alt="{{ video.alt }}" onloadstart="this.volume=0.5">
-            <source src="{{ '/static/media/' + video.src + '.mp4' }}" type="video/mp4" />
+          <button class="video-player__poster-button {% if video.ratio !== '16x9' %}video-player__poster-button--ratio-{{ video.ratio }}{% endif %}" type="button" aria-label="Play{% if video.alt %}: {{ video.alt }}{% endif %}">
+            <img class="video-player__poster-image" src="{{ '/static/media/' + video.poster + '.webp' }}" alt="" />
+
+            <span class="video-player__play-icon" aria-hidden="true"></span>
+          </button>
+
+          <video class="video-player__video {% if video.ratio !== '16x9' %}video-player__video--ratio-{{ video.ratio }}{% endif %}" controls controlsList="nodownload" preload="none" poster="{{ '/static/media/' + video.poster + '.webp' }}" {% if video.alt %}aria-label="{{ video.alt }}"{% endif %} onloadstart="this.volume=0.5" hidden>
+            <source data-src="{{ '/static/media/' + video.src + '.mp4' }}" type="video/mp4" />
           </video>
 
           {% if video.richtext_caption %}
