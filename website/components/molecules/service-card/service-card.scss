@@ -21,7 +21,7 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    padding: 5vw 3.5vw;
+    padding: 5vw 2.5vw;
     place-content: center;
     place-items: center;
     text-align: center;
@@ -45,6 +45,7 @@
 
   .service-card__subtitle {
     margin-top: 0.25rem;
+    max-width: min(100%, 34ch);
     padding: 0 1.5rem;
 
     @include typography.card-subtitle;
