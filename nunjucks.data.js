@@ -3,7 +3,7 @@
 const base = {
   site_name: 'Anna Nogaré',
   site_title: 'Anna Nogaré; Interpretive Design Director & Accessibility Strategist, CPACC',
-  site_description: 'Creating experiences that we give a damn about. No shortcuts.',
+  site_description: 'Creating experiences we give a damn about. No shortcuts.',
   skiplink_aria_label: 'Skip to main content',
   navigation_aria_label: 'Main navigation',
   menu_dialog_aria_label: 'Menu dialog',
