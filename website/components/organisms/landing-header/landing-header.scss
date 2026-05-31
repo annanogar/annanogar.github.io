@@ -24,6 +24,7 @@
 
   .landing-header__subtitle {
     margin-top: 1.5rem;
+    max-width: min(100%, 55ch);
 
     @include typography.subtitle;
   }

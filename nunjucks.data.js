@@ -431,7 +431,7 @@ const sections = {
     href: '/services/',
     menu_title: 'Services',
     menu_aria_label: 'Discover my services',
-    card_title: 'Discover my services',
+    card_title: 'Services',
     card_image: 'misc/service-gradient-1_1x1',
     textcard_title: 'Services',
     textcard_subtitle: 'Concept & Experience Strategy <br/>Creative Leadership & Execution <br/>Accessibility & Inclusive Design',
@@ -962,7 +962,7 @@ const content_blocks = {
       image: 'misc/vintage-telephone_1x1',
       richtext: `
 <p>I am currently based in Italy, planning my move back to the Netherlands, and working worldwide.</p>
-<p>Anyway, you know what to do. Don’t wait any longer 👇</p>
+<p class="paragraph--stop">Anyway, you know what to do. Don’t wait any longer 👇</p>
 <p class="paragraph--gigantic"><a href="mailto:_send_me_an_">_send_me_an_</a><br />NL: <a href="tel:_or_pick_up_the_">_or_pick_up_the_</a><br />IT: <a href="tel:_or_otherwise_pick_up_the_">_or_otherwise_pick_up_the_</a></p>
       `,
     },
