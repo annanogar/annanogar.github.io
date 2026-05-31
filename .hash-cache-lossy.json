@@ -385,6 +385,8 @@
     "website/assets/media/projects/family-exhibits/thumbnail_1x1_400w.webp": "eOO+1zQZyX/332o3rajcn1n8zLM=",
     "website/assets/media/projects/family-exhibits/thumbnail_1x1_640w.webp": "NH3Kfp1C8j8q50Cjq4GSQed0+SA=",
     "website/assets/media/projects/family-exhibits/thumbnail_1x1_854w.webp": "WCADG53cFOiZDXN1BYFvwIImszQ=",
+    "website/assets/media/projects/frame-10.png": "riAAq+tXWG+Carpj9CskNzs7wSk=",
+    "website/assets/media/projects/frame-23.png": "yOUCAHVG8hmGtLswpPXwZa8WWXY=",
     "website/assets/media/projects/herman-boerhaave/01_2x1_1280w.webp": "jz3esTEhUoRmbEZ3CVK6SB9zHOs=",
     "website/assets/media/projects/herman-boerhaave/01_2x1_1707w.webp": "cXGHWeeRUdS+gsDfZCGbUQwDxvc=",
     "website/assets/media/projects/herman-boerhaave/01_2x1_2560w.webp": "AU5V6c3pNr35V76EyziwXJV4w3Q=",
@@ -1411,6 +1413,18 @@
     "website/assets/media/projects/vanishing/thumbnail_1x1_1280w.webp": "a/BrLHnEVcVrWCNFszGBJYzFIAs=",
     "website/assets/media/projects/vanishing/thumbnail_1x1_400w.webp": "cthB5QOk6h+cpGn+nTSHN5Jit2g=",
     "website/assets/media/projects/vanishing/thumbnail_1x1_640w.webp": "Lqq7e+of6wY0GSbB1Z2dFJxbXTE=",
-    "website/assets/media/projects/vanishing/thumbnail_1x1_854w.webp": "F4H7fv3e1kQ2V3iaS2EYEDA+fV0="
+    "website/assets/media/projects/vanishing/thumbnail_1x1_854w.webp": "F4H7fv3e1kQ2V3iaS2EYEDA+fV0=",
+    "website/assets/media/projects/vanishing/video-sonification_16x10.webp": "mIx1379jB+cS3pfiOUdyxxa0L3I=",
+    "website/assets/media/projects/vanishing/video-visualisation_16x9.webp": "DWrbcBpXIuYmCkLspKNjp5xP1qk=",
+    "website/assets/media/projects/video-sonification.webp": "mIx1379jB+cS3pfiOUdyxxa0L3I=",
+    "website/assets/media/projects/video-sonification_1152w.png": "yOUCAHVG8hmGtLswpPXwZa8WWXY=",
+    "website/assets/media/projects/video-sonification_1152w.webp": "mIx1379jB+cS3pfiOUdyxxa0L3I=",
+    "website/assets/media/projects/video-sonification_1152w_h264_aac.png": "riAAq+tXWG+Carpj9CskNzs7wSk=",
+    "website/assets/media/projects/video-sonification_16x10.webp": "mIx1379jB+cS3pfiOUdyxxa0L3I=",
+    "website/assets/media/projects/video-sonification_16x9.webp": "mIx1379jB+cS3pfiOUdyxxa0L3I=",
+    "website/assets/media/projects/video-visualisation.webp": "DWrbcBpXIuYmCkLspKNjp5xP1qk=",
+    "website/assets/media/projects/video-visualisation_16x9.webp": "DWrbcBpXIuYmCkLspKNjp5xP1qk=",
+    "website/assets/media/projects/video-visualisation_640w.png": "riAAq+tXWG+Carpj9CskNzs7wSk=",
+    "website/assets/media/projects/video-visualisation_640w.webp": "DWrbcBpXIuYmCkLspKNjp5xP1qk="
   }
 }

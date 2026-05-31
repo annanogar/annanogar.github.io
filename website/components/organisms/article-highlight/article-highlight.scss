@@ -7,6 +7,9 @@
   position: relative;
 
   .article-highlight__wrapper {
+    --color-selection-background: var(--color-navy);
+    --color-selection-foreground: var(--color-white);
+
     background: var(--color-pink);
     color: var(--color-white);
     padding: calc(var(--padding-xl) * 1.6) var(--padding-large) calc(var(--padding-xl) * 1.8);

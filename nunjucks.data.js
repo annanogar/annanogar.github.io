@@ -3,7 +3,7 @@
 const base = {
   site_name: 'Anna Nogaré',
   site_title: 'Anna Nogaré; Interpretive Design Director & Accessibility Strategist, CPACC',
-  site_description: 'Creating experiences we give a damn about.',
+  site_description: 'Creating experiences that we all give a damn about.',
   skiplink_aria_label: 'Skip to main content',
   navigation_aria_label: 'Main navigation',
   menu_dialog_aria_label: 'Menu dialog',
@@ -217,7 +217,7 @@ const alts = {
   'projects/living-planet/21_1x1': 'A woman engaging with a large digital table displaying an interactive globe, surrounded by nature-themed projections of underwater vegetation and marine life.',
   'projects/living-planet/22_1x1': 'A woman standing in an immersive room with walls covered in large-scale projections of forest and mountain environments, surrounded by vivid color and light.',
   'projects/living-planet/23_2x1': 'Immersive installation showing high-resolution projections of a chipmunk on one wall and a grazing reindeer on the other, wrapping around freestanding structures in the space.',
-  'projects/living-planet/cover': 'Wide-angle view of a gallery filled with taxidermy animals arranged along curved white arches, showcasing biodiversity across species and environments.',
+  'projects/living-planet/cover_3x1': 'Wide-angle view of a gallery filled with taxidermy animals arranged along curved white arches, showcasing biodiversity across species and environments.',
   'projects/living-planet/thumbnail_1x1': 'Mother and young child standing in front of a deer specimen while the child gestures excitedly, with other visitors and animal displays in the background.',
   'projects/maker-park/01_2x1': 'Daytime view of Ilmi Center showing families and school children walking toward the iconic reflective sphere, surrounded by gardens and flowering trees.',
   'projects/maker-park/02_1x1': 'Portrait of a young boy smiling in traditional Saudi attire, representing the target audience of the educational initiative.',
@@ -331,6 +331,8 @@ const alts = {
   'projects/vanishing/24_2x1': 'Double-page spread from the Universe chapter of the Vanishing atlas, with a polar projection Earth map on a black starfield, text panels on cosmological phenomena, and landscape illustrations of endangered places including Venice, the Amazon, and the Maldives.',
   'projects/vanishing/cover_3x1': 'Two-panel image: the Vanishing atlas black hardcover with its chapter index in white diagonal text, alongside a hand over a MacBook keyboard displaying the colourful 3D animal extinction data visualisation.',
   'projects/vanishing/thumbnail_1x1': 'A person’s hand resting on top of a Leap Motion device near a MacBook trackpad while the screen shows the colourful extinction data visualisation with geometric shapes representing animal species.',
+  'projects/vanishing/video-sonification_16x10': 'TODO:',
+  'projects/vanishing/video-visualisation_16x9': 'TODO:',
 }
 
 const sections = {
@@ -343,7 +345,7 @@ const sections = {
     card_image: 'misc/anna-dots_1x1',
     textcard_title: 'Homepage',
     textcard_subtitle: 'Back to homepage',
-    title: 'Creating experiences we give a damn about.',
+    title: base.site_description,
     description: 'I lead and design inclusive experiences across digital, physical, and hybrid environments, from cultural institutions to product ecosystems, turning complex content into journeys that stick.',
     subtitle: 'I lead and design inclusive experiences across digital, physical, and hybrid environments, from cultural institutions to product ecosystems, turning complex content into meaningful journeys.',
     cta_quote: 'It’s not about <em>them</em> in the end. It’s about <em>all of us</em> from the very start.',
@@ -400,9 +402,9 @@ const sections = {
     menu_title: 'Selected <br />projects',
     menu_aria_label: 'Explore selected projects',
     card_title: 'Selected projects',
-    card_subtitle: 'A collection of articles, opinions, thoughts, and reflections.',
+    card_subtitle: 'My selected projects',
     textcard_title: 'Selected projects',
-    textcard_subtitle: 'A collection of articles, opinions, thoughts, and reflections.',
+    textcard_subtitle: 'A selection of projects.',
     title: 'Selected projects',
     description: 'A mix of projects, all shaped by the same principle: people first, always. From exhibitions to products, each one plays with emotion, inclusion, and the stuff that actually sticks.',
     cta_quote: 'Let curiosity shape your story. Together, we make it real.',
@@ -593,7 +595,7 @@ const projects = {
     menu_title: 'Interplanetary',
     menu_aria_label: 'Explore the “Interplanetary” project',
     card_title: 'Inter&shy;planetary',
-    card_subtitle: ' IUAVUniversity of Venice, Venice (IT)',
+    card_subtitle: 'IUAV University of Venice, Venice (IT)',
     card_image: 'projects/interplanetary/thumbnail_1x1',
     title: 'Interplanetary',
     description: 'An editorial and digital project mapping the universe’s connected networks through information design.',
@@ -693,11 +695,11 @@ const projects = {
     menu_title: 'Middelen Meter',
     menu_aria_label: 'Explore the “Middelen Meter” project',
     card_title: 'Middelen Meter',
-    card_subtitle: 'Jellinek, Amsterdam (NL), 2023',
+    card_subtitle: 'Jellinek, Amsterdam (NL)',
     card_image: 'projects/middelen-meter/thumbnail_1x1',
     title: 'Middelen Meter',
     description: 'A self-monitoring app for substance use, designed to support reflection without judgement.',
-    subtitle: 'Jellinek, Amsterdam (NL), 2023, 2023',
+    subtitle: 'Jellinek, Amsterdam (NL), 2023',
     header_image: 'projects/middelen-meter/cover_3x1',
     awards: [],
     recognitions: [],
@@ -744,7 +746,7 @@ const projects = {
     description: 'A GPS game where students propose, debate, and bring their own laws to life.',
     subtitle: 'ProDemos, The Hague (NL), 2021',
     header_image: 'projects/prodemos/cover_3x1',
-    awars: [],
+    awards: [],
     recognitions: [],
     credits: [
       { title: 'Role', description: 'Art Director | Lead Designer' },
@@ -808,7 +810,7 @@ const projects = {
     credits: [
       { title: 'Role', description: 'Art Director | Lead Designer | Illustrator' },
       { title: 'Concept', description: 'Anna Nogaré, Andrea Fasolo Rao, Riccardo Gioria' },
-      { title: 'Academic supervision', description: 'Marco Ferrari, Ivor WilliamsDeveloped at IUAV University of Venice' },
+      { title: 'Academic supervision', description: 'Marco Ferrari, Ivor Williams' },
     ],
     copyright: 'Developed at IUAV University of Venice',
   },
@@ -1532,6 +1534,12 @@ const content_blocks = {
     },
 
     {
+      type: 'video-player',
+      video: 'projects/vanishing/video-visualisation_16x9',
+      ratio: '16x9',
+    },
+
+    {
       type: 'image-grid',
       title: 'The work',
       richtext: `
@@ -1545,6 +1553,12 @@ const content_blocks = {
       type: 'article-highlight',
       title: 'TODO:',
       text: 'ADD VIDEO (https://vimeo.com/101524505) (needs vimeo account)',
+    },
+
+    {
+      type: 'video-player',
+      video: 'projects/vanishing/video-sonification_16x10',
+      ratio: '16x10',
     },
 
     {

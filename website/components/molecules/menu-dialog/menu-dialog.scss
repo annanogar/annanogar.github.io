@@ -13,6 +13,9 @@
 }
 
 .menu-dialog {
+  --color-selection-background: var(--color-navy);
+  --color-selection-foreground: var(--color-white);
+
   background: var(--color-pink);
   color: var(--color-white);
   display: flex;

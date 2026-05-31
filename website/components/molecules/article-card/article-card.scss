@@ -43,6 +43,9 @@
   &:hover,
   &:focus-visible {
     .article-card__content {
+      --color-selection-background: var(--color-navy);
+      --color-selection-foreground: var(--color-white);
+
       background-color: var(--color-pink);
     }
   }

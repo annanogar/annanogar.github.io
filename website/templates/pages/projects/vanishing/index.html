@@ -24,6 +24,8 @@
       {{ image_grid.regular(above_fold = not loop.index0, title = block.title, richtext = block.richtext, images = block.images or []) }}
     {% elif block.type === 'article-highlight' %}
       {{ article_highlight.regular(title = block.title, text = block.text) }}
+    {% elif block.type === 'video-player' %}
+      {{ video_player.regular(video = { src: block.video, poster: block.video, alt: data.alts[block.video], ratio: block.ratio }) }}
     {% endif %}
   {% endfor %}
 

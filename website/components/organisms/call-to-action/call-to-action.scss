@@ -58,6 +58,9 @@
 
 .call-to-action--regular {
   .call-to-action__wrapper {
+    --color-selection-background: var(--color-navy);
+    --color-selection-foreground: var(--color-white);
+
     background-color: var(--color-pink);
     color: var(--color-white);
   }
@@ -125,6 +128,9 @@
 
 .call-to-action--badge {
   .call-to-action__wrapper {
+    --color-selection-background: var(--color-navy);
+    --color-selection-foreground: var(--color-white);
+
     background-color: var(--color-pink);
     color: var(--color-white);
   }
@@ -133,6 +139,9 @@
     &:hover,
     &:focus-visible {
       &::before {
+        --color-selection-background: var(--color-navy);
+        --color-selection-foreground: var(--color-white);
+
         background-color: var(--color-pink);
         transform: scale(1.6);
       }

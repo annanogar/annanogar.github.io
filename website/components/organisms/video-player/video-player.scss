@@ -16,6 +16,10 @@
   .video-player__video {
     aspect-ratio: 16 / 9;
     cursor: pointer;
+
+    &.video-player__video--ratio-16x10 {
+      aspect-ratio: 16 / 10;
+    }
   }
 
   .video-player__figcaption {

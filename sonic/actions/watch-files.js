@@ -152,8 +152,9 @@ export default async function watchFiles(config = {}, watchTasks = {}, trailingT
       // Get the relative path
       const path = relativePath(process.cwd(), event.path)
 
-      // Skip the event if the path is not within the source path
-      if (!path || !path.startsWith(config.project.sourcePath)) {
+      // Skip the event if the path is not within the source path or directly in the root
+      const matchesAnyWatchGlob = Object.values(config).some(c => c?.watchGlobs && picomatch.isMatch(path, c.watchGlobs))
+      if (!path || (!path.startsWith(config.project.sourcePath) && !matchesAnyWatchGlob)) {
         return
       }
 
