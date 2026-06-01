@@ -13,10 +13,6 @@
 {% set opengraph_description = site_description %}
 {% set opengraph_image = '/static/media/misc/social_1200x630.jpg' %}
 
-{% set section_cards = create_object_from_schema(data.sections, { slug: 'slug', href: 'href', title: 'card_title', subtitle: 'card_subtitle', image: 'card_image' }) %}
-{% set section_text_cards = create_object_from_schema(data.sections, { slug: 'slug', href: 'href', title: 'textcard_title', subtitle: 'textcard_subtitle' }) %}
-{% set project_cards = create_object_from_schema(data.projects, { slug: 'slug', href: 'href', title: 'card_title', subtitle: 'card_subtitle', image: 'card_image', label: 'label' }) %}
-
 {%
   set project_grid_cards = [
     project_cards.shifting_image,

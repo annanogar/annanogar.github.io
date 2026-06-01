@@ -4,11 +4,10 @@
  */
 
 import { createHash } from 'node:crypto'
-import { existsSync, readFileSync } from 'node:fs'
-import { join as joinPath, resolve as resolvePath } from 'node:path'
+import { existsSync, readFileSync, readdirSync } from 'node:fs'
+import { join as joinPath, relative as relativePath, resolve as resolvePath } from 'node:path'
 import { pathToFileURL } from 'node:url'
 
-import runtime from './sonic/runtime.js'
 import nunjucks from 'nunjucks'
 import config from './sonic.config.js'
 
@@ -39,6 +38,25 @@ const getFileHash = (filePath = '', urlSafe = true) => {
   return hash
 }
 
+const buildAssetUrlMap = () => {
+  const staticDir = resolvePath(process.cwd(), joinPath(config.project.destinationPath, config.project.staticURI))
+
+  if (!existsSync(staticDir)) {
+    return {}
+  }
+
+  return Object.fromEntries(
+    readdirSync(staticDir, { recursive: true, withFileTypes: true })
+      .filter(entry => entry.isFile() && !entry.name.startsWith('.'))
+      .map(entry => {
+        const filePath = relativePath(staticDir, joinPath(entry.parentPath, entry.name))
+        return [filePath, `${config.project.staticURI}/${filePath}?v=${getFileHash(filePath)}`]
+      }),
+  )
+}
+
+const mapToSchema = (dataSource, schema) => (!dataSource ? {} : Object.fromEntries(Object.entries(dataSource).map(([key, src]) => [key, Object.fromEntries(Object.entries(schema).map(([targetKey, sourceKey]) => [targetKey, src[sourceKey] || null]))])))
+
 // Variable are nunjucks properties that can be called, like so: {{ variable }}
 const variables = {
   page_title: '',
@@ -60,26 +78,26 @@ const tags = {
   debug: (...args) => console.log(...args),
 
   // Get random int between min and max
-  random_int: (min = 0, max = 1) => Math.floor(Math.random() * (max - min + 1) + min),
+  // random_int: (min = 0, max = 1) => Math.floor(Math.random() * (max - min + 1) + min),
 
   // Split string by key (such as a comma-separated list)
   split: (string = '', key = '') => string.toString().split(key.toString()),
 
   // Pad start of string
-  pad_start: (string = '', length = 1, pad = ' ') => (string || '').toString().padStart(length, pad),
-
+  // pad_start: (string = '', length = 1, pad = ' ') => (string || '').toString().padStart(length, pad),
+  //
   // Pad end of string
-  pad_end: (string = '', length = 1, pad = ' ') => (string || '').toString().padEnd(length, pad),
-
+  // pad_end: (string = '', length = 1, pad = ' ') => (string || '').toString().padEnd(length, pad),
+  //
   // Merge two objects (shallow)
-  merge: (...args) => Object.assign(...args),
-
+  // merge: (...args) => Object.assign(...args),
+  //
   // Replace a value by key in an object, useful since we can't directly manipulate objects in Nunjucks.
-  object_replace_value: (object = {}, key = '', original, replacement) => {
-    if (original !== null || object[key] === original) {
-      object[key] = replacement
-    }
-  },
+  // object_replace_value: (object = {}, key = '', original, replacement) => {
+  //   if (original !== null || object[key] === original) {
+  //     object[key] = replacement
+  //   }
+  // },
 
   // Set a property in an object, useful since we can't directly manipulate objects in Nunjucks.
   object_set_value: (object = {}, key = '', value = '') => {
@@ -87,26 +105,26 @@ const tags = {
   },
 
   // Set multiple properties in an object, useful since we can't directly manipulate objects in Nunjucks.
-  object_set_values: (object = {}, properties = {}) => {
-    Object.entries(properties).forEach(([key, value]) => {
-      object[key] = value
-    })
-  },
+  // object_set_values: (object = {}, properties = {}) => {
+  //   Object.entries(properties).forEach(([key, value]) => {
+  //     object[key] = value
+  //   })
+  // },
 
   // Propagate value through object for multiple keys.
-  propagate_value: (object = {}, keys = [], defaultValue = '') => {
-    let previousValue
-
-    keys.forEach(key => {
-      if (!object[key]) {
-        object[key] = previousValue || defaultValue
-      }
-
-      previousValue = object[key]
-    })
-
-    return object
-  },
+  // propagate_value: (object = {}, keys = [], defaultValue = '') => {
+  //   let previousValue
+  //
+  //   keys.forEach(key => {
+  //     if (!object[key]) {
+  //       object[key] = previousValue || defaultValue
+  //     }
+  //
+  //     previousValue = object[key]
+  //   })
+  //
+  //   return object
+  // },
 
   // Generate placeholder images.
   // Input: object with sizes for each breakpoint
@@ -114,126 +132,94 @@ const tags = {
   // We can specify height and width for each 'breakpoint' like so: sizes = { mobile: '640x480', portrait: '800x600' }
   // Or, we can only specify heights and a ratio, like so: sizes = { mobile: 640, portrait: 800 }, ratio = '16:9'
   // We can also specify the amount of retina values that need to be generated, like so: retinas = [2, 3, 4] for up to 4x
-  generate_placeholders: (sizes = {}, ratio = '16:9', retinas = [2 /*, 3, 4 */]) => {
-    // Get widths if not supplied - from ratio, if possible
-    for (const [key, value] of Object.entries(sizes)) {
-      let size = value.toString().split('x')
-
-      if (size.length === 1) {
-        if (ratio) {
-          const ratioSplit = ratio.toString().split(':')
-
-          size = `${value}x${Math.round((value / ratioSplit[0]) * ratioSplit[1])}`
-        } else {
-          size = `${value}x${value}`
-        }
-
-        sizes[key] = size
-      }
-    }
-
-    // Add retina sizes
-    for (const [key, value] of Object.entries(sizes)) {
-      for (const i of retinas) {
-        const splitSize = value.toString().split('x')
-
-        sizes[`${key}${i}x`] = `${splitSize[0] * i}x${splitSize[1] * i}`
-      }
-    }
-
-    // Add placeholder urls
-    for (const [key, value] of Object.entries(sizes)) {
-      const splitSize = value.toString().split('x')
-      const svg = `
-        <svg xmlns="http://www.w3.org/2000/svg" width="${splitSize[0]}" height="${splitSize[1]}" viewBox="0 0 320 240" preserveAspectRatio="xMidYMid slice">
-          <rect fill="#170f3d" x="-1000%" y="-1000%" width="2100%" height="2100%"/>
-          <text fill="#666" font-family="Helvetica" font-size="24" text-anchor="middle" alignment-baseline="middle" transform="matrix(1 0 0 1 160 120)">${value.replace('x', '×')}</text>
-        </svg>`.replace(/(\n|\s\s)+/g, '')
-
-      sizes[key] = `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`
-    }
-
-    return sizes
-  },
+  // generate_placeholders: (sizes = {}, ratio = '16:9', retinas = [2 /*, 3, 4 */]) => {
+  //   // Get widths if not supplied - from ratio, if possible
+  //   for (const [key, value] of Object.entries(sizes)) {
+  //     let size = value.toString().split('x')
+  //
+  //     if (size.length === 1) {
+  //       if (ratio) {
+  //         const ratioSplit = ratio.toString().split(':')
+  //
+  //         size = `${value}x${Math.round((value / ratioSplit[0]) * ratioSplit[1])}`
+  //       } else {
+  //         size = `${value}x${value}`
+  //       }
+  //
+  //       sizes[key] = size
+  //     }
+  //   }
+  //
+  //   // Add retina sizes
+  //   for (const [key, value] of Object.entries(sizes)) {
+  //     for (const i of retinas) {
+  //       const splitSize = value.toString().split('x')
+  //
+  //       sizes[`${key}${i}x`] = `${splitSize[0] * i}x${splitSize[1] * i}`
+  //     }
+  //   }
+  //
+  //   // Add placeholder urls
+  //   for (const [key, value] of Object.entries(sizes)) {
+  //     const splitSize = value.toString().split('x')
+  //     const svg = `
+  //       <svg xmlns="http://www.w3.org/2000/svg" width="${splitSize[0]}" height="${splitSize[1]}" viewBox="0 0 320 240" preserveAspectRatio="xMidYMid slice">
+  //         <rect fill="#170f3d" x="-1000%" y="-1000%" width="2100%" height="2100%"/>
+  //         <text fill="#666" font-family="Helvetica" font-size="24" text-anchor="middle" alignment-baseline="middle" transform="matrix(1 0 0 1 160 120)">${value.replace('x', '×')}</text>
+  //       </svg>`.replace(/(\n|\s\s)+/g, '')
+  //
+  //     sizes[key] = `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`
+  //   }
+  //
+  //   return sizes
+  // },
 
   // DJANGO SPECIFIC: Support translatable strings via dummy function, for Django translations.
-  _: string => string,
+  // _: string => string,
 
-  // Use static paths and add a version hash to the end of the path to bust the cache.
-  asset_with_hash: (string = '', addFileHash = true) => `${config.project.staticURI}/${string}${addFileHash ? `?v=${getFileHash(string)}` : ``}`,
-
+  // DISABLED DUE TO HARD TO MIGRATE LATER
   // Render an object with a bound macro or with a default macro if it is unbound and optionally overwrite some values.
-  render: (object = {}, defaultMacro = null, override = null) => {
-    let macro, value
-
-    if (object.length === 2) {
-      ;[macro, value] = object
-    } else if (defaultMacro) {
-      ;[macro, value] = [defaultMacro, object]
-    } else {
-      console.log('Nunjucks: render() received an object without macro and no default macro was defined.')
-
-      return ''
-    }
-
-    if (override) {
-      value = { ...value, ...override }
-    }
-
-    return macro({ ...value, __keywords: true })
-  },
+  // render: (object = {}, defaultMacro = null, override = null) => {
+  //   let macro, value
+  //
+  //   if (object.length === 2) {
+  //     ;[macro, value] = object
+  //   } else if (defaultMacro) {
+  //     ;[macro, value] = [defaultMacro, object]
+  //   } else {
+  //     console.log('Nunjucks: render() received an object without macro and no default macro was defined.')
+  //
+  //     return ''
+  //   }
+  //
+  //   if (override) {
+  //     value = { ...value, ...override }
+  //   }
+  //
+  //   return macro({ ...value, __keywords: true })
+  // },
 
   // Check if the objects in an array have a certain property
-  array_value_property_exists: (array = [], key = '') => {
-    for (const values of array) {
-      if (values[key]) {
-        return true
-      }
-    }
-
-    return false
-  },
+  // array_value_property_exists: (array = [], key = '') => {
+  //   for (const values of array) {
+  //     if (values[key]) {
+  //       return true
+  //     }
+  //   }
+  //
+  //   return false
+  // },
 
   // Use to generate a list of attribute and value pairs
   // Transforms [{ key: 'foo', value: 'bar' }] to 'foo="bar"'
-  serialize_key_value_list_to_html_attributes: (list = []) => {
-    return list.map(({ key, value }) => `${key}="${value}"`).join(' ')
-  },
+  // serialize_key_value_list_to_html_attributes: (list = []) => {
+  //   return list.map(({ key, value }) => `${key}="${value}"`).join(' ')
+  // },
 
   // Check if string contains substring
-  contains_substring: (string = '', substring = '') => {
-    return string && substring && string.indexOf(substring) !== -1
-  },
-
-  // Get the stylesheet chunks for the current rendered template, if chunked CSS is enabled.
-  get_chunked_stylesheets: (templatePath = '') => {
-    if (!runtime.useChunkedStylesheets || !templatePath || !runtime.chunkedStylesheetMap) {
-      return []
-    }
-
-    return runtime.chunkedStylesheetMap[templatePath] || []
-  },
-
-  // Create object from schema
-  create_object_from_schema: (dataSource, schema) => {
-    if (!dataSource || !schema) {
-      return {}
-    }
-
-    const result = Object.fromEntries(
-      Object.entries(dataSource).map(([key, src]) => {
-        const mappedValue = {}
-
-        for (const [targetKey, sourceKey] of Object.entries(schema)) {
-          mappedValue[targetKey] = src[sourceKey] || null
-        }
-
-        return [key, mappedValue]
-      }),
-    )
-
-    return result
-  },
+  // contains_substring: (string = '', substring = '') => {
+  //   return string && substring && string.indexOf(substring) !== -1
+  // },
 
   // Get next item in object
   get_next_in_array: (array, current, propKey) => {
@@ -252,69 +238,70 @@ const tags = {
 }
 
 // Stub for thumbnail generation, for use in Django.
-tags.generate_picture = (obj, ...args) => ({ ...obj, images: tags.generate_placeholders(...args) })
+// tags.generate_picture = (obj, ...args) => ({ ...obj, images: tags.generate_placeholders(...args) })
 
 // Filters are nunjucks functions that can be called on a single argument, like so: {{ 'string'|filter }}
 const filters = {
+  // DISABLED BECAUSE HARD TO MIGRATE LATER
   // Interpolate a template string with the current context.
-  interpolate: function (str) {
-    return nunjucks.renderString(str, this.ctx)
-  },
+  // interpolate: function (str) {
+  //  return nunjucks.renderString(str, this.ctx)
+  //},
 
   // Get a random hash with optional prefix.
-  random_hash: (prefix = '') => prefix.toString() + Math.random().toString(36).slice(2, -2),
+  // random_hash: (prefix = '') => prefix.toString() + Math.random().toString(36).slice(2, -2),
 
   // Convert to string and trim whitespace.
-  trim: (string = '') => string.toString().trim(),
+  // trim: (string = '') => string.toString().trim(),
 
   // Split string by key (such as a comma-separated list)
   split: (string = '', key = '') => string.toString().split(key.toString()),
 
   // Convert from Base64 to string.
-  atob: (string = '') => Buffer.from(string, 'base64').toString('utf8'),
+  // atob: (string = '') => Buffer.from(string, 'base64').toString('utf8'),
 
   // Convert string to Base64.
-  btoa: (string = '') => Buffer.from(string).toString('base64'),
+  // btoa: (string = '') => Buffer.from(string).toString('base64'),
 
   // Slugify string, for use in ID's and such.
-  slugify: function (string = '') {
-    const sources = 'àáäâãåăæçèéëêǵḧìíïîḿńǹñòóöôœøṕŕßśșțùúüûǘẃẍÿź·/_,:;'
-    const replacements = 'aaaaaaaaceeeeghiiiimnnnooooooprssstuuuuuwxyz------'
-    const parts = new RegExp(sources.split('').join('|'), 'g')
-
-    let result = string.toString()
-
-    result = result.toLowerCase()
-    result = result.replace(/\s+/g, '-') // Replace spaces with -
-    result = result.replace(parts, character => replacements.charAt(sources.indexOf(character))) // Replace special characters
-    result = result.replace(/&/g, '-and-') // Replace & with 'and'
-    result = result.replace(/[^\w-]+/g, '') // Remove all non-word characters
-    result = result.replace(/--+/g, '-') // Replace multiple dashes with a single dash
-    result = result.replace(/^-+/, '') // Trim - from start of text
-    result = result.replace(/-+$/, '') // Trim - from end of text
-
-    return result
-  },
+  // slugify: function (string = '') {
+  //   const sources = 'àáäâãåăæçèéëêǵḧìíïîḿńǹñòóöôœøṕŕßśșțùúüûǘẃẍÿź·/_,:;'
+  //   const replacements = 'aaaaaaaaceeeeghiiiimnnnooooooprssstuuuuuwxyz------'
+  //   const parts = new RegExp(sources.split('').join('|'), 'g')
+  //
+  //   let result = string.toString()
+  //
+  //   result = result.toLowerCase()
+  //   result = result.replace(/\s+/g, '-') // Replace spaces with -
+  //   result = result.replace(parts, character => replacements.charAt(sources.indexOf(character))) // Replace special characters
+  //   result = result.replace(/&/g, '-and-') // Replace & with 'and'
+  //   result = result.replace(/[^\w-]+/g, '') // Remove all non-word characters
+  //   result = result.replace(/--+/g, '-') // Replace multiple dashes with a single dash
+  //   result = result.replace(/^-+/, '') // Trim - from start of text
+  //   result = result.replace(/-+$/, '') // Trim - from end of text
+  //
+  //   return result
+  // },
 
   // Format object as JSON string.
-  to_json: (object = {}, escapeQuotes = false) => JSON.stringify(object).replace(/"/g, escapeQuotes ? '\\"' : '"'),
+  // to_json: (object = {}, escapeQuotes = false) => JSON.stringify(object).replace(/"/g, escapeQuotes ? '\\"' : '"'),
 
   // Split string by space
-  split_by_space: (string = '') => string.toString().split(' '),
+  // split_by_space: (string = '') => string.toString().split(' '),
 
   // Get index of object in array by key/value
-  index_by_value: (array = [], key, value) => {
-    for (const [i, values] of Object.entries(array)) {
-      if (values[key] && values[key] === value) {
-        return i
-      }
-    }
-
-    return -1
-  },
+  // index_by_value: (array = [], key, value) => {
+  //   for (const [i, values] of Object.entries(array)) {
+  //     if (values[key] && values[key] === value) {
+  //       return i
+  //     }
+  //   }
+  //
+  //   return -1
+  // },
 
   // Remove markup from string (very basic)
-  html_to_text: (string = '') => string.toString().replace(/<[^>]*>/g, ''),
+  // html_to_text: (string = '') => string.toString().replace(/<[^>]*>/g, ''),
 }
 
 // Block tags are Nunjucks tags that can be used to customize parsing and rendering of blocks, like so: {% blocktag %}...{% endblocktag %}
@@ -343,7 +330,7 @@ const blockTags = {
 export default async function nunjucksConfig(api) {
   const manageEnv = function (env) {
     // Set global variables
-    env.addGlobal('environment', api.env)
+    // env.addGlobal('environment', api.env)
 
     // Set variables, tags, filters and block tags.
     Object.entries(variables).forEach(([key, value]) => env.addGlobal(key, value))
@@ -352,8 +339,8 @@ export default async function nunjucksConfig(api) {
     Object.keys(blockTags).forEach(key => env.addExtension(key, new blockTags[key](env)))
 
     // Allow the getting and setting of global context variables in templates.
-    env.addGlobal('get_global', key => env.getGlobal(key))
-    env.addGlobal('set_global', (key, value) => env.addGlobal(key, value))
+    // env.addGlobal('get_global', key => env.getGlobal(key))
+    // env.addGlobal('set_global', (key, value) => env.addGlobal(key, value))
   }
 
   let globalData = {}
@@ -365,27 +352,19 @@ export default async function nunjucksConfig(api) {
     console.error('Error loading data file:', error)
   }
 
-  /*
-  if (globalData) {
-    const createCards = (dataSource, mapper) => Object.fromEntries(Object.entries(dataSource).map(([key, src]) => [key, mapper(src)]))
-
-    // eslint-disable-next-line camelcase
-    const section_cards = createCards(globalData.sections, src => ({ slug: src.slug, href: src.href, title: src.card_title, subtitle: src.card_subtitle || null, image: src.card_image || null }))
-    // eslint-disable-next-line camelcase
-    const section_text_cards = createCards(globalData.sections, src => ({ slug: src.slug, href: src.href, title: src.textcard_title, subtitle: src.textcard_subtitle || null }))
-    // eslint-disable-next-line camelcase
-    const project_cards = createCards(globalData.projects, src => ({ slug: src.slug, href: src.href, title: src.card_title, subtitle: src.card_subtitle || null, image: src.card_image || null, label: src.label || null }))
-
-    // eslint-disable-next-line camelcase
-    globalData = { ...globalData, section_cards, section_text_cards, project_cards }
-  }
-  */
+  // eslint-disable-next-line camelcase
+  const section_cards = mapToSchema(globalData.sections, { slug: 'slug', href: 'href', title: 'card_title', subtitle: 'card_subtitle', image: 'card_image' })
+  // eslint-disable-next-line camelcase
+  const section_text_cards = mapToSchema(globalData.sections, { slug: 'slug', href: 'href', title: 'textcard_title', subtitle: 'textcard_subtitle' })
+  // eslint-disable-next-line camelcase
+  const project_cards = mapToSchema(globalData.projects, { slug: 'slug', href: 'href', title: 'card_title', subtitle: 'card_subtitle', image: 'card_image', label: 'label' })
 
   return {
     nunjucks: {
       path: resolvePath(process.cwd(), config.project.sourcePath),
       ext: '.html',
-      data: { data: globalData },
+      // eslint-disable-next-line camelcase
+      data: { data: globalData, asset_urls: buildAssetUrlMap(), section_cards, section_text_cards, project_cards },
       manageEnv,
       loaders: [new nunjucks.FileSystemLoader(resolvePath(process.cwd(), config.project.sourcePath))],
     },

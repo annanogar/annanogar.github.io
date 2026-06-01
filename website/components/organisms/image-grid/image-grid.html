@@ -22,7 +22,7 @@
             {{ object_set_value(image, 'loading', 'eager') }}
           {% endif %}
 
-          {% if contains_substring(image.src, '_2x1') %}
+          {% if '_2x1' in image.src %}
             <li class="image-grid__image image-grid__image--2x1">
               {{
                 atom_picture.regular(

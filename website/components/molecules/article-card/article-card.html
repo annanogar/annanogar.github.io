@@ -2,7 +2,7 @@
   {% set new_tab_warning = 'Opens in a new window or tab' %}
 
   {% if href and title %}
-    <a class="article-card" href="{{ href }}" {% if target %}target="{{ target }}"{% endif %} {% if target === '_blank' %}rel="noopener noreferrer" aria-label="{% if pretitle %}{{ pretitle|html_to_text + ' ' }}{% endif %}{{ title|html_to_text }} ({{ new_tab_warning }})"{% endif %}>
+    <a class="article-card" href="{{ href }}" {% if target %}target="{{ target }}"{% endif %} {% if target === '_blank' %}rel="noopener noreferrer" aria-label="{% if pretitle %}{{ pretitle|striptags + ' ' }}{% endif %}{{ title|striptags }} ({{ new_tab_warning }})"{% endif %}>
       <div class="article-card__content">
         {% if pretitle %}
           <p class="article-card__pretitle">{{ pretitle }}</p>
