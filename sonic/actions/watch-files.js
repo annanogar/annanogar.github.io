@@ -9,12 +9,10 @@
  * - watchTasks (object) - The watch tasks object
  *
  * NOTE: This requires the "parcel-watcher" package
- * NOTE: This requires the "picomatch" package
  */
 
 import runtime from '../runtime.js'
-import { basename, dirname, relative as relativePath } from 'node:path'
-import picomatch from 'picomatch'
+import { basename, dirname, matchesGlob, relative as relativePath } from 'node:path'
 
 const eventDecorations = { create: '+', update: '~', delete: '-' }
 const getDecoration = event => `${runtime.colors.warning}${eventDecorations[event]}${runtime.colors.reset}`
@@ -154,14 +152,14 @@ export default async function watchFiles(config = {}, watchTasks = {}, trailingT
       const path = relativePath(process.cwd(), event.path)
 
       // Skip the event if the path is not within the source path or directly in the root
-      const matchesAnyWatchGlob = Object.values(config).some(c => c?.watchGlobs && picomatch.isMatch(path, c.watchGlobs))
+      const matchesAnyWatchGlob = Object.values(config).some(c => c?.watchGlobs && [c.watchGlobs].flat().some(g => matchesGlob(path, g)))
       if (!path || (!path.startsWith(config.project.sourcePath) && !matchesAnyWatchGlob)) {
         return
       }
 
       const handleEntry = async ([name, callback = async () => {}]) => {
         // Return if there are no watch globs, or the current file event is excluded by the specified watch globs
-        if (!config[name]?.watchGlobs || !picomatch.isMatch(path, config[name]?.watchGlobs)) {
+        if (!config[name]?.watchGlobs || ![config[name].watchGlobs].flat().some(g => matchesGlob(path, g))) {
           return
         }
 

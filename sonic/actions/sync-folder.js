@@ -9,7 +9,10 @@
  */
 
 import runtime from '../runtime.js'
-import { promisifiedExec } from '../utilities.js'
+import { execFile } from 'node:child_process'
+import { promisify } from 'node:util'
+
+const execFileAsync = promisify(execFile)
 
 // Sync a folder with a remote server
 export default async function syncFolder(path = '') {
@@ -20,8 +23,17 @@ export default async function syncFolder(path = '') {
   // Get the current time for the time measurement
   const timestamp = new Date()
 
-  // Run the shell command
-  const { stdout, stderr } = await promisifiedExec(`rsync -rLktzi --safe-links --delete --quiet --exclude=".*" -e ssh "./${path}/" "${runtime.settings.stagingUser}@${runtime.settings.stagingHost}:${runtime.settings.stagingPath}"`)
+  // Run rsync with an explicit args array — no shell involved, so paths with spaces or special characters are safe
+  const { stdout, stderr } = await execFileAsync('rsync', [
+    '-rLktzi',
+    '--safe-links',
+    '--delete',
+    '--quiet',
+    '--exclude=.*',
+    '-e', 'ssh',
+    `./${path}/`,
+    `${runtime.settings.stagingUser}@${runtime.settings.stagingHost}:${runtime.settings.stagingPath}`,
+  ])
 
   // Output the stdout
   if (stdout) {

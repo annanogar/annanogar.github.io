@@ -4,15 +4,11 @@
 
 import runtime from './runtime.js'
 import { getDependencyList } from '@eklingen/nunjucks-dependencies'
-import { exec } from 'node:child_process'
 import { access, readFile } from 'node:fs/promises'
 import { relative as relativePath, resolve as resolvePath } from 'node:path'
 import { promisify } from 'node:util'
 import { gzip } from 'node:zlib'
 import { glob as tGlob } from 'tinyglobby'
-
-// Promisified exec call
-export const promisifiedExec = promisify(exec)
 
 // Promisified gzip call
 export const promisifiedGzip = promisify(gzip)
