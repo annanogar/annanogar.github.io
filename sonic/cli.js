@@ -2,73 +2,107 @@
  * Command-line interface functionality for Sonic
  */
 
+import { parseArgs } from 'node:util'
+
 import runtime from './runtime.js'
 import { helpText, logoBase64, tasksText, versionText } from './meta.js'
 import cliTasks from './tasks.js'
 
-const allowedFlagArguments = ['--production', '--debug', '--fullcopy', '--no-autofix', '--loglevel=normal', '--loglevel=quiet', '--loglevel=verbose', '--quiet', '--verbose', '--version', '--help', '--tasks', '--no-color', '--no-cache', '--postinstall']
 const deprecatedArguments = [] // Add deprecated arguments here
-const cliArguments = process.argv.slice(2)
 
-const flagArguments = []
+// Declare all known options.
+// allowNegative: true enables --no-<flag> to negate any boolean option (e.g. --no-autofix,
+// --no-color, --no-cache). strict: false silently ignores unrecognised flags, matching prior
+// behaviour. loglevel accepts --loglevel=quiet|verbose|normal or --loglevel <value>.
+const cliOptions = {
+  production:  { type: 'boolean', default: false },
+  debug:       { type: 'boolean', default: false },
+  fullcopy:    { type: 'boolean', default: false },
+  autofix:     { type: 'boolean', default: true  }, // negated via --no-autofix
+  loglevel:    { type: 'string'                  }, // quiet|normal|verbose
+  quiet:       { type: 'boolean', default: false },
+  verbose:     { type: 'boolean', default: false },
+  version:     { type: 'boolean', default: false },
+  help:        { type: 'boolean', default: false },
+  tasks:       { type: 'boolean', default: false },
+  color:       { type: 'boolean', default: true  }, // negated via --no-color
+  colors:      { type: 'boolean', default: true  }, // negated via --no-colors
+  cache:       { type: 'boolean', default: true  }, // negated via --no-cache
+  postinstall: { type: 'boolean', default: false },
+}
+
+const { values: flags, positionals, tokens } = parseArgs({
+  args: process.argv.slice(2),
+  allowPositionals: true,
+  allowNegative: true,
+  strict: false,
+  tokens: true,
+  options: cliOptions,
+})
+
+const knownOptionNames = new Set(Object.keys(cliOptions))
+
+// Only count flags that are actually declared — unknown flags are silently ignored and should
+// not prevent the auto-start or help-on-unknown-task logic from triggering.
+const hasExplicitFlags = tokens.some(t => t.kind === 'option' && knownOptionNames.has(t.name))
+
+// Separate positionals into known tasks, unknown args, and deprecated
 const taskArguments = []
 const unknownTaskArguments = []
 const deprecatedTaskArgumentsUsed = []
 
-const filterArguments = () => {
-  if (taskArguments.length || flagArguments.length) {
-    return // Arguments have already been filtered
+for (const name of positionals) {
+  if (deprecatedArguments.includes(name)) {
+    deprecatedTaskArgumentsUsed.push(name)
+  } else if (cliTasks[name]) {
+    taskArguments.push(name)
+  } else {
+    unknownTaskArguments.push(name)
   }
-
-  const unfilteredFlagArguments = cliArguments.filter(arg => arg.startsWith('--') || deprecatedArguments.includes(arg))
-  const unfilteredTaskArguments = cliArguments.filter(arg => !unfilteredFlagArguments.includes(arg))
-
-  flagArguments.push(...unfilteredFlagArguments.filter(arg => allowedFlagArguments.includes(arg)))
-  taskArguments.push(...unfilteredTaskArguments.filter(name => cliTasks[name]))
-  unknownTaskArguments.push(...unfilteredTaskArguments.filter(name => !cliTasks[name]))
-  deprecatedTaskArgumentsUsed.push(...cliArguments.filter(arg => deprecatedArguments.includes(arg)))
 }
 
 // Setup default arguments
 const setupDefaultArguments = () => {
   // Show help if arguments are unknown (typos, etc.)
-  if (unknownTaskArguments.length && !taskArguments.length && !flagArguments.length) {
-    flagArguments.push('--help')
+  if (unknownTaskArguments.length && !taskArguments.length && !hasExplicitFlags) {
+    flags.help = true
   }
 
   // Auto start if no arguments are given
-  if (!taskArguments.length && !flagArguments.length) {
+  if (!taskArguments.length && !hasExplicitFlags && !flags.help) {
     taskArguments.push('start')
   }
 
   // Allows for cleanup after Yarn install;
   // Should be the same as `node sonic clean-cache clean --no-color --no-cache`.
-  if (flagArguments.includes('--postinstall')) {
+  if (flags.postinstall) {
     taskArguments.push('clean-cache', 'clean')
   }
 }
 
-// Set global variables based on flags or task names
-const setGlobals = () => {
-  runtime.noColors = process.env.NO_COLOR || flagArguments.includes('--no-color') || flagArguments.includes('--no-colors') || flagArguments.includes('--postinstall')
-  runtime.noCache = process.env.NO_CACHE || flagArguments.includes('--no-cache') || flagArguments.includes('--postinstall')
-  runtime.environment = flagArguments.includes('--production') || taskArguments.some(task => ['build', 'build-chunked', 'deploy'].includes(task)) ? 'production' : flagArguments.includes('--debug') ? 'debug' : 'development'
-  runtime.useSymlinks = !flagArguments.includes('--fullcopy')
-  runtime.autofix = !flagArguments.includes('--no-autofix')
+// Set runtime variables based on flags and tasks
+const setRuntime = () => {
+  runtime.noColors = !!(process.env.NO_COLOR || !flags.color || !flags.colors || flags.postinstall)
+  runtime.noCache = !!(process.env.NO_CACHE || !flags.cache || flags.postinstall)
+  runtime.environment = flags.production || taskArguments.some(task => ['build', 'build-chunked', 'deploy'].includes(task)) ? 'production' : flags.debug ? 'debug' : 'development'
+  runtime.useSymlinks = !flags.fullcopy
+  runtime.autofix = flags.autofix
 }
 
 // Set log level
 const setLogLevel = () => {
-  if (flagArguments.includes('--loglevel=quiet') || flagArguments.includes('--quiet') || flagArguments.includes('--postinstall') || process.env.SONIC_LOG_LEVEL === 'quiet') {
+  const loglevel = flags.loglevel?.toLowerCase()
+
+  if (loglevel === 'quiet' || flags.quiet || flags.postinstall || process.env.SONIC_LOG_LEVEL === 'quiet') {
     runtime.logLevel = 'quiet'
-  } else if (flagArguments.includes('--loglevel=verbose') || flagArguments.includes('--verbose') || process.env.SONIC_LOG_LEVEL === 'verbose') {
+  } else if (loglevel === 'verbose' || flags.verbose || process.env.SONIC_LOG_LEVEL === 'verbose') {
     runtime.logLevel = 'verbose'
   } else {
     runtime.logLevel = 'normal'
   }
 }
 
-// Reset all global colors if colors are disabled
+// Reset all runtime colors if colors are disabled
 const setColors = () => {
   if (runtime.noColors) {
     for (const color in runtime.colors) {
@@ -79,14 +113,14 @@ const setColors = () => {
 
 // Shows version number, help information or task list
 const showShortcuts = () => {
-  if (flagArguments.includes('--version') || flagArguments.includes('version')) {
+  if (flags.version) {
     process.stdout.write(`${versionText}\n`)
     process.exit()
-  } else if (flagArguments.includes('--help') || flagArguments.includes('help')) {
+  } else if (flags.help) {
     process.stdout.write(`${versionText}\n`)
     process.stdout.write(`${helpText}\n`)
     process.exit()
-  } else if (flagArguments.includes('--tasks') || flagArguments.includes('tasks')) {
+  } else if (flags.tasks) {
     process.stdout.write(`${tasksText}\n`)
     process.exit()
   }
@@ -101,9 +135,8 @@ const showLogo = () => {
 }
 
 export const initializeCli = () => {
-  filterArguments()
   setupDefaultArguments()
-  setGlobals()
+  setRuntime()
   setLogLevel()
   setColors()
   showShortcuts()
@@ -111,5 +144,5 @@ export const initializeCli = () => {
 
   const runnableTasks = taskArguments.map(name => cliTasks[name])
 
-  return { taskArguments, unknownTaskArguments, deprecatedTaskArgumentsUsed, flagArguments, runnableTasks }
+  return { taskArguments, unknownTaskArguments, deprecatedTaskArgumentsUsed, runnableTasks, flags }
 }

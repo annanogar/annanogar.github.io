@@ -21,7 +21,7 @@ const timestamp = new Date()
 const time = timestamp.toISOString().substring(11, 19)
 
 // Read CLI Arguments (and mutate runtime state)
-const { taskArguments, unknownTaskArguments, deprecatedTaskArgumentsUsed, flagArguments, runnableTasks } = initializeCli()
+const { taskArguments, unknownTaskArguments, deprecatedTaskArgumentsUsed, runnableTasks, flags } = initializeCli()
 
 // Try to read .env file if it exists; use native functionality if available (node v20+) or fallback to dotenv
 if (!Object.keys(process.env).some(k => ~k.indexOf('SONIC_')) && (await pathExists('.env'))) {
@@ -29,7 +29,7 @@ if (!Object.keys(process.env).some(k => ~k.indexOf('SONIC_')) && (await pathExis
 }
 
 // Require the ".env" file, unless we're running `--postinstall`
-if (!flagArguments.includes('--postinstall') && !(await pathExists('.env'))) {
+if (!flags.postinstall && !(await pathExists('.env'))) {
   process.stdout.write(`${runtime.colors.error}Error:${runtime.colors.reset} Could not load the ".env" file.\nPlease make sure you copied ".env.example" to ".env" before starting Sonic.\n`)
   process.exit(1)
 }
