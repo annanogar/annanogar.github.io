@@ -60,9 +60,6 @@
     "tinyglobby": "0.2.16",
     "yazl": "3.3.1"
   },
-  "optionalDevDependencies": {
-    "dotenv": "16.4.5"
-  },
   "resolutionExplanations": {
     "node-gyp": "linked to null because we don't need it - note: this breaks fs-events and @parcel/watcher (re-)compilation"
   },
