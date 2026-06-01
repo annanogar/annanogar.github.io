@@ -13,26 +13,6 @@
 {% set opengraph_description = site_description %}
 {% set opengraph_image = '/static/media/misc/social_1200x630.jpg' %}
 
-{%
-  set project_grid_cards = [
-    project_cards.shifting_image,
-    project_cards.maker_park,
-    project_cards.family_exhibits,
-    project_cards.vanishing,
-    project_cards.cruquius_museum,
-    project_cards.joh_enschede,
-    project_cards.herman_boerhaave,
-    project_cards.living_planet,
-    project_cards.badge_academy,
-    project_cards.parassita,
-    project_cards.canon,
-    project_cards.het_steen,
-    project_cards.middelen_meter,
-    project_cards.prodemos,
-    project_cards.interplanetary
-  ]
-%}
-
 {% block skip_to_main %}
   {{ skip_to_main.regular(title = data.base.skiplink_aria_label, aria_label = data.base.skiplink_aria_label) }}
 {% endblock %}

@@ -442,8 +442,7 @@ const sections = {
 }
 
 const projects = {
-  badge_academy: {
-    slug: 'badge-academy',
+  'badge-academy': {
     href: '/projects/badge-academy/',
     menu_title: 'Badge Academy',
     menu_aria_label: 'Explore the “Badge Academy” project',
@@ -466,7 +465,6 @@ const projects = {
   },
 
   canon: {
-    slug: 'canon',
     href: '/projects/canon/',
     menu_title: 'Canon Pro Network',
     menu_aria_label: 'Explore the “Canon Pro Network” project',
@@ -487,8 +485,7 @@ const projects = {
     copyright: '© Canon Europe. All rights reserved.',
   },
 
-  cruquius_museum: {
-    slug: 'cruquius-museum',
+  'cruquius-museum': {
     href: '/projects/cruquius-museum/',
     menu_title: 'Cruquius Museum',
     menu_aria_label: 'Explore the “Cruquius Museum” project',
@@ -514,8 +511,7 @@ const projects = {
     copyright: '© Studio Louter. All rights reserved.',
   },
 
-  family_exhibits: {
-    slug: 'family-exhibits',
+  'family-exhibits': {
     href: '/projects/family-exhibits/',
     menu_title: 'Family Exhibits',
     menu_aria_label: 'Explore the “Family Exhibits” project',
@@ -543,8 +539,7 @@ const projects = {
     copyright: '© Studio Louter. All rights reserved.',
   },
 
-  herman_boerhaave: {
-    slug: 'herman-boerhaave',
+  'herman-boerhaave': {
     href: '/projects/herman-boerhaave/',
     menu_title: 'Herman Boerhaave',
     menu_aria_label: 'Explore the “Herman Boerhaave” project',
@@ -566,8 +561,7 @@ const projects = {
     copyright: '© Studio Louter. All rights reserved.',
   },
 
-  het_steen: {
-    slug: 'het-steen',
+  'het-steen': {
     href: '/projects/het-steen/',
     menu_title: 'Visit Antwerp',
     menu_aria_label: 'Explore the “Visit Antwerp” project',
@@ -590,7 +584,6 @@ const projects = {
   },
 
   interplanetary: {
-    slug: 'interplanetary',
     href: '/projects/interplanetary/',
     menu_title: 'Interplanetary',
     menu_aria_label: 'Explore the “Interplanetary” project',
@@ -611,8 +604,7 @@ const projects = {
     copyright: 'Developed at IUAV University of Venice',
   },
 
-  joh_enschede: {
-    slug: 'joh-enschede',
+  'joh-enschede': {
     href: '/projects/joh-enschede/',
     menu_title: 'Joh. Enschedé',
     menu_aria_label: 'Explore the “Joh. Enschedé” project',
@@ -641,8 +633,7 @@ const projects = {
     copyright: '© Studio Louter. All rights reserved.',
   },
 
-  living_planet: {
-    slug: 'living-planet',
+  'living-planet': {
     href: '/projects/living-planet/',
     menu_title: 'Living Planet',
     menu_aria_label: 'Explore the “Living Planet” project',
@@ -664,8 +655,7 @@ const projects = {
     copyright: '© Studio Louter. All rights reserved.',
   },
 
-  maker_park: {
-    slug: 'maker-park',
+  'maker-park': {
     href: '/projects/maker-park/',
     menu_title: 'Maker Park',
     menu_aria_label: 'Explore the “Maker Park” project',
@@ -689,8 +679,7 @@ const projects = {
     copyright: '© IJsfontein. All rights reserved.',
   },
 
-  middelen_meter: {
-    slug: 'middelen-meter',
+  'middelen-meter': {
     href: '/projects/middelen-meter/',
     menu_title: 'Middelen Meter',
     menu_aria_label: 'Explore the “Middelen Meter” project',
@@ -713,7 +702,6 @@ const projects = {
   },
 
   parassita: {
-    slug: 'parassita',
     href: '/projects/parassita/',
     menu_title: 'Parassita',
     menu_aria_label: 'Explore the “Parassita” project',
@@ -735,7 +723,6 @@ const projects = {
   },
 
   prodemos: {
-    slug: 'prodemos',
     href: '/projects/prodemos/',
     menu_title: 'Make your own law',
     menu_aria_label: 'Explore the “Make your own law” project',
@@ -757,8 +744,7 @@ const projects = {
     copyright: '© Studio Louter. All rights reserved.',
   },
 
-  shifting_image: {
-    slug: 'shifting-image',
+  'shifting-image': {
     href: '/projects/shifting-image/',
     menu_title: 'Shifting Image',
     menu_aria_label: 'Explore the “Shifting Image” project',
@@ -790,7 +776,6 @@ const projects = {
   },
 
   vanishing: {
-    slug: 'vanishing',
     href: '/projects/vanishing/',
     menu_title: 'Vanishing',
     menu_aria_label: 'Explore the “Vanishing” project',
@@ -882,7 +867,7 @@ const content_blocks = {
     },
   ],
 
-  badge_academy: [
+  'badge-academy': [
     {
       type: 'image-grid',
       title: 'The overview',
@@ -971,7 +956,7 @@ const content_blocks = {
     },
   ],
 
-  cruquius_museum: [
+  'cruquius-museum': [
     {
       type: 'image-grid',
       title: 'The overview',
@@ -1009,7 +994,7 @@ const content_blocks = {
     },
   ],
 
-  family_exhibits: [
+  'family-exhibits': [
     {
       type: 'image-grid',
       title: 'The overview',
@@ -1048,7 +1033,7 @@ const content_blocks = {
     },
   ],
 
-  herman_boerhaave: [
+  'herman-boerhaave': [
     {
       type: 'image-grid',
       title: 'The overview',
@@ -1084,7 +1069,7 @@ const content_blocks = {
     },
   ],
 
-  het_steen: [
+  'het-steen': [
     {
       type: 'image-grid',
       title: 'The overview',
@@ -1158,7 +1143,7 @@ const content_blocks = {
     },
   ],
 
-  joh_enschede: [
+  'joh-enschede': [
     {
       type: 'image-grid',
       title: 'The overview',
@@ -1195,7 +1180,7 @@ const content_blocks = {
     },
   ],
 
-  living_planet: [
+  'living-planet': [
     {
       type: 'image-grid',
       title: 'The overview',
@@ -1233,7 +1218,7 @@ const content_blocks = {
     },
   ],
 
-  maker_park: [
+  'maker-park': [
     {
       type: 'image-grid',
       title: 'The overview',
@@ -1311,7 +1296,7 @@ const content_blocks = {
     },
   ],
 
-  middelen_meter: [
+  'middelen-meter': [
     {
       type: 'image-grid',
       title: 'The overview',
@@ -1480,7 +1465,7 @@ const content_blocks = {
     },
   ],
 
-  shifting_image: [
+  'shifting-image': [
     {
       type: 'image-grid',
       title: 'The overview',
@@ -1673,6 +1658,25 @@ const getMenuItems = (sectionSlugs, projectSlugs, allSections, allProjects) => {
   return mappedSlugs.filter(Boolean)
 }
 
+// eslint-disable-next-line camelcase
+const project_order = [
+  'shifting-image',
+  'maker-park',
+  'family-exhibits',
+  'vanishing',
+  'cruquius-museum',
+  'joh-enschede',
+  'herman-boerhaave',
+  'living-planet',
+  'badge-academy',
+  'parassita',
+  'canon',
+  'het-steen',
+  'middelen-meter',
+  'prodemos',
+  'interplanetary',
+]
+
 export default {
   base,
   socials,
@@ -1685,4 +1689,6 @@ export default {
   // eslint-disable-next-line camelcase
   resource_cards,
   content_blocks: setAllImageAlts(content_blocks, alts),
+  // eslint-disable-next-line camelcase
+  project_order,
 }

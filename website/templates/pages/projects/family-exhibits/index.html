@@ -6,8 +6,8 @@
 {% import 'components/organisms/image-header/image-header.html' as image_header %}
 {% import 'components/organisms/video-player/video-player.html' as video_player %}
 
-{% set project = data.projects.family_exhibits %}
-{% set content_blocks = data.content_blocks.family_exhibits %}
+{% set project = data.projects['family-exhibits'] %}
+{% set content_blocks = data.content_blocks['family-exhibits'] %}
 
 {% set page_title = project.title %}
 {% set page_description = project.description %}
@@ -29,6 +29,6 @@
 
   {{ article_footer.regular(awards_title = data.base.awards_title, awards = project.awards, recognitions_title = data.base.recognitions_title, recognitions = project.recognitions, credits_title = data.base.credits_title, credits = project.credits, copyright = project.copyright) }}
 
-  {% set next_project_card = get_next_in_array(project_grid_cards, project.slug, 'slug') %}
+  {% set next_project_card = next_project_map['family-exhibits'] %}
   {{ call_to_action.regular(variant = 'badge', quote = data.base.project_cta_quote, card = next_project_card) }}
 {% endblock %}

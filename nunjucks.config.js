@@ -221,20 +221,6 @@ const tags = {
   //   return string && substring && string.indexOf(substring) !== -1
   // },
 
-  // Get next item in object
-  get_next_in_array: (array, current, propKey) => {
-    if (!array || array.length === 0) {
-      return null
-    }
-
-    const currentIndex = array.findIndex(item => (propKey ? item && item[propKey] === current : item === current))
-
-    if (currentIndex === -1) {
-      return array[0]
-    }
-
-    return array[(currentIndex + 1) % array.length]
-  },
 }
 
 // Stub for thumbnail generation, for use in Django.
@@ -357,14 +343,18 @@ export default async function nunjucksConfig(api) {
   // eslint-disable-next-line camelcase
   const section_text_cards = mapToSchema(globalData.sections, { slug: 'slug', href: 'href', title: 'textcard_title', subtitle: 'textcard_subtitle' })
   // eslint-disable-next-line camelcase
-  const project_cards = mapToSchema(globalData.projects, { slug: 'slug', href: 'href', title: 'card_title', subtitle: 'card_subtitle', image: 'card_image', label: 'label' })
+  const project_cards = mapToSchema(globalData.projects, { href: 'href', title: 'card_title', subtitle: 'card_subtitle', image: 'card_image', label: 'label' })
+  // eslint-disable-next-line camelcase
+  const project_grid_cards = (globalData.project_order || []).map(slug => project_cards[slug])
+  // eslint-disable-next-line camelcase
+  const next_project_map = Object.fromEntries((globalData.project_order || []).map((slug, i, arr) => [slug, project_cards[arr[(i + 1) % arr.length]]]))
 
   return {
     nunjucks: {
       path: resolvePath(process.cwd(), config.project.sourcePath),
       ext: '.html',
       // eslint-disable-next-line camelcase
-      data: { data: globalData, asset_urls: buildAssetUrlMap(), section_cards, section_text_cards, project_cards },
+      data: { data: globalData, asset_urls: buildAssetUrlMap(), section_cards, section_text_cards, project_cards, project_grid_cards, next_project_map },
       manageEnv,
       loaders: [new nunjucks.FileSystemLoader(resolvePath(process.cwd(), config.project.sourcePath))],
     },
