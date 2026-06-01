@@ -17,6 +17,7 @@
  */
 
 import config from '../sonic.config.js'
+import runtime from './runtime.js'
 import { getTemplateSubset } from './utilities.js'
 
 // Level 0: Actions - these are the functions that actually do the work
@@ -51,11 +52,11 @@ export const tasks = {
   archiveFolder: async (path = config.project.destinationPath) => await actionArchiveFolder(path),
   cleanBuild: async (path = config.project.destinationPath) => await actionDeletePath(path),
   cleanCache: async () => {
-    await global.losslessSourceHashCache?.clear(true)
+    await runtime.losslessSourceHashCache?.clear(true)
     await actionDeletePath('node_modules/.cache')
   },
   cleanLossyHashCache: async () => {
-    await global.lossySourceHashCache?.clear(true)
+    await runtime.lossySourceHashCache?.clear(true)
   },
   cleanScripts: async (path = config.scripts.destinationPath) => await actionDeletePath(path),
   cleanStylesheets: async (path = config.stylesheets.destinationPath) => await actionDeletePath(path),
@@ -68,25 +69,25 @@ export const tasks = {
   copyMockData: async (paths = config.mockData.sourceGlobs) => await actionCopyFiles(paths, config.mockData.sourcePath, config.mockData.destinationPath, 'mock-data files'),
   copyVendor: async (paths = config.vendor.sourceGlobs) => await actionCopyFiles(paths, config.vendor.sourcePath, config.vendor.destinationPath, 'vendor files'),
   copyShaders: async (paths = config.shaders.sourceGlobs) => await actionCopyFiles(paths, config.shaders.sourcePath, config.shaders.destinationPath, 'shader files'),
-  formatMockData: async (paths = config.mockData.formatGlobs, hashCache = global.losslessSourceHashCache) => await actionFormatFiles(paths, 'mock-data', hashCache),
+  formatMockData: async (paths = config.mockData.formatGlobs, hashCache = runtime.losslessSourceHashCache) => await actionFormatFiles(paths, 'mock-data', hashCache),
   formatOutputTemplates: async (paths = config.templates.formatOutputGlobs) => await actionFormatFiles(paths, 'output templates', null, false),
-  formatScripts: async (paths = config.scripts.formatGlobs, hashCache = global.losslessSourceHashCache) => await actionFormatFiles(paths, 'scripts', hashCache),
-  formatStylesheets: async (paths = config.stylesheets.formatGlobs, hashCache = global.losslessSourceHashCache) => await actionFormatFiles(paths, 'stylesheets', hashCache),
-  formatTemplates: async (paths = config.templates.formatGlobs, hashCache = global.losslessSourceHashCache) => await actionFormatFiles(paths, 'templates', hashCache),
+  formatScripts: async (paths = config.scripts.formatGlobs, hashCache = runtime.losslessSourceHashCache) => await actionFormatFiles(paths, 'scripts', hashCache),
+  formatStylesheets: async (paths = config.stylesheets.formatGlobs, hashCache = runtime.losslessSourceHashCache) => await actionFormatFiles(paths, 'stylesheets', hashCache),
+  formatTemplates: async (paths = config.templates.formatGlobs, hashCache = runtime.losslessSourceHashCache) => await actionFormatFiles(paths, 'templates', hashCache),
   generateChunkedStylesheets: async () => await actionGenerateChunkedStylesheets(config.stylesheets.chunked),
-  lintScripts: async (paths = config.scripts.lintGlobs, hashCache = global.losslessSourceHashCache) => await actionLintScripts(paths, hashCache),
-  lintStylesheets: async (paths = config.stylesheets.lintGlobs, hashCache = global.losslessSourceHashCache) => await actionLintStylesheets(paths, hashCache),
-  optimizeIcons: async (paths = config.icons.sourceGlobs, hashCache = global.losslessSourceHashCache) => await actionOptimizeVectors(paths, 'icons', hashCache),
-  optimizeImages: async (paths = config.images.sourceGlobs, hashCache = global.losslessSourceHashCache) => {
-    await actionOptimizeImages(paths, 'images', global.lossySourceHashCache)
+  lintScripts: async (paths = config.scripts.lintGlobs, hashCache = runtime.losslessSourceHashCache) => await actionLintScripts(paths, hashCache),
+  lintStylesheets: async (paths = config.stylesheets.lintGlobs, hashCache = runtime.losslessSourceHashCache) => await actionLintStylesheets(paths, hashCache),
+  optimizeIcons: async (paths = config.icons.sourceGlobs, hashCache = runtime.losslessSourceHashCache) => await actionOptimizeVectors(paths, 'icons', hashCache),
+  optimizeImages: async (paths = config.images.sourceGlobs, hashCache = runtime.losslessSourceHashCache) => {
+    await actionOptimizeImages(paths, 'images', runtime.lossySourceHashCache)
     await actionOptimizeVectors(paths, 'images', hashCache)
   },
-  optimizeMedia: async (paths = config.media.sourceGlobs, hashCache = global.losslessSourceHashCache) => {
-    await actionOptimizeImages(paths, 'media files', global.lossySourceHashCache)
+  optimizeMedia: async (paths = config.media.sourceGlobs, hashCache = runtime.losslessSourceHashCache) => {
+    await actionOptimizeImages(paths, 'media files', runtime.lossySourceHashCache)
     await actionOptimizeVectors(paths, 'media files', hashCache)
     // NOTE: Optimizing videos is not supported.
   },
-  processStylesheets: async (paths = config.stylesheets.formatGlobs, hashCache = global.losslessSourceHashCache) => await actionProcessStylesheets(paths, config.stylesheets.sourcePath, hashCache),
+  processStylesheets: async (paths = config.stylesheets.formatGlobs, hashCache = runtime.losslessSourceHashCache) => await actionProcessStylesheets(paths, config.stylesheets.sourcePath, hashCache),
   serveFiles: async (path = config.project.destinationPath) => await actionServeFiles(path),
   sync: async (path = config.project.destinationPath) => await actionSyncFolder(path),
   watchFiles: async () => await actionWatchFiles(config, watchTasks, trailingTasks, backgroundTasks),
@@ -96,8 +97,8 @@ export const tasks = {
 // NOTE: There are some tasks that have multiple awaits. These could be combined into Promise.all(), but the performance benefit in neglible in this case. All it does is scatter the flamechart and give confusing terminal output if the file input is invalid in some way (think linters).
 export const composedTasks = {
   clean: async (subsetOnly = false) => {
-    if (global.logLevel !== 'quiet') {
-      process.stdout.write(`  ${global.colors.accent}Cleaning${global.colors.reset} artifacts...\n`)
+    if (runtime.logLevel !== 'quiet') {
+      process.stdout.write(`  ${runtime.colors.accent}Cleaning${runtime.colors.reset} artifacts...\n`)
     }
 
     if (subsetOnly) {
@@ -107,32 +108,32 @@ export const composedTasks = {
       await tasks.cleanBuild()
     }
 
-    await global.losslessSourceHashCache.save(true)
+    await runtime.losslessSourceHashCache.save(true)
   },
 
   compile: async () => {
-    if (global.logLevel !== 'quiet') {
-      process.stdout.write(`  ${global.colors.accent}Compiling${global.colors.reset} assets...\n`)
+    if (runtime.logLevel !== 'quiet') {
+      process.stdout.write(`  ${runtime.colors.accent}Compiling${runtime.colors.reset} assets...\n`)
     }
 
     await tasks.compileScripts()
     await tasks.compileStylesheets()
 
     // Reset chunked stylesheet globals for classic build - must be done after stylesheets compile but before templates
-    global.useChunkedStylesheets = false
-    global.chunkedStylesheetMap = undefined
-    global.chunkedStylesheetEntrypoints = undefined
+    runtime.useChunkedStylesheets = false
+    runtime.chunkedStylesheetMap = undefined
+    runtime.chunkedStylesheetEntrypoints = undefined
 
     await tasks.compileTemplates()
 
-    if (global.settings.formatOutputTemplates && global.environment === 'production') {
+    if (runtime.settings.formatOutputTemplates && runtime.environment === 'production') {
       await tasks.formatOutputTemplates()
     }
   },
 
   compileChunked: async () => {
-    if (global.logLevel !== 'quiet') {
-      process.stdout.write(`  ${global.colors.accent}Compiling${global.colors.reset} assets with chunked stylesheets...\n`)
+    if (runtime.logLevel !== 'quiet') {
+      process.stdout.write(`  ${runtime.colors.accent}Compiling${runtime.colors.reset} assets with chunked stylesheets...\n`)
     }
 
     await tasks.compileScripts()
@@ -140,14 +141,14 @@ export const composedTasks = {
     await tasks.compileStylesheets(config.stylesheets.chunked.sourceGlobs)
     await tasks.compileTemplates()
 
-    if (global.settings.formatOutputTemplates && global.environment === 'production') {
+    if (runtime.settings.formatOutputTemplates && runtime.environment === 'production') {
       await tasks.formatOutputTemplates()
     }
   },
 
   format: async () => {
-    if (global.logLevel !== 'quiet') {
-      process.stdout.write(`  ${global.colors.accent}Formatting${global.colors.reset} sources...\n`)
+    if (runtime.logLevel !== 'quiet') {
+      process.stdout.write(`  ${runtime.colors.accent}Formatting${runtime.colors.reset} sources...\n`)
     }
 
     await tasks.formatScripts()
@@ -157,8 +158,8 @@ export const composedTasks = {
   },
 
   optimize: async () => {
-    if (global.logLevel !== 'quiet') {
-      process.stdout.write(`  ${global.colors.accent}Optimizing${global.colors.reset} images...\n`)
+    if (runtime.logLevel !== 'quiet') {
+      process.stdout.write(`  ${runtime.colors.accent}Optimizing${runtime.colors.reset} images...\n`)
     }
 
     await tasks.optimizeIcons()
@@ -167,18 +168,18 @@ export const composedTasks = {
   },
 
   process: async () => {
-    if (global.logLevel !== 'quiet') {
-      process.stdout.write(`  ${global.colors.accent}Processing${global.colors.reset} sources...\n`)
+    if (runtime.logLevel !== 'quiet') {
+      process.stdout.write(`  ${runtime.colors.accent}Processing${runtime.colors.reset} sources...\n`)
     }
 
-    if (global.settings.useAutoprefixer) {
+    if (runtime.settings.useAutoprefixer) {
       await tasks.processStylesheets()
     }
   },
 
   link: async () => {
-    if (global.logLevel !== 'quiet') {
-      process.stdout.write(`  ${global.colors.accent}Linking${global.colors.reset} files...\n`)
+    if (runtime.logLevel !== 'quiet') {
+      process.stdout.write(`  ${runtime.colors.accent}Linking${runtime.colors.reset} files...\n`)
     }
 
     await tasks.copyVendor()
@@ -190,8 +191,8 @@ export const composedTasks = {
   },
 
   lint: async () => {
-    if (global.logLevel !== 'quiet') {
-      process.stdout.write(`  ${global.colors.accent}Linting${global.colors.reset} sources...\n`)
+    if (runtime.logLevel !== 'quiet') {
+      process.stdout.write(`  ${runtime.colors.accent}Linting${runtime.colors.reset} sources...\n`)
     }
 
     await tasks.lintScripts()
@@ -199,8 +200,8 @@ export const composedTasks = {
   },
 
   scripts: async () => {
-    if (global.logLevel !== 'quiet') {
-      process.stdout.write(`  ${global.colors.accent}Processing${global.colors.reset} scripts...\n`)
+    if (runtime.logLevel !== 'quiet') {
+      process.stdout.write(`  ${runtime.colors.accent}Processing${runtime.colors.reset} scripts...\n`)
     }
 
     await tasks.lintScripts()
@@ -209,29 +210,29 @@ export const composedTasks = {
   },
 
   serve: async () => {
-    if (global.logLevel !== 'quiet') {
-      process.stdout.write(`  ${global.colors.accent}Serving${global.colors.reset} build...\n`)
+    if (runtime.logLevel !== 'quiet') {
+      process.stdout.write(`  ${runtime.colors.accent}Serving${runtime.colors.reset} build...\n`)
     }
 
     await tasks.serveFiles()
   },
 
   watch: async () => {
-    if (global.logLevel !== 'quiet') {
-      process.stdout.write(`  ${global.colors.accent}Watching${global.colors.reset} files...\n`)
+    if (runtime.logLevel !== 'quiet') {
+      process.stdout.write(`  ${runtime.colors.accent}Watching${runtime.colors.reset} files...\n`)
     }
 
     await tasks.watchFiles()
   },
 
   stylesheets: async () => {
-    if (global.logLevel !== 'quiet') {
-      process.stdout.write(`  ${global.colors.accent}Processing${global.colors.reset} stylesheets...\n`)
+    if (runtime.logLevel !== 'quiet') {
+      process.stdout.write(`  ${runtime.colors.accent}Processing${runtime.colors.reset} stylesheets...\n`)
     }
 
     await tasks.lintStylesheets()
 
-    if (global.settings.useAutoprefixer) {
+    if (runtime.settings.useAutoprefixer) {
       await tasks.processStylesheets()
     }
 
@@ -240,14 +241,14 @@ export const composedTasks = {
   },
 
   templates: async () => {
-    if (global.logLevel !== 'quiet') {
-      process.stdout.write(`  ${global.colors.accent}Processing${global.colors.reset} templates...\n`)
+    if (runtime.logLevel !== 'quiet') {
+      process.stdout.write(`  ${runtime.colors.accent}Processing${runtime.colors.reset} templates...\n`)
     }
 
     await tasks.formatTemplates()
     await tasks.compileTemplates()
 
-    if (global.settings.formatOutputTemplates && global.environment === 'production') {
+    if (runtime.settings.formatOutputTemplates && runtime.environment === 'production') {
       await tasks.formatOutputTemplates()
     }
   },
@@ -256,8 +257,8 @@ export const composedTasks = {
 // Level 3: Flows - these call multiple composed tasks and/or flows in sequence
 export const flows = {
   build: async () => {
-    if (global.logLevel !== 'quiet') {
-      process.stdout.write(`${global.colors.warning}Generating production build...${global.colors.reset}\n`)
+    if (runtime.logLevel !== 'quiet') {
+      process.stdout.write(`${runtime.colors.warning}Generating production build...${runtime.colors.reset}\n`)
     }
 
     await composedTasks.clean()
@@ -270,8 +271,8 @@ export const flows = {
   },
 
   buildChunked: async () => {
-    if (global.logLevel !== 'quiet') {
-      process.stdout.write(`${global.colors.warning}Generating production build with chunked stylesheets...${global.colors.reset}\n`)
+    if (runtime.logLevel !== 'quiet') {
+      process.stdout.write(`${runtime.colors.warning}Generating production build with chunked stylesheets...${runtime.colors.reset}\n`)
     }
 
     await composedTasks.clean()
@@ -284,22 +285,22 @@ export const flows = {
   },
 
   deploy: async () => {
-    if (global.logLevel !== 'quiet') {
-      process.stdout.write(`${global.colors.warning}Preparing to deploy to ${global.colors.url}https://${global.settings.stagingURL}${global.colors.reset} ...${global.colors.reset}\n`)
+    if (runtime.logLevel !== 'quiet') {
+      process.stdout.write(`${runtime.colors.warning}Preparing to deploy to ${runtime.colors.url}https://${runtime.settings.stagingURL}${runtime.colors.reset} ...${runtime.colors.reset}\n`)
     }
 
     await flows.build()
 
-    if (global.logLevel !== 'quiet') {
-      process.stdout.write(`  ${global.colors.accent}Deploying to ${global.colors.url}https://${global.settings.stagingURL}${global.colors.reset} ...${global.colors.reset}\n`)
+    if (runtime.logLevel !== 'quiet') {
+      process.stdout.write(`  ${runtime.colors.accent}Deploying to ${runtime.colors.url}https://${runtime.settings.stagingURL}${runtime.colors.reset} ...${runtime.colors.reset}\n`)
     }
 
     await tasks.sync()
   },
 
   start: async () => {
-    if (global.logLevel !== 'quiet') {
-      process.stdout.write(`${global.colors.warning}Starting up...${global.colors.reset}\n`)
+    if (runtime.logLevel !== 'quiet') {
+      process.stdout.write(`${runtime.colors.warning}Starting up...${runtime.colors.reset}\n`)
     }
 
     await composedTasks.clean(true)
@@ -308,14 +309,14 @@ export const flows = {
     await composedTasks.serve()
     await composedTasks.watch()
 
-    if (global.logLevel !== 'quiet') {
-      process.stdout.write(`${global.colors.warning}Ready${global.colors.reset}\n`)
+    if (runtime.logLevel !== 'quiet') {
+      process.stdout.write(`${runtime.colors.warning}Ready${runtime.colors.reset}\n`)
     }
   },
 
   startChunked: async () => {
-    if (global.logLevel !== 'quiet') {
-      process.stdout.write(`${global.colors.warning}Starting up with chunked stylesheets...${global.colors.reset}\n`)
+    if (runtime.logLevel !== 'quiet') {
+      process.stdout.write(`${runtime.colors.warning}Starting up with chunked stylesheets...${runtime.colors.reset}\n`)
     }
 
     await composedTasks.clean(true)
@@ -324,25 +325,25 @@ export const flows = {
     await composedTasks.serve()
     await composedTasks.watch()
 
-    if (global.logLevel !== 'quiet') {
-      process.stdout.write(`${global.colors.warning}Ready${global.colors.reset}\n`)
+    if (runtime.logLevel !== 'quiet') {
+      process.stdout.write(`${runtime.colors.warning}Ready${runtime.colors.reset}\n`)
     }
   },
 
   archive: async () => {
-    const oldSymlinkSetting = global.useSymlinks
-    const oldEnvironmentSetting = global.environment
-    global.useSymlinks = false
-    global.environment = 'production'
+    const oldSymlinkSetting = runtime.useSymlinks
+    const oldEnvironmentSetting = runtime.environment
+    runtime.useSymlinks = false
+    runtime.environment = 'production'
     await flows.build()
 
-    if (global.logLevel !== 'quiet') {
-      process.stdout.write(`${global.colors.warning}Archiving build...${global.colors.reset}\n`)
+    if (runtime.logLevel !== 'quiet') {
+      process.stdout.write(`${runtime.colors.warning}Archiving build...${runtime.colors.reset}\n`)
     }
 
     await tasks.archiveFolder()
-    global.useSymlinks = oldSymlinkSetting
-    global.environment = oldEnvironmentSetting
+    runtime.useSymlinks = oldSymlinkSetting
+    runtime.environment = oldEnvironmentSetting
   },
 }
 
@@ -355,7 +356,7 @@ export const watchTasks = {
   icons: async (path = '') => {
     await tasks.optimizeIcons(path)
 
-    if (global.settings.formatOutputTemplates && global.environment === 'production') {
+    if (runtime.settings.formatOutputTemplates && runtime.environment === 'production') {
       await tasks.formatOutputTemplates()
     }
   },
@@ -381,7 +382,7 @@ export const watchTasks = {
     await tasks.formatStylesheets(path)
     await tasks.compileStylesheets()
 
-    if (global.settings.useAutoprefixer) {
+    if (runtime.settings.useAutoprefixer) {
       await tasks.processStylesheets(path)
     }
   },
@@ -392,7 +393,7 @@ export const watchTasks = {
     await tasks.formatTemplates(subsetPaths)
     await tasks.compileTemplates(subsetPaths)
 
-    if (global.settings.formatOutputTemplates && global.environment === 'production') {
+    if (runtime.settings.formatOutputTemplates && runtime.environment === 'production') {
       await tasks.formatOutputTemplates(subsetPaths)
     }
   },
@@ -414,7 +415,7 @@ export const watchTasks = {
 // Level 5: Trailing tasks - these are tasks that run immediately after the watch queue has emptied
 export const trailingTasks = {
   cleanHashCache: async () => {
-    global.losslessSourceHashCache.save(true)
+    runtime.losslessSourceHashCache.save(true)
   },
 }
 

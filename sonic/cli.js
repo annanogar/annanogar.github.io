@@ -2,6 +2,7 @@
  * Command-line interface functionality for Sonic
  */
 
+import runtime from './runtime.js'
 import { helpText, logoBase64, tasksText, versionText } from './meta.js'
 import cliTasks from './tasks.js'
 
@@ -49,29 +50,29 @@ const setupDefaultArguments = () => {
 
 // Set global variables based on flags or task names
 const setGlobals = () => {
-  global.noColors = process.env.NO_COLOR || flagArguments.includes('--no-color') || flagArguments.includes('--no-colors') || flagArguments.includes('--postinstall')
-  global.noCache = process.env.NO_CACHE || flagArguments.includes('--no-cache') || flagArguments.includes('--postinstall')
-  global.environment = flagArguments.includes('--production') || taskArguments.some(task => ['build', 'build-chunked', 'deploy'].includes(task)) ? 'production' : flagArguments.includes('--debug') ? 'debug' : 'development'
-  global.useSymlinks = !flagArguments.includes('--fullcopy')
-  global.autofix = !flagArguments.includes('--no-autofix')
+  runtime.noColors = process.env.NO_COLOR || flagArguments.includes('--no-color') || flagArguments.includes('--no-colors') || flagArguments.includes('--postinstall')
+  runtime.noCache = process.env.NO_CACHE || flagArguments.includes('--no-cache') || flagArguments.includes('--postinstall')
+  runtime.environment = flagArguments.includes('--production') || taskArguments.some(task => ['build', 'build-chunked', 'deploy'].includes(task)) ? 'production' : flagArguments.includes('--debug') ? 'debug' : 'development'
+  runtime.useSymlinks = !flagArguments.includes('--fullcopy')
+  runtime.autofix = !flagArguments.includes('--no-autofix')
 }
 
 // Set log level
 const setLogLevel = () => {
   if (flagArguments.includes('--loglevel=quiet') || flagArguments.includes('--quiet') || flagArguments.includes('--postinstall') || process.env.SONIC_LOG_LEVEL === 'quiet') {
-    global.logLevel = 'quiet'
+    runtime.logLevel = 'quiet'
   } else if (flagArguments.includes('--loglevel=verbose') || flagArguments.includes('--verbose') || process.env.SONIC_LOG_LEVEL === 'verbose') {
-    global.logLevel = 'verbose'
+    runtime.logLevel = 'verbose'
   } else {
-    global.logLevel = 'normal'
+    runtime.logLevel = 'normal'
   }
 }
 
 // Reset all global colors if colors are disabled
 const setColors = () => {
-  if (global.noColors) {
-    for (const color in global.colors) {
-      global.colors[color] = ''
+  if (runtime.noColors) {
+    for (const color in runtime.colors) {
+      runtime.colors[color] = ''
     }
   }
 }
@@ -93,7 +94,7 @@ const showShortcuts = () => {
 
 // Print a nice project image for easy identification
 const showLogo = () => {
-  if (!global.noColors && global.logLevel !== 'quiet') {
+  if (!runtime.noColors && runtime.logLevel !== 'quiet') {
     //process.stdout.write('\x1b]1337;SetMark\x07\n') // Show terminal session marker
     process.stdout.write(`\n\x1b]1337;File=inline=1;width=auto;height=3;preserveAspectRatio=1:${logoBase64}\x07\n\n`) // Show logo
   }

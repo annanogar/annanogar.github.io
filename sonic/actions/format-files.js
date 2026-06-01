@@ -14,6 +14,7 @@
 
 import { readFile, writeFile } from 'node:fs/promises'
 import { resolve as resolvePath } from 'node:path'
+import runtime from '../runtime.js'
 import { asyncFilterConcurrently, glob, reportFileSize } from '../utilities.js'
 
 let prettier
@@ -43,7 +44,7 @@ const processSource = async (path = '', prettierConfig = null, hashCache = null)
     formattedContents = await prettier.format(contents, { ...prettierConfig, filepath: resolvedPath })
   } catch (error) {
     if (error.name === 'CssSyntaxError') {
-      throw new Error(error.name === 'CssSyntaxError' ? error.message + error.showSourceCode() : error.message)
+      throw new Error(error.name === 'CssSyntaxError' ? error.message + error.showSourceCode() : error.message, { cause: error })
     }
 
     console.error(error.message, '\n  in', resolvedPath)
@@ -57,12 +58,12 @@ const processSource = async (path = '', prettierConfig = null, hashCache = null)
   }
 
   // Write the formatted contents to the file
-  if (global.autofix) {
+  if (runtime.autofix) {
     // FIXME: We need to flush since we update the cache from the file - better to do it from contents?
     await writeFile(resolvedPath, formattedContents, { encoding: 'utf8', flush: true })
     await hashCache?.updateEntry(resolvedPath, CACHE_KEY)
 
-    if (global.logLevel === 'verbose') {
+    if (runtime.logLevel === 'verbose') {
       await reportFileSize(formattedContents.length, formattedContents, resolvedPath, false, false)
     }
   }
@@ -115,7 +116,7 @@ export default async function formatFiles(sourceGlobs = '', type = 'files', hash
   }
 
   // Output the tally and time taken
-  if (global.logLevel !== 'quiet') {
-    process.stdout.write(`    ${global.colors.count}${results.length}${global.colors.reset} ${type} formatted ${global.colors.timing}with Prettier (${(new Date() - timestamp).toString()}ms)${global.colors.reset}\n`)
+  if (runtime.logLevel !== 'quiet') {
+    process.stdout.write(`    ${runtime.colors.count}${results.length}${runtime.colors.reset} ${type} formatted ${runtime.colors.timing}with Prettier (${(new Date() - timestamp).toString()}ms)${runtime.colors.reset}\n`)
   }
 }

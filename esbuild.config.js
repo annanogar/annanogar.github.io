@@ -5,6 +5,7 @@
 
 import getBrowserslistTargets from '@eklingen/esbuild-browserslist'
 import { esbuildPlugin as globImporter } from '@eklingen/glob-importers'
+import runtime from './sonic/runtime.js'
 
 export default {
   entryPoints: [],
@@ -27,9 +28,9 @@ export default {
   minifySyntax: false,
   minifyWhitespace: false,
   metafile: true,
-  publicPath: global.settings.scriptsPublicPath || '',
+  publicPath: runtime.settings.scriptsPublicPath || '',
   treeShaking: true,
   define: {
-    environment: `"${global.environment}"`,
+    environment: `"${runtime.environment}"`,
   },
 }

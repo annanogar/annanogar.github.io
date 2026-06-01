@@ -12,6 +12,7 @@
  * NOTE: This requires a Sass configuration file
  */
 
+import runtime from '../runtime.js'
 import { mkdir, writeFile } from 'node:fs/promises'
 import { basename, dirname, resolve as resolvePath } from 'node:path'
 import { pathToFileURL } from 'node:url'
@@ -26,7 +27,7 @@ const processSource = async (path = '', sourcePath = '', destinationPath = '', c
   }
 
   // Compile the source file
-  const output = await compiler.compileAsync(path, sassConfig({ env: global.environment }))
+  const output = await compiler.compileAsync(path, sassConfig({ env: runtime.environment }))
 
   // Get the filename, destination directory, and resolved path
   const filename = path.replace(sourcePath, destinationPath).replace(/\.scss$/, '.css')
@@ -48,7 +49,7 @@ const processSource = async (path = '', sourcePath = '', destinationPath = '', c
 
     await writeFile(resolvedPath, css, { encoding: 'utf8', flush: false })
 
-    if (global.logLevel !== 'quiet') {
+    if (runtime.logLevel !== 'quiet') {
       await reportFileSize(css.length, css, resolvedPath, true, true)
     }
   }
@@ -103,7 +104,7 @@ export default async function compileStylesheets(sourceGlobs = '', sourcePath = 
   }
 
   // Output the tally and time taken
-  if (global.logLevel !== 'quiet') {
-    process.stdout.write(`    ${global.colors.count}${results.length}${global.colors.reset} stylesheets compiled ${global.colors.timing}with Dart-Sass (${(new Date() - timestamp).toString()}ms)${global.colors.reset}\n`)
+  if (runtime.logLevel !== 'quiet') {
+    process.stdout.write(`    ${runtime.colors.count}${results.length}${runtime.colors.reset} stylesheets compiled ${runtime.colors.timing}with Dart-Sass (${(new Date() - timestamp).toString()}ms)${runtime.colors.reset}\n`)
   }
 }

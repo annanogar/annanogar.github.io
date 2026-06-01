@@ -12,11 +12,12 @@
  * NOTE: This requires the "picomatch" package
  */
 
+import runtime from '../runtime.js'
 import { basename, dirname, relative as relativePath } from 'node:path'
 import picomatch from 'picomatch'
 
 const eventDecorations = { create: '+', update: '~', delete: '-' }
-const getDecoration = event => `${global.colors.warning}${eventDecorations[event]}${global.colors.reset}`
+const getDecoration = event => `${runtime.colors.warning}${eventDecorations[event]}${runtime.colors.reset}`
 const tasksInProgress = new Set()
 const bufferTimeout = 50
 const backgroundTaskTimeoutDelay = 1000 * 60 // Every 60 seconds
@@ -71,12 +72,12 @@ const runWatchTasks = async (event = '', path = '', callback = async () => {}) =
   const time = timestamp.toISOString().substring(11, 19)
 
   // Output the event and path
-  if (global.logLevel !== 'quiet') {
-    process.stdout.write(`  ${getDecoration(event)} ${dirname(path)}/${global.colors.accent}${basename(path)}${global.colors.reset} ${global.colors.timing}(${time})${global.colors.reset}\n`)
+  if (runtime.logLevel !== 'quiet') {
+    process.stdout.write(`  ${getDecoration(event)} ${dirname(path)}/${runtime.colors.accent}${basename(path)}${runtime.colors.reset} ${runtime.colors.timing}(${time})${runtime.colors.reset}\n`)
   }
 
   // Add the task to the buffer, or run it immediately
-  if (global.settings.watchTimeout > 0) {
+  if (runtime.settings.watchTimeout > 0) {
     clearTimeout(timeout)
     buffer.push({ path, callback })
     timeout = setTimeout(processBuffer, bufferTimeout)
@@ -89,8 +90,8 @@ const runWatchTasks = async (event = '', path = '', callback = async () => {}) =
   }
 
   // Output the time taken
-  if (global.logLevel !== 'quiet') {
-    process.stdout.write(`\x1b[A\x1b[${(process.stdout.columns || 80) - time.length - 4}C ${global.colors.timing}(${(new Date() - timestamp).toString()}ms)${global.colors.reset}\n`)
+  if (runtime.logLevel !== 'quiet') {
+    process.stdout.write(`\x1b[A\x1b[${(process.stdout.columns || 80) - time.length - 4}C ${runtime.colors.timing}(${(new Date() - timestamp).toString()}ms)${runtime.colors.reset}\n`)
   }
 
   // Remove the path from the tasks in progress
@@ -108,8 +109,8 @@ const runTasksOnCommand = async (callbacks = {}) => {
 
     await callback().catch(error => console.warn(error))
 
-    if (global.logLevel === 'verbose') {
-      process.stdout.write(`  ${global.colors.timing}Background task "${name}" completed${global.colors.reset} ${global.colors.timing}(${(new Date() - timestamp).toString()}ms)${global.colors.reset}\n`)
+    if (runtime.logLevel === 'verbose') {
+      process.stdout.write(`  ${runtime.colors.timing}Background task "${name}" completed${runtime.colors.reset} ${runtime.colors.timing}(${(new Date() - timestamp).toString()}ms)${runtime.colors.reset}\n`)
     }
   }
 }
@@ -122,18 +123,18 @@ const onExit = async () => {
   clearInterval(backgroundTaskInterval)
   clearTimeout(trailingTaskTimeout)
 
-  if (global.profiler) {
-    const filename = await global.profiler.stop()
+  if (runtime.profiler) {
+    const filename = await runtime.profiler.stop()
 
-    if (global.logLevel !== 'quiet') {
-      process.stdout.write(`\n${global.colors.warning}Data written to "${filename}"${global.colors.reset}\n`)
+    if (runtime.logLevel !== 'quiet') {
+      process.stdout.write(`\n${runtime.colors.warning}Data written to "${filename}"${runtime.colors.reset}\n`)
     }
   }
 }
 
 // Watch the files using Parcel-Watcher
 export default async function watchFiles(config = {}, watchTasks = {}, trailingTasks = {}, backgroundTasks = {}) {
-  if (global.isWatching || parcelWatcherInstance) {
+  if (runtime.isWatching || parcelWatcherInstance) {
     return
   }
 
@@ -205,11 +206,11 @@ export default async function watchFiles(config = {}, watchTasks = {}, trailingT
     exitListenerAdded = true
   }
 
-  global.isWatching = true
-  global.exitMessage = `  ${global.colors.accent}Bye!${global.colors.reset}`
+  runtime.isWatching = true
+  runtime.exitMessage = `  ${runtime.colors.accent}Bye!${runtime.colors.reset}`
 
   // Output the tally and time taken
-  if (global.logLevel !== 'quiet') {
-    process.stdout.write(`    ${global.colors.count}all${global.colors.reset} files are being watched ${global.colors.timing}with Parcel-Watcher${global.colors.reset}\n`)
+  if (runtime.logLevel !== 'quiet') {
+    process.stdout.write(`    ${runtime.colors.count}all${runtime.colors.reset} files are being watched ${runtime.colors.timing}with Parcel-Watcher${runtime.colors.reset}\n`)
   }
 }

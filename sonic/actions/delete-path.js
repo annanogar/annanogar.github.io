@@ -9,6 +9,7 @@
  *   - clearEntriesFromCache (boolean: false) - Whether to clear entries from the cache
  */
 
+import runtime from '../runtime.js'
 import { rm } from 'node:fs/promises'
 
 // Delete a path and its contents recursively
@@ -24,7 +25,7 @@ export default async function deletePath(path = '') {
   await rm(path, { recursive: true, force: true })
 
   // Output the tally and time taken
-  if (global.logLevel === 'verbose') {
-    process.stdout.write(`    ${global.colors.count}./${path}/${global.colors.reset} deleted ${global.colors.timing}(${(new Date() - timestamp).toString()}ms)${global.colors.reset}\n`)
+  if (runtime.logLevel === 'verbose') {
+    process.stdout.write(`    ${runtime.colors.count}./${path}/${runtime.colors.reset} deleted ${runtime.colors.timing}(${(new Date() - timestamp).toString()}ms)${runtime.colors.reset}\n`)
   }
 }

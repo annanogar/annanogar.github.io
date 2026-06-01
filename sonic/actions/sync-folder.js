@@ -8,11 +8,12 @@
  *   - path (string) - The path to the folder to sync
  */
 
+import runtime from '../runtime.js'
 import { promisifiedExec } from '../utilities.js'
 
 // Sync a folder with a remote server
 export default async function syncFolder(path = '') {
-  if (!path || !global.settings.stagingUser || !global.settings.stagingHost || !global.settings.stagingPath) {
+  if (!path || !runtime.settings.stagingUser || !runtime.settings.stagingHost || !runtime.settings.stagingPath) {
     return
   }
 
@@ -20,7 +21,7 @@ export default async function syncFolder(path = '') {
   const timestamp = new Date()
 
   // Run the shell command
-  const { stdout, stderr } = await promisifiedExec(`rsync -rLktzi --safe-links --delete --quiet --exclude=".*" -e ssh "./${path}/" "${global.settings.stagingUser}@${global.settings.stagingHost}:${global.settings.stagingPath}"`)
+  const { stdout, stderr } = await promisifiedExec(`rsync -rLktzi --safe-links --delete --quiet --exclude=".*" -e ssh "./${path}/" "${runtime.settings.stagingUser}@${runtime.settings.stagingHost}:${runtime.settings.stagingPath}"`)
 
   // Output the stdout
   if (stdout) {
@@ -33,7 +34,7 @@ export default async function syncFolder(path = '') {
   }
 
   // Output the tally and time taken
-  if (global.logLevel !== 'quiet') {
-    process.stdout.write(`    ${global.colors.count}./${path}/${global.colors.reset} deployed ${global.colors.timing}with RSync (${(new Date() - timestamp).toString()}ms)${global.colors.reset}\n`)
+  if (runtime.logLevel !== 'quiet') {
+    process.stdout.write(`    ${runtime.colors.count}./${path}/${runtime.colors.reset} deployed ${runtime.colors.timing}with RSync (${(new Date() - timestamp).toString()}ms)${runtime.colors.reset}\n`)
   }
 }

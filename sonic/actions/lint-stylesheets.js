@@ -11,6 +11,7 @@
  * NOTE: This requires a Stylelint configuration file
  */
 
+import runtime from '../runtime.js'
 import { sep as pathSeparator, relative as relativePath, resolve as resolvePath } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { asyncFilterConcurrently, glob, reportFileSize } from '../utilities.js'
@@ -46,7 +47,7 @@ export default async function lintStylesheets(sourceGlobs = '', hashCache = null
   stylelintConfig = stylelintConfig || (await import(pathToFileURL(stylelintConfigPath))).default || {}
 
   // Lint the stylesheets
-  const output = await stylelint.lint({ files: filepaths, cache: true, cacheLocation: resolvePath(process.cwd(), 'node_modules' + pathSeparator + '.cache' + pathSeparator + 'stylelint' + pathSeparator), cacheStrategy: 'metadata', formatter: 'string', fix: global.autofix, config: stylelintConfig, configBaseDir: process.cwd() })
+  const output = await stylelint.lint({ files: filepaths, cache: true, cacheLocation: resolvePath(process.cwd(), 'node_modules' + pathSeparator + '.cache' + pathSeparator + 'stylelint' + pathSeparator), cacheStrategy: 'metadata', formatter: 'string', fix: runtime.autofix, config: stylelintConfig, configBaseDir: process.cwd() })
 
   // Get the results
   const results = output.results
@@ -67,7 +68,7 @@ export default async function lintStylesheets(sourceGlobs = '', hashCache = null
   for (const { source: resultSource, parseErrors, warnings } of results) {
     const resolvedPath = relativePath(process.cwd(), resultSource)
 
-    if (global.logLevel === 'verbose') {
+    if (runtime.logLevel === 'verbose') {
       await reportFileSize(0, '', resolvedPath, false, true)
     }
 
@@ -81,7 +82,7 @@ export default async function lintStylesheets(sourceGlobs = '', hashCache = null
   await hashCache?.save()
 
   // Output the tally and time taken
-  if (global.logLevel !== 'quiet') {
-    process.stdout.write(`    ${global.colors.count}${results.length}${global.colors.reset} stylesheets linted ${global.colors.timing}with Stylelint (${(new Date() - timestamp).toString()}ms)${global.colors.reset}\n`)
+  if (runtime.logLevel !== 'quiet') {
+    process.stdout.write(`    ${runtime.colors.count}${results.length}${runtime.colors.reset} stylesheets linted ${runtime.colors.timing}with Stylelint (${(new Date() - timestamp).toString()}ms)${runtime.colors.reset}\n`)
   }
 }

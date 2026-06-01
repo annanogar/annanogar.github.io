@@ -12,6 +12,7 @@
  * NOTE: This requires an ESBuild configuration file
  */
 
+import runtime from '../runtime.js'
 import { writeFile } from 'node:fs/promises'
 import { basename, extname, resolve as resolvePath } from 'node:path'
 import { pathToFileURL } from 'node:url'
@@ -42,7 +43,7 @@ export default async function compileScripts(sourceGlobs = '', destinationPath =
 
   // Compile the scripts
   const entryPoints = filepaths.reduce((acc, path) => ({ ...acc, [basename(path, extname(path))]: resolvePath(process.cwd(), path) }), {})
-  const result = await esbuild.build({ ...esbuildConfig, entryPoints, outdir: resolvePath(process.cwd(), destinationPath), minify: global.environment === 'production', metafile: true })
+  const result = await esbuild.build({ ...esbuildConfig, entryPoints, outdir: resolvePath(process.cwd(), destinationPath), minify: runtime.environment === 'production', metafile: true })
 
   // Output any errors
   if (result.errors.length) {
@@ -56,12 +57,12 @@ export default async function compileScripts(sourceGlobs = '', destinationPath =
   }
 
   // Output the statistics
-  if (global.logLevel === 'verbose') {
+  if (runtime.logLevel === 'verbose') {
     process.stdout.write(`${await esbuild.analyzeMetafile(result.metafile)}\n`)
   }
 
   // Write the meta file to use in ESBuild bundle analyzer: https://esbuild.github.io/analyze/
-  if (global.settings.writeESBuildMetafile && result.metafile) {
+  if (runtime.settings.writeESBuildMetafile && result.metafile) {
     await writeFile(resolvePath(process.cwd(), destinationPath, 'esbuild-meta.json'), JSON.stringify(result.metafile))
   }
 
@@ -74,14 +75,14 @@ export default async function compileScripts(sourceGlobs = '', destinationPath =
     return
   }
 
-  if (global.logLevel !== 'quiet') {
+  if (runtime.logLevel !== 'quiet') {
     for (const { path, size } of results) {
       await reportFileSize(size, '', path, true, true)
     }
   }
 
   // Output the tally and time taken
-  if (global.logLevel !== 'quiet') {
-    process.stdout.write(`    ${global.colors.count}${results.length}${global.colors.reset} scripts compiled ${global.colors.timing}with ESBuild (${(new Date() - timestamp).toString()}ms)${global.colors.reset}\n`)
+  if (runtime.logLevel !== 'quiet') {
+    process.stdout.write(`    ${runtime.colors.count}${results.length}${runtime.colors.reset} scripts compiled ${runtime.colors.timing}with ESBuild (${(new Date() - timestamp).toString()}ms)${runtime.colors.reset}\n`)
   }
 }

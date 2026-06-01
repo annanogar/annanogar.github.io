@@ -2,6 +2,7 @@
  * Collection of utilities for Sonic
  */
 
+import runtime from './runtime.js'
 import { getDependencyList } from '@eklingen/nunjucks-dependencies'
 import { exec } from 'node:child_process'
 import { access, readFile } from 'node:fs/promises'
@@ -47,14 +48,14 @@ export async function reportFileSize(fileSize = 0, fileContents = '', filePath =
 
   fileSize = fileSize || fileContents.length
 
-  const color = filePath.endsWith('.map') ? global.colors.timing : global.colors.reset
-  const rawSizeString = showRaw || showCompressed ? `${global.colors.reset}${color}${((fileSize / 1024).toFixed(2).toString() + ' KB').padStart(15)}${global.colors.timing} ${showCompressed ? '(raw)' : ''} ` : ``
-  const gzipSizeString = showCompressed ? `${global.colors.reset}${color}${(((await promisifiedGzip(fileContents, { level: 6 })).length / 1024).toFixed(2).toString() + ' KB').padStart(15)}${global.colors.timing} (gzip)` : ``
+  const color = filePath.endsWith('.map') ? runtime.colors.timing : runtime.colors.reset
+  const rawSizeString = showRaw || showCompressed ? `${runtime.colors.reset}${color}${((fileSize / 1024).toFixed(2).toString() + ' KB').padStart(15)}${runtime.colors.timing} ${showCompressed ? '(raw)' : ''} ` : ``
+  const gzipSizeString = showCompressed ? `${runtime.colors.reset}${color}${(((await promisifiedGzip(fileContents, { level: 6 })).length / 1024).toFixed(2).toString() + ' KB').padStart(15)}${runtime.colors.timing} (gzip)` : ``
   const filenameLength = Math.min(process.stdout.columns || 80, 120) - 55
   const filenameString = truncateTextWithDots(relativePath(process.cwd(), filePath).padEnd(filenameLength), filenameLength)
 
-  if (global.logLevel !== 'quiet') {
-    process.stdout.write(`      ${global.colors.count}-${global.colors.reset} ${color}${filenameString} ${showRaw ? rawSizeString : ''} ${showCompressed ? gzipSizeString : ''} ${global.colors.reset}\n`)
+  if (runtime.logLevel !== 'quiet') {
+    process.stdout.write(`      ${runtime.colors.count}-${runtime.colors.reset} ${color}${filenameString} ${showRaw ? rawSizeString : ''} ${showCompressed ? gzipSizeString : ''} ${runtime.colors.reset}\n`)
   }
 }
 

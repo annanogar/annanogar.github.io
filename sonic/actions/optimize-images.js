@@ -12,6 +12,7 @@
  * NOTE: This requires a Sharp configuration file
  */
 
+import runtime from '../runtime.js'
 import { readFile } from 'node:fs/promises'
 import { extname, resolve as resolvePath } from 'node:path'
 import { pathToFileURL } from 'node:url'
@@ -101,7 +102,7 @@ export default async function optimizeImages(sourceGlobs = '', type = 'files', h
   }
 
   // Output the tally and time taken
-  if (global.logLevel !== 'quiet') {
-    process.stdout.write(`    ${global.colors.count}${results.length}${global.colors.reset} ${type} optimized ${global.colors.timing}with Sharp (${(new Date() - timestamp).toString()}ms)${global.colors.reset}\n`)
+  if (runtime.logLevel !== 'quiet') {
+    process.stdout.write(`    ${runtime.colors.count}${results.length}${runtime.colors.reset} ${type} optimized ${runtime.colors.timing}with Sharp (${(new Date() - timestamp).toString()}ms)${runtime.colors.reset}\n`)
   }
 }

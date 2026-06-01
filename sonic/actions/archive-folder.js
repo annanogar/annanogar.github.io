@@ -11,6 +11,7 @@
  * NOTE: This requires the "yazl" package
  */
 
+import runtime from '../runtime.js'
 import { createWriteStream } from 'node:fs'
 import { relative as relativePath, resolve as resolvePath } from 'node:path'
 import { glob } from '../utilities.js'
@@ -40,8 +41,8 @@ export default async function archiveFolder(path = '') {
 
   const onClose = () => {
     // Output the tally and time taken
-    if (global.logLevel !== 'quiet') {
-      process.stdout.write(`    ${global.colors.count}./${path}/${global.colors.reset} archived to ${global.colors.count}${filename}${global.colors.reset} ${global.colors.timing}with Yazl (${(new Date() - timestamp).toString()}ms)${global.colors.reset}\n`)
+    if (runtime.logLevel !== 'quiet') {
+      process.stdout.write(`    ${runtime.colors.count}./${path}/${runtime.colors.reset} archived to ${runtime.colors.count}${filename}${runtime.colors.reset} ${runtime.colors.timing}with Yazl (${(new Date() - timestamp).toString()}ms)${runtime.colors.reset}\n`)
     }
   }
 

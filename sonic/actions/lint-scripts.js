@@ -11,6 +11,7 @@
  * NOTE: This requires an ESLint configuration file
  */
 
+import runtime from '../runtime.js'
 import { sep as pathSeparator, relative as relativePath, resolve as resolvePath } from 'node:path'
 import { asyncFilterConcurrently, glob, reportFileSize } from '../utilities.js'
 
@@ -45,7 +46,7 @@ export default async function lintScripts(sourceGlobs = '', hashCache = null) {
 
   // Initialize the ESLint compiler and formatter
   if (!compiler) {
-    compiler = new ESLint({ errorOnUnmatchedPattern: false, fixTypes: ['directive', 'problem', 'suggestion', 'layout'], cache: true, cacheLocation: resolvePath(process.cwd(), 'node_modules' + pathSeparator + '.cache' + pathSeparator + 'eslint' + pathSeparator), cacheStrategy: 'metadata', fix: global.autofix })
+    compiler = new ESLint({ errorOnUnmatchedPattern: false, fixTypes: ['directive', 'problem', 'suggestion', 'layout'], cache: true, cacheLocation: resolvePath(process.cwd(), 'node_modules' + pathSeparator + '.cache' + pathSeparator + 'eslint' + pathSeparator), cacheStrategy: 'metadata', fix: runtime.autofix })
     formatter = await compiler.loadFormatter('stylish')
   }
 
@@ -60,7 +61,7 @@ export default async function lintScripts(sourceGlobs = '', hashCache = null) {
   }
 
   // Write the fixes to the files
-  if (global.autofix) {
+  if (runtime.autofix) {
     await ESLint.outputFixes(results)
   }
 
@@ -75,7 +76,7 @@ export default async function lintScripts(sourceGlobs = '', hashCache = null) {
   for (const { filePath: resultSource, errorCount, fatalErrorCount, warningCount, fixableErrorCount, fixableWarningCount } of results) {
     const resolvedPath = relativePath(process.cwd(), resultSource)
 
-    if (global.logLevel === 'verbose') {
+    if (runtime.logLevel === 'verbose') {
       await reportFileSize(0, '', resolvedPath, false, true)
     }
 
@@ -89,7 +90,7 @@ export default async function lintScripts(sourceGlobs = '', hashCache = null) {
   await hashCache?.save()
 
   // Output the tally and time taken
-  if (global.logLevel !== 'quiet') {
-    process.stdout.write(`    ${global.colors.count}${results.length}${global.colors.reset} scripts linted ${global.colors.timing}with ESLint (${(new Date() - timestamp).toString()}ms)${global.colors.reset}\n`)
+  if (runtime.logLevel !== 'quiet') {
+    process.stdout.write(`    ${runtime.colors.count}${results.length}${runtime.colors.reset} scripts linted ${runtime.colors.timing}with ESLint (${(new Date() - timestamp).toString()}ms)${runtime.colors.reset}\n`)
   }
 }

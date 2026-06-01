@@ -15,6 +15,7 @@
 import { readFile, writeFile } from 'node:fs/promises'
 import { resolve as resolvePath } from 'node:path'
 import { pathToFileURL } from 'node:url'
+import runtime from '../runtime.js'
 import { asyncFilterConcurrently, glob, pathExists, reportFileSize } from '../utilities.js'
 
 let postcss, postcssConfig, postcssConfigPath, sassConfig, sassConfigPath
@@ -35,10 +36,10 @@ const processSource = async (path = '', destinationPath = '', compiler = null, h
   let output
 
   try {
-    output = await compiler.process(contents, { ...postcssConfig.options, from: resolvedPath, to: null, map: { absolute: false, annotation: false, inline: false, sourcesContent: true } }, sassConfig({ env: global.environment }))
+    output = await compiler.process(contents, { ...postcssConfig.options, from: resolvedPath, to: null, map: { absolute: false, annotation: false, inline: false, sourcesContent: true } }, sassConfig({ env: runtime.environment }))
   } catch (error) {
     // Special handling for CSS Syntax Errors
-    throw new Error(error.name === 'CssSyntaxError' ? error.message + error.showSourceCode() : error.message)
+    throw new Error(error.name === 'CssSyntaxError' ? error.message + error.showSourceCode() : error.message, { cause: error })
   }
 
   // Check if the contents have changed
@@ -56,7 +57,7 @@ const processSource = async (path = '', destinationPath = '', compiler = null, h
     await writeFile(resolvedPath, css, { encoding: 'utf8', flush: true })
     await hashCache?.updateEntry(resolvedPath, CACHE_KEY)
 
-    if (global.logLevel === 'verbose') {
+    if (runtime.logLevel === 'verbose') {
       await reportFileSize(css.length, css, resolvedPath, false, false)
     }
   }
@@ -131,7 +132,7 @@ export default async function processStylesheets(sourceGlobs = '', destinationPa
   }
 
   // Output the tally and time taken
-  if (global.logLevel !== 'quiet') {
-    process.stdout.write(`    ${global.colors.count}${results.length}${global.colors.reset} stylesheets processed ${global.colors.timing}with PostCSS (${(new Date() - timestamp).toString()}ms)${global.colors.reset}\n`)
+  if (runtime.logLevel !== 'quiet') {
+    process.stdout.write(`    ${runtime.colors.count}${results.length}${runtime.colors.reset} stylesheets processed ${runtime.colors.timing}with PostCSS (${(new Date() - timestamp).toString()}ms)${runtime.colors.reset}\n`)
   }
 }

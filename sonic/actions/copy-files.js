@@ -11,6 +11,7 @@
  *   - type (string) - The type of files being copied, e.g. "images" or "vendor", for the terminal output only
  */
 
+import runtime from '../runtime.js'
 import { copyFile, mkdir, symlink } from 'node:fs/promises'
 import { dirname, join as joinPath, sep as pathSeparator, relative as relativePath, resolve as resolvePath } from 'node:path'
 import { glob, pathExists, reportFileSize } from '../utilities.js'
@@ -22,7 +23,7 @@ const processSource = async (path = '', destinationPath = '') => {
   }
 
   // Check if the destination file exists and we're using symlinks
-  if ((await pathExists(destinationPath)) && global.useSymlinks) {
+  if ((await pathExists(destinationPath)) && runtime.useSymlinks) {
     return
   }
 
@@ -35,14 +36,14 @@ const processSource = async (path = '', destinationPath = '') => {
   const resolvedRelativePath = relativePath(directory, path)
 
   // Create the symlink or copy the file
-  if (global.useSymlinks) {
+  if (runtime.useSymlinks) {
     await symlink(resolvedRelativePath, destinationPath, 'file')
   } else {
     await copyFile(resolvedPath, destinationPath)
   }
 
   // Output the file size
-  if (global.logLevel === 'verbose') {
+  if (runtime.logLevel === 'verbose') {
     await reportFileSize(0, '', resolvedPath, false, true)
   }
 
@@ -75,7 +76,7 @@ export default async function copyFiles(sourceGlobs = '', sourcePath = '', desti
   }
 
   // Output the tally and time taken
-  if (global.logLevel !== 'quiet') {
-    process.stdout.write(`    ${global.colors.count}${results.length}${global.colors.reset} ${type} ${global.useSymlinks ? 'symlinked' : 'copied'} ${global.colors.timing}(${(new Date() - timestamp).toString()}ms)${global.colors.reset}\n`)
+  if (runtime.logLevel !== 'quiet') {
+    process.stdout.write(`    ${runtime.colors.count}${results.length}${runtime.colors.reset} ${type} ${runtime.useSymlinks ? 'symlinked' : 'copied'} ${runtime.colors.timing}(${(new Date() - timestamp).toString()}ms)${runtime.colors.reset}\n`)
   }
 }

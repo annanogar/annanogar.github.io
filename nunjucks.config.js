@@ -8,6 +8,7 @@ import { existsSync, readFileSync } from 'node:fs'
 import { join as joinPath, resolve as resolvePath } from 'node:path'
 import { pathToFileURL } from 'node:url'
 
+import runtime from './sonic/runtime.js'
 import nunjucks from 'nunjucks'
 import config from './sonic.config.js'
 
@@ -206,11 +207,11 @@ const tags = {
 
   // Get the stylesheet chunks for the current rendered template, if chunked CSS is enabled.
   get_chunked_stylesheets: (templatePath = '') => {
-    if (!global.useChunkedStylesheets || !templatePath || !global.chunkedStylesheetMap) {
+    if (!runtime.useChunkedStylesheets || !templatePath || !runtime.chunkedStylesheetMap) {
       return []
     }
 
-    return global.chunkedStylesheetMap[templatePath] || []
+    return runtime.chunkedStylesheetMap[templatePath] || []
   },
 
   // Create object from schema

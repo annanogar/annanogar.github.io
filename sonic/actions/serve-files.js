@@ -11,6 +11,7 @@
  * NOTE: This requires an ESBuild configuration file
  */
 
+import runtime from '../runtime.js'
 import { resolve as resolvePath } from 'node:path'
 import { pathToFileURL } from 'node:url'
 
@@ -31,10 +32,10 @@ export default async function serveFiles(path = './build/') {
   const context = await esbuild.context({ ...esbuildConfig })
 
   // Serve the files
-  await context.serve({ servedir: path, host: global.settings.serverHost, port: global.settings.serverPort })
+  await context.serve({ servedir: path, host: runtime.settings.serverHost, port: runtime.settings.serverPort })
 
   // Output the tally and time taken
-  if (global.logLevel !== 'quiet') {
-    process.stdout.write(`    ${global.colors.count}./${path}/${global.colors.reset} is served ${global.colors.timing}with ESBuild${global.colors.reset} at ${global.colors.url}http://${global.settings.serverHost}:${global.settings.serverPort}${global.colors.reset}\n`)
+  if (runtime.logLevel !== 'quiet') {
+    process.stdout.write(`    ${runtime.colors.count}./${path}/${runtime.colors.reset} is served ${runtime.colors.timing}with ESBuild${runtime.colors.reset} at ${runtime.colors.url}http://${runtime.settings.serverHost}:${runtime.settings.serverPort}${runtime.colors.reset}\n`)
   }
 }

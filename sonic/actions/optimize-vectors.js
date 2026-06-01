@@ -12,6 +12,7 @@
  * NOTE: This requires an SVGO configuration file
  */
 
+import runtime from '../runtime.js'
 import { readFile, writeFile } from 'node:fs/promises'
 import { resolve as resolvePath } from 'node:path'
 import { asyncFilterConcurrently, glob, pathExists, reportFileSize } from '../utilities.js'
@@ -57,7 +58,7 @@ const processSource = async (source = '', hashCache = null) => {
   await writeFile(resolvedPath, result.data, { encoding: 'utf8', flush: true })
   await hashCache?.updateEntry(resolvedPath, CACHE_KEY)
 
-  if (global.logLevel === 'verbose') {
+  if (runtime.logLevel === 'verbose') {
     await reportFileSize(result.data.length, result.data, resolvedPath, false, false)
   }
 
@@ -102,7 +103,7 @@ export default async function optimizeVectors(sourceGlobs = '', type = 'files', 
   }
 
   // Output the tally and time taken
-  if (global.logLevel !== 'quiet') {
-    process.stdout.write(`    ${global.colors.count}${results.length}${global.colors.reset} ${type} optimized ${global.colors.timing}with SVGO (${(new Date() - timestamp).toString()}ms)${global.colors.reset}\n`)
+  if (runtime.logLevel !== 'quiet') {
+    process.stdout.write(`    ${runtime.colors.count}${results.length}${runtime.colors.reset} ${type} optimized ${runtime.colors.timing}with SVGO (${(new Date() - timestamp).toString()}ms)${runtime.colors.reset}\n`)
   }
 }

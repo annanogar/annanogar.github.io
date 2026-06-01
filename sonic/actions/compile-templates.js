@@ -13,6 +13,7 @@
  * NOTE: This requires a Nunjucks configuration file
  */
 
+import runtime from '../runtime.js'
 import { mkdir, writeFile } from 'node:fs/promises'
 import { dirname, join as joinPath, relative as relativePath, resolve as resolvePath } from 'node:path'
 import { pathToFileURL } from 'node:url'
@@ -40,7 +41,7 @@ const processSource = async (path = '', sourcePath = '', destinationPath = '', c
   await writeFile(resolvedPath, output, { encoding: 'utf8', flush: false })
 
   // Output the file size
-  if (global.logLevel === 'verbose') {
+  if (runtime.logLevel === 'verbose') {
     await reportFileSize(output.length, output, resolvedPath, false, false)
   }
 
@@ -69,7 +70,7 @@ export default async function compileTemplates(sourceGlobs = '', sourcePath = ''
   nunjucksConfig = nunjucksConfig || (await import(pathToFileURL(nunjucksConfigPath))).default
 
   // Initialize Nunjucks and its environment
-  const config = await nunjucksConfig({ env: global.environment })
+  const config = await nunjucksConfig({ env: runtime.environment })
   //nunjucks.configure('', config.envOptions)
   const environment = new nunjucks.Environment(config.nunjucks.loaders, config.envOptions)
   config.nunjucks.manageEnv && config.nunjucks.manageEnv.call(null, environment)
@@ -84,7 +85,7 @@ export default async function compileTemplates(sourceGlobs = '', sourcePath = ''
   }
 
   // Output the tally and time taken
-  if (global.logLevel !== 'quiet') {
-    process.stdout.write(`    ${global.colors.count}${results.length}${global.colors.reset} templates compiled ${global.colors.timing}with Nunjucks (${(new Date() - timestamp).toString()}ms)${global.colors.reset}\n`)
+  if (runtime.logLevel !== 'quiet') {
+    process.stdout.write(`    ${runtime.colors.count}${results.length}${runtime.colors.reset} templates compiled ${runtime.colors.timing}with Nunjucks (${(new Date() - timestamp).toString()}ms)${runtime.colors.reset}\n`)
   }
 }
