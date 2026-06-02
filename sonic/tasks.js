@@ -116,8 +116,7 @@ export const composedTasks = {
       process.stdout.write(`  ${runtime.colors.accent}Compiling${runtime.colors.reset} assets...\n`)
     }
 
-    await tasks.compileScripts()
-    await tasks.compileStylesheets()
+    await Promise.all([tasks.compileScripts(), tasks.compileStylesheets()])
 
     // Reset chunked stylesheet globals for classic build - must be done after stylesheets compile but before templates
     runtime.useChunkedStylesheets = false
@@ -262,11 +261,17 @@ export const flows = {
     }
 
     await composedTasks.clean()
-    await composedTasks.lint()
-    await composedTasks.format()
-    await composedTasks.process()
-    await composedTasks.optimize()
-    await composedTasks.link()
+    await Promise.all([
+      (async () => {
+        await composedTasks.lint()
+        await composedTasks.format()
+        await composedTasks.process()
+      })(),
+      (async () => {
+        await composedTasks.optimize()
+        await composedTasks.link()
+      })(),
+    ])
     await composedTasks.compile()
   },
 
