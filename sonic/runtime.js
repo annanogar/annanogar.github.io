@@ -33,10 +33,6 @@ const runtime = {
   losslessSourceHashCache: null,
   lossySourceHashCache: null,
 
-  useChunkedStylesheets: false,
-  chunkedStylesheetMap: undefined,
-  chunkedStylesheetEntrypoints: undefined,
-
   profiler: null,
 }
 

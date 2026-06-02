@@ -14,6 +14,8 @@
  * NOTE: Don't wrap the tasks in try/catch, as the index logic will handle errors and display them to the user.
  * NOTE: The tasks are defined in camelCase, but are exported in kebab-case for the CLI.
  * NOTE: The task names must be unique, with the exception of watch tasks (level 4).
+ * NOTE: Some of the tasks could be parallelized with Promise.all(), but the performance benefit in neglible in this case. All it does is scatter the flamechart and give confusing terminal output if the file input is invalid in some way (think linters).
+ * NOTE: The tasks should be defined in a way that they can be called independently, but they can also be composed together to create more complex tasks and flows.
  */
 
 import config from '../sonic.config.js'
@@ -28,7 +30,6 @@ import actionCompileTemplates from './actions/compile-templates.js'
 import actionCopyFiles from './actions/copy-files.js'
 import actionDeletePath from './actions/delete-path.js'
 import actionFormatFiles from './actions/format-files.js'
-import actionGenerateChunkedStylesheets from './actions/generate-chunked-stylesheets.js'
 import actionLintScripts from './actions/lint-scripts.js'
 import actionLintStylesheets from './actions/lint-stylesheets.js'
 import actionOptimizeImages from './actions/optimize-images.js'
@@ -74,7 +75,6 @@ export const tasks = {
   formatScripts: async (paths = config.scripts.formatGlobs, hashCache = runtime.losslessSourceHashCache) => await actionFormatFiles(paths, 'scripts', hashCache),
   formatStylesheets: async (paths = config.stylesheets.formatGlobs, hashCache = runtime.losslessSourceHashCache) => await actionFormatFiles(paths, 'stylesheets', hashCache),
   formatTemplates: async (paths = config.templates.formatGlobs, hashCache = runtime.losslessSourceHashCache) => await actionFormatFiles(paths, 'templates', hashCache),
-  generateChunkedStylesheets: async () => await actionGenerateChunkedStylesheets(config.stylesheets.chunked),
   lintScripts: async (paths = config.scripts.lintGlobs, hashCache = runtime.losslessSourceHashCache) => await actionLintScripts(paths, hashCache),
   lintStylesheets: async (paths = config.stylesheets.lintGlobs, hashCache = runtime.losslessSourceHashCache) => await actionLintStylesheets(paths, hashCache),
   optimizeIcons: async (paths = config.icons.sourceGlobs, hashCache = runtime.losslessSourceHashCache) => await actionOptimizeVectors(paths, 'icons', hashCache),
@@ -116,28 +116,8 @@ export const composedTasks = {
       process.stdout.write(`  ${runtime.colors.accent}Compiling${runtime.colors.reset} assets...\n`)
     }
 
-    await Promise.all([tasks.compileScripts(), tasks.compileStylesheets()])
-
-    // Reset chunked stylesheet globals for classic build - must be done after stylesheets compile but before templates
-    runtime.useChunkedStylesheets = false
-    runtime.chunkedStylesheetMap = undefined
-    runtime.chunkedStylesheetEntrypoints = undefined
-
-    await tasks.compileTemplates()
-
-    if (runtime.settings.formatOutputTemplates && runtime.environment === 'production') {
-      await tasks.formatOutputTemplates()
-    }
-  },
-
-  compileChunked: async () => {
-    if (runtime.logLevel !== 'quiet') {
-      process.stdout.write(`  ${runtime.colors.accent}Compiling${runtime.colors.reset} assets with chunked stylesheets...\n`)
-    }
-
     await tasks.compileScripts()
-    await tasks.generateChunkedStylesheets()
-    await tasks.compileStylesheets(config.stylesheets.chunked.sourceGlobs)
+    await tasks.compileStylesheets()
     await tasks.compileTemplates()
 
     if (runtime.settings.formatOutputTemplates && runtime.environment === 'production') {
@@ -261,32 +241,12 @@ export const flows = {
     }
 
     await composedTasks.clean()
-    await Promise.all([
-      (async () => {
-        await composedTasks.lint()
-        await composedTasks.format()
-        await composedTasks.process()
-      })(),
-      (async () => {
-        await composedTasks.optimize()
-        await composedTasks.link()
-      })(),
-    ])
-    await composedTasks.compile()
-  },
-
-  buildChunked: async () => {
-    if (runtime.logLevel !== 'quiet') {
-      process.stdout.write(`${runtime.colors.warning}Generating production build with chunked stylesheets...${runtime.colors.reset}\n`)
-    }
-
-    await composedTasks.clean()
     await composedTasks.lint()
     await composedTasks.format()
     await composedTasks.process()
     await composedTasks.optimize()
     await composedTasks.link()
-    await composedTasks.compileChunked()
+    await composedTasks.compile()
   },
 
   deploy: async () => {
@@ -311,22 +271,6 @@ export const flows = {
     await composedTasks.clean(true)
     await composedTasks.link()
     await composedTasks.compile()
-    await composedTasks.serve()
-    await composedTasks.watch()
-
-    if (runtime.logLevel !== 'quiet') {
-      process.stdout.write(`${runtime.colors.warning}Ready${runtime.colors.reset}\n`)
-    }
-  },
-
-  startChunked: async () => {
-    if (runtime.logLevel !== 'quiet') {
-      process.stdout.write(`${runtime.colors.warning}Starting up with chunked stylesheets...${runtime.colors.reset}\n`)
-    }
-
-    await composedTasks.clean(true)
-    await composedTasks.link()
-    await composedTasks.compileChunked()
     await composedTasks.serve()
     await composedTasks.watch()
 

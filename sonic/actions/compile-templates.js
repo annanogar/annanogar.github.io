@@ -26,8 +26,7 @@ let nunjucks, nunjucksConfig, nunjucksConfigPath
 const processSource = async (path = '', sourcePath = '', destinationPath = '', compiler = null, config = null) => {
   // Compile the source file
   const normalizedPath = relativePath(process.cwd(), resolvePath(process.cwd(), path))
-  const chunkedStylesheets = runtime.useChunkedStylesheets && runtime.chunkedStylesheetMap ? (runtime.chunkedStylesheetMap[normalizedPath] || []) : []
-  const output = await compiler(resolvePath(process.cwd(), path), { ...config.nunjucks.data, current_template_path: normalizedPath, chunked_stylesheets: chunkedStylesheets }).catch(error => console.error(error.message || error))
+  const output = await compiler(resolvePath(process.cwd(), path), { ...config.nunjucks.data, current_template_path: normalizedPath }).catch(error => console.error(error.message || error))
 
   // Get the filename and resolved path
   const filename = resolvePath(process.cwd(), joinPath(destinationPath, relativePath(sourcePath, path)))

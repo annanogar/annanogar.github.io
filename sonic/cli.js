@@ -84,7 +84,7 @@ const setupDefaultArguments = () => {
 const setRuntime = () => {
   runtime.noColors = !!(process.env.NO_COLOR || !flags.color || !flags.colors || flags.postinstall)
   runtime.noCache = !!(process.env.NO_CACHE || !flags.cache || flags.postinstall)
-  runtime.environment = flags.production || taskArguments.some(task => ['build', 'build-chunked', 'deploy'].includes(task)) ? 'production' : flags.debug ? 'debug' : 'development'
+  runtime.environment = flags.production || taskArguments.some(task => ['build', 'deploy'].includes(task)) ? 'production' : flags.debug ? 'debug' : 'development'
   runtime.useSymlinks = !flags.fullcopy
   runtime.autofix = flags.autofix
 }
