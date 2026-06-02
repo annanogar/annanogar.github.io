@@ -1,6 +1,6 @@
 {% import 'components/atoms/picture/picture.html' as atom_picture %}
 
-{% macro regular(href = '', title_1 = '', title_2 = '', title_3 = '', subtitle = '', image_1 = {}, image_2 = {}, image_3 = {}) %}
+{% macro regular(href = '', title_1 = '', title_2 = '', title_3 = '', subtitle = '', image_1 = {}, image_2 = {}, image_3 = {}, loading = '') %}
   {% if href and title_1 and image_1 and image_1.src and image_2 and image_2.src and image_3 and image_3.src %}
     <a class="tricard" href="{{ href }}">
       {{
@@ -11,7 +11,7 @@
           width = 320,
           height = 320,
           sizes = '(min-width: 768px) 33.333vw, 100vw',
-          loading = image_1.loading or 'lazy'
+          loading = loading or image_1.loading or 'lazy'
         )
       }}
 
@@ -23,7 +23,7 @@
           width = 320,
           height = 320,
           sizes = '(min-width: 768px) 33.333vw, 100vw',
-          loading = image_2.loading or 'lazy'
+          loading = loading or image_2.loading or 'lazy'
         )
       }}
 
@@ -35,7 +35,7 @@
           width = 320,
           height = 320,
           sizes = '(min-width: 768px) 33.333vw, 100vw',
-          loading = image_3.loading or 'lazy'
+          loading = loading or image_3.loading or 'lazy'
         )
       }}
 

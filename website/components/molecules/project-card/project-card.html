@@ -1,6 +1,6 @@
 {% import 'components/atoms/picture/picture.html' as atom_picture %}
 
-{% macro regular(href = '', title = '', subtitle = '', label = '', image = {}, sizes = '') %}
+{% macro regular(href = '', title = '', subtitle = '', label = '', image = {}, sizes = '', loading = '') %}
   {% if href and title and image and image.src %}
     <a class="project-card" href="{{ href }}">
       {{
@@ -11,7 +11,7 @@
           width = 320,
           height = 320,
           sizes = sizes or '(min-width: 768px) 33.333vw, 100vw',
-          loading = image.loading or 'lazy'
+          loading = loading or image.loading or 'lazy'
         )
       }}
 

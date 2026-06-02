@@ -18,9 +18,7 @@
     {% if images|length %}
       <ul class="image-grid__images">
         {% for image in images %}
-          {% if above_fold and loop.index < 4 %}
-            {{ object_set_value(image, 'loading', 'eager') }}
-          {% endif %}
+          {% set image_loading = 'eager' if (above_fold and loop.index < 4) else (image.loading or 'lazy') %}
 
           {% if '_2x1' in image.src %}
             <li class="image-grid__image image-grid__image--2x1">
@@ -31,7 +29,7 @@
                   width = 400,
                   height = 200,
                   sizes = '(min-width: 768px) 66.666vw, 100vw',
-                  loading = image.loading or 'lazy'
+                  loading = image_loading
                 )
               }}
             </li>
@@ -44,7 +42,7 @@
                   width = 320,
                   height = 320,
                   sizes = '(min-width: 768px) 33.333vw, 50vw',
-                  loading = image.loading or 'lazy'
+                  loading = image_loading
                 )
               }}
             </li>

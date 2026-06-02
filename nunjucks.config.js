@@ -100,9 +100,9 @@ const tags = {
   // },
 
   // Set a property in an object, useful since we can't directly manipulate objects in Nunjucks.
-  object_set_value: (object = {}, key = '', value = '') => {
-    object[key] = value
-  },
+  // object_set_value: (object = {}, key = '', value = '') => {
+  //   object[key] = value
+  // },
 
   // Set multiple properties in an object, useful since we can't directly manipulate objects in Nunjucks.
   // object_set_values: (object = {}, properties = {}) => {
