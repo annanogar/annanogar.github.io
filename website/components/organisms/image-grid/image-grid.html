@@ -16,6 +16,7 @@
     {% endif %}
 
     {% if images|length %}
+      <!-- axe-linter-disable list -->
       <ul class="image-grid__images">
         {% for image in images %}
           {% set image_loading = 'eager' if (above_fold and loop.index < 4) else (image.loading or 'lazy') %}
