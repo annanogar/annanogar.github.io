@@ -241,10 +241,6 @@ const alts = {
   'projects/middelen-meter/10_1x1': 'The main app dashboard on day 3 of 7, displaying a progress bar, a central time-of-day selection dial, a pink plus button for custom logging, and a primary button that reads “NIETS GEDRONKEN DE HELE DAG”.',
   'projects/middelen-meter/11_1x1': 'An app screen titled “GEBRUIK PER DAG” showing a pink-themed weekly bar chart broken down by day parts (ochtend, middag, avond, nacht). A smiley face highlights a day with zero consumption, and a button link at the bottom reads “Aantal standaard glazen”.',
   'projects/middelen-meter/12_2x1': 'Three side-by-side variations of the “GEBRUIK PER DAG” weekly bar chart screen. Each showcases a different substance tracking color scheme: orange for cigarettes, green for joints, and blue for sleeping pills, with consumption broken down by morning, afternoon, evening, and night.',
-  'projects/middelen-meter/13_2x1': 'Three side-by-side smartphone mockups displaying the “OVERZICHT” screen. The screens show various timeline views of alcohol and multi-substance tracking data across 1 week, 2 weeks, and 4 weeks using colored vertical bar charts.',
-  'projects/middelen-meter/14_1x1': 'A hand holding a smartphone displaying the “OVERZICHT” dashboard screen. The interface shows a weekly bar chart comparing alcohol (pink bars) and cigarette (orange bars) usage data from October 24 to October 30.',
-  'projects/middelen-meter/15_1x1': 'An informational screen within the app detailing alcohol measurements, titled “Standaardglas alcohol: 10g = 12.7ml pure alcohol”. Below the title is an illustrative grid displaying standard units and measurements for different drink types, including beer, wine, aperitifs, and spirits.',
-  'projects/middelen-meter/16_2x1': 'Three smartphone mockups side-by-side displaying concluding app modals: a congratulations window asking to start a new tracking cycle, a help window with a button link reading “OP ZOEK NAAR HULP?”, and a reset confirmation screen warning that all data will be deleted.',
   'projects/middelen-meter/cover_3x1': 'Close-up of a smartphone screen displaying the dark blue splash screen of the “Middelen Meter” app, featuring a geometric mountain logo in pink, yellow, and blue with a loading spinner.',
   'projects/middelen-meter/thumbnail_1x1': 'The main app dashboard on day 1 of 7, displaying the text “Vandaag” above a central pink plus icon and a large blue button that reads “NIETS GEDRONKEN DE HELE DAG” to quickly log a sober day.',
   'projects/parassita/01_1x1': 'Three copies of “Parasita” magazine arranged together on a surface. Each issue features a unique black and white cover illustration, a human heart with pink text, a young girl’s portrait with yellow text, and a planetary space scene with teal text.',
@@ -1329,7 +1325,7 @@ const content_blocks = {
   <li>Balanced behavioral sensitivity with radical simplicity, delivering a tool that successfully supports honest self-reflection without passing judgment.</li>
 </ul>
       `,
-      images: ['projects/middelen-meter/09_2x1', 'projects/middelen-meter/10_1x1', 'projects/middelen-meter/11_1x1', 'projects/middelen-meter/12_2x1', 'projects/middelen-meter/13_2x1', 'projects/middelen-meter/14_1x1', 'projects/middelen-meter/15_1x1', 'projects/middelen-meter/16_2x1'],
+      images: ['projects/middelen-meter/09_2x1', 'projects/middelen-meter/10_1x1', 'projects/middelen-meter/11_1x1', 'projects/middelen-meter/12_2x1'],
     },
   ],
 
