@@ -1,0 +1,23 @@
+{% extends 'templates/_base.en.html' %}
+{% import 'components/organisms/article-footer/article-footer.html' as article_footer %}
+{% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
+{% import 'components/organisms/card-grid/card-grid.html' as card_grid %}
+{% import 'components/organisms/landing-header/landing-header.html' as landing_header %}
+{% import 'components/organisms/tricard-call-to-action/tricard-call-to-action.html' as tricard_call_to_action %}
+
+{% set section = data.sections.home %}
+
+{% set page_title = section.title %}
+{% set page_description = section.description %}
+{% set page_href = section.href %}
+
+{% set opengraph_title = page_title %}
+{% set opengraph_description = page_description %}
+{% set opengraph_image = '/static/media/misc/social_1200x630.jpg' %}
+
+{% block content %}
+  {{ landing_header.regular(title = section.title, subtitle = section.subtitle, badge = data.base.home_header_badge) }}
+  {{ card_grid.regular(above_fold = true, title = data.base.selected_projects_title, cards = data.project_grid_cards) }}
+  {{ call_to_action.regular(variant = 'home', quote = section.cta_quote, image = data.base.home_cta_image, badge = data.base.home_cta_badge) }}
+  {{ card_grid.regular(cards = [data.section_text_cards.services, data.section_text_cards.manifesto, data.section_text_cards.resources]) }}
+{% endblock %}

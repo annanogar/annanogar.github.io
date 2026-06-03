@@ -1,0 +1,13 @@
+[
+  {
+    "name": "main script",
+    "path": "./build/static/scripts/main.js",
+    "limit": "3 KB"
+  },
+
+  {
+    "name": "main stylesheet",
+    "path": "./build/static/stylesheets/main.css",
+    "limit": "8 KB"
+  }
+]

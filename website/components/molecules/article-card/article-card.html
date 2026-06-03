@@ -1,0 +1,19 @@
+{% macro regular(href = '', target = '', title = '', subtitle = '', pretitle = '') %}
+  {% set new_tab_warning = 'Opens in a new window or tab' %}
+
+  {% if href and title %}
+    <a class="article-card" href="{{ href }}" {% if target %}target="{{ target }}"{% endif %} {% if target === '_blank' %}rel="noopener noreferrer" aria-label="{% if pretitle %}{{ pretitle|striptags + ' ' }}{% endif %}{{ title|striptags }}{% if subtitle %}{{ ' ' + subtitle|striptags }}{% endif %} ({{ new_tab_warning }})"{% endif %}>
+      <div class="article-card__content">
+        {% if pretitle %}
+          <p class="article-card__pretitle">{{ pretitle }}</p>
+        {% endif %}
+
+        <h3 class="article-card__title">{{ title }}</h3>
+
+        {% if subtitle %}
+          <p class="article-card__subtitle">{{ subtitle }}</p>
+        {% endif %}
+      </div>
+    </a>
+  {% endif %}
+{% endmacro %}

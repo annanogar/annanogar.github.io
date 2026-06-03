@@ -1,0 +1,24 @@
+{% import 'components/molecules/article-card/article-card.html' as molecule_article_card %}
+
+{% macro regular(cards = [], title = '') %}
+  {% if cards|length %}
+    <div class="card-list">
+      {% if title %}
+        <div class="card-list__title-wrapper">
+          <h2 class="card-list__title">{{ title }}</h2>
+        </div>
+      {% endif %}
+
+      <div class="card-list__wrapper">
+        <!-- axe-linter-disable list -->
+        <ul class="card-list__items">
+          {% for card in cards %}
+            {% if card.href and card.title %}
+              <li class="card-list__item">{{ molecule_article_card.regular(href = card.href, target = card.target, title = card.title, subtitle = card.subtitle, pretitle = card.pretitle) }}</li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  {% endif %}
+{% endmacro %}

@@ -1,0 +1,17 @@
+{% macro regular(href = '', title = '', subtitle = '', label = '') %}
+  {% if href and title %}
+    <a class="service-card" href="{{ href }}">
+      <div class="service-card__content">
+        {% if label %}
+          <p class="service-card__label">{{ label }}</p>
+        {% endif %}
+
+        <h3 class="service-card__title">{{ title }}</h3>
+
+        {% if subtitle %}
+          <p class="service-card__subtitle">{{ subtitle }}</p>
+        {% endif %}
+      </div>
+    </a>
+  {% endif %}
+{% endmacro %}

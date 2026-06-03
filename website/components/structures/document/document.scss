@@ -1,0 +1,31 @@
+@use '../../../assets/stylesheets/definitions/typography' as typography;
+
+html {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  display: flex;
+  flex-direction: row;
+  min-height: 100%;
+  position: relative;
+
+  &.konami-activated {
+    filter: hue-rotate(180deg);
+
+    img {
+      filter: hue-rotate(135deg);
+    }
+  }
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  margin: 0;
+  position: relative;
+  width: 100%;
+}
+
+::selection {
+  background-color: var(--color-selection-background);
+  color: var(--color-selection-foreground);
+}

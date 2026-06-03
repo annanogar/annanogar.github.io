@@ -1,0 +1,127 @@
+@use '../../../assets/stylesheets/definitions/breakpoints' as breakpoints;
+@use '../../../assets/stylesheets/definitions/grid' as grid;
+@use '../../../assets/stylesheets/definitions/typography' as typography;
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 100;
+  }
+}
+
+.menu-dialog {
+  --color-selection-background: var(--color-navy);
+  --color-selection-foreground: var(--color-white);
+
+  background: var(--color-pink);
+  color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  inset: 0;
+  max-height: 100%;
+  max-width: 100%;
+  opacity: 0;
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+
+  &[open] {
+    animation: fadein var(--easing-slow) forwards;
+    pointer-events: initial;
+  }
+
+  &[open='false'] {
+    animation: fadein var(--easing-slower) reverse forwards;
+    pointer-events: none;
+  }
+
+  .menu-bar-contents {
+    --color-logo-hover-override: var(--color-navy);
+
+    flex: 0 0 auto;
+  }
+
+  .menu-dialog__content {
+    flex: 1 1 100%;
+    overflow-y: scroll;
+    overscroll-behavior: contain;
+    padding: var(--padding-xl) var(--padding-large);
+    text-align: center;
+  }
+
+  .menu-dialog__menu-list,
+  .menu-dialog__submenu-list {
+    display: grid;
+    list-style: none;
+    padding: 0;
+  }
+
+  .menu-dialog__menu-list {
+    gap: 1.5rem;
+  }
+
+  .menu-dialog__submenu-list {
+    margin-bottom: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .menu-dialog__menu-link,
+  .menu-dialog__submenu-link {
+    color: var(--color-white);
+    display: inline-block;
+    text-decoration: none;
+    transition: color var(--easing-standard);
+    vertical-align: bottom;
+    width: 100%;
+
+    &[href] {
+      cursor: pointer;
+
+      &:hover,
+      &:focus-visible {
+        color: var(--color-navy);
+      }
+
+      &[aria-current='page'] {
+        color: var(--color-navy);
+      }
+    }
+  }
+
+  .menu-dialog__submenu-link {
+    padding: 0.375rem 0;
+  }
+
+  .menu-dialog__menu-item {
+    @include typography.heading-1;
+  }
+
+  .menu-dialog__submenu-item {
+    @include typography.subtitle;
+  }
+
+  @include breakpoints.landscape {
+    .menu-dialog__content {
+      padding: var(--padding-medium) var(--padding-large) var(--padding-large) var(--padding-large);
+      text-align: left;
+    }
+
+    .menu-dialog__menu-list {
+      display: block;
+    }
+
+    .menu-dialog__menu-item {
+      float: right;
+      width: 50%;
+
+      &:first-child {
+        float: left;
+        padding-bottom: var(--padding-medium);
+      }
+    }
+  }
+}

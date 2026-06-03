@@ -1,0 +1,40 @@
+{% import 'components/atoms/badge/badge.html' as atom_badge %}
+{% import 'components/atoms/picture/picture.html' as atom_picture %}
+{% import 'components/molecules/project-card/project-card.html' as molecule_project_card %}
+{% import 'components/molecules/service-card/service-card.html' as molecule_service_card %}
+
+{% macro regular(variant = '', quote = '', badge = {}, image = {}, card = {}) %}
+  {% set variant = variant or 'regular' %}
+
+  {% if quote %}
+    <div class="call-to-action call-to-action--{{ variant }}">
+      <div class="call-to-action__wrapper">
+        <blockquote class="call-to-action__quote">{{ quote }}</blockquote>
+      </div>
+
+      {% if badge %}
+        {{ atom_badge.regular(variant = badge.variant, href = badge.href, title = badge.title, timid_hover = true) }}
+      {% endif %}
+
+      {% if card and card.href %}
+        {% if card.image %}
+          {{ molecule_project_card.regular(href = card.href, title = card.title, subtitle = card.subtitle, label = card.label, image = card.image) }}
+        {% else %}
+          {{ molecule_service_card.regular(href = card.href, title = card.title, subtitle = card.subtitle, label = card.label) }}
+        {% endif %}
+      {% elif image and image.src %}
+        {{
+          atom_picture.regular(
+            classes = 'call-to-action__picture',
+            sources = [ { type: 'image/webp', srcsets: [ '/static/media/' + image.src + '_640w.webp 640w', '/static/media/' + image.src + '_854w.webp 854w', '/static/media/' + image.src + '_1280w.webp 1280w' ] } ],
+            alt = image.alt or data.alts[image.src],
+            width = 320,
+            height = 320,
+            sizes = '(min-width: 768px) 33.333vw, 100vw',
+            loading = image.loading or 'lazy'
+          )
+        }}
+      {% endif %}
+    </div>
+  {% endif %}
+{% endmacro %}

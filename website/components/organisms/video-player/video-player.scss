@@ -1,0 +1,121 @@
+@use '../../../assets/stylesheets/definitions/breakpoints' as breakpoints;
+@use '../../../assets/stylesheets/definitions/grid' as grid;
+@use '../../../assets/stylesheets/definitions/typography' as typography;
+
+.video-player {
+  position: relative;
+
+  .video-player__grid {
+    @include grid.container;
+  }
+
+  .video-player__wrapper {
+    grid-column: column 1 / span var(--grid-columns);
+    padding: calc(var(--padding-xl) * 1.6) var(--padding-large) 0;
+  }
+
+  .video-player__poster-button {
+    aspect-ratio: 16 / 9;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: block;
+    padding: 0;
+    position: relative;
+    width: 100%;
+
+    &[hidden] {
+      display: none;
+    }
+
+    &.video-player__poster-button--ratio-16x10 {
+      aspect-ratio: 16 / 10;
+    }
+
+    &::after {
+      background: rgb(0 0 0 / 33%);
+      content: '';
+      inset: 0;
+      pointer-events: none;
+      position: absolute;
+    }
+  }
+
+  .video-player__poster-image {
+    display: block;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .video-player__play-icon {
+    aspect-ratio: 1 / 1;
+    color: currentcolor;
+    filter: drop-shadow(0.25rem 0.25rem 0.75rem rgb(0 0 0 / 50%));
+    height: auto;
+    left: 50%;
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 4rem;
+    z-index: 1;
+
+    &::before {
+      background: transparent;
+      border: 0.33rem solid currentcolor;
+      border-radius: 50%;
+      content: '';
+      display: block;
+      height: 100%;
+      width: 100%;
+      z-index: 2;
+    }
+
+    &::after {
+      background: currentcolor;
+      clip-path: polygon(0% 0%, 0% 100%, 100% 50%);
+      content: '';
+      display: block;
+      height: 50%;
+      left: 36%;
+      position: absolute;
+      top: 25%;
+      width: 40%;
+      z-index: 3;
+    }
+  }
+
+  .video-player__video {
+    aspect-ratio: 16 / 9;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+
+    &[hidden] {
+      display: none;
+    }
+
+    &.video-player__video--ratio-16x10 {
+      aspect-ratio: 16 / 10;
+    }
+  }
+
+  .video-player__figcaption {
+    padding: 0.5rem var(--padding-large) var(--padding-large) var(--padding-large);
+  }
+
+  @include breakpoints.landscape {
+    .video-player__wrapper {
+      padding: var(--padding-large) var(--padding-large) 0;
+    }
+
+    .video-player__play-icon {
+      width: 8rem;
+
+      &::before {
+        border-width: 0.75rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{% import 'components/atoms/richtext/richtext.html' as atom_richtext %}
+
+{% macro regular(richtext = '', awards_title = '', awards = [], recognitions_title = '', recognitions = [], credits_title = '', credits = [], copyright = '') %}
+  {% set extra_richtext = '' %}
+
+  {% if awards|length %}
+    {% set title = '<h3>' + awards_title + '</h3>' if awards_title else '' %}
+    {% set extra_richtext = extra_richtext + title + '<p>' %}
+
+    {% for award in awards %}
+      {% set break = '' if loop.last else '<br/>' %}
+      {% set extra_richtext = extra_richtext + '<strong>' + award.title + '</strong><br/>' + award.description + break %}
+    {% endfor %}
+
+    {% set extra_richtext = extra_richtext + '</p>' %}
+  {% endif %}
+
+  {% if recognitions|length %}
+    {% set title = '<h3>' + recognitions_title + '</h3>' if recognitions_title else '' %}
+    {% set extra_richtext = extra_richtext + title + '<p>' %}
+
+    {% for recognition in recognitions %}
+      {% set break = '' if loop.last else '<br/>' %}
+      {% set extra_richtext = extra_richtext + '<strong>' + recognition.title + '</strong><br/>' + recognition.description + break %}
+    {% endfor %}
+
+    {% set extra_richtext = extra_richtext + '</p>' %}
+  {% endif %}
+
+  {% if credits|length %}
+    {% set title = '<h3>' + credits_title + '</h3>' if credits_title else '' %}
+    {% set extra_richtext = extra_richtext + title + '<p>' %}
+
+    {% for credit in credits %}
+      {% set break = '' if loop.last else '<br/>' %}
+      {% set extra_richtext = extra_richtext + credit.title + ': <strong>' + credit.description + '</strong>' + break %}
+    {% endfor %}
+
+    {% set extra_richtext = extra_richtext + '</p>' %}
+  {% endif %}
+
+  {% if copyright %}
+    {% set extra_richtext = extra_richtext + '<p>' + copyright + '</p>' %}
+  {% endif %}
+
+  {% set richtext = richtext + extra_richtext %}
+
+  {% if caller or richtext %}
+    <div class="article-footer">
+      <div class="article-footer__wrapper">
+        {% if caller %}
+          {% set child_context = caller() %}
+
+          {% if child_context %}
+            {% call atom_richtext.regular(richtext = richtext) %}
+              {{ child_context }}
+            {% endcall %}
+          {% endif %}
+        {% elif richtext %}
+          {{ atom_richtext.regular(richtext = richtext) }}
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+{% endmacro %}

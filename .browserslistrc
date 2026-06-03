@@ -1,0 +1,22 @@
+# Browsers in scope
+
+# Chrome
+chrome 146
+and_chr 146
+
+# Edge
+edge 143
+
+# Firefox
+firefox 149
+and_ff 149
+
+# Safari
+safari 26.2
+ios_saf 26.2
+
+# Opera
+opera 125
+
+# Samsung Internet
+#samsung 29

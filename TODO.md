@@ -1,0 +1,90 @@
+# TODO
+
+Improvement backlog for the site. Ordered by value/effort. Check items off as they're done; keep the context notes so a later session (or future you) can pick any item up cold.
+
+> None of these are urgent — the site works. These are refinements for spare time. The foundations (static output, baked-in a11y testing, centralized content + auto-injected alt text, atomic components) are sound and intentionally left as-is.
+
+## High value, low effort
+
+- [x] **Build-time alt-text validation.** Today, if an image path in `nunjucks.data.js` has no matching key in the `alts` map, the alt silently becomes `""` and ships with no warning. The `picture` macro warns on missing `sizes` but not missing alt. Add a build step that fails (or loudly warns) when any referenced image lacks a non-empty alt. Most on-brand safeguard for an accessibility-focused site. Relevant: the `setImageAlts`/`setBlockImageAlts`/`setAllImageAlts` walkers in [nunjucks.data.js](nunjucks.data.js), and [website/components/atoms/picture/picture.html](website/components/atoms/picture/picture.html).
+
+- [x] **Generate `sitemap.xml` + `robots.txt`.** Neither exists today (source or build). Directly helps the current goal of getting Google to drop the old `/it/` URLs, and improves indexing of the canonical English pages. Implement as a small Sonic task that walks `build/**/*.html` — the same directory walk already used in [tests/accessibility.spec.js](tests/accessibility.spec.js).
+
+- [x] **Add a broken-internal-link check.** The only automated gate is a11y. A link checker over `build/` catches the most common static-site regression (a renamed page leaving dangling `href`s). Could live in the Playwright suite or as a standalone script.
+
+- [x] **Fix article-card "Label in Name" violation (WCAG 2.5.3).** The article-card link's `aria-label` is built from `pretitle + title + new-tab-warning` but omits the `subtitle`, so visible text ("Published on Goodjob!" on `/resources/`) isn't contained in the accessible name → axe `label-content-name-mismatch`. Caught by Lighthouse, currently NOT by the axe suite (that rule is experimental — see the low-priority item below). Fix in [website/components/molecules/article-card/article-card.html:5](website/components/molecules/article-card/article-card.html#L5): insert the subtitle into the label between title and the warning:
+
+  ```jinja
+  aria-label="{% if pretitle %}{{ pretitle|striptags + ' ' }}{% endif %}{{ title|striptags }}{% if subtitle %} {{ subtitle|striptags }}{% endif %} ({{ new_tab_warning }})"
+  ```
+
+  After fixing, re-run `yarn validate` (or the snippet below) to confirm `/resources/` is clean.
+
+- [x] **Add an `a11y:where` helper to surface the offending element from a Lighthouse a11y failure.** Lighthouse's CLI only prints the rule id; the offending node (selector + snippet + reason) is in the LHR JSON under `audits[<rule>].details.items[].node`. Cleaner as a small script file than inlined in package.json (avoids quote-escaping), e.g. create `scripts/a11y-where.mjs` and add `"a11y:where": "node scripts/a11y-where.mjs"`. Script body:
+  ```js
+  import { readdirSync, readFileSync } from 'node:fs'
+  for (const f of readdirSync('.lighthouseci').filter(n => n.startsWith('lhr-') && n.endsWith('.json'))) {
+    const lhr = JSON.parse(readFileSync('.lighthouseci/' + f, 'utf8'))
+    for (const [id, audit] of Object.entries(lhr.audits)) {
+      if (audit.scoreDisplayMode === 'binary' && audit.score !== 1 && audit.details?.items?.length) {
+        for (const it of audit.details.items) {
+          if (!it.node) continue
+          console.log(`${lhr.requestedUrl || lhr.finalUrl} [${id}]`)
+          console.log('  selector:', it.node.selector)
+          console.log('  snippet :', it.node.snippet)
+          console.log('  why     :', (it.node.explanation || '').replace(/\s+/g, ' '))
+        }
+      }
+    }
+  }
+  ```
+
+## High value, low effort (cont.)
+
+- [x] **Fix the missing-data Proxy in [nunjucks.data.js](nunjucks.data.js) (`createSafeDataProxy` / `guardedData`).** Returns `undefined` on a miss (was a chainable proxy of `{}`, which rendered `"[object Object]"` and was truthy → broke `{% if optional %}`); dedupes via a module-level `Set`; prints one end-of-build summary of unique missing paths at process exit instead of scattered `console.warn`s. Watch-mode tradeoff: the summary only fires on quit (process is long-lived), so a fresh typo isn't surfaced until you stop the watcher — acceptable since `node sonic build` is the real gate.
+
+- [x] **Reduce required-vs-optional noise in the missing-data Proxy.** Solved via TypeScript-driven optional materialization, retiring the `allowedMissingProps` allowlist. The `data/*.ts` modules now bind to their interfaces with `satisfies` instead of `as` (the `as` casts were suppressing all validation), and [data/types.ts](data/types.ts) exposes `Defaults<T>` (an interface's optional keys → `null`). [nunjucks.data.js](nunjucks.data.js) applies those defaults (`applyDefaults`) and normalizes the derived cards to a uniform shape (`toUniformCards`), so every declared-optional key exists at runtime — the proxy now warns **only** on genuinely undeclared keys (typos). The switch to `satisfies` immediately caught real drift: an undeclared `card_subtitle` and an `image-grid` content block missing its `images`.
+
+## Medium value
+
+- [ ] **Run PostCSS/autoprefixer on compiled CSS, not SCSS source.** Today the `process` step runs _before_ `compile`, and PostCSS (autoprefixer + the `postcss-scss` parser) rewrites each `.scss` **source** file IN PLACE ([process-stylesheets.js](sonic/actions/process-stylesheets.js)). That's destructive (mutates committed sources) and backwards (autoprefixer is meant for output CSS). Rewrite so autoprefixing runs on the compiled `build/static/stylesheets/*.css` **after** `compile`: move `process` after `compile` in `flows.build` and reorder the `stylesheets` composed + watch tasks ([tasks.js](sonic/tasks.js)); point its globs at the built CSS; drop the `postcss-scss` syntax in [postcss.config.js](postcss.config.js) (it'll be real CSS); and write to the build output instead of in place. Also rename the action's `destinationPath` param (currently a misnomer that receives the source root and is only used to relativize sourcemap `sources`). Toggle is `SONIC_USE_AUTOPREFIXER`. Confirmed the in-place behavior by execution on 2026-06-03 (66 processed, 0 changed — current browserslist targets need no prefixes).
+
+- [x] **Split `nunjucks.data.js`.** ~1700 lines / ~162KB mixing global config, per-page content, the `alts` dictionary, and transform helpers. Still findable, but peel out `alts` and `content_blocks` into their own modules (or go per-project) with a thin index that composes them. Reduces the "scroll forever" tax as projects accumulate.
+
+- [x] **Fold responsive-image generation into Sonic/sharp (done 2026-06-03).** Replaced the macOS-only, non-CI-reproducible [scripts/](scripts/) `1-8` pipeline with a cross-platform Sonic task, [convert-source-images.js](sonic/actions/convert-source-images.js) (`node sonic convert-source-images`), wired in [tasks.js](sonic/tasks.js) and configured under `sourceImages` in [sonic.config.js](sonic.config.js). It's a **manual** task (not in `flows.build`, not watched) — distinct from the build's `optimize-images`, which re-encodes build assets in place. Behaviour: reads originals from the gitignored `source-images/` inbox (mirrors the `website/assets/media/` folder layout), picks each image's target ratio from a `_<ratio>` filename suffix or, when absent, snaps to the nearest configured ratio from the image's own dimensions (center-cropped; ties resolve to the smaller ratio, matching old `scripts/5`), then emits `<base>_<ratio>_<width>w.webp` variants (q75 / sharp `effort: 6`, EXIF auto-orient + metadata stripped, height computed as `round(width/ratio)` — fixing the old scripts' hand-typed off-by-ones). Ratios/widths live in config (`1x1`→[400,640,854,1280], `2x1`→[800,1280,1707,2560], `3x1`→[800,1920,2560,3840]). **Model decided with the user:** it's an inbox, not a sync — originals are **deleted** on success (clean run leaves `source-images/` empty, empty subdirs pruned; keep canonical originals off-repo), it overwrites same-named variants, and it never prunes media whose original is gone (remove stale media by hand). No hash cache (presence in the inbox = work to do). The old [scripts/](scripts/) `1-8` + [start.sh](scripts/start.sh) are now superseded and can be deleted once you're happy with the new task.
+
+## Cleanup
+
+- [x] **`tsconfig.json` is now load-bearing.** The `data/*.ts` modules are type-checked via `yarn typecheck` (`tsc --noEmit`), wired into the `build`/`test`/`validate` scripts and the deploy workflow so interface/data drift fails the build. (Was previously dead weight — no `tsc` in scripts.) Component scripts remain unchecked (`checkJs: false`); enabling `checkJs` with JSDoc types on them is a separate, optional lift.
+
+- [ ] **Delete the `/it/` redirect stubs once Google has dropped the old Italian URLs.** [website/templates/pages/it/](website/templates/pages/it/) is redirect-only stubs (extend [\_base.redirect.html](website/templates/_base.redirect.html)) kept solely to de-index the removed Italian version. Remove wholesale when the old URLs no longer appear in search results.
+
+## Low priority
+
+> Division of labour (as of 2026-06-03): **accessibility** is owned by the **axe Playwright suite** (every built page); **JS/CSS bytes** are owned by **size-limit**; **SEO + best-practices** are now owned by the static [tests/seo.spec.js](tests/seo.spec.js) and [tests/console-errors.spec.js](tests/console-errors.spec.js) gates (see below). **Lighthouse** previously held SEO + best-practices, but both are now replaced — so Lighthouse is fully redundant and a candidate for outright removal (see the open item at the end of this section).
+
+- [x] **Enable experimental axe rules in the Playwright suite.** [tests/accessibility.spec.js](tests/accessibility.spec.js) uses `AxeBuilder().withTags([...wcag...])`, which skips rules tagged `experimental` — that's why it missed the article-card `label-content-name-mismatch` that Lighthouse caught. Turn experimental rules on (e.g. `.options({ rules: { 'label-content-name-mismatch': { enabled: true } } })`, or more broadly enable the experimental set) so a11y is enforced on every page, not just the Lighthouse sample.
+
+- [x] **Slim Lighthouse to SEO + best-practices (2026-06-03).** `onlyCategories` in [lighthouserc.json](lighthouserc.json) is now `["seo", "best-practices"]` — `accessibility` (owned by axe) and `performance` both removed. Also: all perf-metric `warn` assertions (FCP/LCP/TTI/speed-index/TBT) removed; `lighthouse-budget.json` deleted and its `budgets` reference dropped (per-page image/total weight is intentionally **no longer tracked** — see the note in "Considered and intentionally NOT doing"); the assertion overrides were trimmed from eight to just `is-on-https` (kept off because the local static build is http). Verified against Lighthouse's own `default-config.js` category membership that the other seven overrides targeted `performance`/`accessibility` audits no longer collected, so they were inert.
+
+- [x] **Add a bundle-size check (2026-06-03).** Added `size-limit` + `@size-limit/file` (12.1.0), configured in [.size-limit.json](.size-limit.json) to measure **brotli** sizes of `build/static/scripts/main.js` (limit 3 KB, currently ~2.24 KB) and `build/static/stylesheets/main.css` (limit 8 KB, currently ~7.08 KB), run as `test:bundle-sizes` (`size-limit --silent`) inside `yarn test`. These two files are the only JS/CSS any page links (verified), so size-limit fully covers per-page script/stylesheet bytes — this is why the looser, non-gating Lighthouse `script`/`stylesheet` budgets were removed. Note the CSS headroom is tight (~0.9 KB); expect to bump the 8 KB limit as components accrete.
+
+- [x] **Speed up the axe Playwright suite (2026-06-03).** [tests/accessibility.spec.js](tests/accessibility.spec.js) previously ran `analyze()` **twice** per page (one call for required tags, one for aspirational) and let `page.goto` download every responsive webp. Now it runs a **single** `analyze()` over the union of tags and partitions the violations by each violation's own `tags` (`isRequiredViolation`), and aborts `image`/`media` requests via `page.route` (axe only reads `alt` attributes + computed CSS colors, never image bytes, so this is safe and doesn't affect color-contrast). Dropped the suite's reported time ~4.6s → ~3.9s on 23 routes. Remaining floor is per-test browser-context + axe-injection cost; a non-browser runner (`jest-axe`) was rejected because it can't evaluate color-contrast.
+
+- [x] **Replace Lighthouse best-practices with a Playwright console/error listener (2026-06-03).** Added [tests/console-errors.spec.js](tests/console-errors.spec.js) (`test:console`, in `yarn test`): for every content page it attaches `page.on('pageerror', …)` + `page.on('console', m => m.type() === 'error')` listeners and fails on any error — covering the most valuable best-practices audit (`errors-in-console`). Two deliberate deviations from the original plan: (1) it's a **dedicated spec**, not piggybacked onto the axe suite, so a console failure reports clearly instead of masquerading as an axe failure; (2) it does **not** block images (unlike the axe suite) because an aborted request can itself log a console error → false positive. Scoped to content pages only — `/it/` stubs immediately `window.location.replace`. Security-header audits (CSP/HSTS/COOP) aren't evaluable on the local static build anyway. 23 pages, ~2.4s, currently clean.
+
+- [x] **Replace Lighthouse SEO with a static markup assertion over `build/` (2026-06-03).** Added [tests/seo.spec.js](tests/seo.spec.js) (`test:seo`, in `yarn test`). Per content page it asserts: `<title>` present, `lang` set, `og:title`/`og:description` present, meta description present (length is a `console.warn` only, not a gate — avoids turning a subjective SEO guideline into a brittle failure). Across all content pages it asserts **title uniqueness** (something Lighthouse can't do — it scores pages in isolation). For every `/it/` stub it enforces the deindexing contract: `noindex` present AND an absolute canonical on `https://annanogar.com` that does **not** point to another `/it/` URL and **does** resolve to a real built English page. Uses regex head-extractors (no HTML-parser dep, consistent with links.spec.js) and the same `build/` walk as the other specs. 39 checks, ~1.7s.
+
+- [ ] **Retire Lighthouse entirely.** Now unblocked: SEO + best-practices (its only two remaining categories) are both replaced by the specs above, perf was already dropped, bytes are size-limit's, a11y is axe's. Removing it means deleting `validate:lighthouse`/`validate`/`a11y:where` scripts, [lighthouserc.json](lighthouserc.json), [scripts/a11y-where.mjs](scripts/a11y-where.mjs), and the `@lhci/cli` dep (and the `lighthouseci`/`.lighthouseci` artifacts). Left as a deliberate decision rather than done automatically — confirm you don't want to keep Lighthouse around as an occasional holistic sanity sweep before deleting the tooling.
+
+## Much later
+
+- [ ] **Critical (above-the-fold) CSS.** Extract the above-the-fold CSS and inline it in the document `<head>`, deferring the rest of the stylesheet. This is the worthwhile version of the abandoned chunking idea — improves first paint without the per-page-CSS caching downside. Explicitly a later project, not now.
+
+## Considered and intentionally NOT doing
+
+- **Replacing Sonic.** The vendored build system is owned/authored in-house, works well, and an off-the-shelf SSG would cost more than it returns.
+- **Per-page JS bundles.** [main.js](website/assets/scripts/main.js) glob-imports every component's JS onto every page, so some unused code ships site-wide — negligible at this size.
+- **Removing the committed `.env`.** Harmless (no secrets); the `SONIC_STAGING_*` rsync path is unused but the file is still needed for local builds.
+- **Re-adding per-page image/total weight budgets (2026-06-03 decision).** The old `lighthouse-budget.json` `image`/`total` budgets were dropped and deliberately **not** replaced. size-limit covers JS/CSS bytes; image weight is managed by hand via the responsive-crop pipeline ([scripts/](scripts/)) + `sharp` optimization, and the budgets were only ever *reported* by Lighthouse (never asserted/gating). If image bloat ever becomes a real problem, the lightest fix is a minimal `lighthouse-budget.json` with just `image` + `total`, optionally with a `resource-budget` assertion to make it gate.
+- **Adding `<link rel="canonical">` to the real EN pages (2026-06-03 decision).** Considered (only the `/it/` stubs emit one today) and decided against. Google's own docs state canonicalization is **not required** — "your site will likely do just fine without specifying a canonical preference" — and a self-referencing canonical mainly disambiguates when alternates/duplicates/params exist, which the clean, single-URL English pages don't have. Against that marginal upside sits real downside: a templated canonical that's subtly wrong (trailing-slash, domain, or path mismatch) can silently de-index pages — the worst failure mode, and one easy to ship unnoticed on a static site. The canonical that *does* matter — the `/it/` stubs consolidating to their English equivalents (a genuine alternate) — is already in place and now gated by [tests/seo.spec.js](tests/seo.spec.js). Note that most SEO tooling (Yoast, Semrush) still *recommends* self-referencing canonicals as best practice, so this is a considered risk/benefit call for a small static site, not a hard rule; revisit if duplicate-URL situations (params, alternates) ever arise. Sources: [Google Search Central — consolidate duplicate URLs](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls), [Yoast — rel=canonical guide](https://yoast.com/rel-canonical/).

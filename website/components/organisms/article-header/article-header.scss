@@ -1,0 +1,28 @@
+@use '../../../assets/stylesheets/definitions/breakpoints' as breakpoints;
+@use '../../../assets/stylesheets/definitions/grid' as grid;
+@use '../../../assets/stylesheets/definitions/typography' as typography;
+
+.article-header {
+  position: relative;
+
+  .article-header__wrapper {
+    padding: var(--padding-xl) var(--padding-large) var(--padding-large);
+  }
+
+  .article-header__title {
+    @include typography.heading-1;
+  }
+
+  .article-header__subtitle {
+    margin-top: 1.5rem;
+    max-width: min(100%, 60ch);
+
+    @include typography.subtitle;
+  }
+
+  @include breakpoints.landscape {
+    .article-header__wrapper {
+      padding: var(--padding-medium) var(--padding-large) var(--padding-medium);
+    }
+  }
+}

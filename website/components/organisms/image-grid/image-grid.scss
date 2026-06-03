@@ -1,0 +1,58 @@
+@use '../../../assets/stylesheets/definitions/breakpoints' as breakpoints;
+@use '../../../assets/stylesheets/definitions/grid' as grid;
+@use '../../../assets/stylesheets/definitions/typography' as typography;
+
+.image-grid {
+  position: relative;
+
+  .image-grid__wrapper {
+    padding: calc(var(--padding-xl) * 1.6) var(--padding-large) 0;
+  }
+
+  .image-grid__title {
+    @include typography.heading-2;
+  }
+
+  .richtext {
+    margin-top: 1rem;
+  }
+
+  .image-grid__images {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    list-style: none;
+    padding: 0;
+  }
+
+  .image-grid__image--1x1 {
+    aspect-ratio: 1 / 1;
+    grid-column: span 1;
+  }
+
+  .image-grid__image--2x1 {
+    aspect-ratio: 2 / 1;
+    grid-column: span 2;
+  }
+
+  &:has(.image-grid__images) {
+    .image-grid__wrapper {
+      padding-bottom: calc(var(--padding-xl) * 1.8);
+    }
+  }
+
+  @include breakpoints.landscape {
+    .image-grid__wrapper {
+      padding: var(--padding-large) var(--padding-large) 0;
+    }
+
+    .image-grid__images {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    &:has(.image-grid__images) {
+      .image-grid__wrapper {
+        padding-bottom: var(--padding-large);
+      }
+    }
+  }
+}

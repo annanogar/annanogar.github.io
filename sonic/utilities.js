@@ -1,0 +1,86 @@
+/*
+ * Collection of utilities for Sonic
+ */
+
+import runtime from './runtime.js'
+import { getDependencyList } from '@eklingen/nunjucks-dependencies'
+import { access, readFile } from 'node:fs/promises'
+import { relative as relativePath, resolve as resolvePath } from 'node:path'
+import { promisify } from 'node:util'
+import { gzip } from 'node:zlib'
+import { glob as tGlob } from 'tinyglobby'
+
+// Promisified gzip call
+export const promisifiedGzip = promisify(gzip)
+
+// Async array filters. Both preserve input order; they differ only in whether the predicates overlap.
+// Concurrent: predicate(e) is invoked before the accumulator is awaited, so every predicate starts in the same tick (overlapping I/O).
+export const asyncFilterConcurrently = async (arr, predicate) => arr.reduce(async (memo, e) => ((await predicate(e)) ? [...(await memo), e] : memo), [])
+// Sequential: the accumulator is awaited first, so each predicate only starts once the previous one has resolved.
+export const asyncFilterSequentially = async (arr, predicate) => arr.reduce(async (memo, e) => [...(await memo), ...((await predicate(e)) ? [e] : [])], [])
+
+// Truncate text with dots
+export const truncateTextWithDots = (text = '', max = 50) => (text.length > max ? `${text.substring(0, max / 2 - 1)}...${text.substring(text.length - (max / 2 - 2), text.length)}` : text)
+
+// Check if path exists
+export const pathExists = async path =>
+  await access(path)
+    .then(() => true)
+    .catch(() => false)
+
+// Lazy load globbing
+// Always ignore anything starting with ___
+// Results are sorted by path (tinyglobby doesn't guarantee order) so per-file/verbose output reads predictably.
+export const glob = async (pattern, options = {}) => (await tGlob(pattern, { ...options, ignore: [...(options.ignore || []), '**/___*'] })).sort((a, b) => a.localeCompare(b))
+
+// Reports the filesize (plain and gzipped) of files in the stream
+export async function reportFileSize(fileSize = 0, fileContents = '', filePath = '', showCompressed = false, showRaw = true) {
+  if (!filePath) {
+    return
+  }
+
+  try {
+    fileContents = fileContents || (await readFile(resolvePath(process.cwd(), filePath)))
+  } catch {
+    return
+  }
+
+  fileSize = fileSize || fileContents.length
+
+  const color = filePath.endsWith('.map') ? runtime.colors.timing : runtime.colors.reset
+  const rawSizeString = showRaw || showCompressed ? `${runtime.colors.reset}${color}${((fileSize / 1024).toFixed(2).toString() + ' KB').padStart(15)}${runtime.colors.timing} ${showCompressed ? '(raw)' : ''} ` : ``
+  const gzipSizeString = showCompressed ? `${runtime.colors.reset}${color}${(((await promisifiedGzip(fileContents, { level: 6 })).length / 1024).toFixed(2).toString() + ' KB').padStart(15)}${runtime.colors.timing} (gzip)` : ``
+  const filenameLength = Math.min(process.stdout.columns || 80, 120) - 55
+  const filenameString = truncateTextWithDots(relativePath(process.cwd(), filePath).padEnd(filenameLength), filenameLength)
+
+  if (runtime.logLevel !== 'quiet') {
+    process.stdout.write(`      ${runtime.colors.count}-${runtime.colors.reset} ${color}${filenameString} ${showRaw ? rawSizeString : ''} ${showCompressed ? gzipSizeString : ''} ${runtime.colors.reset}\n`)
+  }
+}
+
+// Try to see if the changed file is a template entry point, and if so, compile only that one.
+// Otherwise, get the dependency tree and only compile the templates that depend on the changed file.
+// If none of those works, compile the full set of templates.
+export const getTemplateSubset = async (path, sourceGlobs, sourcePath) => {
+  if (!sourceGlobs || !sourcePath) {
+    return []
+  }
+
+  if (!path) {
+    return sourceGlobs
+  }
+
+  // The watcher groups paths by callback, so we need to check if the path is in an array
+  if (typeof path !== 'string') {
+    path = path[0]
+  }
+
+  if (path.includes(sourcePath)) {
+    return path
+  }
+
+  // Get the source paths
+  const dependencies = await getDependencyList(path, await glob(sourceGlobs), /^website\/templates\/pages\//, true, 'website/')
+
+  return dependencies.length ? dependencies : sourceGlobs
+}

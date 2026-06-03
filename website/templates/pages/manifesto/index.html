@@ -1,0 +1,30 @@
+{% extends 'templates/_base.en.html' %}
+{% import 'components/organisms/article-content-image/article-content-image.html' as article_content_image %}
+{% import 'components/organisms/article-header/article-header.html' as article_header %}
+{% import 'components/organisms/article-quote/article-quote.html' as article_quote %}
+{% import 'components/organisms/call-to-action/call-to-action.html' as call_to_action %}
+
+{% set section = data.sections.manifesto %}
+{% set content_blocks = data.content_blocks.manifesto %}
+
+{% set page_title = section.title %}
+{% set page_description = section.description %}
+{% set page_href = section.href %}
+
+{% set opengraph_title = page_title %}
+{% set opengraph_description = page_description %}
+
+{% block content %}
+  {{ article_header.regular(title = section.title) }}
+
+  {% for block in content_blocks %}
+    {% if block.type === 'article-content-image' %}
+      {% set loading = 'eager' if not loop.index0 else 'lazy' %}
+      {{ article_content_image.regular(richtext = block.richtext, variant = block.variant, image = { loading: loading, src: block.image.src, alt: block.image.alt }) }}
+    {% elif block.type === 'article-quote' %}
+      {{ article_quote.regular(quote = block.quote) }}
+    {% endif %}
+  {% endfor %}
+
+  {{ call_to_action.regular(quote = section.cta_quote, card = data.section_cards.resources) }}
+{% endblock %}

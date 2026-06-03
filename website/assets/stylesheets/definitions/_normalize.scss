@@ -1,0 +1,22 @@
+@use '../utilities/normalize/normalize' as normalize;
+
+@mixin declarations {
+  @include normalize.declarations;
+
+  // Project-specific normalization goes here
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    > a {
+      color: inherit;
+      text-decoration: none;
+
+      &:hover,
+      &:focus {
+        color: var(--color-pink);
+      }
+    }
+  }
+}

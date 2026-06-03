@@ -1,0 +1,9 @@
+// To visually hide something which should be available to screenreaders
+
+@mixin apply {
+  clip-path: inset(0 0 100% 100%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+}

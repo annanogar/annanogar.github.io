@@ -1,0 +1,80 @@
+@use '../../../assets/stylesheets/definitions/breakpoints' as breakpoints;
+@use '../../../assets/stylesheets/definitions/typography' as typography;
+
+.button {
+  --button-line-height: 1.375rem;
+
+  border: 1px solid currentcolor;
+  border-radius: 0; // iOS
+  cursor: pointer;
+  display: inline-flex;
+  flex-direction: row;
+  max-width: min(100%, 320px);
+  min-width: 100px;
+  padding: 1rem 1.5rem;
+  position: relative;
+  text-align: center;
+  text-overflow: ellipsis;
+  transition:
+    background-color var(--easing-slow),
+    border-color var(--easing-slow),
+    color var(--easing-slow);
+  vertical-align: bottom;
+  white-space: nowrap;
+  width: auto;
+
+  @include typography.button;
+
+  .button__span {
+    display: block;
+    flex: 1 1 100%;
+    height: var(--button-line-height);
+    line-height: var(--button-line-height);
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+  }
+}
+
+.button:disabled,
+.button--disabled {
+  cursor: default;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+.button--primary {
+  background-color: var(--color-blue);
+  border-color: var(--color-blue);
+  color: var(--color-white);
+
+  &:hover:not(.button--disabled, :disabled),
+  &:focus-visible:not(.button--disabled, :disabled),
+  &.button--selected {
+    --color-selection-background: var(--color-navy);
+    --color-selection-foreground: var(--color-white);
+
+    background-color: var(--color-pink);
+    border-color: var(--color-pink);
+    color: var(--color-white);
+  }
+}
+
+.button--secondary {
+  background-color: var(--color-navy);
+  border-color: var(--color-blue);
+  color: var(--color-white);
+
+  &:hover:not(.button--disabled, :disabled),
+  &:focus-visible:not(.button--disabled, :disabled),
+  &.button--selected {
+    --color-selection-background: var(--color-navy);
+    --color-selection-foreground: var(--color-white);
+
+    background-color: var(--color-pink);
+    border-color: var(--color-pink);
+    color: var(--color-white);
+  }
+}

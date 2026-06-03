@@ -1,0 +1,8 @@
+@use '../../definitions/grid';
+
+// Fluid value, based on min/max per screen width min/max. For font-size and such.
+// NOTE: See https://www.smashingmagazine.com/2016/05/fluid-typography/
+
+@mixin apply($min-font-size: 16px, $max-font-size: 20px, $min-screen-width: grid.$website-min-width, $max-screen-width: grid.$website-max-width) {
+  font-size: get-fluid-value($min-font-size, $max-font-size, $min-screen-width, $max-screen-width);
+}

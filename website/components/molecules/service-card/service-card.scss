@@ -1,0 +1,63 @@
+@use '../../../assets/stylesheets/definitions/breakpoints' as breakpoints;
+@use '../../../assets/stylesheets/definitions/typography' as typography;
+
+.service-card {
+  aspect-ratio: 1 / 1;
+  display: block;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+
+  .service-card__content {
+    height: 100%;
+    inset: 0;
+    position: absolute;
+    width: 100%;
+  }
+
+  .service-card__content {
+    background-color: var(--color-blue);
+    color: var(--color-white);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 5vw 2.5vw;
+    place-content: center;
+    place-items: center;
+    text-align: center;
+    transition: background-color var(--easing-slow);
+    z-index: 10;
+  }
+
+  .service-card__label {
+    background-color: var(--color-white);
+    clip-path: polygon(100% 0, calc(100% - 1rem) 50%, 100% 100%, 0% 100%, 1rem 50%, 0% 0%);
+    color: var(--color-blue);
+    margin: 0 -2.5rem 1.75rem;
+    padding: 0.75rem 3rem 0.5rem;
+
+    @include typography.label;
+  }
+
+  .service-card__title {
+    @include typography.card-title;
+  }
+
+  .service-card__subtitle {
+    margin-top: 0.25rem;
+    max-width: min(100%, 34ch);
+    padding: 0 1.5rem;
+
+    @include typography.card-subtitle;
+  }
+
+  &:hover,
+  &:focus-visible {
+    .service-card__content {
+      --color-selection-background: var(--color-navy);
+      --color-selection-foreground: var(--color-white);
+
+      background-color: var(--color-pink);
+    }
+  }
+}

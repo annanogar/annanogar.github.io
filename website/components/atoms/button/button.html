@@ -1,0 +1,29 @@
+{% macro _button_content(title = '', icon_before = '', icon_after = '', label_hidden = false) %}
+  {% if icon_before %}
+    <span class="button__icon button__icon--before"> {% include 'assets/icons/' + icon_before + '.svg' %} </span>
+  {% endif %}
+
+  {% if title %}
+    <span class="button__span" {% if label_hidden %}hidden="screen"{% endif %}>{{ title }}</span>
+  {% endif %}
+
+  {% if icon_after %}
+    <span class="button__icon button__icon--after"> {% include 'assets/icons/' + icon_after + '.svg' %} </span>
+  {% endif %}
+{% endmacro %}
+
+{% macro regular(classes = '', variant = 'secondary', title = '', href = '', target = '', disabled = false, selected = false, long_title = '', attributes = {}, label_hidden = false) %}
+  <a class="button button--{{ variant }} {% if disabled %}button--disabled{% endif %} {% if selected %}button--selected{% endif %} {{ classes }}" href="{{ href }}" {% if target %}target="{{ target }}"{% endif %} {% if target == '_blank' %}rel="noopener noreferrer"{% endif %} {% if long_title %}aria-label="{{ long_title }}"{% endif %} {% if attributes|length %}{% for attribute in attributes %}{{ attribute.key }}="{{ attribute.value }}"{% endfor %}{% endif %}> {{ _button_content(title = title, label_hidden = label_hidden) }} </a>
+{% endmacro %}
+
+{% macro button(classes = '', variant = 'secondary', title = '', disabled = false, selected = false, long_title = '', type = '', attributes = [], label_hidden = false) %}
+  <button class="button button--{{ variant }} {% if selected %}button--selected{% endif %} {{ classes }}" {% if disabled %}disabled{% endif %} {% if type %}type="{{ type }}"{% endif %} {% if target == '_blank' %}rel="noopener noreferrer"{% endif %} {% if long_title %}aria-label="{{ long_title }}"{% endif %} {% if attributes|length %}{% for attribute in attributes %}{{ attribute.key }}="{{ attribute.value }}"{% endfor %}{% endif %}>{{ _button_content(title = title, label_hidden = label_hidden) }}</button>
+{% endmacro %}
+
+{% macro span(classes = '', variant = 'secondary', title = '', disabled = false, selected = false, type = '', attributes = {}, label_hidden = false) %}
+  <span class="button button--{{ variant }} {% if disabled %}button--disabled{% endif %} {% if selected %}button--selected{% endif %} {{ classes }}" {% if type %}type="{{ type }}"{% endif %} {% if target == '_blank' %}rel="noopener noreferrer"{% endif %} {% if attributes|length %}{% for attribute in attributes %}{{ attribute.key }}="{{ attribute.value }}"{% endfor %}{% endif %}> {{ _button_content(title = title, label_hidden = label_hidden) }} </span>
+{% endmacro %}
+
+{% macro label(classes = '', for = '', variant = 'secondary', title = '', disabled = false, selected = false, long_title = '', attributes = {}, label_hidden = false) %}
+  <label for="{{ for }}" class="button button--{{ variant }} {% if selected %}button--selected{% endif %} {{ classes }}" {% if disabled %}disabled{% endif %} {% if long_title %}aria-label="{{ long_title }}"{% endif %} {% if attributes|length %}{% for attribute in attributes %}{{ attribute.key }}="{{ attribute.value }}"{% endfor %}{% endif %}> {{ _button_content(title = title, label_hidden = label_hidden) }} </label>
+{% endmacro %}

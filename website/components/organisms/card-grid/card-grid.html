@@ -1,0 +1,31 @@
+{% import 'components/molecules/project-card/project-card.html' as molecule_project_card %}
+{% import 'components/molecules/service-card/service-card.html' as molecule_service_card %}
+
+{% macro regular(variant = '', cards = [], title = '', above_fold = false) %}
+  {% if cards|length %}
+    <div class="card-grid card-grid--{{ variant or 'default' }}">
+      {% if title %}
+        <div class="card-grid__title-wrapper">
+          <h2 class="card-grid__title">{{ title }}</h2>
+        </div>
+      {% endif %}
+
+      <div class="card-grid__wrapper">
+        <!-- axe-linter-disable list -->
+        <ul class="card-grid__items">
+          {% for card in cards %}
+            {% if card.href and card.title %}
+              <li class="card-grid__item">
+                {% if card.image %}
+                  {{ molecule_project_card.regular(href = card.href, title = card.title, subtitle = card.subtitle, label = card.label, image = card.image, sizes = '(min-width: 768px) 33.333vw, 100vw', loading = 'eager' if (above_fold and loop.index < 4) else 'lazy') }}
+                {% else %}
+                  {{ molecule_service_card.regular(href = card.href, title = card.title, subtitle = card.subtitle, label = card.label) }}
+                {% endif %}
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  {% endif %}
+{% endmacro %}

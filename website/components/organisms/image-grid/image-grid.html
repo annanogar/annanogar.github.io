@@ -1,0 +1,55 @@
+{% import 'components/atoms/picture/picture.html' as atom_picture %}
+{% import 'components/atoms/richtext/richtext.html' as atom_richtext %}
+
+{% macro regular(title = '', richtext = '', introduction = '', images = [], above_fold = false) %}
+  <div class="image-grid">
+    {% if title or introduction %}
+      <div class="image-grid__wrapper">
+        {% if title %}
+          <h2 class="image-grid__title">{{ title }}</h2>
+        {% endif %}
+
+        {% if richtext %}
+          {{ atom_richtext.regular(richtext = richtext) }}
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if images|length %}
+      <!-- axe-linter-disable list -->
+      <ul class="image-grid__images">
+        {% for image in images %}
+          {% set image_loading = 'eager' if (above_fold and loop.index < 4) else (image.loading or 'lazy') %}
+
+          {% if '_2x1' in image.src %}
+            <li class="image-grid__image image-grid__image--2x1">
+              {{
+                atom_picture.regular(
+                  sources = [ { type: 'image/webp', srcsets: [ '/static/media/' + image.src + '_800w.webp 800w', '/static/media/' + image.src + '_1280w.webp 1280w', '/static/media/' + image.src + '_1707w.webp 1707w', '/static/media/' + image.src + '_2560w.webp 2560w' ] } ],
+                  alt = image.alt,
+                  width = 400,
+                  height = 200,
+                  sizes = '(min-width: 768px) 66.666vw, 100vw',
+                  loading = image_loading
+                )
+              }}
+            </li>
+          {% else %}
+            <li class="image-grid__image image-grid__image--1x1">
+              {{
+                atom_picture.regular(
+                  sources = [ { type: 'image/webp', srcsets: [ '/static/media/' + image.src + '_400w.webp 400w', '/static/media/' + image.src + '_640w.webp 640w', '/static/media/' + image.src + '_854w.webp 854w', '/static/media/' + image.src + '_1280w.webp 1280w' ] } ],
+                  alt = image.alt,
+                  width = 320,
+                  height = 320,
+                  sizes = '(min-width: 768px) 33.333vw, 50vw',
+                  loading = image_loading
+                )
+              }}
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+{% endmacro %}

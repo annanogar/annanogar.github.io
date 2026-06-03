@@ -1,0 +1,70 @@
+@use '../../../assets/stylesheets/definitions/breakpoints' as breakpoints;
+@use '../../../assets/stylesheets/definitions/typography' as typography;
+
+.menu-button {
+  border-radius: 0;
+  color: var(--color-white);
+  cursor: pointer;
+  display: inline-block;
+  height: 3.875ex;
+  margin: -0.75ex -1ex -1.25ex;
+  padding: 1ex;
+  position: relative;
+  transition: color var(--easing-standard);
+  vertical-align: top;
+  width: 3.875ex;
+
+  @include typography.logo;
+
+  .button__icon {
+    display: inline-block;
+    height: 100%;
+    position: relative;
+    vertical-align: top;
+    width: 100%;
+  }
+
+  .button__icon-line {
+    background-color: currentcolor;
+    display: block;
+    height: 0.25ex;
+    left: 50%;
+    opacity: 1;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transform-origin: 50% 50%;
+    transition:
+      transform var(--easing-standard),
+      opacity var(--easing-standard);
+    width: 1.875ex;
+
+    &:nth-child(1) {
+      transform: translate(-50%, -250%) rotate(0deg);
+    }
+
+    &:nth-child(2) {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    &:nth-child(3) {
+      transform: translate(-50%, 150%) rotate(0deg);
+    }
+  }
+
+  &[data-open='true'] {
+    .button__icon-line {
+      &:nth-child(1) {
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+
+      &:nth-child(2) {
+        opacity: 0;
+      }
+
+      &:nth-child(3) {
+        transform: translate(-50%, -50%) rotate(-45deg);
+      }
+    }
+  }
+}

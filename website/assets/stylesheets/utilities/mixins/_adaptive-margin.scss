@@ -1,0 +1,17 @@
+// Adaptive margin helper
+// To automagically collapse the top or bottom margin when in the beginning or end of a content component.
+// Useful only until `margin-trim` is widely supported.
+
+@mixin apply($margin-top: false, $margin-bottom: false) {
+  @if ($margin-top) {
+    &:not(:first-child) {
+      margin-top: $margin-top;
+    }
+  }
+
+  @if ($margin-bottom) {
+    &:not(:last-child) {
+      margin-bottom: $margin-bottom;
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{% import 'components/atoms/badge/badge.html' as atom_badge %}
+{% import 'components/atoms/picture/picture.html' as atom_picture %}
+{% import 'components/molecules/project-card/project-card.html' as molecule_project_card %}
+
+{% macro regular(quote = '') %}
+  {% if quote %}
+    <div class="call-to-nonaction">
+      <div class="call-to-nonaction__wrapper">
+        <blockquote class="call-to-nonaction__quote">{{ quote }}</blockquote>
+      </div>
+    </div>
+  {% endif %}
+{% endmacro %}

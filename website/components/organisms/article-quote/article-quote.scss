@@ -1,0 +1,35 @@
+@use '../../../assets/stylesheets/definitions/breakpoints' as breakpoints;
+@use '../../../assets/stylesheets/definitions/grid' as grid;
+@use '../../../assets/stylesheets/definitions/typography' as typography;
+
+.article-quote {
+  position: relative;
+
+  .article-quote__wrapper {
+    padding: calc(var(--padding-xl) * 1.6) var(--padding-large) calc(var(--padding-xl) * 1.8);
+  }
+
+  .article-quote__quote {
+    @include typography.quote;
+  }
+
+  .article-content-image + &,
+  .article-content + & {
+    .article-quote__wrapper {
+      padding-top: 0;
+    }
+  }
+
+  @include breakpoints.landscape {
+    .article-quote__wrapper {
+      padding: var(--padding-medium) var(--padding-large);
+    }
+
+    .article-content-image + &,
+    .article-content + & {
+      .article-quote__wrapper {
+        margin-top: calc(var(--padding-medium) * -1);
+      }
+    }
+  }
+}

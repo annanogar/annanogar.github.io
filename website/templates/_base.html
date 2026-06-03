@@ -1,0 +1,93 @@
+<!doctype html>
+
+<!-- axe-linter-disable html-lang-valid -->
+<html lang="{{ lang or 'en' }}" class="{% if page_class %}document--{{ page_class }}{% endif %}">
+  <head>
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0" />
+    <meta name="format-detection" content="telephone=no" />
+
+    {% if page_title and (page_title != site_title) %}
+      {% set full_page_title = page_title + ' — ' + site_title %}
+    {% else %}
+      {% set full_page_title = site_title %}
+    {% endif %}
+    <title>{{ full_page_title }}</title>
+
+    {% set full_page_description = page_description or site_description %}
+    <meta name="description" content="{{ full_page_description }}" />
+
+    {% block linked_pages %}
+    {% endblock %}
+
+    {% block stylesheet_preloads %}
+      {#<link rel="preload" href="{{ asset_urls['stylesheets/main.css'] }}" as="style" />#}
+    {% endblock %}
+
+    {% block script_preloads %}
+      {#<link rel="modulepreload" href="{{ asset_urls['scripts/main.js'] }}" as="script" crossorigin />#}
+    {% endblock %}
+
+    <meta name="application-name" content="{{ site_name }}" />
+    <meta name="theme-color" content="#fff" />
+    <meta name="msapplication-TileColor" content="#fff" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="{{ page_title }}" />
+    <meta property="og:site_name" content="{{ site_name }}" />
+    <meta property="og:description" content="{{ full_page_description }}" />
+    {% if opengraph_url %}<meta property="og:url" content="{{ opengraph_url }}" />{% endif %}
+    {% if opengraph_image %}<meta property="og:image" content="https://annanogar.com{{ opengraph_image }}" />{% endif %}
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    {% block og_metadata %}{% endblock %}
+
+    {% block favicons %}
+      <link rel="icon" href="/static/images/favicons/favicon.ico" />
+      <link rel="icon" type="image/png" href="/static/images/favicons/favicon.png" sizes="192x192" />
+      <link rel="apple-touch-icon" href="/static/images/favicons/favicon.png" />
+    {% endblock %}
+
+    {% block font_preloads %}
+      <link rel="preload" href="/static/fonts/poppins/poppins-bold.woff2" as="font" type="font/woff2" crossorigin />
+      <link rel="preload" href="/static/fonts/noto-sans/noto-sans-regular.woff2" as="font" type="font/woff2" crossorigin />
+    {% endblock %}
+
+    <link rel="stylesheet" href="{{ asset_urls['stylesheets/main.css'] }}" />
+    {% block stylesheets %}
+    {% endblock %}
+  </head>
+
+  <body class="{% if page_theme %}theme--{{ page_theme }}{% endif %}">
+    {% block skip_to_main %}
+    {% endblock %}
+
+    <div class="container container--wrapper">
+      <header class="container container--header">
+        {% block header %}
+        {% endblock %}
+      </header>
+
+      <main id="main" class="container container--content">
+        {% block content %}
+        {% endblock %}
+      </main>
+
+      <footer class="container container--footer">
+        {% block footer %}
+        {% endblock %}
+      </footer>
+    </div>
+
+    <div class="container container--overlays">
+      {% block overlays %}
+      {% endblock %}
+    </div>
+
+    {% block scripts %}
+      <script src="{{ asset_urls['scripts/main.js'] }}" type="module" crossorigin></script>
+    {% endblock %}
+  </body>
+</html>

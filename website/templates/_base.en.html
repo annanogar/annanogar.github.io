@@ -1,0 +1,49 @@
+{% extends 'templates/_base.html' %}
+{% import 'components/structures/footer-bar/footer-bar.html' as footer_bar %}
+{% import 'components/structures/menu-bar/menu-bar.html' as menu_bar %}
+{% import 'components/structures/skip-to-main/skip-to-main.html' as skip_to_main %}
+
+{% set lang = 'en' %}
+
+{% set site_name = data.base.site_name or site_name %}
+{% set site_title = data.base.site_title or site_title %}
+{% set site_description = data.base.site_description or site_description %}
+
+{% set opengraph_title = site_title %}
+{% set opengraph_description = site_description %}
+{% set opengraph_image = '/static/media/misc/social_1200x630.jpg' %}
+
+{% block skip_to_main %}
+  {{ skip_to_main.regular(title = data.base.skiplink_aria_label, aria_label = data.base.skiplink_aria_label) }}
+{% endblock %}
+
+{% block header %}
+  {{
+    menu_bar.regular(
+      page_href = page_href,
+      href = data.sections.home.href,
+      title = data.sections.home.menu_title,
+      title_aria_label = data.sections.home.menu_aria_label,
+      aria_label = data.base.navigation_aria_label,
+      dialog_aria_label = data.base.menu_dialog_aria_label,
+      button_aria_label = data.base.menu_button_aria_label,
+      menu_items = data.menu_items
+    )
+  }}
+{% endblock %}
+
+{% block footer %}
+  {{
+    footer_bar.regular(
+      aria_label = data.base.footer_aria_label,
+      links_start = [
+        { href: 'mailto:_send_me_an_', title: '_send_me_an_' },
+        { href: 'tel:_or_pick_up_the_', title: '_or_pick_up_the_' }
+      ],
+      links_end = data.footer_socials
+    )
+  }}
+{% endblock %}
+
+{% block overlays %}
+{% endblock %}
