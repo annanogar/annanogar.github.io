@@ -21,7 +21,11 @@
     {% if block.type === 'article-content-image' %}
       {% set loading = 'eager' if not loop.index0 else 'lazy' %}
 
-      {{ article_content_image.regular(richtext = block.richtext, variant = block.variant, image = { loading: loading, src: block.image.src, alt: block.image.alt }, cpacc_badge = true, hearts_shader = true) }}
+      {% if not loop.index0 %}
+        {{ article_content_image.regular(richtext = block.richtext, variant = block.variant, image = { loading: loading, src: block.image.src, alt: block.image.alt }, cpacc_badge = true, hearts_shader = true) }}
+      {% else %}
+        {{ article_content_image.regular(richtext = block.richtext, variant = block.variant, image = { loading: loading, src: block.image.src, alt: block.image.alt }) }}
+      {% endif %}
     {% elif block.type === 'article-quote' %}
       {{ article_quote.regular(quote = block.quote) }}
     {% endif %}
