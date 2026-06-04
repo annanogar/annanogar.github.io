@@ -170,7 +170,7 @@ export default [
 
   // Overrides specific for Node files
   {
-    files: ['*.js', 'sonic/**/*.js', 'tests/**/*.js'],
+    files: ['*.js', 'sonic/**/*.js', 'tests/**/*.js', './scripts/**/*.js'],
     ignores: [],
     languageOptions: {
       globals: {

@@ -111,6 +111,27 @@ export default {
     destinationPath: 'build/static/shaders',
   },
 
+  redirects: {
+    canonical: 'https://annanogar.com',
+    routes: [
+      { from: '/it/', to: '/', lang: 'it' },
+      { from: '/it/about/', to: '/about/', lang: 'it' },
+      { from: '/it/contatti/', to: '/contact/', lang: 'it' },
+      { from: '/it/manifesto/', to: '/manifesto/', lang: 'it' },
+      { from: '/it/servizi/', to: '/services/', lang: 'it' },
+      { from: '/it/progetti/', to: '/projects/', lang: 'it' },
+      { from: '/it/progetti/cruquius-museum/', to: '/projects/cruquius-museum/', lang: 'it' },
+      { from: '/it/progetti/family-exhibits/', to: '/projects/family-exhibits/', lang: 'it' },
+      { from: '/it/progetti/herman-boerhaave/', to: '/projects/herman-boerhaave/', lang: 'it' },
+      { from: '/it/progetti/het-steen/', to: '/projects/het-steen/', lang: 'it' },
+      { from: '/it/progetti/joh-enschede/', to: '/projects/joh-enschede/', lang: 'it' },
+      { from: '/it/progetti/living-planet/', to: '/projects/living-planet/', lang: 'it' },
+      { from: '/it/progetti/maker-park/', to: '/projects/maker-park/', lang: 'it' },
+      { from: '/it/progetti/prodemos/', to: '/projects/prodemos/', lang: 'it' },
+      { from: '/it/progetti/shifting-image/', to: '/projects/shifting-image/', lang: 'it' },
+    ],
+  },
+
   sitemap: {
     canonical: 'https://annanogar.com',
     includeGlobs: ['build/**/*.html'],

@@ -31,6 +31,7 @@ import actionConvertSourceImages from './actions/convert-source-images.js'
 import actionCopyFiles from './actions/copy-files.js'
 import actionDeletePath from './actions/delete-path.js'
 import actionFormatFiles from './actions/format-files.js'
+import actionGenerateRedirects from './actions/generate-redirects.js'
 import actionGenerateSitemap from './actions/generate-sitemap.js'
 import actionLintScripts from './actions/lint-scripts.js'
 import actionLintStylesheets from './actions/lint-stylesheets.js'
@@ -75,6 +76,7 @@ export const tasks = {
   copyVendor: async (paths = config.vendor.sourceGlobs) => await actionCopyFiles(paths, config.vendor.sourcePath, config.vendor.destinationPath, 'vendor files'),
   copyShaders: async (paths = config.shaders.sourceGlobs) => await actionCopyFiles(paths, config.shaders.sourcePath, config.shaders.destinationPath, 'shader files'),
   formatMockData: async (paths = config.mockData.formatGlobs, hashCache = runtime.losslessSourceHashCache) => await actionFormatFiles(paths, 'mock-data', hashCache),
+  generateRedirects: async (path = config.project.destinationPath) => await actionGenerateRedirects(path, config.redirects.canonical, config.redirects.routes),
   generateSitemap: async (path = config.project.destinationPath) => await actionGenerateSitemap(path, config.sitemap),
   formatOutputTemplates: async (paths = config.templates.formatOutputGlobs) => await actionFormatFiles(paths, 'output templates', null, false),
   formatScripts: async (paths = config.scripts.formatGlobs, hashCache = runtime.losslessSourceHashCache) => await actionFormatFiles(paths, 'scripts', hashCache),
@@ -262,6 +264,7 @@ export const flows = {
     await composedTasks.optimize()
     await composedTasks.link()
     await composedTasks.compile()
+    await tasks.generateRedirects()
     await tasks.generateSitemap()
   },
 

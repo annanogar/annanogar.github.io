@@ -1,0 +1,14 @@
+{
+  "servers": {
+    "vexp": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "/Users/elco/.vscode/extensions/vexp.vexp-vscode-2.0.25-darwin-arm64/dist/mcp-server.cjs"
+      ],
+      "env": {
+        "VEXP_WORKSPACE": "/Users/elco/Projects/personal/anna-nogar"
+      }
+    }
+  }
+}

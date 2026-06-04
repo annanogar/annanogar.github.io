@@ -41,21 +41,21 @@ const walkValue = (value, path, visitor) => {
 }
 
 // Utility to get the data at a specific path (e.g. "foo.bar[0].baz") for logging purposes
-const getDataAtPath = (data, path) => {
-  const parts = path.split(/\.|\[|\]/).filter(Boolean)
-
-  let current = data
-
-  for (const part of parts) {
-    if (current && typeof current === 'object' && part in current) {
-      current = current[part]
-    } else {
-      return undefined
-    }
-  }
-
-  return current
-}
+// const getDataAtPath = (data, path) => {
+//   const parts = path.split(/\.|\[|\]/).filter(Boolean)
+//
+//   let current = data
+//
+//   for (const part of parts) {
+//     if (current && typeof current === 'object' && part in current) {
+//       current = current[part]
+//     } else {
+//       return undefined
+//     }
+//   }
+//
+//   return current
+// }
 
 export default async function validateAlts() {
   const timestamp = new Date()
