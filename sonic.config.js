@@ -85,7 +85,7 @@ export default {
     sourceGlobs: ['website/templates/pages/**/*.html'],
     watchGlobs: ['website/templates/**/*.html', 'website/components/**/*.html', 'nunjucks.data.js'],
     formatGlobs: ['website/templates/**/*.html', 'website/components/**/*.html'],
-    formatOutputGlobs: ['build/**/*.html'],
+    formatOutputGlobs: ['build/**/*.html', '!build/static/**', '!build/it/**'],
     sourcePath: 'website/templates/pages',
     destinationPath: 'build',
   },
