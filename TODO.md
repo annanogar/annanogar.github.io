@@ -4,8 +4,6 @@ Ordered by value/effort. Site works — these are refinements.
 
 ## Open
 
-- [ ] **PostCSS/autoprefixer on compiled CSS, not SCSS source.** Currently [process-stylesheets.js](sonic/actions/process-stylesheets.js) mutates `.scss` source in-place (wrong direction). Move `process` after `compile` in `flows.build`; point globs at `build/static/stylesheets/*.css`; drop `postcss-scss` syntax in [postcss.config.js](postcss.config.js); write to build output. Toggle: `SONIC_USE_AUTOPREFIXER`. (Currently a no-op — browserslist needs no prefixes, 0 changed on last run 2026-06-03.)
-
 - [ ] **Delete `/it/` stubs** once old Italian URLs gone from Google. Empty `redirects/routes` array in [sonic.config.js](sonic.config.js).
 
 - [ ] **Critical CSS** (much later) — inline above-the-fold CSS in `<head>`, defer rest.

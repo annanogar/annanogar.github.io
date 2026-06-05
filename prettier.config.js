@@ -7,7 +7,7 @@ export default {
   semi: false,
   singleQuote: true,
   arrowParens: 'avoid',
-  plugins: ['prettier-plugin-jinja-template'],
+  plugins: ['prettier-plugin-jinja-template', '@prettier/plugin-oxc'],
   overrides: [
     {
       files: ['website/templates/**/*.html', 'website/components/**/*.html'],

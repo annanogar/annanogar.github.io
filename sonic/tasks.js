@@ -77,7 +77,7 @@ export const tasks = {
   copyShaders: async (paths = config.shaders.sourceGlobs) => await actionCopyFiles(paths, config.shaders.sourcePath, config.shaders.destinationPath, 'shader files'),
   formatMockData: async (paths = config.mockData.formatGlobs, hashCache = runtime.losslessSourceHashCache) => await actionFormatFiles(paths, 'mock-data', hashCache),
   generateRedirects: async (path = config.project.destinationPath) => await actionGenerateRedirects(path, config.redirects.canonical, config.redirects.routes),
-  generateSitemap: async (path = config.project.destinationPath) => await actionGenerateSitemap(path, config.sitemap),
+  generateSitemap: async (path = config.project.destinationPath) => await actionGenerateSitemap(path, config.sitemap.canonical, config.sitemap.sourceGlobs),
   formatOutputTemplates: async (paths = config.templates.formatOutputGlobs) => await actionFormatFiles(paths, 'output templates', null, false),
   formatScripts: async (paths = config.scripts.formatGlobs, hashCache = runtime.losslessSourceHashCache) => await actionFormatFiles(paths, 'scripts', hashCache),
   formatStylesheets: async (paths = config.stylesheets.formatGlobs, hashCache = runtime.losslessSourceHashCache) => await actionFormatFiles(paths, 'stylesheets', hashCache),
@@ -94,7 +94,7 @@ export const tasks = {
     await actionOptimizeVectors(paths, 'media files', hashCache)
     // NOTE: Optimizing videos is not supported.
   },
-  processStylesheets: async (paths = config.stylesheets.formatGlobs, hashCache = runtime.losslessSourceHashCache) => await actionProcessStylesheets(paths, config.stylesheets.sourcePath, hashCache),
+  processStylesheets: async (paths = config.stylesheets.processGlobs, hashCache = null) => await actionProcessStylesheets(paths, config.stylesheets.destinationPath, hashCache),
   serveFiles: async (path = config.project.destinationPath) => await actionServeFiles(path),
   sync: async (path = config.project.destinationPath) => await actionSyncFolder(path),
   validateAlts: async () => await actionValidateAlts(),
@@ -226,13 +226,12 @@ export const composedTasks = {
     }
 
     await tasks.lintStylesheets()
+    await tasks.formatStylesheets()
+    await tasks.compileStylesheets()
 
     if (runtime.settings.useAutoprefixer) {
       await tasks.processStylesheets()
     }
-
-    await tasks.formatStylesheets()
-    await tasks.compileStylesheets()
   },
 
   templates: async () => {
@@ -260,10 +259,10 @@ export const flows = {
     await tasks.validateAlts()
     await composedTasks.lint()
     await composedTasks.format()
-    await composedTasks.process()
     await composedTasks.optimize()
     await composedTasks.link()
     await composedTasks.compile()
+    await composedTasks.process()
     await tasks.generateRedirects()
     await tasks.generateSitemap()
   },
@@ -351,7 +350,7 @@ export const watchTasks = {
     await tasks.compileStylesheets()
 
     if (runtime.settings.useAutoprefixer) {
-      await tasks.processStylesheets(path)
+      await tasks.processStylesheets()
     }
   },
 

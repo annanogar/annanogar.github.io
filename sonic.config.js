@@ -76,6 +76,7 @@ export default {
     watchGlobs: ['website/assets/stylesheets/**/*.scss', 'website/assets/stylesheets/themes/**/*.scss', 'website/components/**/*.scss'],
     lintGlobs: ['website/assets/stylesheets/**/*.scss', 'website/assets/stylesheets/themes/**/*.scss', 'website/components/**/*.scss'],
     formatGlobs: ['website/assets/stylesheets/**/*.scss', 'website/assets/stylesheets/themes/**/*.scss', 'website/components/**/*.scss'],
+    processGlobs: ['build/static/stylesheets/*.css'],
     sourcePath: 'website/assets/stylesheets',
     destinationPath: 'build/static/stylesheets',
   },
@@ -134,7 +135,6 @@ export default {
 
   sitemap: {
     canonical: 'https://annanogar.com',
-    includeGlobs: ['build/**/*.html'],
-    excludeGlobs: ['build/it/**/*.html'],
+    sourceGlobs: ['build/**/*.html', '!build/it/**/*.html', '!build/static/**'],
   },
 }

@@ -106,7 +106,6 @@
 @mixin links {
   a {
     text-decoration: none;
-    -webkit-text-decoration-skip: ink;
     text-decoration-skip-ink: auto;
     text-decoration-thickness: 1px; //from-font;
     text-underline-offset: 0.15em;

@@ -16,6 +16,7 @@ import { mkdir, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import runtime from '../runtime.js'
 
+// HTML template for a redirect stub: immediate client-side redirect with noindex so crawlers follow the canonical
 const html = (to = '', lang = '', canonical = '') =>
   `
 <!doctype html>
@@ -44,7 +45,7 @@ const html = (to = '', lang = '', canonical = '') =>
 </html>
 `.trim()
 
-// Generate a stub for a single route using the above template html.
+// Generate a redirect stub for a single route
 const generateStub = async (destinationPath = '', canonical = '', from = '', to = '', lang = 'en') => {
   if (!canonical || !from || !to) {
     return
@@ -60,7 +61,9 @@ const generateStub = async (destinationPath = '', canonical = '', from = '', to 
   }
 }
 
+// Generate redirect stubs for all configured routes
 export default async function generateRedirects(destinationPath = 'build', canonical = '', routes = []) {
+  // Get the current time for the time measurement
   const timestamp = new Date()
 
   await Promise.all(routes.map(async ({ from, to, lang = 'en' }) => generateStub(destinationPath, canonical, from, to, lang)))
