@@ -10,7 +10,8 @@ import content_blocks from './data/content-blocks.ts'
 
 const DEFAULT_LANG = base.lang || 'en'
 
-const setImageAlts = (object, lookup = {}) => (!object ? {} : Object.fromEntries(Object.entries(object).map(([key, value]) => (!value || typeof value !== 'object' ? [key, value] : [key, Object.fromEntries(Object.entries(value).map(([propKey, propValue]) => (propKey.endsWith('image') && typeof propValue === 'string' ? [propKey, { src: propValue, alt: lookup[propValue] || '', loading: 'lazy' }] : [propKey, propValue])))]))))
+const setObjectImageAlts = (obj, lookup = {}) => (!obj ? {} : Object.fromEntries(Object.entries(obj).map(([k, v]) => (k.endsWith('image') && typeof v === 'string' ? [k, { src: v, alt: lookup[v] || '', loading: 'lazy' }] : [k, v]))))
+const setImageAlts = (collection, lookup = {}) => (!collection ? {} : Object.fromEntries(Object.entries(collection).map(([key, value]) => (!value || typeof value !== 'object' ? [key, value] : [key, setObjectImageAlts(value, lookup)]))))
 //const setBlockImageAlts = (object, lookup = {}) => (!object ? {} : Object.fromEntries(Object.entries(object).map(([key, blockList]) => [key, blockList.map(block => Object.fromEntries(Object.entries(block).map(([propKey, propValue]) => (propKey.endsWith('images') && Array.isArray(propValue) ? [propKey, propValue.map(src => ({ src, alt: lookup[src] || '', loading: 'lazy' }))] : [propKey, propValue]))))])))
 const setAllImageAlts = (object, lookup = {}) => {
   const transform = val => (!val || typeof val !== 'object' ? val : Array.isArray(val) ? val.map(transform) : Object.fromEntries(Object.entries(val).map(([k, v]) => (k.endsWith('images') && Array.isArray(v) ? [k, v.map(src => ({ src, alt: lookup[src] || '', loading: 'lazy' }))] : k.endsWith('image') && typeof v === 'string' ? [k, { src: v, alt: lookup[v] || '', loading: 'lazy' }] : [k, transform(v)]))))
@@ -57,6 +58,7 @@ const toUniformCards = collection => Object.fromEntries(Object.entries(collectio
 const project_order = ['shifting-image', 'maker-park', 'family-exhibits', 'vanishing', 'cruquius-museum', 'joh-enschede', 'herman-boerhaave', 'living-planet', 'badge-academy', 'parassita', 'canon', 'het-steen', 'middelen-meter', 'prodemos', 'interplanetary']
 
 // Resolve image alts once (materializing section optionals first), then reuse the processed collections for both the export and the derived cards below
+const baseWithAlts = setObjectImageAlts(base, alts)
 const sectionsWithAlts = setImageAlts(applyDefaults(sections, sectionDefaults), alts)
 const projectsWithAlts = setImageAlts(projects, alts)
 const resourcesWithAlts = setImageAlts(resources, alts)
@@ -93,7 +95,7 @@ const resource_cards = [
 ]
 
 const data = {
-  base,
+  base: baseWithAlts,
   alts,
   sections: sectionsWithAlts,
   projects: projectsWithAlts,
